@@ -1,0 +1,852 @@
+{
+  "n_bidsets": 15,
+  "symptom_1": {
+    "status": "unmeasurable",
+    "reason": "to_json() does not serialize PlanSetContext.project",
+    "checklist_section_10_mismatch": true,
+    "rows": [
+      {
+        "bidset_id": "auto-zone-10891-jacksonville-mec-24-others",
+        "project_in_json": false,
+        "project_name": null,
+        "source": null,
+        "confidence": null,
+        "pass": null,
+        "note": "to_json() does not serialize PlanSetContext.project \u2014 see checklist \u00a710 mismatch"
+      },
+      {
+        "bidset_id": "auto-zone-vero-beach-fl",
+        "project_in_json": false,
+        "project_name": null,
+        "source": null,
+        "confidence": null,
+        "pass": null,
+        "note": "to_json() does not serialize PlanSetContext.project \u2014 see checklist \u00a710 mismatch"
+      },
+      {
+        "bidset_id": "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6",
+        "project_in_json": false,
+        "project_name": null,
+        "source": null,
+        "confidence": null,
+        "pass": null,
+        "note": "to_json() does not serialize PlanSetContext.project \u2014 see checklist \u00a710 mismatch"
+      },
+      {
+        "bidset_id": "bearss-ave-distribution-center-university-marcobay-construction-3",
+        "project_in_json": false,
+        "project_name": null,
+        "source": null,
+        "confidence": null,
+        "pass": null,
+        "note": "to_json() does not serialize PlanSetContext.project \u2014 see checklist \u00a710 mismatch"
+      },
+      {
+        "bidset_id": "chewy-vet-care-london-square-miami-jdr-fixtures",
+        "project_in_json": false,
+        "project_name": null,
+        "source": null,
+        "confidence": null,
+        "pass": null,
+        "note": "to_json() does not serialize PlanSetContext.project \u2014 see checklist \u00a710 mismatch"
+      },
+      {
+        "bidset_id": "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction",
+        "project_in_json": false,
+        "project_name": null,
+        "source": null,
+        "confidence": null,
+        "pass": null,
+        "note": "to_json() does not serialize PlanSetContext.project \u2014 see checklist \u00a710 mismatch"
+      },
+      {
+        "bidset_id": "hampshire-self-storage",
+        "project_in_json": false,
+        "project_name": null,
+        "source": null,
+        "confidence": null,
+        "pass": null,
+        "note": "to_json() does not serialize PlanSetContext.project \u2014 see checklist \u00a710 mismatch"
+      },
+      {
+        "bidset_id": "panda-express-bradenton",
+        "project_in_json": false,
+        "project_name": null,
+        "source": null,
+        "confidence": null,
+        "pass": null,
+        "note": "to_json() does not serialize PlanSetContext.project \u2014 see checklist \u00a710 mismatch"
+      },
+      {
+        "bidset_id": "panda-express-hialeah-gardens",
+        "project_in_json": false,
+        "project_name": null,
+        "source": null,
+        "confidence": null,
+        "pass": null,
+        "note": "to_json() does not serialize PlanSetContext.project \u2014 see checklist \u00a710 mismatch"
+      },
+      {
+        "bidset_id": "panda-express-naples-cdo-visible-construction-corp",
+        "project_in_json": false,
+        "project_name": null,
+        "source": null,
+        "confidence": null,
+        "pass": null,
+        "note": "to_json() does not serialize PlanSetContext.project \u2014 see checklist \u00a710 mismatch"
+      },
+      {
+        "bidset_id": "panda-express-san-antonio-candito-construction-2",
+        "project_in_json": false,
+        "project_name": null,
+        "source": null,
+        "confidence": null,
+        "pass": null,
+        "note": "to_json() does not serialize PlanSetContext.project \u2014 see checklist \u00a710 mismatch"
+      },
+      {
+        "bidset_id": "shoppes-at-avalon-spring-hill-mec",
+        "project_in_json": false,
+        "project_name": null,
+        "source": null,
+        "confidence": null,
+        "pass": null,
+        "note": "to_json() does not serialize PlanSetContext.project \u2014 see checklist \u00a710 mismatch"
+      },
+      {
+        "bidset_id": "taco-bell-weeki-wachee-compass-construction-management-2",
+        "project_in_json": false,
+        "project_name": null,
+        "source": null,
+        "confidence": null,
+        "pass": null,
+        "note": "to_json() does not serialize PlanSetContext.project \u2014 see checklist \u00a710 mismatch"
+      },
+      {
+        "bidset_id": "vine-street-retail-center-kissimmee-great-southern-constructors",
+        "project_in_json": false,
+        "project_name": null,
+        "source": null,
+        "confidence": null,
+        "pass": null,
+        "note": "to_json() does not serialize PlanSetContext.project \u2014 see checklist \u00a710 mismatch"
+      },
+      {
+        "bidset_id": "wendy-s-fort-myers-great-southern-constructors-3",
+        "project_in_json": false,
+        "project_name": null,
+        "source": null,
+        "confidence": null,
+        "pass": null,
+        "note": "to_json() does not serialize PlanSetContext.project \u2014 see checklist \u00a710 mismatch"
+      }
+    ]
+  },
+  "symptom_2": {
+    "pass": true,
+    "roll_up": {
+      "specific_questions": {
+        "auto-zone-10891-jacksonville-mec-24-others_detected_system_null": true,
+        "auto-zone-10891-jacksonville-mec-24-others_scope_pages_empty": true,
+        "auto-zone-vero-beach-fl_detected_system_null": true,
+        "auto-zone-vero-beach-fl_scope_pages_empty": true,
+        "taco_bell_detected_system_valid_token": true,
+        "taco_bell_system_confidence_ge_0p7": true,
+        "corpus_no_list_type_detected_system": true
+      },
+      "all_yes": true,
+      "corpus_any_list_type": false
+    },
+    "rows": [
+      {
+        "bidset_id": "auto-zone-10891-jacksonville-mec-24-others",
+        "detected_system": null,
+        "detected_system_type": "NoneType",
+        "system_confidence": 0.0,
+        "scope_pages_count": 0,
+        "is_list_type": false,
+        "bidset_passes": {
+          "auto-zone-10891-jacksonville-mec-24-others_detected_system_null": true,
+          "auto-zone-10891-jacksonville-mec-24-others_scope_pages_empty": true
+        }
+      },
+      {
+        "bidset_id": "auto-zone-vero-beach-fl",
+        "detected_system": null,
+        "detected_system_type": "NoneType",
+        "system_confidence": 0.0,
+        "scope_pages_count": 0,
+        "is_list_type": false,
+        "bidset_passes": {
+          "auto-zone-vero-beach-fl_detected_system_null": true,
+          "auto-zone-vero-beach-fl_scope_pages_empty": true
+        }
+      },
+      {
+        "bidset_id": "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6",
+        "detected_system": null,
+        "detected_system_type": "NoneType",
+        "system_confidence": 0.0,
+        "scope_pages_count": 0,
+        "is_list_type": false,
+        "bidset_passes": {}
+      },
+      {
+        "bidset_id": "bearss-ave-distribution-center-university-marcobay-construction-3",
+        "detected_system": null,
+        "detected_system_type": "NoneType",
+        "system_confidence": 0.0,
+        "scope_pages_count": 0,
+        "is_list_type": false,
+        "bidset_passes": {}
+      },
+      {
+        "bidset_id": "chewy-vet-care-london-square-miami-jdr-fixtures",
+        "detected_system": null,
+        "detected_system_type": "NoneType",
+        "system_confidence": 0.0,
+        "scope_pages_count": 0,
+        "is_list_type": false,
+        "bidset_passes": {}
+      },
+      {
+        "bidset_id": "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction",
+        "detected_system": null,
+        "detected_system_type": "NoneType",
+        "system_confidence": 0.0,
+        "scope_pages_count": 0,
+        "is_list_type": false,
+        "bidset_passes": {}
+      },
+      {
+        "bidset_id": "hampshire-self-storage",
+        "detected_system": null,
+        "detected_system_type": "NoneType",
+        "system_confidence": 0.0,
+        "scope_pages_count": 0,
+        "is_list_type": false,
+        "bidset_passes": {}
+      },
+      {
+        "bidset_id": "panda-express-bradenton",
+        "detected_system": null,
+        "detected_system_type": "NoneType",
+        "system_confidence": 0.0,
+        "scope_pages_count": 0,
+        "is_list_type": false,
+        "bidset_passes": {}
+      },
+      {
+        "bidset_id": "panda-express-hialeah-gardens",
+        "detected_system": null,
+        "detected_system_type": "NoneType",
+        "system_confidence": 0.0,
+        "scope_pages_count": 0,
+        "is_list_type": false,
+        "bidset_passes": {}
+      },
+      {
+        "bidset_id": "panda-express-naples-cdo-visible-construction-corp",
+        "detected_system": null,
+        "detected_system_type": "NoneType",
+        "system_confidence": 0.0,
+        "scope_pages_count": 0,
+        "is_list_type": false,
+        "bidset_passes": {}
+      },
+      {
+        "bidset_id": "panda-express-san-antonio-candito-construction-2",
+        "detected_system": null,
+        "detected_system_type": "NoneType",
+        "system_confidence": 0.0,
+        "scope_pages_count": 0,
+        "is_list_type": false,
+        "bidset_passes": {}
+      },
+      {
+        "bidset_id": "shoppes-at-avalon-spring-hill-mec",
+        "detected_system": null,
+        "detected_system_type": "NoneType",
+        "system_confidence": 0.0,
+        "scope_pages_count": 0,
+        "is_list_type": false,
+        "bidset_passes": {}
+      },
+      {
+        "bidset_id": "taco-bell-weeki-wachee-compass-construction-management-2",
+        "detected_system": "tpo",
+        "detected_system_type": "str",
+        "system_confidence": 0.95,
+        "scope_pages_count": 2,
+        "is_list_type": false,
+        "bidset_passes": {
+          "taco_bell_detected_system_valid_token": true,
+          "taco_bell_system_confidence_ge_0p7": true
+        }
+      },
+      {
+        "bidset_id": "vine-street-retail-center-kissimmee-great-southern-constructors",
+        "detected_system": null,
+        "detected_system_type": "NoneType",
+        "system_confidence": 0.0,
+        "scope_pages_count": 0,
+        "is_list_type": false,
+        "bidset_passes": {}
+      },
+      {
+        "bidset_id": "wendy-s-fort-myers-great-southern-constructors-3",
+        "detected_system": null,
+        "detected_system_type": "NoneType",
+        "system_confidence": 0.0,
+        "scope_pages_count": 0,
+        "is_list_type": false,
+        "bidset_passes": {}
+      }
+    ]
+  },
+  "symptom_3": {
+    "pass": true,
+    "roll_up": {
+      "roof_plan_total_v02": 56,
+      "roof_plan_explicit_v02": 16,
+      "ratio_v02": 0.2857142857142857,
+      "ratio_v01_baseline": 0.17894736842105263,
+      "ratio_v01_total": 95,
+      "ratio_v01_explicit": 17,
+      "specific_questions": {
+        "taco_bell_page_18_in_scope_pages": true,
+        "corpus_explicit_ratio_above_v01": true
+      },
+      "all_yes": true
+    },
+    "rows": [
+      {
+        "bidset_id": "auto-zone-10891-jacksonville-mec-24-others",
+        "roof_plan_total": 0,
+        "roof_plan_explicit": 0,
+        "taco_bell_scope_pages": null,
+        "bidset_passes": {}
+      },
+      {
+        "bidset_id": "auto-zone-vero-beach-fl",
+        "roof_plan_total": 0,
+        "roof_plan_explicit": 0,
+        "taco_bell_scope_pages": null,
+        "bidset_passes": {}
+      },
+      {
+        "bidset_id": "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6",
+        "roof_plan_total": 2,
+        "roof_plan_explicit": 1,
+        "taco_bell_scope_pages": null,
+        "bidset_passes": {}
+      },
+      {
+        "bidset_id": "bearss-ave-distribution-center-university-marcobay-construction-3",
+        "roof_plan_total": 2,
+        "roof_plan_explicit": 2,
+        "taco_bell_scope_pages": null,
+        "bidset_passes": {}
+      },
+      {
+        "bidset_id": "chewy-vet-care-london-square-miami-jdr-fixtures",
+        "roof_plan_total": 3,
+        "roof_plan_explicit": 2,
+        "taco_bell_scope_pages": null,
+        "bidset_passes": {}
+      },
+      {
+        "bidset_id": "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction",
+        "roof_plan_total": 5,
+        "roof_plan_explicit": 0,
+        "taco_bell_scope_pages": null,
+        "bidset_passes": {}
+      },
+      {
+        "bidset_id": "hampshire-self-storage",
+        "roof_plan_total": 2,
+        "roof_plan_explicit": 1,
+        "taco_bell_scope_pages": null,
+        "bidset_passes": {}
+      },
+      {
+        "bidset_id": "panda-express-bradenton",
+        "roof_plan_total": 7,
+        "roof_plan_explicit": 0,
+        "taco_bell_scope_pages": null,
+        "bidset_passes": {}
+      },
+      {
+        "bidset_id": "panda-express-hialeah-gardens",
+        "roof_plan_total": 7,
+        "roof_plan_explicit": 2,
+        "taco_bell_scope_pages": null,
+        "bidset_passes": {}
+      },
+      {
+        "bidset_id": "panda-express-naples-cdo-visible-construction-corp",
+        "roof_plan_total": 6,
+        "roof_plan_explicit": 1,
+        "taco_bell_scope_pages": null,
+        "bidset_passes": {}
+      },
+      {
+        "bidset_id": "panda-express-san-antonio-candito-construction-2",
+        "roof_plan_total": 2,
+        "roof_plan_explicit": 1,
+        "taco_bell_scope_pages": null,
+        "bidset_passes": {}
+      },
+      {
+        "bidset_id": "shoppes-at-avalon-spring-hill-mec",
+        "roof_plan_total": 4,
+        "roof_plan_explicit": 0,
+        "taco_bell_scope_pages": null,
+        "bidset_passes": {}
+      },
+      {
+        "bidset_id": "taco-bell-weeki-wachee-compass-construction-management-2",
+        "roof_plan_total": 6,
+        "roof_plan_explicit": 2,
+        "taco_bell_scope_pages": [
+          18,
+          19
+        ],
+        "bidset_passes": {
+          "taco_bell_page_18_in_scope_pages": true
+        }
+      },
+      {
+        "bidset_id": "vine-street-retail-center-kissimmee-great-southern-constructors",
+        "roof_plan_total": 9,
+        "roof_plan_explicit": 3,
+        "taco_bell_scope_pages": null,
+        "bidset_passes": {}
+      },
+      {
+        "bidset_id": "wendy-s-fort-myers-great-southern-constructors-3",
+        "roof_plan_total": 1,
+        "roof_plan_explicit": 1,
+        "taco_bell_scope_pages": null,
+        "bidset_passes": {}
+      }
+    ]
+  },
+  "symptom_4": {
+    "pass": false,
+    "roll_up": {
+      "over_threshold_bidsets": [
+        {
+          "bidset_id": "hampshire-self-storage",
+          "max_count": 7,
+          "most_common": [
+            [
+              "N19A",
+              7
+            ],
+            [
+              "S3.3",
+              3
+            ],
+            [
+              "A0.6",
+              1
+            ]
+          ]
+        }
+      ],
+      "specific_questions": {
+        "vine_street_sheet_map_source_drawing_index": true,
+        "vine_street_real_arch_sheets_present": true,
+        "vine_street_no_TS9D": true,
+        "corpus_no_unexpected_duplicates": false
+      },
+      "all_yes": false
+    },
+    "rows": [
+      {
+        "bidset_id": "auto-zone-10891-jacksonville-mec-24-others",
+        "sheet_map_source": "drawing_index",
+        "sheet_map_size": 31,
+        "page_to_sheet_size": 3,
+        "max_duplicate_value_count": 1,
+        "most_common": [
+          [
+            "T1.0",
+            1
+          ],
+          [
+            "A5.0",
+            1
+          ],
+          [
+            "AR96268",
+            1
+          ]
+        ],
+        "ts9d_in_keys": false,
+        "ts9d_in_values": false,
+        "arch_sheets_count": 10,
+        "bidset_passes": {}
+      },
+      {
+        "bidset_id": "auto-zone-vero-beach-fl",
+        "sheet_map_source": "title_blocks",
+        "sheet_map_size": 23,
+        "page_to_sheet_size": 23,
+        "max_duplicate_value_count": 1,
+        "most_common": [
+          [
+            "C0.1",
+            1
+          ],
+          [
+            "C0.2",
+            1
+          ],
+          [
+            "C0.3",
+            1
+          ]
+        ],
+        "ts9d_in_keys": false,
+        "ts9d_in_values": false,
+        "arch_sheets_count": 0,
+        "bidset_passes": {}
+      },
+      {
+        "bidset_id": "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6",
+        "sheet_map_source": "drawing_index",
+        "sheet_map_size": 10,
+        "page_to_sheet_size": 4,
+        "max_duplicate_value_count": 1,
+        "most_common": [
+          [
+            "WD1",
+            1
+          ],
+          [
+            "SW-3S",
+            1
+          ],
+          [
+            "S502",
+            1
+          ]
+        ],
+        "ts9d_in_keys": false,
+        "ts9d_in_values": false,
+        "arch_sheets_count": 0,
+        "bidset_passes": {}
+      },
+      {
+        "bidset_id": "bearss-ave-distribution-center-university-marcobay-construction-3",
+        "sheet_map_source": "drawing_index",
+        "sheet_map_size": 47,
+        "page_to_sheet_size": 44,
+        "max_duplicate_value_count": 1,
+        "most_common": [
+          [
+            "A-001",
+            1
+          ],
+          [
+            "A-002",
+            1
+          ],
+          [
+            "A-003",
+            1
+          ]
+        ],
+        "ts9d_in_keys": false,
+        "ts9d_in_values": false,
+        "arch_sheets_count": 11,
+        "bidset_passes": {}
+      },
+      {
+        "bidset_id": "chewy-vet-care-london-square-miami-jdr-fixtures",
+        "sheet_map_source": "drawing_index",
+        "sheet_map_size": 89,
+        "page_to_sheet_size": 79,
+        "max_duplicate_value_count": 1,
+        "most_common": [
+          [
+            "G001",
+            1
+          ],
+          [
+            "G002",
+            1
+          ],
+          [
+            "G003",
+            1
+          ]
+        ],
+        "ts9d_in_keys": false,
+        "ts9d_in_values": false,
+        "arch_sheets_count": 41,
+        "bidset_passes": {}
+      },
+      {
+        "bidset_id": "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction",
+        "sheet_map_source": "drawing_index",
+        "sheet_map_size": 39,
+        "page_to_sheet_size": 29,
+        "max_duplicate_value_count": 1,
+        "most_common": [
+          [
+            "G000",
+            1
+          ],
+          [
+            "G012",
+            1
+          ],
+          [
+            "G013",
+            1
+          ]
+        ],
+        "ts9d_in_keys": false,
+        "ts9d_in_values": false,
+        "arch_sheets_count": 12,
+        "bidset_passes": {}
+      },
+      {
+        "bidset_id": "hampshire-self-storage",
+        "sheet_map_source": "title_blocks",
+        "sheet_map_size": 37,
+        "page_to_sheet_size": 45,
+        "max_duplicate_value_count": 7,
+        "most_common": [
+          [
+            "N19A",
+            7
+          ],
+          [
+            "S3.3",
+            3
+          ],
+          [
+            "A0.6",
+            1
+          ]
+        ],
+        "ts9d_in_keys": false,
+        "ts9d_in_values": false,
+        "arch_sheets_count": 1,
+        "bidset_passes": {}
+      },
+      {
+        "bidset_id": "panda-express-bradenton",
+        "sheet_map_source": "drawing_index",
+        "sheet_map_size": 77,
+        "page_to_sheet_size": 47,
+        "max_duplicate_value_count": 1,
+        "most_common": [
+          [
+            "S5",
+            1
+          ],
+          [
+            "G-001",
+            1
+          ],
+          [
+            "C1",
+            1
+          ]
+        ],
+        "ts9d_in_keys": false,
+        "ts9d_in_values": false,
+        "arch_sheets_count": 23,
+        "bidset_passes": {}
+      },
+      {
+        "bidset_id": "panda-express-hialeah-gardens",
+        "sheet_map_source": "drawing_index",
+        "sheet_map_size": 20,
+        "page_to_sheet_size": 17,
+        "max_duplicate_value_count": 1,
+        "most_common": [
+          [
+            "C01.0",
+            1
+          ],
+          [
+            "D6500",
+            1
+          ],
+          [
+            "S8",
+            1
+          ]
+        ],
+        "ts9d_in_keys": false,
+        "ts9d_in_values": false,
+        "arch_sheets_count": 1,
+        "bidset_passes": {}
+      },
+      {
+        "bidset_id": "panda-express-naples-cdo-visible-construction-corp",
+        "sheet_map_source": "drawing_index",
+        "sheet_map_size": 86,
+        "page_to_sheet_size": 70,
+        "max_duplicate_value_count": 1,
+        "most_common": [
+          [
+            "G-001",
+            1
+          ],
+          [
+            "C1",
+            1
+          ],
+          [
+            "D1",
+            1
+          ]
+        ],
+        "ts9d_in_keys": false,
+        "ts9d_in_values": false,
+        "arch_sheets_count": 30,
+        "bidset_passes": {}
+      },
+      {
+        "bidset_id": "panda-express-san-antonio-candito-construction-2",
+        "sheet_map_source": "drawing_index",
+        "sheet_map_size": 31,
+        "page_to_sheet_size": 5,
+        "max_duplicate_value_count": 1,
+        "most_common": [
+          [
+            "M6",
+            1
+          ],
+          [
+            "D2B",
+            1
+          ],
+          [
+            "C02",
+            1
+          ]
+        ],
+        "ts9d_in_keys": false,
+        "ts9d_in_values": false,
+        "arch_sheets_count": 3,
+        "bidset_passes": {}
+      },
+      {
+        "bidset_id": "shoppes-at-avalon-spring-hill-mec",
+        "sheet_map_source": "drawing_index",
+        "sheet_map_size": 30,
+        "page_to_sheet_size": 19,
+        "max_duplicate_value_count": 1,
+        "most_common": [
+          [
+            "A-100",
+            1
+          ],
+          [
+            "A-101",
+            1
+          ],
+          [
+            "A-102",
+            1
+          ]
+        ],
+        "ts9d_in_keys": false,
+        "ts9d_in_values": false,
+        "arch_sheets_count": 16,
+        "bidset_passes": {}
+      },
+      {
+        "bidset_id": "taco-bell-weeki-wachee-compass-construction-management-2",
+        "sheet_map_source": "drawing_index",
+        "sheet_map_size": 92,
+        "page_to_sheet_size": 65,
+        "max_duplicate_value_count": 1,
+        "most_common": [
+          [
+            "T1.1",
+            1
+          ],
+          [
+            "T1.2",
+            1
+          ],
+          [
+            "C0.1",
+            1
+          ]
+        ],
+        "ts9d_in_keys": false,
+        "ts9d_in_values": false,
+        "arch_sheets_count": 31,
+        "bidset_passes": {}
+      },
+      {
+        "bidset_id": "vine-street-retail-center-kissimmee-great-southern-constructors",
+        "sheet_map_source": "drawing_index",
+        "sheet_map_size": 44,
+        "page_to_sheet_size": 35,
+        "max_duplicate_value_count": 1,
+        "most_common": [
+          [
+            "A-1.0",
+            1
+          ],
+          [
+            "A-1.1",
+            1
+          ],
+          [
+            "A-1.2",
+            1
+          ]
+        ],
+        "ts9d_in_keys": false,
+        "ts9d_in_values": false,
+        "arch_sheets_count": 18,
+        "bidset_passes": {
+          "vine_street_sheet_map_source_drawing_index": true,
+          "vine_street_real_arch_sheets_present": true,
+          "vine_street_no_TS9D": true
+        }
+      },
+      {
+        "bidset_id": "wendy-s-fort-myers-great-southern-constructors-3",
+        "sheet_map_source": "drawing_index",
+        "sheet_map_size": 11,
+        "page_to_sheet_size": 5,
+        "max_duplicate_value_count": 1,
+        "most_common": [
+          [
+            "QP0222",
+            1
+          ],
+          [
+            "A0202",
+            1
+          ],
+          [
+            "T2011",
+            1
+          ]
+        ],
+        "ts9d_in_keys": false,
+        "ts9d_in_values": false,
+        "arch_sheets_count": 2,
+        "bidset_passes": {}
+      }
+    ]
+  },
+  "gate": {
+    "measurable_pass_count": 2,
+    "symptom_1_status": "N/A"
+  }
+}

@@ -2,7 +2,7 @@
 
 > **Purpose**: Single source of truth for the next Claude session to pick up the Huckleberry AI commercial roofing takeoff project without losing context. Read this file completely before writing a single line of code.
 >
-> **Last updated**: 2026-04-25, end of Phase 1 architectural decisions (Phase 1 closed at v6.3.5; Phase 2 plan ratified across 18 decisions).
+> **Last updated**: 2026-04-26, end of Phase 2 v0.2 (TracePoint dispatch gate ported into Phase 2 backend monorepo; 250 backend tests green; Symptom validation per V0_2_VALIDATION.md).
 > **Project owner**: Non-developer building a POC. Speaks plainly, wants brutal honesty, demands "no sugar coating" reviews.
 > **Discipline**: Karpathy "build → test → test → test." No code ships without a test that was red before the code existed. For regression suites against already-working code (the Step 11 shape), the red phase is replaced by a **mutation test** that proves each new test is load-bearing. See **"Karpathy Procedure"** section below for the refined loop, now covering both shapes.
 > **Phase 1 constraint** (still applies to the HTML at v6.3.5): Single-file HTML, no backend, no AI API calls, offline-capable. The HTML must remain runnable standalone after Phase 2 ships, as the offline fallback.
@@ -102,6 +102,113 @@ Phase 3 is **not planned** at the architectural level yet. Do not propose Phase 
 - **Phase 1 maintenance gets stricter once Phase 2 starts**, not looser. Every Phase 1 change must ask "does this need a corresponding backend change?" before merging.
 - **Adjacent pre-existing bugs touched by new consumers get fixed in the same step, not deferred.** Step 10b's bitter lesson generalizes: if a Phase 2 change touches a Phase 1 surface, fix the Phase 1 surface in the same change.
 - **Architecture decisions move only with explicit user approval.** The 18 decisions above are canon. A future Claude session that wants to renegotiate (e.g. "we should use MongoDB instead of Postgres") must surface that to the user explicitly, not silently pivot.
+
+---
+
+## v0.2 — Dispatch Gate Port
+
+**Date shipped:** 2026-04-26
+**Source authority:** `MARCH_ORDERS_v0_2.md` (the 10-step gated port plan), `STEP_17_REVIEW_CHECKLIST.md` (Symptom rubric), `STEP_18_DECISION_BRIEF.md` (schema-migration A/B/C).
+**Closing artifacts:** `backend/V0_2_VALIDATION.md` (Symptom roll-up + gate decision), `backend/DISCOVERED_ISSUES.md` (D-1 through D-5).
+
+### Summary
+
+Ported TracePoint Filters 1–5 + scope scanner from `C:/TracePoint/` into the Phase 2 backend monorepo as a **verbatim port**. The Phase 2 backend now produces `PlanSetContext` JSONs (TracePoint's structured per-page-with-zone-aware schema) for every bidset, replacing v0.1's flat-keyword extraction as the primary dispatch output. Four v0.1 symptoms validated per Step 17:
+
+- **Symptom 1** (project metadata field-sources tracking): N/A — `to_json()` does not serialize `PlanSetContext.project`. Verified as TracePoint verbatim-port consequence (grep of TracePoint's `core/context.py`). Filed as **D-4**, deferred to v0.2.1.
+- **Symptom 2** (single `detected_system` per bidset): **PASS** (7/7 binary questions YES).
+- **Symptom 3** (drawing pages and scope pages structurally separate): **PASS** (corpus explicit-confidence ratio 0.2857 > v0.1's 0.1789; Taco Bell page 18 ∈ scope_pages).
+- **Symptom 4** (sheet-map cleanliness): **FAIL** on a single bidset (Hampshire Self Storage propagates "N19A" to 7 pages via title-block fallback). Filed as **D-5**, deferred to v0.2.1.
+
+**Gate decision:** path (a) — v0.2 ships. Strict rubric reading is 2 of 4 PASS; override rationale recorded verbatim in `V0_2_VALIDATION.md`. Justified by (1) S1 N/A is a verbatim-port consequence not a port miss, (2) S4's failure is single-bidset and not fixable inside verbatim-port discipline, (3) corpus is 100% STACK PDFs (TracePoint paper documents STACK as known-hard); broader gate validity awaits non-STACK bidsets.
+
+### Files added
+
+**Ported verbatim from TracePoint (zero edits):**
+
+- `backend/core/__init__.py` — empty package marker
+- `backend/core/config.py` (45 lines)
+- `backend/core/pdf_engine.py` (645 lines)
+- `backend/core/zone_filter.py` (134 lines)
+- `backend/core/context.py` (803 lines) — `PlanSetContext` dataclasses + `to_json()/from_json()`
+
+**Ported with exactly 3 same-character import edits** (`data.roofing_materials → seeds.roofing_spec_database`, lines 1170, 1292, 1359):
+
+- `backend/core/dispatch_gate.py` (1726 lines) — `run_dispatch()` and Filters 1–5 + scope scanner. Step 77 fallback at line 1233 preserved verbatim.
+
+**Renamed copy (Daniel-approved adjustment to march orders Step 14):**
+
+- `backend/seeds/roofing_spec_database.py` (294 lines) — verbatim copy of TracePoint's `data/roofing_materials.py`, placed at `seeds/` to match Phase 2 convention. Phase 2's existing `backend/seeds/roofing_materials.py` (the 21-item ROOFING_SEED_ITEMS file) untouched; both coexist.
+
+**Test files copied verbatim from TracePoint:**
+
+- `backend/tests/test_pdf_engine.py` (304 lines) — 40 tests, all green
+- `backend/tests/test_dispatch.py` (412 lines) — 34 unit tests green; 19 integration tests skip cleanly via `pytest.mark.skipif` (TracePoint test PDFs not in Phase 2 tree)
+
+**New scripts (orchestration / validation, no TracePoint code):**
+
+- `backend/scripts/run_dispatch_on_15_bidsets.py` — Step 16 sweep producing 15 PlanSetContext JSONs at `backend/test_fixtures/v0.2_outputs/`
+- `backend/scripts/compare_v0.1_to_v0.2.py` — Step 17 binary-question comparator per `STEP_17_REVIEW_CHECKLIST.md`
+- `backend/scripts/verify_v02_outputs.py` — gate-verification helper
+
+**New documentation:**
+
+- `backend/V0_2_VALIDATION.md` — Symptom roll-up, per-bidset rows, gate decision, STACK-corpus caveat
+- `backend/DISCOVERED_ISSUES.md` — D-1 through D-5 (D-1/D-2/D-3 RESOLVED; D-4/D-5 deferred to v0.2.1)
+- `STEP_17_REVIEW_CHECKLIST.md` (repo root) — Symptom rubric used in Step 17
+- `STEP_18_DECISION_BRIEF.md` (repo root) — schema-migration A/B/C analysis + pre-scoped v0.2.1 ticket
+
+**New per-bidset outputs:**
+
+- `backend/test_fixtures/v0.2_outputs/<bidset_id>.json` — 15 `PlanSetContext` JSONs, one per bidset (gate-verified: 15/15 `dispatch_complete: true`, 15/15 `filters_completed: ["filter_1", "filter_2", "filter_4", "filter_3", "filter_5"]`).
+
+### Tests
+
+| Suite | Count | Status |
+|---|---|---|
+| Phase 1 v6.3.5 (sacred) | 138 / 138 | unchanged |
+| Phase 2 v0.1 backend (sacred) | 38 / 38 | unchanged |
+| Ported `test_pdf_engine.py` | 40 / 40 | green |
+| Ported `test_dispatch.py` (unit) | 34 / 34 | green |
+| Ported `test_dispatch.py` (integration) | 0 / 19 | skipped (no test PDFs in Phase 2 tree) |
+| **Total backend** | **112 passed, 19 skipped** | **0 failures** |
+| **Cross-suite total** | **250 passing** | sacred + ported |
+
+### Dependencies added
+
+- `PyMuPDF >= 1.24.0` — `fitz` import; TracePoint's `pdf_engine.py` is built on PyMuPDF
+- `rapidfuzz >= 3.0.0` — used by `_find_sheet_on_page()` Strategy 5 (fuzzy match against known index keys)
+- `pdfplumber >= 0.11` — already present from v0.1; required by Filter 4 table extraction on schedule pages
+
+### Decisions recorded
+
+- **Step 14 file rename:** Daniel approved placing the renamed TracePoint roofing-materials file at `backend/seeds/roofing_spec_database.py` (not `backend/data/`) to match Phase 2's existing `seeds/` convention. The three function-local imports inside `dispatch_gate.py` were rewired accordingly. Phase 2's existing `backend/seeds/roofing_materials.py` was NOT touched; both files coexist.
+
+- **D-2 third-edit decision:** TracePoint's `dispatch_gate.py` has THREE `from data.roofing_materials` import sites (lines 1170, 1292, 1359), not two as the original Step 15 brief implied. Daniel approved a third same-character edit on line 1359 as Step 16 Part 1, before the 15-bidset sweep, so `_determine_roof_shape()` would not throw `ModuleNotFoundError` at runtime. After the edit, `diff backend/core/dispatch_gate.py` against TracePoint shows exactly 3 changed lines, all of identical character.
+
+- **Schema migration decision (Step 18):** Option C selected. v0.2 produces `PlanSetContext` JSONs in `backend/test_fixtures/v0.2_outputs/`. v0.1's flat `shared/bidset_record.py` schema retained alongside, untouched. v0.2 makes no claim to v0.1-schema compatibility — the two coexist via separate output directories. Migration to PlanSetContext as canonical (retire or shim `BidsetRecord`) deferred to v0.2.1 ticket pre-scoped in `STEP_18_DECISION_BRIEF.md`. Discovery already complete: consumer surface = 1 test file (`backend/tests/test_schema_round_trip.py`); comparison script (`compare_v0.1_to_v0.2.py`) has zero Pydantic / `BidsetRecord` imports.
+
+### v0.2 DO-NOTs (added to project canon)
+
+These extend the existing canon. Violating any requires explicit Daniel approval:
+
+- **Do NOT modify ported TracePoint files for "improvement."** `backend/core/{config,pdf_engine,zone_filter,context,dispatch_gate}.py` and `backend/seeds/roofing_spec_database.py` are byte-identical to upstream (or, for `dispatch_gate.py`, exactly 3 same-character import edits). Refactoring, regex tightening, threshold tuning, dataclass renames — all forbidden until a v0.2.x ticket explicitly authorizes the deviation.
+- **Do NOT enable storage caching without explicit instruction.** `run_dispatch()` accepts an optional `storage` argument; it stays `None` by default in v0.2. Enabling SQLite cache (TracePoint's `core/storage.py`) is v0.3 work.
+- **Do NOT enable `architect_profile` detection in v0.2.** That code path is gated on `storage != None` and remains unreachable. v0.3 territory at the earliest.
+- **Do NOT write a `PlanSetContext → BidsetRecord` adapter.** That's rejected Option B from `STEP_18_DECISION_BRIEF.md`.
+- **Do NOT modify `shared/bidset_record.py` until v0.2.1 ships.** v0.1's schema is sacred during the v0.2 → v0.2.1 transition.
+- **Do NOT mix v0.1 and v0.2 outputs in the same directory.** v0.1 lives in `backend/test_fixtures/experiment_outputs/`; v0.2 lives in `backend/test_fixtures/v0.2_outputs/`. Coexistence-by-separation is the contract.
+
+### Discovered Issues (open at v0.2 ship)
+
+Both deferred to **v0.2.1**, fully scoped in `backend/DISCOVERED_ISSUES.md`:
+
+- **D-4** — `to_json()` does not serialize `PlanSetContext.project`. Symptom 1 unmeasurable from JSON. Verified upstream consequence. Smallest fix is to extend `to_json()` and `from_json()` to include the project block; runtime parser unchanged.
+- **D-5** — Hampshire Self Storage's title-block fallback path propagates "N19A" (probable engineer license stamp) to 7 pages. Same character of failure as v0.1's Vine Street "TS9D × 7". Smallest fix is a post-pass on `ctx.page_to_sheet` that rejects propagation when `sheet_map_source == "title_blocks"` and any sheet number maps to >2 pages.
+
+### v0.2.1 ticket (pre-scoped)
+
+`STEP_18_DECISION_BRIEF.md` already contains the v0.2.1 plan: discovery (`grep -r "BidsetRecord\|bidset_record"` — already run, surface = 1 file), failing tests first, then either **A1** (thin shim) or **A2** (delete `bidset_record.py`, update imports). Done criteria: `shared/bidset_record.py` is either a thin shim or gone, no production code imports `BidsetRecord` as primary schema, 250+ tests green, CLAUDE.md updated to remove "v0.1 schema retained alongside" language.
 
 ---
 

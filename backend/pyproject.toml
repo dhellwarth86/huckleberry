@@ -19,6 +19,10 @@ dependencies = [
     # PDF — pdfplumber is the experiment's starting library; others may be added based on findings
     "pdfplumber>=0.11",
     "pypdfium2>=4.30",
+    # v0.2 dispatch-gate port (TracePoint): PyMuPDF for vector + text extraction
+    # via fitz, rapidfuzz for sheet-number / firm-name correlation in dispatch_gate.
+    "PyMuPDF>=1.24.0",
+    "rapidfuzz>=3.0.0",
 ]
 
 [project.optional-dependencies]
