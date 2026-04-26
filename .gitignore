@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+.uv/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Node
+node_modules/
+package-lock.json
+
+# Env / secrets — never commit credentials
+.env
+*.env.local
+*.env.production
+
+# Docker volumes
+postgres-data/
+minio-data/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+.cursor/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Experiment outputs are committed as the v0.1 deliverable for review.
+# They are large but the bidset PDFs aren't in the repo, so re-running the
+# experiment requires the original local bidset folder — committing the
+# artifacts is the audit trail. Tmp files stay excluded.
+backend/test_fixtures/experiment_outputs/*.tmp
+
+# Experiment run logs are runtime artifacts, not deliverables.
+backend/experiment_run.log
+backend/test_fixtures/bidsets.json.tmp
+
+# Local PDF copies that shouldn't be in repo (real bidsets live in S3)
+*.pdf
+!**/test_fixtures/**/*.pdf  # if any tiny PDFs are intentionally version-controlled

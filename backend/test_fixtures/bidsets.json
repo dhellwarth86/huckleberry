@@ -1,0 +1,175 @@
+{
+  "schema_version": "0.1",
+  "manifest_generated_at": "2026-04-26T00:40:03.272601+00:00",
+  "storage": {
+    "provider": "local",
+    "base_path": "C:\\huck stage 2\\full bid sets"
+  },
+  "bidsets": [
+    {
+      "id": "auto-zone-10891-jacksonville-mec-24-others",
+      "filename": "Auto Zone #10891 - Jacksonville - MEC + 24 Others.pdf",
+      "local_path": "C:\\huck stage 2\\full bid sets\\Auto Zone #10891 - Jacksonville - MEC + 24 Others.pdf",
+      "sha256": "f7b182d1450c13e6c5e1e49407c97f1a2a46c6481ad3e9dd28c3ec3c2ea97d8c",
+      "size_bytes": 25734532,
+      "page_count": 28,
+      "producer_hint": "STACK Construction Technologies",
+      "notes": "",
+      "uploaded_at": "2026-04-26T00:39:52.317576+00:00"
+    },
+    {
+      "id": "auto-zone-vero-beach-fl",
+      "filename": "Auto Zone Vero Beach, FL.pdf",
+      "local_path": "C:\\huck stage 2\\full bid sets\\Auto Zone Vero Beach, FL.pdf",
+      "sha256": "28aa3df2d5d23a15183687d146659dbdec96a3b59ed96542c2a895decf8bc160",
+      "size_bytes": 32579442,
+      "page_count": 61,
+      "producer_hint": "STACK Construction Technologies",
+      "notes": "",
+      "uploaded_at": "2026-04-26T00:39:52.867169+00:00"
+    },
+    {
+      "id": "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6",
+      "filename": "B2607 AEA Silverleaf - St Augustine - Accelerated Construction Services (6).pdf",
+      "local_path": "C:\\huck stage 2\\full bid sets\\B2607 AEA Silverleaf - St Augustine - Accelerated Construction Services (6).pdf",
+      "sha256": "e66060587f7046877da2c9173614ca136ddc7871a8525843aaa9a2ed93134e22",
+      "size_bytes": 19188443,
+      "page_count": 40,
+      "producer_hint": "STACK Construction Technologies",
+      "notes": "",
+      "uploaded_at": "2026-04-26T00:39:53.083992+00:00"
+    },
+    {
+      "id": "bearss-ave-distribution-center-university-marcobay-construction-3",
+      "filename": "Bearss Ave Distribution Center - University - Marcobay Construction (3).pdf",
+      "local_path": "C:\\huck stage 2\\full bid sets\\Bearss Ave Distribution Center - University - Marcobay Construction (3).pdf",
+      "sha256": "ce8776220addf340d0495374f77748045516fb7c9c5f84989483457bd9e8b4b1",
+      "size_bytes": 71350367,
+      "page_count": 91,
+      "producer_hint": "STACK Construction Technologies",
+      "notes": "",
+      "uploaded_at": "2026-04-26T00:39:53.333911+00:00"
+    },
+    {
+      "id": "chewy-vet-care-london-square-miami-jdr-fixtures",
+      "filename": "Chewy Vet Care-London Square - Miami - JDR Fixtures\u00a0.pdf",
+      "local_path": "C:\\huck stage 2\\full bid sets\\Chewy Vet Care-London Square - Miami - JDR Fixtures\u00a0.pdf",
+      "sha256": "464638d7f6fded3399e09c90e5f0fe24e0ce6bdccff2724cb575a78d09b0c3ae",
+      "size_bytes": 55661360,
+      "page_count": 93,
+      "producer_hint": "STACK Construction Technologies",
+      "notes": "",
+      "uploaded_at": "2026-04-26T00:39:53.633879+00:00"
+    },
+    {
+      "id": "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction",
+      "filename": "Chipotle - Tarpon Springs (Shell) - Tarpon Springs - Strategic Construction.pdf",
+      "local_path": "C:\\huck stage 2\\full bid sets\\Chipotle - Tarpon Springs (Shell) - Tarpon Springs - Strategic Construction.pdf",
+      "sha256": "68e799d94c031c924289efc9d5cd55ad838b020afedf5ac5945602c39fc7ff2c",
+      "size_bytes": 27849422,
+      "page_count": 39,
+      "producer_hint": "STACK Construction Technologies",
+      "notes": "",
+      "uploaded_at": "2026-04-26T00:39:53.850939+00:00"
+    },
+    {
+      "id": "hampshire-self-storage",
+      "filename": "Hampshire Self Storage.pdf",
+      "local_path": "C:\\huck stage 2\\full bid sets\\Hampshire Self Storage.pdf",
+      "sha256": "f4282af5861dbcb9966b271e5452d4b24e5a5af3c80b7005579dd031a993989d",
+      "size_bytes": 73482629,
+      "page_count": 86,
+      "producer_hint": "STACK Construction Technologies",
+      "notes": "",
+      "uploaded_at": "2026-04-26T00:39:54.333611+00:00"
+    },
+    {
+      "id": "panda-express-naples-cdo-visible-construction-corp",
+      "filename": "Panda Express - Naples - CDO & Visible Construction Corp.pdf",
+      "local_path": "C:\\huck stage 2\\full bid sets\\Panda Express - Naples - CDO & Visible Construction Corp.pdf",
+      "sha256": "2e6358273b5136e8307e52275a28a4c0279b83d35608e049d8b707cc6d7fcf8e",
+      "size_bytes": 79913261,
+      "page_count": 98,
+      "producer_hint": "STACK Construction Technologies",
+      "notes": "",
+      "uploaded_at": "2026-04-26T00:39:54.901328+00:00"
+    },
+    {
+      "id": "panda-express-san-antonio-candito-construction-2",
+      "filename": "Panda Express - San Antonio - Candito Construction (2).pdf",
+      "local_path": "C:\\huck stage 2\\full bid sets\\Panda Express - San Antonio - Candito Construction (2).pdf",
+      "sha256": "13381a1ffdfa8e40f9014862cca0dfe7c968dfe0cdfc648c6edea15ca70d6c45",
+      "size_bytes": 27510043,
+      "page_count": 38,
+      "producer_hint": "STACK Construction Technologies",
+      "notes": "",
+      "uploaded_at": "2026-04-26T00:39:55.034764+00:00"
+    },
+    {
+      "id": "panda-express-bradenton",
+      "filename": "Panda Express Bradenton.pdf",
+      "local_path": "C:\\huck stage 2\\full bid sets\\Panda Express Bradenton.pdf",
+      "sha256": "7679442ef357b3bd82933f1f66bc1f99253915cbb191d9cb4c5cdfb11fa555e6",
+      "size_bytes": 30632573,
+      "page_count": 59,
+      "producer_hint": "STACK Construction Technologies",
+      "notes": "",
+      "uploaded_at": "2026-04-26T00:39:55.369786+00:00"
+    },
+    {
+      "id": "panda-express-hialeah-gardens",
+      "filename": "Panda Express Hialeah Gardens.pdf",
+      "local_path": "C:\\huck stage 2\\full bid sets\\Panda Express Hialeah Gardens.pdf",
+      "sha256": "e3d2755cef4c23ba32dcbc0c6cf1ab6f4872a795729a377d141d8784107b8eb0",
+      "size_bytes": 95332261,
+      "page_count": 101,
+      "producer_hint": "STACK Construction Technologies",
+      "notes": "",
+      "uploaded_at": "2026-04-26T00:39:56.017998+00:00"
+    },
+    {
+      "id": "shoppes-at-avalon-spring-hill-mec",
+      "filename": "Shoppes at Avalon - Spring Hill - MEC.pdf",
+      "local_path": "C:\\huck stage 2\\full bid sets\\Shoppes at Avalon - Spring Hill - MEC.pdf",
+      "sha256": "c20fb824271748ab42b635a6267592538f80c89456065503bccd8441cd9af900",
+      "size_bytes": 70030816,
+      "page_count": 97,
+      "producer_hint": "STACK Construction Technologies",
+      "notes": "",
+      "uploaded_at": "2026-04-26T00:39:56.467335+00:00"
+    },
+    {
+      "id": "taco-bell-weeki-wachee-compass-construction-management-2",
+      "filename": "Taco Bell - Weeki Wachee - Compass Construction Management (2).pdf",
+      "local_path": "C:\\huck stage 2\\full bid sets\\Taco Bell - Weeki Wachee - Compass Construction Management (2).pdf",
+      "sha256": "2563b58afe3bb8f6b3a9fd398cb5d0d509ee537fa3a176c0ad1a957f6274bd0f",
+      "size_bytes": 64930185,
+      "page_count": 88,
+      "producer_hint": "STACK Construction Technologies",
+      "notes": "",
+      "uploaded_at": "2026-04-26T00:39:56.817233+00:00"
+    },
+    {
+      "id": "vine-street-retail-center-kissimmee-great-southern-constructors",
+      "filename": "Vine Street Retail Center - Kissimmee - Great Southern Constructors.pdf",
+      "local_path": "C:\\huck stage 2\\full bid sets\\Vine Street Retail Center - Kissimmee - Great Southern Constructors.pdf",
+      "sha256": "07b5cbd45594780cc02dd4fecc4cbbd419c9378288b7385c08557bd304b91eaa",
+      "size_bytes": 80836373,
+      "page_count": 138,
+      "producer_hint": "STACK Construction Technologies",
+      "notes": "",
+      "uploaded_at": "2026-04-26T00:40:00.425646+00:00"
+    },
+    {
+      "id": "wendy-s-fort-myers-great-southern-constructors-3",
+      "filename": "Wendy's - Fort Myers - Great Southern Constructors (3).pdf",
+      "local_path": "C:\\huck stage 2\\full bid sets\\Wendy's - Fort Myers - Great Southern Constructors (3).pdf",
+      "sha256": "eef521a1bab9eb4c3620b8259a236713ab090a189753dbf7e7eb8de17c68e673",
+      "size_bytes": 92408755,
+      "page_count": 64,
+      "producer_hint": "STACK Construction Technologies",
+      "notes": "",
+      "uploaded_at": "2026-04-26T00:40:03.272601+00:00"
+    }
+  ]
+}

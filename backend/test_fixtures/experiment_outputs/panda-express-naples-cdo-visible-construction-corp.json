@@ -1,0 +1,3769 @@
+{
+  "id": "panda-express-naples-cdo-visible-construction-corp",
+  "schema_version": "0.1",
+  "source_pdf_ref": {
+    "id": "panda-express-naples-cdo-visible-construction-corp",
+    "filename": "Panda Express - Naples - CDO & Visible Construction Corp.pdf",
+    "local_path": "C:\\huck stage 2\\full bid sets\\Panda Express - Naples - CDO & Visible Construction Corp.pdf",
+    "sha256": "2e6358273b5136e8307e52275a28a4c0279b83d35608e049d8b707cc6d7fcf8e",
+    "size_bytes": 79913261,
+    "page_count": 98,
+    "producer_hint": "STACK Construction Technologies",
+    "notes": "",
+    "uploaded_at": "2026-04-26T00:39:54.901328+00:00"
+  },
+  "dispatch": {
+    "page_classifications": [
+      {
+        "page_index": 0,
+        "sheet_number": "FL8787.1",
+        "discipline": null,
+        "page_type": "roof_plan",
+        "confidence": 0.7,
+        "matched_keyword": "ROOF PLAN",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 1,
+        "sheet_number": "D2027",
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 2,
+        "sheet_number": "G-003",
+        "discipline": "GENERAL",
+        "page_type": "roof_plan",
+        "confidence": 0.7,
+        "matched_keyword": "ROOF PLAN",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 3,
+        "sheet_number": "G-004",
+        "discipline": "GENERAL",
+        "page_type": "ceiling_plan",
+        "confidence": 0.7,
+        "matched_keyword": "CEILING PLAN",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 4,
+        "sheet_number": "G-005",
+        "discipline": "GENERAL",
+        "page_type": "elevation",
+        "confidence": 0.7,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 5,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 6,
+        "sheet_number": "C651.",
+        "discipline": "CIVIL",
+        "page_type": "elevation",
+        "confidence": 0.9,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 7,
+        "sheet_number": "R1",
+        "discipline": null,
+        "page_type": "ceiling_plan",
+        "confidence": 0.7,
+        "matched_keyword": "RCP",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 8,
+        "sheet_number": "C02.1",
+        "discipline": "CIVIL",
+        "page_type": "cover",
+        "confidence": 0.9,
+        "matched_keyword": "COVER",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 9,
+        "sheet_number": "D8706",
+        "discipline": null,
+        "page_type": "schedule_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "SCHEDULE",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 10,
+        "sheet_number": "D8706",
+        "discipline": null,
+        "page_type": "symbol_legend",
+        "confidence": 0.7,
+        "matched_keyword": "LEGEND",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 11,
+        "sheet_number": "R1",
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.9,
+        "matched_keyword": "DETAIL",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 12,
+        "sheet_number": "C03.3",
+        "discipline": "CIVIL",
+        "page_type": "detail_sheet",
+        "confidence": 0.9,
+        "matched_keyword": "DETAIL",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 13,
+        "sheet_number": "C04.0",
+        "discipline": "CIVIL",
+        "page_type": "elevation",
+        "confidence": 0.7,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 14,
+        "sheet_number": "C04.2",
+        "discipline": "CIVIL",
+        "page_type": "detail_sheet",
+        "confidence": 0.9,
+        "matched_keyword": "DETAIL",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 15,
+        "sheet_number": "C04.3",
+        "discipline": "CIVIL",
+        "page_type": "detail_sheet",
+        "confidence": 0.9,
+        "matched_keyword": "DETAIL",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 16,
+        "sheet_number": "C0382H",
+        "discipline": "CIVIL",
+        "page_type": "elevation",
+        "confidence": 0.7,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 17,
+        "sheet_number": "C05.1",
+        "discipline": "CIVIL",
+        "page_type": "section",
+        "confidence": 0.7,
+        "matched_keyword": "SECTION",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 18,
+        "sheet_number": "C06.0",
+        "discipline": "CIVIL",
+        "page_type": "ceiling_plan",
+        "confidence": 0.7,
+        "matched_keyword": "RCP",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 19,
+        "sheet_number": "C06.1",
+        "discipline": "CIVIL",
+        "page_type": "elevation",
+        "confidence": 0.7,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 20,
+        "sheet_number": "IR1.0",
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 21,
+        "sheet_number": "IR5.0",
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.9,
+        "matched_keyword": "DETAIL",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 22,
+        "sheet_number": "IR5.1",
+        "discipline": null,
+        "page_type": "elevation",
+        "confidence": 0.7,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 23,
+        "sheet_number": "L1.0",
+        "discipline": "LANDSCAPE",
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 24,
+        "sheet_number": "L5.0",
+        "discipline": "LANDSCAPE",
+        "page_type": "elevation",
+        "confidence": 0.7,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 25,
+        "sheet_number": "TR1.0",
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 26,
+        "sheet_number": "LC000298",
+        "discipline": "LANDSCAPE",
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 27,
+        "sheet_number": "LC000298",
+        "discipline": "LANDSCAPE",
+        "page_type": "section",
+        "confidence": 0.5,
+        "matched_keyword": "SECTION",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 28,
+        "sheet_number": "LC000298",
+        "discipline": "LANDSCAPE",
+        "page_type": "section",
+        "confidence": 0.5,
+        "matched_keyword": "SECTION",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 29,
+        "sheet_number": "A-100",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 30,
+        "sheet_number": "A-101",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 31,
+        "sheet_number": "A-102",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "unknown",
+        "confidence": 0.0,
+        "matched_keyword": null,
+        "matched_in": "default"
+      },
+      {
+        "page_index": 32,
+        "sheet_number": "A-103",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "floor_plan",
+        "confidence": 0.9,
+        "matched_keyword": "FLOOR PLAN",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 33,
+        "sheet_number": "LC0000298",
+        "discipline": "LANDSCAPE",
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 34,
+        "sheet_number": "A-105",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "ceiling_plan",
+        "confidence": 0.9,
+        "matched_keyword": "CEILING PLAN",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 35,
+        "sheet_number": "A-106",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "life_safety",
+        "confidence": 0.9,
+        "matched_keyword": "LIFE SAFETY",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 36,
+        "sheet_number": "LC0000298",
+        "discipline": "LANDSCAPE",
+        "page_type": "roof_plan",
+        "confidence": 0.9,
+        "matched_keyword": "ROOF PLAN",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 37,
+        "sheet_number": "LC0000298",
+        "discipline": "LANDSCAPE",
+        "page_type": "roof_plan",
+        "confidence": 0.7,
+        "matched_keyword": "ROOF PLAN",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 38,
+        "sheet_number": "A-109",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 39,
+        "sheet_number": "A-200",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "elevation",
+        "confidence": 0.9,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 40,
+        "sheet_number": "A-200",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "elevation",
+        "confidence": 0.9,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 41,
+        "sheet_number": "LC0000298",
+        "discipline": "LANDSCAPE",
+        "page_type": "elevation",
+        "confidence": 0.7,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 42,
+        "sheet_number": "LC0000298",
+        "discipline": "LANDSCAPE",
+        "page_type": "elevation",
+        "confidence": 0.7,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 43,
+        "sheet_number": "LC0000298",
+        "discipline": "LANDSCAPE",
+        "page_type": "elevation",
+        "confidence": 0.7,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 44,
+        "sheet_number": "LC0000298",
+        "discipline": "LANDSCAPE",
+        "page_type": "elevation",
+        "confidence": 0.7,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 45,
+        "sheet_number": "A-400.1",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "roof_plan",
+        "confidence": 0.9,
+        "matched_keyword": "ROOF PLAN",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 46,
+        "sheet_number": "LC0000298",
+        "discipline": "LANDSCAPE",
+        "page_type": "elevation",
+        "confidence": 0.7,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 47,
+        "sheet_number": "LC0000298",
+        "discipline": "LANDSCAPE",
+        "page_type": "elevation",
+        "confidence": 0.7,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 48,
+        "sheet_number": "LC0000298",
+        "discipline": "LANDSCAPE",
+        "page_type": "ceiling_plan",
+        "confidence": 0.7,
+        "matched_keyword": "CEILING PLAN",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 49,
+        "sheet_number": "LC0000298",
+        "discipline": "LANDSCAPE",
+        "page_type": "elevation",
+        "confidence": 0.9,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 50,
+        "sheet_number": "LC0000298",
+        "discipline": "LANDSCAPE",
+        "page_type": "ceiling_plan",
+        "confidence": 0.7,
+        "matched_keyword": "CEILING PLAN",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 51,
+        "sheet_number": "LC0000298",
+        "discipline": "LANDSCAPE",
+        "page_type": "detail_sheet",
+        "confidence": 0.9,
+        "matched_keyword": "DETAIL",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 52,
+        "sheet_number": "IN27",
+        "discipline": null,
+        "page_type": "elevation",
+        "confidence": 0.7,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 53,
+        "sheet_number": "LC0000298",
+        "discipline": "LANDSCAPE",
+        "page_type": "elevation",
+        "confidence": 0.7,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 54,
+        "sheet_number": "LC0000298",
+        "discipline": "LANDSCAPE",
+        "page_type": "elevation",
+        "confidence": 0.9,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 55,
+        "sheet_number": "LC0000298",
+        "discipline": "LANDSCAPE",
+        "page_type": "elevation",
+        "confidence": 0.9,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 56,
+        "sheet_number": "LC0000298",
+        "discipline": "LANDSCAPE",
+        "page_type": "elevation",
+        "confidence": 0.9,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 57,
+        "sheet_number": "A-503",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "elevation",
+        "confidence": 0.9,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 58,
+        "sheet_number": "LC0000298",
+        "discipline": "LANDSCAPE",
+        "page_type": "roof_plan",
+        "confidence": 0.7,
+        "matched_keyword": "ROOF PLAN",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 59,
+        "sheet_number": "LC0000298",
+        "discipline": "LANDSCAPE",
+        "page_type": "schedule_sheet",
+        "confidence": 0.9,
+        "matched_keyword": "SCHEDULE",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 60,
+        "sheet_number": "LC0000298",
+        "discipline": "LANDSCAPE",
+        "page_type": "elevation",
+        "confidence": 0.9,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 61,
+        "sheet_number": "LC0000298",
+        "discipline": "LANDSCAPE",
+        "page_type": "roof_plan",
+        "confidence": 0.7,
+        "matched_keyword": "ROOF PLAN",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 62,
+        "sheet_number": "LC0000298",
+        "discipline": "LANDSCAPE",
+        "page_type": "detail_sheet",
+        "confidence": 0.9,
+        "matched_keyword": "DETAIL",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 63,
+        "sheet_number": "LC0000298",
+        "discipline": "LANDSCAPE",
+        "page_type": "detail_sheet",
+        "confidence": 0.9,
+        "matched_keyword": "DETAIL",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 64,
+        "sheet_number": "LC0000298",
+        "discipline": "LANDSCAPE",
+        "page_type": "detail_sheet",
+        "confidence": 0.9,
+        "matched_keyword": "DETAIL",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 65,
+        "sheet_number": "LC0000298",
+        "discipline": "LANDSCAPE",
+        "page_type": "detail_sheet",
+        "confidence": 0.9,
+        "matched_keyword": "DETAIL",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 66,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "floor_plan",
+        "confidence": 0.7,
+        "matched_keyword": "FLOOR PLAN",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 67,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "floor_plan",
+        "confidence": 0.7,
+        "matched_keyword": "FLOOR PLAN",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 68,
+        "sheet_number": "Q25A",
+        "discipline": null,
+        "page_type": "elevation",
+        "confidence": 0.7,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 69,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "roof_plan",
+        "confidence": 0.7,
+        "matched_keyword": "ROOF PLAN",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 70,
+        "sheet_number": "E-200.",
+        "discipline": "ELECTRICAL",
+        "page_type": "roof_plan",
+        "confidence": 0.7,
+        "matched_keyword": "ROOF PLAN",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 71,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 72,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 73,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 74,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 75,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 76,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 77,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 78,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 79,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 80,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 81,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 82,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 83,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 84,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 85,
+        "sheet_number": "LC0000298",
+        "discipline": "LANDSCAPE",
+        "page_type": "ceiling_plan",
+        "confidence": 0.7,
+        "matched_keyword": "CEILING PLAN",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 86,
+        "sheet_number": "LC0000298",
+        "discipline": "LANDSCAPE",
+        "page_type": "elevation",
+        "confidence": 0.7,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 87,
+        "sheet_number": "LC0000298",
+        "discipline": "LANDSCAPE",
+        "page_type": "floor_plan",
+        "confidence": 0.9,
+        "matched_keyword": "FLOOR PLAN",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 88,
+        "sheet_number": "LC0000298",
+        "discipline": "LANDSCAPE",
+        "page_type": "unknown",
+        "confidence": 0.0,
+        "matched_keyword": null,
+        "matched_in": "default"
+      },
+      {
+        "page_index": 89,
+        "sheet_number": "LC0000298",
+        "discipline": "LANDSCAPE",
+        "page_type": "floor_plan",
+        "confidence": 0.9,
+        "matched_keyword": "FLOOR PLAN",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 90,
+        "sheet_number": "LC0000298",
+        "discipline": "LANDSCAPE",
+        "page_type": "ceiling_plan",
+        "confidence": 0.9,
+        "matched_keyword": "REFLECTED",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 91,
+        "sheet_number": "LC0000298",
+        "discipline": "LANDSCAPE",
+        "page_type": "roof_plan",
+        "confidence": 0.7,
+        "matched_keyword": "ROOF PLAN",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 92,
+        "sheet_number": "LC0000298",
+        "discipline": "LANDSCAPE",
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 93,
+        "sheet_number": "LC0000298",
+        "discipline": "LANDSCAPE",
+        "page_type": "schedule_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "SCHEDULE",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 94,
+        "sheet_number": "LC0000298",
+        "discipline": "LANDSCAPE",
+        "page_type": "elevation",
+        "confidence": 0.9,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 95,
+        "sheet_number": "LC0000298",
+        "discipline": "LANDSCAPE",
+        "page_type": "detail_sheet",
+        "confidence": 0.9,
+        "matched_keyword": "DETAIL",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 96,
+        "sheet_number": "LC0000298",
+        "discipline": "LANDSCAPE",
+        "page_type": "detail_sheet",
+        "confidence": 0.9,
+        "matched_keyword": "DETAIL",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 97,
+        "sheet_number": "LC0000298",
+        "discipline": "LANDSCAPE",
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      }
+    ],
+    "sheet_map": {
+      "0": "FL8787.1",
+      "1": "D2027",
+      "2": "G-003",
+      "3": "G-004",
+      "4": "G-005",
+      "6": "C651.",
+      "7": "R1",
+      "8": "C02.1",
+      "9": "D8706",
+      "10": "D8706",
+      "11": "R1",
+      "12": "C03.3",
+      "13": "C04.0",
+      "14": "C04.2",
+      "15": "C04.3",
+      "16": "C0382H",
+      "17": "C05.1",
+      "18": "C06.0",
+      "19": "C06.1",
+      "20": "IR1.0",
+      "21": "IR5.0",
+      "22": "IR5.1",
+      "23": "L1.0",
+      "24": "L5.0",
+      "25": "TR1.0",
+      "26": "LC000298",
+      "27": "LC000298",
+      "28": "LC000298",
+      "29": "A-100",
+      "30": "A-101",
+      "31": "A-102",
+      "32": "A-103",
+      "33": "LC0000298",
+      "34": "A-105",
+      "35": "A-106",
+      "36": "LC0000298",
+      "37": "LC0000298",
+      "38": "A-109",
+      "39": "A-200",
+      "40": "A-200",
+      "41": "LC0000298",
+      "42": "LC0000298",
+      "43": "LC0000298",
+      "44": "LC0000298",
+      "45": "A-400.1",
+      "46": "LC0000298",
+      "47": "LC0000298",
+      "48": "LC0000298",
+      "49": "LC0000298",
+      "50": "LC0000298",
+      "51": "LC0000298",
+      "52": "IN27",
+      "53": "LC0000298",
+      "54": "LC0000298",
+      "55": "LC0000298",
+      "56": "LC0000298",
+      "57": "A-503",
+      "58": "LC0000298",
+      "59": "LC0000298",
+      "60": "LC0000298",
+      "61": "LC0000298",
+      "62": "LC0000298",
+      "63": "LC0000298",
+      "64": "LC0000298",
+      "65": "LC0000298",
+      "68": "Q25A",
+      "70": "E-200.",
+      "85": "LC0000298",
+      "86": "LC0000298",
+      "87": "LC0000298",
+      "88": "LC0000298",
+      "89": "LC0000298",
+      "90": "LC0000298",
+      "91": "LC0000298",
+      "92": "LC0000298",
+      "93": "LC0000298",
+      "94": "LC0000298",
+      "95": "LC0000298",
+      "96": "LC0000298",
+      "97": "LC0000298"
+    },
+    "cross_references_by_page": {
+      "0": [
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "8 R9",
+          "identifier": "8",
+          "target_sheet": "R9",
+          "source_block_chars": 5,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "1": [
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "2": [
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "3": [
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "4": [
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET A-103",
+          "target_sheet": "A-103",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "5": [
+        {
+          "ref_type": "detail",
+          "raw": "86 L97",
+          "identifier": "86",
+          "target_sheet": "L97",
+          "source_block_chars": 49,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "13": [
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET C01.1",
+          "target_sheet": "C01.1",
+          "pattern": "see_ref"
+        }
+      ],
+      "16": [
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET C01.1",
+          "target_sheet": "C01.1",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET C01.1",
+          "target_sheet": "C01.1",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "2 X2",
+          "identifier": "2",
+          "target_sheet": "X2",
+          "source_block_chars": 5,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "29": [
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 01/A-405.",
+          "identifier": "01",
+          "target_sheet": "A-405.",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "23 A-407",
+          "identifier": "23",
+          "target_sheet": "A-407",
+          "source_block_chars": 8,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "30": [
+        {
+          "ref_type": "detail",
+          "raw": "7 E7",
+          "identifier": "7",
+          "target_sheet": "E7",
+          "source_block_chars": 5,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "31": [
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "32": [
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET A-104",
+          "target_sheet": "A-104",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET A-104",
+          "target_sheet": "A-104",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "1 A-502",
+          "identifier": "1",
+          "target_sheet": "A-502",
+          "source_block_chars": 8,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "6 D7",
+          "identifier": "6",
+          "target_sheet": "D7",
+          "source_block_chars": 5,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "8 W8",
+          "identifier": "8",
+          "target_sheet": "W8",
+          "source_block_chars": 11,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "2 W8",
+          "identifier": "2",
+          "target_sheet": "W8",
+          "source_block_chars": 11,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "33": [
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "34": [
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 13 / A-403",
+          "identifier": "13",
+          "target_sheet": "A-403",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET A-103",
+          "target_sheet": "A-103",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "3 P101",
+          "identifier": "3",
+          "target_sheet": "P101",
+          "source_block_chars": 7,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "3 P101",
+          "identifier": "3",
+          "target_sheet": "P101",
+          "source_block_chars": 7,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "3 P205",
+          "identifier": "3",
+          "target_sheet": "P205",
+          "source_block_chars": 7,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "3 P205",
+          "identifier": "3",
+          "target_sheet": "P205",
+          "source_block_chars": 7,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "3 P104",
+          "identifier": "3",
+          "target_sheet": "P104",
+          "source_block_chars": 7,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "3 P101",
+          "identifier": "3",
+          "target_sheet": "P101",
+          "source_block_chars": 7,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "3 P101",
+          "identifier": "3",
+          "target_sheet": "P101",
+          "source_block_chars": 7,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "3 P101",
+          "identifier": "3",
+          "target_sheet": "P101",
+          "source_block_chars": 7,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "1 L100",
+          "identifier": "1",
+          "target_sheet": "L100",
+          "source_block_chars": 9,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "86 L97",
+          "identifier": "86",
+          "target_sheet": "L97",
+          "source_block_chars": 7,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "97 L86",
+          "identifier": "97",
+          "target_sheet": "L86",
+          "source_block_chars": 7,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "35": [
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "36": [
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 18/A-107",
+          "identifier": "18",
+          "target_sheet": "A-107",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET A-108",
+          "target_sheet": "A-108",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "10 R6",
+          "identifier": "10",
+          "target_sheet": "R6",
+          "source_block_chars": 6,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "10 R6",
+          "identifier": "10",
+          "target_sheet": "R6",
+          "source_block_chars": 6,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "6 R10",
+          "identifier": "6",
+          "target_sheet": "R10",
+          "source_block_chars": 6,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "37": [
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 2/ A-108",
+          "identifier": "2",
+          "target_sheet": "A-108",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "38": [
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "39": [
+        {
+          "ref_type": "detail",
+          "raw": "97 L86",
+          "identifier": "97",
+          "target_sheet": "L86",
+          "source_block_chars": 17,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "97 L86",
+          "identifier": "97",
+          "target_sheet": "L86",
+          "source_block_chars": 7,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "40": [
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE A-107.",
+          "target_sheet": "A-107.",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET A-200",
+          "target_sheet": "A-200",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET A-200",
+          "target_sheet": "A-200",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "86 L97",
+          "identifier": "86",
+          "target_sheet": "L97",
+          "source_block_chars": 7,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "86 L97",
+          "identifier": "86",
+          "target_sheet": "L97",
+          "source_block_chars": 7,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "41": [
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "42": [
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "43": [
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "44": [
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "45": [
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "46": [
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "47": [
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "48": [
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "49": [
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE A-101",
+          "target_sheet": "A-101",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "50": [
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "51": [
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "52": [
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "53": [
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE A-200",
+          "target_sheet": "A-200",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "54": [
+        {
+          "ref_type": "detail",
+          "raw": "500 A-500",
+          "identifier": "500",
+          "target_sheet": "A-500",
+          "source_block_chars": 17,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "8 T200",
+          "identifier": "8",
+          "target_sheet": "T200",
+          "source_block_chars": 33,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "103 T-125",
+          "identifier": "103",
+          "target_sheet": "T-125",
+          "source_block_chars": 33,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "1 W108",
+          "identifier": "1",
+          "target_sheet": "W108",
+          "source_block_chars": 36,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "104 P104",
+          "identifier": "104",
+          "target_sheet": "P104",
+          "source_block_chars": 9,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "104 P104",
+          "identifier": "104",
+          "target_sheet": "P104",
+          "source_block_chars": 9,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "55": [
+        {
+          "ref_type": "detail",
+          "raw": "101 T-124",
+          "identifier": "101",
+          "target_sheet": "T-124",
+          "source_block_chars": 11,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "104 P101",
+          "identifier": "104",
+          "target_sheet": "P101",
+          "source_block_chars": 14,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "501 A-501",
+          "identifier": "501",
+          "target_sheet": "A-501",
+          "source_block_chars": 11,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "200 T-124",
+          "identifier": "200",
+          "target_sheet": "T-124",
+          "source_block_chars": 11,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "101 P104",
+          "identifier": "101",
+          "target_sheet": "P104",
+          "source_block_chars": 15,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "56": [
+        {
+          "ref_type": "detail",
+          "raw": "1 S1",
+          "identifier": "1",
+          "target_sheet": "S1",
+          "source_block_chars": 6,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "57": [
+        {
+          "ref_type": "detail",
+          "raw": "105 T-124",
+          "identifier": "105",
+          "target_sheet": "T-124",
+          "source_block_chars": 11,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "58": [
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "59": [
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "60": [
+        {
+          "ref_type": "detail",
+          "raw": "200 F26.12",
+          "identifier": "200",
+          "target_sheet": "F26.12",
+          "source_block_chars": 12,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "12 F26.12",
+          "identifier": "12",
+          "target_sheet": "F26.12",
+          "source_block_chars": 13,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "12 F26.12",
+          "identifier": "12",
+          "target_sheet": "F26.12",
+          "source_block_chars": 34,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "12 F26.12",
+          "identifier": "12",
+          "target_sheet": "F26.12",
+          "source_block_chars": 34,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "12 F26.12",
+          "identifier": "12",
+          "target_sheet": "F26.12",
+          "source_block_chars": 22,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "61": [
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "62": [
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "63": [
+        {
+          "ref_type": "detail",
+          "raw": "201 S-201",
+          "identifier": "201",
+          "target_sheet": "S-201",
+          "source_block_chars": 11,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "64": [
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET S-100",
+          "target_sheet": "S-100",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE\r\nSHEET S-100",
+          "target_sheet": "S-100",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE\r\nSHEET S-100",
+          "target_sheet": "S-100",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET\r\nS-100",
+          "target_sheet": "S-100",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET\r\nS-100",
+          "target_sheet": "S-100",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET\r\nS-100",
+          "target_sheet": "S-100",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET S-100",
+          "target_sheet": "S-100",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE\r\nSHEET S-100",
+          "target_sheet": "S-100",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "65": [
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET S-100",
+          "target_sheet": "S-100",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "67": [
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 17/P-500.",
+          "identifier": "17",
+          "target_sheet": "P-500.",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 5/P-400",
+          "identifier": "5",
+          "target_sheet": "P-400",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "1 P1",
+          "identifier": "1",
+          "target_sheet": "P1",
+          "source_block_chars": 4,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "1 L2",
+          "identifier": "1",
+          "target_sheet": "L2",
+          "source_block_chars": 7,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "5 E1",
+          "identifier": "5",
+          "target_sheet": "E1",
+          "source_block_chars": 8,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "69": [
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 1/P-500",
+          "identifier": "1",
+          "target_sheet": "P-500",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "6 P-500",
+          "identifier": "6",
+          "target_sheet": "P-500",
+          "source_block_chars": 37,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "70": [
+        {
+          "ref_type": "detail",
+          "raw": "20 A300",
+          "identifier": "20",
+          "target_sheet": "A300",
+          "source_block_chars": 11,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "85": [
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "86": [
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "87": [
+        {
+          "ref_type": "detail",
+          "raw": "13 A-41",
+          "identifier": "13",
+          "target_sheet": "A-41",
+          "source_block_chars": 9,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "7 E7",
+          "identifier": "7",
+          "target_sheet": "E7",
+          "source_block_chars": 5,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "32 A-32",
+          "identifier": "32",
+          "target_sheet": "A-32",
+          "source_block_chars": 22,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "30 A-34",
+          "identifier": "30",
+          "target_sheet": "A-34",
+          "source_block_chars": 22,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "88": [
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "89": [
+        {
+          "ref_type": "detail",
+          "raw": "1 L100",
+          "identifier": "1",
+          "target_sheet": "L100",
+          "source_block_chars": 9,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "86 L97",
+          "identifier": "86",
+          "target_sheet": "L97",
+          "source_block_chars": 7,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "97 L86",
+          "identifier": "97",
+          "target_sheet": "L86",
+          "source_block_chars": 7,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "90": [
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "91": [
+        {
+          "ref_type": "detail",
+          "raw": "SEE\r\nDETAIL 2/A-108.",
+          "identifier": "2",
+          "target_sheet": "A-108.",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 5 / E-400",
+          "identifier": "5",
+          "target_sheet": "E-400",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "3 B-26",
+          "identifier": "3",
+          "target_sheet": "B-26",
+          "source_block_chars": 22,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "3 B-32",
+          "identifier": "3",
+          "target_sheet": "B-32",
+          "source_block_chars": 12,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "92": [
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "93": [
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "94": [
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 10/E-200",
+          "identifier": "10",
+          "target_sheet": "E-200",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 1/E-100",
+          "identifier": "1",
+          "target_sheet": "E-100",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "95": [
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET E-400",
+          "target_sheet": "E-400",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "1 L2",
+          "identifier": "1",
+          "target_sheet": "L2",
+          "source_block_chars": 5,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "23 B-31",
+          "identifier": "23",
+          "target_sheet": "B-31",
+          "source_block_chars": 14,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "2020 C405.2.2.1.",
+          "identifier": "2020",
+          "target_sheet": "C405.2.2.1.",
+          "source_block_chars": 48,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "2020 C405.2.6.",
+          "identifier": "2020",
+          "target_sheet": "C405.2.6.",
+          "source_block_chars": 27,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "96": [
+        {
+          "ref_type": "detail",
+          "raw": "3 U1",
+          "identifier": "3",
+          "target_sheet": "U1",
+          "source_block_chars": 13,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "3 U2",
+          "identifier": "3",
+          "target_sheet": "U2",
+          "source_block_chars": 13,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "5 N1",
+          "identifier": "5",
+          "target_sheet": "N1",
+          "source_block_chars": 21,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "3 J5",
+          "identifier": "3",
+          "target_sheet": "J5",
+          "source_block_chars": 5,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "97": [
+        {
+          "ref_type": "detail",
+          "raw": "2600 R5",
+          "identifier": "2600",
+          "target_sheet": "R5",
+          "source_block_chars": 31,
+          "pattern": "detail_implicit"
+        }
+      ]
+    },
+    "legends_by_page": {
+      "0": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 15
+        }
+      ],
+      "1": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 42
+        }
+      ],
+      "2": [
+        {
+          "header_keyword": "MATERIAL",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 68
+        }
+      ],
+      "3": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 50
+        }
+      ],
+      "4": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 3
+        }
+      ],
+      "5": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "general_notes",
+          "entry_count_estimate": 8
+        }
+      ],
+      "6": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 125
+        }
+      ],
+      "7": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 75
+        }
+      ],
+      "8": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 27
+        }
+      ],
+      "9": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "notes",
+          "entry_count_estimate": 31
+        }
+      ],
+      "10": [
+        {
+          "header_keyword": "LEGEND",
+          "legend_type": "notes",
+          "entry_count_estimate": 4
+        }
+      ],
+      "11": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 6
+        }
+      ],
+      "12": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 8
+        }
+      ],
+      "13": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 29
+        }
+      ],
+      "16": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 96
+        }
+      ],
+      "18": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 21
+        }
+      ],
+      "19": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 47
+        }
+      ],
+      "20": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "door_schedule",
+          "entry_count_estimate": 99
+        }
+      ],
+      "21": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 70
+        }
+      ],
+      "22": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "roof_notes",
+          "entry_count_estimate": 46
+        }
+      ],
+      "23": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 18
+        }
+      ],
+      "24": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 28
+        }
+      ],
+      "25": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 23
+        }
+      ],
+      "29": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "general_notes",
+          "entry_count_estimate": 5
+        }
+      ],
+      "30": [
+        {
+          "header_keyword": "SCHEDULE",
+          "legend_type": "roof_notes",
+          "entry_count_estimate": 41
+        }
+      ],
+      "32": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 5
+        }
+      ],
+      "34": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "door_schedule",
+          "entry_count_estimate": 3
+        }
+      ],
+      "35": [
+        {
+          "header_keyword": "LEGEND",
+          "legend_type": "door_schedule",
+          "entry_count_estimate": 4
+        }
+      ],
+      "36": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "keynote",
+          "entry_count_estimate": 14
+        }
+      ],
+      "37": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "roof_notes",
+          "entry_count_estimate": 6
+        }
+      ],
+      "39": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "roof_notes",
+          "entry_count_estimate": 9
+        }
+      ],
+      "52": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 73
+        }
+      ],
+      "54": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "hardware_schedule",
+          "entry_count_estimate": 9
+        }
+      ],
+      "58": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 95
+        }
+      ],
+      "59": [
+        {
+          "header_keyword": "SCHEDULE",
+          "legend_type": "roof_notes",
+          "entry_count_estimate": 122
+        }
+      ],
+      "60": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "notes",
+          "entry_count_estimate": 14
+        }
+      ],
+      "61": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "roof_notes",
+          "entry_count_estimate": 17
+        }
+      ],
+      "65": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "roof_notes",
+          "entry_count_estimate": 4
+        }
+      ],
+      "66": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "roof_notes",
+          "entry_count_estimate": 6
+        }
+      ],
+      "67": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 34
+        }
+      ],
+      "69": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 53
+        }
+      ],
+      "83": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "roof_notes",
+          "entry_count_estimate": 23
+        }
+      ],
+      "85": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 55
+        }
+      ],
+      "86": [
+        {
+          "header_keyword": "SCHEDULE",
+          "legend_type": "roof_notes",
+          "entry_count_estimate": 21
+        }
+      ],
+      "87": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "roof_notes",
+          "entry_count_estimate": 51
+        }
+      ],
+      "88": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "notes",
+          "entry_count_estimate": 3
+        }
+      ],
+      "89": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "general_notes",
+          "entry_count_estimate": 37
+        }
+      ],
+      "91": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "roof_notes",
+          "entry_count_estimate": 34
+        }
+      ],
+      "92": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "general_notes",
+          "entry_count_estimate": 17
+        }
+      ],
+      "93": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "notes",
+          "entry_count_estimate": 857
+        }
+      ],
+      "95": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "roof_notes",
+          "entry_count_estimate": 5
+        }
+      ],
+      "96": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "roof_notes",
+          "entry_count_estimate": 4
+        }
+      ],
+      "97": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "general_notes",
+          "entry_count_estimate": 14
+        }
+      ]
+    },
+    "project_metadata": {
+      "project_name": "SITE",
+      "project_address": "1683 Walnut Grove Ave",
+      "project_number": "PANDA",
+      "owner": "FOR PROPER DIRECTION IF ANY ENVIRONMENTAL",
+      "architect": null,
+      "total_building_sf": null,
+      "building_type": null,
+      "building_code": null,
+      "construction_type": null,
+      "occupancy_type": null,
+      "wind_speed_mph": null,
+      "system_classifications": null,
+      "scope_summary": null
+    },
+    "roof_page_indices": [
+      0,
+      2,
+      36,
+      37,
+      45,
+      58,
+      61,
+      69,
+      70,
+      91
+    ],
+    "page_type_histogram": {
+      "roof_plan": 10,
+      "detail_sheet": 38,
+      "ceiling_plan": 8,
+      "elevation": 26,
+      "cover": 1,
+      "schedule_sheet": 3,
+      "symbol_legend": 1,
+      "section": 3,
+      "unknown": 2,
+      "floor_plan": 5,
+      "life_safety": 1
+    },
+    "confidence_histogram": {
+      "explicit": 32,
+      "strong": 62,
+      "inferred": 2,
+      "weak": 0,
+      "unknown": 2
+    }
+  },
+  "scope": {
+    "systems": [
+      {
+        "system_type": "built_up",
+        "attachment": "mechanically_attached",
+        "manufacturer": null,
+        "manufacturer_candidates": [],
+        "thickness_markers": [],
+        "spec_sections": [
+          "07 52"
+        ],
+        "source_pages": [
+          2,
+          59
+        ],
+        "confidence": 0.7
+      },
+      {
+        "system_type": "metal_panel",
+        "attachment": "mechanically_attached",
+        "manufacturer": null,
+        "manufacturer_candidates": [],
+        "thickness_markers": [],
+        "spec_sections": [
+          "07 62"
+        ],
+        "source_pages": [
+          2
+        ],
+        "confidence": 0.7
+      },
+      {
+        "system_type": "shingle",
+        "attachment": "mechanically_attached",
+        "manufacturer": null,
+        "manufacturer_candidates": [],
+        "thickness_markers": [],
+        "spec_sections": [
+          "07 3100"
+        ],
+        "source_pages": [
+          93
+        ],
+        "confidence": 0.7
+      },
+      {
+        "system_type": "pvc",
+        "attachment": "mechanically_attached",
+        "manufacturer": null,
+        "manufacturer_candidates": [],
+        "thickness_markers": [],
+        "spec_sections": [],
+        "source_pages": [
+          37
+        ],
+        "confidence": 0.5
+      }
+    ],
+    "fallback_used": false,
+    "evidence": {
+      "spec_section_hits": [
+        {
+          "key": "07 22",
+          "system": null,
+          "name": "Roof and Deck Insulation",
+          "raw_match": "0722.16",
+          "page_index": 0
+        },
+        {
+          "key": "07 52",
+          "system": "built_up",
+          "name": "Built-Up Bituminous Roofing",
+          "raw_match": "75244",
+          "page_index": 2
+        },
+        {
+          "key": "07 62",
+          "system": "metal_panel",
+          "name": "Flashing and Sheet Metal",
+          "raw_match": "762-9462",
+          "page_index": 2
+        },
+        {
+          "key": "07 22",
+          "system": null,
+          "name": "Roof and Deck Insulation",
+          "raw_match": "722",
+          "page_index": 20
+        },
+        {
+          "key": "07 84",
+          "system": null,
+          "name": "Firestopping",
+          "raw_match": "7 84",
+          "page_index": 20
+        },
+        {
+          "key": "07 22",
+          "system": null,
+          "name": "Roof and Deck Insulation",
+          "raw_match": "7-22",
+          "page_index": 59
+        },
+        {
+          "key": "07 3100",
+          "system": "shingle",
+          "name": "Asphalt Shingles",
+          "raw_match": "731004",
+          "page_index": 93
+        }
+      ],
+      "manufacturer_hits": [],
+      "attachment_hits": [
+        {
+          "method": "mechanically_attached",
+          "page_index": 36
+        }
+      ],
+      "thickness_markers": [],
+      "insulation_markers": [
+        {
+          "marker": "polyiso",
+          "page_index": 2
+        },
+        {
+          "marker": "polyisocyanurate",
+          "page_index": 2
+        },
+        {
+          "marker": "EPS",
+          "page_index": 2
+        },
+        {
+          "marker": "R-20",
+          "page_index": 2
+        },
+        {
+          "marker": "EPS",
+          "page_index": 45
+        }
+      ],
+      "florida_signals": [
+        {
+          "marker": "NOA",
+          "page_index": 0
+        },
+        {
+          "marker": "FBC",
+          "page_index": 0
+        },
+        {
+          "marker": "SMACNA",
+          "page_index": 2
+        },
+        {
+          "marker": "FBC",
+          "page_index": 5
+        },
+        {
+          "marker": "FBC",
+          "page_index": 70
+        },
+        {
+          "marker": "FBC",
+          "page_index": 92
+        },
+        {
+          "marker": "FBC",
+          "page_index": 95
+        }
+      ],
+      "system_type_keyword_hits": [
+        {
+          "system_type": "pvc",
+          "page_index": 37
+        },
+        {
+          "system_type": "built_up",
+          "page_index": 59
+        }
+      ]
+    },
+    "pages_inspected": [
+      0,
+      1,
+      2,
+      5,
+      8,
+      9,
+      10,
+      11,
+      12,
+      14,
+      15,
+      20,
+      21,
+      23,
+      25,
+      26,
+      29,
+      30,
+      33,
+      36,
+      37,
+      38,
+      45,
+      51,
+      58,
+      59,
+      61,
+      62,
+      63,
+      64,
+      65,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      91,
+      92,
+      93,
+      95,
+      96,
+      97
+    ],
+    "pages_skipped_glazing": 0
+  },
+  "assembly": {
+    "systems": [
+      {
+        "system_type": "built_up",
+        "attachment": "mechanically_attached",
+        "manufacturer": null,
+        "matched_assembly_key": "built_up_roofing",
+        "assembly_category": "multi_ply",
+        "required_total": 7,
+        "required_supported": 4,
+        "required_supported_components": [
+          "base_sheet",
+          "insulation",
+          "fasteners",
+          "base_flashing"
+        ],
+        "required_missing_components": [
+          "interply_felt",
+          "cover_board",
+          "gravel_stop"
+        ],
+        "conditional_supported_components": [
+          "tapered_insulation",
+          "coping",
+          "roof_drain",
+          "mechanical_curb"
+        ],
+        "component_evidence": {
+          "base_sheet": [
+            {
+              "page_index": 69,
+              "matched_keyword": "BASE SHEET"
+            }
+          ],
+          "insulation": [
+            {
+              "page_index": 2,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 8,
+              "matched_keyword": "EPS"
+            },
+            {
+              "page_index": 36,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 37,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 45,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 63,
+              "matched_keyword": "EPS"
+            },
+            {
+              "page_index": 69,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 70,
+              "matched_keyword": "INSULATION"
+            }
+          ],
+          "fasteners": [
+            {
+              "page_index": 1,
+              "matched_keyword": "SCREW"
+            },
+            {
+              "page_index": 36,
+              "matched_keyword": "FASTENER"
+            },
+            {
+              "page_index": 45,
+              "matched_keyword": "FASTENER"
+            },
+            {
+              "page_index": 58,
+              "matched_keyword": "FASTENER"
+            },
+            {
+              "page_index": 59,
+              "matched_keyword": "FASTENER"
+            },
+            {
+              "page_index": 64,
+              "matched_keyword": "SCREW"
+            },
+            {
+              "page_index": 65,
+              "matched_keyword": "SCREW"
+            },
+            {
+              "page_index": 69,
+              "matched_keyword": "SCREW"
+            },
+            {
+              "page_index": 75,
+              "matched_keyword": "FASTENER"
+            },
+            {
+              "page_index": 83,
+              "matched_keyword": "SCREW"
+            },
+            {
+              "page_index": 95,
+              "matched_keyword": "SCREW"
+            }
+          ],
+          "base_flashing": [
+            {
+              "page_index": 2,
+              "matched_keyword": "BASE FLASHING"
+            }
+          ],
+          "tapered_insulation": [
+            {
+              "page_index": 9,
+              "matched_keyword": "POSITIVE DRAINAGE"
+            },
+            {
+              "page_index": 29,
+              "matched_keyword": "POSITIVE DRAINAGE"
+            },
+            {
+              "page_index": 36,
+              "matched_keyword": "TAPERED"
+            },
+            {
+              "page_index": 58,
+              "matched_keyword": "POSITIVE DRAINAGE"
+            },
+            {
+              "page_index": 69,
+              "matched_keyword": "TAPERED"
+            }
+          ],
+          "coping": [
+            {
+              "page_index": 2,
+              "matched_keyword": "COPING"
+            },
+            {
+              "page_index": 36,
+              "matched_keyword": "COPING"
+            }
+          ],
+          "roof_drain": [
+            {
+              "page_index": 36,
+              "matched_keyword": "ROOF DRAIN"
+            },
+            {
+              "page_index": 69,
+              "matched_keyword": "ROOF DRAIN"
+            },
+            {
+              "page_index": 70,
+              "matched_keyword": "ROOF DRAIN"
+            }
+          ],
+          "mechanical_curb": [
+            {
+              "page_index": 36,
+              "matched_keyword": "MECHANICAL CURB"
+            },
+            {
+              "page_index": 69,
+              "matched_keyword": "EQUIPMENT CURB"
+            },
+            {
+              "page_index": 91,
+              "matched_keyword": "EQUIPMENT CURB"
+            }
+          ]
+        },
+        "warnings": [
+          {
+            "id": "overflow_pairing",
+            "rule": "Every primary drain must have a paired overflow",
+            "trigger_kind": "text_evidence_missing",
+            "note": "Spec mentions roof drains but no overflow drains found in text"
+          },
+          {
+            "id": "curb_high_side_cricket",
+            "rule": "Curbs > 30\" require cricket on high side (IBC 1503.4)",
+            "trigger_kind": "would_fire_on_pin_data",
+            "note": "Curbs identified \u2014 cricket-required check awaits user pin data"
+          },
+          {
+            "id": "rtu_drives_curb",
+            "rule": "Each RTU requires a mechanical curb",
+            "trigger_kind": "would_fire_on_pin_data",
+            "note": "Awaits user pin data for RTUs and curbs"
+          },
+          {
+            "id": "fbc_hvhz_applies",
+            "rule": "HVHZ/NOA mentioned \u2014 Miami-Dade NOA approval required",
+            "trigger_kind": "code_constraint",
+            "note": "Project references HVHZ or Miami-Dade NOA"
+          }
+        ]
+      },
+      {
+        "system_type": "metal_panel",
+        "attachment": "mechanically_attached",
+        "manufacturer": null,
+        "matched_assembly_key": "metal_panel_standing_seam",
+        "assembly_category": "metal",
+        "required_total": 6,
+        "required_supported": 2,
+        "required_supported_components": [
+          "underlayment",
+          "valley_flashing"
+        ],
+        "required_missing_components": [
+          "metal_panel",
+          "panel_clip",
+          "ridge_cap",
+          "panel_closure"
+        ],
+        "conditional_supported_components": [
+          "insulation",
+          "coping",
+          "gutter",
+          "skylight",
+          "sealant"
+        ],
+        "component_evidence": {
+          "underlayment": [
+            {
+              "page_index": 2,
+              "matched_keyword": "FELT"
+            },
+            {
+              "page_index": 59,
+              "matched_keyword": "UNDERLAYMENT"
+            },
+            {
+              "page_index": 84,
+              "matched_keyword": "FELT"
+            }
+          ],
+          "valley_flashing": [
+            {
+              "page_index": 8,
+              "matched_keyword": "VALLEY"
+            },
+            {
+              "page_index": 59,
+              "matched_keyword": "VALLEY"
+            }
+          ],
+          "insulation": [
+            {
+              "page_index": 2,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 8,
+              "matched_keyword": "EPS"
+            },
+            {
+              "page_index": 36,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 37,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 45,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 63,
+              "matched_keyword": "EPS"
+            },
+            {
+              "page_index": 69,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 70,
+              "matched_keyword": "INSULATION"
+            }
+          ],
+          "coping": [
+            {
+              "page_index": 2,
+              "matched_keyword": "COPING"
+            },
+            {
+              "page_index": 36,
+              "matched_keyword": "COPING"
+            }
+          ],
+          "gutter": [
+            {
+              "page_index": 8,
+              "matched_keyword": "GUTTER"
+            },
+            {
+              "page_index": 9,
+              "matched_keyword": "GUTTER"
+            },
+            {
+              "page_index": 11,
+              "matched_keyword": "GUTTER"
+            },
+            {
+              "page_index": 83,
+              "matched_keyword": "GUTTER"
+            },
+            {
+              "page_index": 97,
+              "matched_keyword": "GUTTER"
+            }
+          ],
+          "skylight": [
+            {
+              "page_index": 2,
+              "matched_keyword": "SKYLIGHT"
+            }
+          ],
+          "sealant": [
+            {
+              "page_index": 2,
+              "matched_keyword": "SEALANT"
+            },
+            {
+              "page_index": 11,
+              "matched_keyword": "SEALANT"
+            },
+            {
+              "page_index": 37,
+              "matched_keyword": "SEALANT"
+            },
+            {
+              "page_index": 45,
+              "matched_keyword": "SEALANT"
+            },
+            {
+              "page_index": 62,
+              "matched_keyword": "SEALANT"
+            },
+            {
+              "page_index": 65,
+              "matched_keyword": "SEALANT"
+            },
+            {
+              "page_index": 69,
+              "matched_keyword": "SEALANT"
+            },
+            {
+              "page_index": 70,
+              "matched_keyword": "CAULK"
+            }
+          ]
+        },
+        "warnings": [
+          {
+            "id": "fbc_hvhz_applies",
+            "rule": "HVHZ/NOA mentioned \u2014 Miami-Dade NOA approval required",
+            "trigger_kind": "code_constraint",
+            "note": "Project references HVHZ or Miami-Dade NOA"
+          }
+        ]
+      },
+      {
+        "system_type": "shingle",
+        "attachment": "mechanically_attached",
+        "manufacturer": null,
+        "matched_assembly_key": "asphalt_shingles",
+        "assembly_category": "steep_slope",
+        "required_total": 8,
+        "required_supported": 4,
+        "required_supported_components": [
+          "field_membrane",
+          "underlayment",
+          "fasteners",
+          "valley_flashing"
+        ],
+        "required_missing_components": [
+          "starter_strip",
+          "ridge_cap",
+          "step_flashing",
+          "drip_edge"
+        ],
+        "conditional_supported_components": [
+          "skylight"
+        ],
+        "component_evidence": {
+          "field_membrane": [
+            {
+              "page_index": 0,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 2,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 36,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 37,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 45,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 69,
+              "matched_keyword": "MEMBRANE"
+            }
+          ],
+          "underlayment": [
+            {
+              "page_index": 2,
+              "matched_keyword": "FELT"
+            },
+            {
+              "page_index": 59,
+              "matched_keyword": "UNDERLAYMENT"
+            },
+            {
+              "page_index": 84,
+              "matched_keyword": "FELT"
+            }
+          ],
+          "fasteners": [
+            {
+              "page_index": 1,
+              "matched_keyword": "SCREW"
+            },
+            {
+              "page_index": 36,
+              "matched_keyword": "FASTENER"
+            },
+            {
+              "page_index": 45,
+              "matched_keyword": "FASTENER"
+            },
+            {
+              "page_index": 58,
+              "matched_keyword": "FASTENER"
+            },
+            {
+              "page_index": 59,
+              "matched_keyword": "FASTENER"
+            },
+            {
+              "page_index": 64,
+              "matched_keyword": "SCREW"
+            },
+            {
+              "page_index": 65,
+              "matched_keyword": "SCREW"
+            },
+            {
+              "page_index": 69,
+              "matched_keyword": "SCREW"
+            },
+            {
+              "page_index": 75,
+              "matched_keyword": "FASTENER"
+            },
+            {
+              "page_index": 83,
+              "matched_keyword": "SCREW"
+            },
+            {
+              "page_index": 95,
+              "matched_keyword": "SCREW"
+            }
+          ],
+          "valley_flashing": [
+            {
+              "page_index": 8,
+              "matched_keyword": "VALLEY"
+            },
+            {
+              "page_index": 59,
+              "matched_keyword": "VALLEY"
+            }
+          ],
+          "skylight": [
+            {
+              "page_index": 2,
+              "matched_keyword": "SKYLIGHT"
+            }
+          ]
+        },
+        "warnings": [
+          {
+            "id": "fbc_hvhz_applies",
+            "rule": "HVHZ/NOA mentioned \u2014 Miami-Dade NOA approval required",
+            "trigger_kind": "code_constraint",
+            "note": "Project references HVHZ or Miami-Dade NOA"
+          }
+        ]
+      },
+      {
+        "system_type": "pvc",
+        "attachment": "mechanically_attached",
+        "manufacturer": null,
+        "matched_assembly_key": "pvc_mechanically_attached",
+        "assembly_category": "single_ply",
+        "required_total": 7,
+        "required_supported": 5,
+        "required_supported_components": [
+          "field_membrane",
+          "insulation",
+          "fasteners",
+          "base_flashing",
+          "termination_bar"
+        ],
+        "required_missing_components": [
+          "cover_board",
+          "fastener_plates"
+        ],
+        "conditional_supported_components": [],
+        "component_evidence": {
+          "field_membrane": [
+            {
+              "page_index": 0,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 2,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 36,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 37,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 45,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 69,
+              "matched_keyword": "MEMBRANE"
+            }
+          ],
+          "insulation": [
+            {
+              "page_index": 2,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 8,
+              "matched_keyword": "EPS"
+            },
+            {
+              "page_index": 36,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 37,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 45,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 63,
+              "matched_keyword": "EPS"
+            },
+            {
+              "page_index": 69,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 70,
+              "matched_keyword": "INSULATION"
+            }
+          ],
+          "fasteners": [
+            {
+              "page_index": 1,
+              "matched_keyword": "SCREW"
+            },
+            {
+              "page_index": 36,
+              "matched_keyword": "FASTENER"
+            },
+            {
+              "page_index": 45,
+              "matched_keyword": "FASTENER"
+            },
+            {
+              "page_index": 58,
+              "matched_keyword": "FASTENER"
+            },
+            {
+              "page_index": 59,
+              "matched_keyword": "FASTENER"
+            },
+            {
+              "page_index": 64,
+              "matched_keyword": "SCREW"
+            },
+            {
+              "page_index": 65,
+              "matched_keyword": "SCREW"
+            },
+            {
+              "page_index": 69,
+              "matched_keyword": "SCREW"
+            },
+            {
+              "page_index": 75,
+              "matched_keyword": "FASTENER"
+            },
+            {
+              "page_index": 83,
+              "matched_keyword": "SCREW"
+            },
+            {
+              "page_index": 95,
+              "matched_keyword": "SCREW"
+            }
+          ],
+          "base_flashing": [
+            {
+              "page_index": 2,
+              "matched_keyword": "BASE FLASHING"
+            }
+          ],
+          "termination_bar": [
+            {
+              "page_index": 37,
+              "matched_keyword": "TERMINATION BAR"
+            }
+          ]
+        },
+        "warnings": [
+          {
+            "id": "fbc_hvhz_applies",
+            "rule": "HVHZ/NOA mentioned \u2014 Miami-Dade NOA approval required",
+            "trigger_kind": "code_constraint",
+            "note": "Project references HVHZ or Miami-Dade NOA"
+          }
+        ]
+      }
+    ],
+    "florida_signals": [
+      "FBC",
+      "NOA",
+      "SMACNA"
+    ]
+  },
+  "provenance": {
+    "fields": {
+      "scope.systems[0].system_type": {
+        "extraction_method": "scope.find_spec_sections + scope.find_system_type_keywords",
+        "source_pages": [
+          2,
+          59
+        ],
+        "confidence": 0.7,
+        "parser_value": "built_up"
+      },
+      "scope.systems[0].attachment": {
+        "extraction_method": "scope.find_attachments (most-common)",
+        "confidence": 0.7,
+        "parser_value": "mechanically_attached"
+      },
+      "scope.systems[0].spec_sections": {
+        "extraction_method": "scope.find_spec_sections",
+        "source_pages": [
+          2,
+          59
+        ],
+        "parser_value": [
+          "07 52"
+        ]
+      },
+      "scope.systems[1].system_type": {
+        "extraction_method": "scope.find_spec_sections + scope.find_system_type_keywords",
+        "source_pages": [
+          2
+        ],
+        "confidence": 0.7,
+        "parser_value": "metal_panel"
+      },
+      "scope.systems[1].attachment": {
+        "extraction_method": "scope.find_attachments (most-common)",
+        "confidence": 0.7,
+        "parser_value": "mechanically_attached"
+      },
+      "scope.systems[1].spec_sections": {
+        "extraction_method": "scope.find_spec_sections",
+        "source_pages": [
+          2
+        ],
+        "parser_value": [
+          "07 62"
+        ]
+      },
+      "scope.systems[2].system_type": {
+        "extraction_method": "scope.find_spec_sections + scope.find_system_type_keywords",
+        "source_pages": [
+          93
+        ],
+        "confidence": 0.7,
+        "parser_value": "shingle"
+      },
+      "scope.systems[2].attachment": {
+        "extraction_method": "scope.find_attachments (most-common)",
+        "confidence": 0.7,
+        "parser_value": "mechanically_attached"
+      },
+      "scope.systems[2].spec_sections": {
+        "extraction_method": "scope.find_spec_sections",
+        "source_pages": [
+          93
+        ],
+        "parser_value": [
+          "07 3100"
+        ]
+      },
+      "scope.systems[3].system_type": {
+        "extraction_method": "scope.find_spec_sections + scope.find_system_type_keywords",
+        "source_pages": [
+          37
+        ],
+        "confidence": 0.5,
+        "parser_value": "pvc"
+      },
+      "scope.systems[3].attachment": {
+        "extraction_method": "scope.find_attachments (most-common)",
+        "confidence": 0.5,
+        "parser_value": "mechanically_attached"
+      },
+      "assembly.systems[0].matched_assembly_key": {
+        "extraction_method": "assembly.pick_assembly_key",
+        "parser_value": "built_up_roofing"
+      },
+      "assembly.systems[1].matched_assembly_key": {
+        "extraction_method": "assembly.pick_assembly_key",
+        "parser_value": "metal_panel_standing_seam"
+      },
+      "assembly.systems[2].matched_assembly_key": {
+        "extraction_method": "assembly.pick_assembly_key",
+        "parser_value": "asphalt_shingles"
+      },
+      "assembly.systems[3].matched_assembly_key": {
+        "extraction_method": "assembly.pick_assembly_key",
+        "parser_value": "pvc_mechanically_attached"
+      },
+      "dispatch.sheet_map": {
+        "extraction_method": "dispatch.extract_sheet_number on title-block text"
+      },
+      "dispatch.page_classifications": {
+        "extraction_method": "dispatch.classify_page using PAGE_CLASSIFICATION_KEYWORDS",
+        "rule_source": "seeds/dispatch_seed.py"
+      }
+    }
+  },
+  "extraction_metrics": {
+    "elapsed_seconds": 9.91,
+    "pages_processed": 98,
+    "page_type_histogram": {
+      "roof_plan": 10,
+      "detail_sheet": 38,
+      "ceiling_plan": 8,
+      "elevation": 26,
+      "cover": 1,
+      "schedule_sheet": 3,
+      "symbol_legend": 1,
+      "section": 3,
+      "unknown": 2,
+      "floor_plan": 5,
+      "life_safety": 1
+    },
+    "confidence_histogram": {
+      "explicit": 32,
+      "strong": 62,
+      "inferred": 2,
+      "weak": 0,
+      "unknown": 2
+    },
+    "roof_pages_found": 10,
+    "scope_systems_identified": 4,
+    "scope_pages_inspected": 53,
+    "scope_fallback_used": false,
+    "scope_pages_skipped_glazing": 0,
+    "extracted_at": "2026-04-26T01:14:33.068621+00:00"
+  }
+}

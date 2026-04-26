@@ -1,0 +1,4556 @@
+{
+  "id": "taco-bell-weeki-wachee-compass-construction-management-2",
+  "schema_version": "0.1",
+  "source_pdf_ref": {
+    "id": "taco-bell-weeki-wachee-compass-construction-management-2",
+    "filename": "Taco Bell - Weeki Wachee - Compass Construction Management (2).pdf",
+    "local_path": "C:\\huck stage 2\\full bid sets\\Taco Bell - Weeki Wachee - Compass Construction Management (2).pdf",
+    "sha256": "2563b58afe3bb8f6b3a9fd398cb5d0d509ee537fa3a176c0ad1a957f6274bd0f",
+    "size_bytes": 64930185,
+    "page_count": 88,
+    "producer_hint": "STACK Construction Technologies",
+    "notes": "",
+    "uploaded_at": "2026-04-26T00:39:56.817233+00:00"
+  },
+  "dispatch": {
+    "page_classifications": [
+      {
+        "page_index": 0,
+        "sheet_number": "AD3",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "roof_plan",
+        "confidence": 0.9,
+        "matched_keyword": "ROOF PLAN",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 1,
+        "sheet_number": "T1.1",
+        "discipline": null,
+        "page_type": "section",
+        "confidence": 0.5,
+        "matched_keyword": "SECTION",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 2,
+        "sheet_number": "T1.2",
+        "discipline": null,
+        "page_type": "schedule_sheet",
+        "confidence": 0.9,
+        "matched_keyword": "SCHEDULE",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 3,
+        "sheet_number": "X4C",
+        "discipline": null,
+        "page_type": "elevation",
+        "confidence": 0.9,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 4,
+        "sheet_number": "F477",
+        "discipline": null,
+        "page_type": "elevation",
+        "confidence": 0.7,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 5,
+        "sheet_number": "C1.0",
+        "discipline": "CIVIL",
+        "page_type": "general_notes",
+        "confidence": 0.7,
+        "matched_keyword": "GENERAL NOTE",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 6,
+        "sheet_number": "C2.0",
+        "discipline": "CIVIL",
+        "page_type": "detail_sheet",
+        "confidence": 0.9,
+        "matched_keyword": "DETAIL",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 7,
+        "sheet_number": "AD3",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "elevation",
+        "confidence": 0.7,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 8,
+        "sheet_number": "AD3",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "elevation",
+        "confidence": 0.9,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 9,
+        "sheet_number": "CS200",
+        "discipline": "CIVIL",
+        "page_type": "detail_sheet",
+        "confidence": 0.9,
+        "matched_keyword": "DETAIL",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 10,
+        "sheet_number": "AD1",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "detail_sheet",
+        "confidence": 0.9,
+        "matched_keyword": "DETAIL",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 11,
+        "sheet_number": "CR6",
+        "discipline": "CIVIL",
+        "page_type": "schedule_sheet",
+        "confidence": 0.9,
+        "matched_keyword": "SCHEDULE",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 12,
+        "sheet_number": "C3.2",
+        "discipline": "CIVIL",
+        "page_type": "detail_sheet",
+        "confidence": 0.9,
+        "matched_keyword": "DETAIL",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 13,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "site_plan",
+        "confidence": 0.9,
+        "matched_keyword": "SITE PLAN",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 14,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 15,
+        "sheet_number": "CZ-101",
+        "discipline": "CIVIL",
+        "page_type": "detail_sheet",
+        "confidence": 0.9,
+        "matched_keyword": "DETAIL",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 16,
+        "sheet_number": "IR-02",
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 17,
+        "sheet_number": "IR-03",
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 18,
+        "sheet_number": "PS-2",
+        "discipline": "PLUMBING",
+        "page_type": "roof_plan",
+        "confidence": 0.7,
+        "matched_keyword": "ROOF PLAN",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 19,
+        "sheet_number": "R-2013.",
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.9,
+        "matched_keyword": "DETAIL",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 20,
+        "sheet_number": "A0.3",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 21,
+        "sheet_number": "A1.1",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "floor_plan",
+        "confidence": 0.9,
+        "matched_keyword": "FLOOR PLAN",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 22,
+        "sheet_number": "A1.2",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "roof_plan",
+        "confidence": 0.9,
+        "matched_keyword": "ROOF PLAN",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 23,
+        "sheet_number": "A1.3",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "roof_plan",
+        "confidence": 0.7,
+        "matched_keyword": "ROOF PLAN",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 24,
+        "sheet_number": "A1.4",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "elevation",
+        "confidence": 0.7,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 25,
+        "sheet_number": "A1.5",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "elevation",
+        "confidence": 0.9,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 26,
+        "sheet_number": "A2.0",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "elevation",
+        "confidence": 0.9,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 27,
+        "sheet_number": "A2.1",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "elevation",
+        "confidence": 0.9,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 28,
+        "sheet_number": "A3.0",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "section",
+        "confidence": 0.7,
+        "matched_keyword": "SECTION",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 29,
+        "sheet_number": "A3.1",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "section",
+        "confidence": 0.7,
+        "matched_keyword": "SECTION",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 30,
+        "sheet_number": "A4.0",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "elevation",
+        "confidence": 0.7,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 31,
+        "sheet_number": "A4.1",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "roof_plan",
+        "confidence": 0.7,
+        "matched_keyword": "ROOF PLAN",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 32,
+        "sheet_number": "A4.2",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "roof_plan",
+        "confidence": 0.7,
+        "matched_keyword": "ROOF PLAN",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 33,
+        "sheet_number": "A4.3",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "roof_plan",
+        "confidence": 0.7,
+        "matched_keyword": "ROOF PLAN",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 34,
+        "sheet_number": "DA4.4",
+        "discipline": null,
+        "page_type": "elevation",
+        "confidence": 0.7,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 35,
+        "sheet_number": "A5.0",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "elevation",
+        "confidence": 0.9,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 36,
+        "sheet_number": "A5.1",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "elevation",
+        "confidence": 0.9,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 37,
+        "sheet_number": "A5.2",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "elevation",
+        "confidence": 0.9,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 38,
+        "sheet_number": "A6.0",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "ceiling_plan",
+        "confidence": 0.7,
+        "matched_keyword": "RCP",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 39,
+        "sheet_number": "AL-1",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "schedule_sheet",
+        "confidence": 0.9,
+        "matched_keyword": "SCHEDULE",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 40,
+        "sheet_number": "A7.1",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "ceiling_plan",
+        "confidence": 0.9,
+        "matched_keyword": "CEILING PLAN",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 41,
+        "sheet_number": "A8.1",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 42,
+        "sheet_number": "A9.1",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "schedule_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "SCHEDULE",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 43,
+        "sheet_number": "A9.2",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 44,
+        "sheet_number": "A9.3",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "detail_sheet",
+        "confidence": 0.9,
+        "matched_keyword": "DETAIL",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 45,
+        "sheet_number": "S5.3",
+        "discipline": "STRUCTURAL",
+        "page_type": "framing_plan",
+        "confidence": 0.9,
+        "matched_keyword": "FRAMING PLAN",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 46,
+        "sheet_number": "S1.1",
+        "discipline": "STRUCTURAL",
+        "page_type": "floor_plan",
+        "confidence": 0.9,
+        "matched_keyword": "FLOOR PLAN",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 47,
+        "sheet_number": "X6",
+        "discipline": null,
+        "page_type": "framing_plan",
+        "confidence": 0.9,
+        "matched_keyword": "FRAMING PLAN",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 48,
+        "sheet_number": "S2.0",
+        "discipline": "STRUCTURAL",
+        "page_type": "detail_sheet",
+        "confidence": 0.9,
+        "matched_keyword": "DETAIL",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 49,
+        "sheet_number": "S3.0",
+        "discipline": "STRUCTURAL",
+        "page_type": "framing_plan",
+        "confidence": 0.7,
+        "matched_keyword": "FRAMING PLAN",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 50,
+        "sheet_number": "S3.1",
+        "discipline": "STRUCTURAL",
+        "page_type": "framing_plan",
+        "confidence": 0.7,
+        "matched_keyword": "FRAMING PLAN",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 51,
+        "sheet_number": "S5.0",
+        "discipline": "STRUCTURAL",
+        "page_type": "elevation",
+        "confidence": 0.9,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 52,
+        "sheet_number": "S5.1",
+        "discipline": "STRUCTURAL",
+        "page_type": "framing_plan",
+        "confidence": 0.7,
+        "matched_keyword": "FRAMING PLAN",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 53,
+        "sheet_number": "S5.3",
+        "discipline": "STRUCTURAL",
+        "page_type": "elevation",
+        "confidence": 0.9,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 54,
+        "sheet_number": "D-1557",
+        "discipline": null,
+        "page_type": "floor_plan",
+        "confidence": 0.9,
+        "matched_keyword": "FLOOR PLAN",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 55,
+        "sheet_number": "B6000U",
+        "discipline": null,
+        "page_type": "elevation",
+        "confidence": 0.9,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 56,
+        "sheet_number": "AD2",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "floor_plan",
+        "confidence": 0.9,
+        "matched_keyword": "FLOOR PLAN",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 57,
+        "sheet_number": "P1.U",
+        "discipline": "PLUMBING",
+        "page_type": "elevation",
+        "confidence": 0.9,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 58,
+        "sheet_number": "P2.0",
+        "discipline": "PLUMBING",
+        "page_type": "floor_plan",
+        "confidence": 0.7,
+        "matched_keyword": "FLOOR PLAN",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 59,
+        "sheet_number": "MV-1",
+        "discipline": "MECHANICAL",
+        "page_type": "detail_sheet",
+        "confidence": 0.9,
+        "matched_keyword": "DETAIL",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 60,
+        "sheet_number": "P3.1",
+        "discipline": "PLUMBING",
+        "page_type": "floor_plan",
+        "confidence": 0.7,
+        "matched_keyword": "FLOOR PLAN",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 61,
+        "sheet_number": "P3.2",
+        "discipline": "PLUMBING",
+        "page_type": "detail_sheet",
+        "confidence": 0.9,
+        "matched_keyword": "DETAIL",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 62,
+        "sheet_number": "TV-325",
+        "discipline": null,
+        "page_type": "schedule_sheet",
+        "confidence": 0.9,
+        "matched_keyword": "SCHEDULE",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 63,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "roof_plan",
+        "confidence": 0.7,
+        "matched_keyword": "ROOF PLAN",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 64,
+        "sheet_number": "TU-1",
+        "discipline": null,
+        "page_type": "schedule_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "SCHEDULE",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 65,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "floor_plan",
+        "confidence": 0.7,
+        "matched_keyword": "FLOOR PLAN",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 66,
+        "sheet_number": "H1.2",
+        "discipline": null,
+        "page_type": "roof_plan",
+        "confidence": 0.9,
+        "matched_keyword": "ROOF PLAN",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 67,
+        "sheet_number": "H5.1",
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.9,
+        "matched_keyword": "DETAIL",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 68,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 69,
+        "sheet_number": "H3.2",
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.9,
+        "matched_keyword": "DETAIL",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 70,
+        "sheet_number": "EF-1",
+        "discipline": "ELECTRICAL",
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 71,
+        "sheet_number": "AD3",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "roof_plan",
+        "confidence": 0.7,
+        "matched_keyword": "ROOF PLAN",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 72,
+        "sheet_number": "AD3",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "unknown",
+        "confidence": 0.0,
+        "matched_keyword": null,
+        "matched_in": "default"
+      },
+      {
+        "page_index": 73,
+        "sheet_number": "H5.2",
+        "discipline": null,
+        "page_type": "unknown",
+        "confidence": 0.0,
+        "matched_keyword": null,
+        "matched_in": "default"
+      },
+      {
+        "page_index": 74,
+        "sheet_number": "H5.3",
+        "discipline": null,
+        "page_type": "unknown",
+        "confidence": 0.0,
+        "matched_keyword": null,
+        "matched_in": "default"
+      },
+      {
+        "page_index": 75,
+        "sheet_number": "R23",
+        "discipline": null,
+        "page_type": "schedule_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "SCHEDULE",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 76,
+        "sheet_number": "R23",
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 77,
+        "sheet_number": "R23",
+        "discipline": null,
+        "page_type": "schedule_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "SCHEDULE",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 78,
+        "sheet_number": "R23",
+        "discipline": null,
+        "page_type": "schedule_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "SCHEDULE",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 79,
+        "sheet_number": "R23",
+        "discipline": null,
+        "page_type": "roof_plan",
+        "confidence": 0.7,
+        "matched_keyword": "ROOF PLAN",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 80,
+        "sheet_number": "R23",
+        "discipline": null,
+        "page_type": "elevation",
+        "confidence": 0.7,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 81,
+        "sheet_number": "R23",
+        "discipline": null,
+        "page_type": "roof_plan",
+        "confidence": 0.7,
+        "matched_keyword": "ROOF PLAN",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 82,
+        "sheet_number": "LX-629",
+        "discipline": "LANDSCAPE",
+        "page_type": "elevation",
+        "confidence": 0.7,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 83,
+        "sheet_number": "R23",
+        "discipline": null,
+        "page_type": "elevation",
+        "confidence": 0.7,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 84,
+        "sheet_number": "R23",
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 85,
+        "sheet_number": "R23",
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 86,
+        "sheet_number": "R23",
+        "discipline": null,
+        "page_type": "floor_plan",
+        "confidence": 0.7,
+        "matched_keyword": "FLOOR PLAN",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 87,
+        "sheet_number": "R23",
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      }
+    ],
+    "sheet_map": {
+      "0": "AD3",
+      "1": "T1.1",
+      "2": "T1.2",
+      "3": "X4C",
+      "4": "F477",
+      "5": "C1.0",
+      "6": "C2.0",
+      "7": "AD3",
+      "8": "AD3",
+      "9": "CS200",
+      "10": "AD1",
+      "11": "CR6",
+      "12": "C3.2",
+      "15": "CZ-101",
+      "16": "IR-02",
+      "17": "IR-03",
+      "18": "PS-2",
+      "19": "R-2013.",
+      "20": "A0.3",
+      "21": "A1.1",
+      "22": "A1.2",
+      "23": "A1.3",
+      "24": "A1.4",
+      "25": "A1.5",
+      "26": "A2.0",
+      "27": "A2.1",
+      "28": "A3.0",
+      "29": "A3.1",
+      "30": "A4.0",
+      "31": "A4.1",
+      "32": "A4.2",
+      "33": "A4.3",
+      "34": "DA4.4",
+      "35": "A5.0",
+      "36": "A5.1",
+      "37": "A5.2",
+      "38": "A6.0",
+      "39": "AL-1",
+      "40": "A7.1",
+      "41": "A8.1",
+      "42": "A9.1",
+      "43": "A9.2",
+      "44": "A9.3",
+      "45": "S5.3",
+      "46": "S1.1",
+      "47": "X6",
+      "48": "S2.0",
+      "49": "S3.0",
+      "50": "S3.1",
+      "51": "S5.0",
+      "52": "S5.1",
+      "53": "S5.3",
+      "54": "D-1557",
+      "55": "B6000U",
+      "56": "AD2",
+      "57": "P1.U",
+      "58": "P2.0",
+      "59": "MV-1",
+      "60": "P3.1",
+      "61": "P3.2",
+      "62": "TV-325",
+      "64": "TU-1",
+      "66": "H1.2",
+      "67": "H5.1",
+      "69": "H3.2",
+      "70": "EF-1",
+      "71": "AD3",
+      "72": "AD3",
+      "73": "H5.2",
+      "74": "H5.3",
+      "75": "R23",
+      "76": "R23",
+      "77": "R23",
+      "78": "R23",
+      "79": "R23",
+      "80": "R23",
+      "81": "R23",
+      "82": "LX-629",
+      "83": "R23",
+      "84": "R23",
+      "85": "R23",
+      "86": "R23",
+      "87": "R23"
+    },
+    "cross_references_by_page": {
+      "1": [
+        {
+          "ref_type": "detail",
+          "raw": "201 L204",
+          "identifier": "201",
+          "target_sheet": "L204",
+          "source_block_chars": 9,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "201 L204",
+          "identifier": "201",
+          "target_sheet": "L204",
+          "source_block_chars": 9,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "8": [
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE C3.1",
+          "target_sheet": "C3.1",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE C3.1",
+          "target_sheet": "C3.1",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE C3.1",
+          "target_sheet": "C3.1",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE C3.1",
+          "target_sheet": "C3.1",
+          "pattern": "see_ref"
+        }
+      ],
+      "9": [
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE\r\nC1.1",
+          "target_sheet": "C1.1",
+          "pattern": "see_ref"
+        }
+      ],
+      "16": [
+        {
+          "ref_type": "detail",
+          "raw": "230 V1",
+          "identifier": "230",
+          "target_sheet": "V1",
+          "source_block_chars": 35,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "21": [
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 4/A1.1",
+          "identifier": "4",
+          "target_sheet": "A1.1",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 1/A1.1",
+          "identifier": "1",
+          "target_sheet": "A1.1",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 3/A1.1",
+          "identifier": "3",
+          "target_sheet": "A1.1",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 10/A5.0",
+          "identifier": "10",
+          "target_sheet": "A5.0",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 7/A4.4",
+          "identifier": "7",
+          "target_sheet": "A4.4",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 3/A1.3",
+          "identifier": "3",
+          "target_sheet": "A1.3",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 4/A1.3",
+          "identifier": "4",
+          "target_sheet": "A1.3",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 3/A4.4",
+          "identifier": "3",
+          "target_sheet": "A4.4",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 1/A1.3",
+          "identifier": "1",
+          "target_sheet": "A1.3",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET A6.1",
+          "target_sheet": "A6.1",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE A4",
+          "target_sheet": "A4",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "7 A5.0",
+          "identifier": "7",
+          "target_sheet": "A5.0",
+          "source_block_chars": 6,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "22": [
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 5/A1.3",
+          "identifier": "5",
+          "target_sheet": "A1.3",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 6/A1.3",
+          "identifier": "6",
+          "target_sheet": "A1.3",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 2/A1.3",
+          "identifier": "2",
+          "target_sheet": "A1.3",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 2/A1.3",
+          "identifier": "2",
+          "target_sheet": "A1.3",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 4/A1.3",
+          "identifier": "4",
+          "target_sheet": "A1.3",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 5/A1.3",
+          "identifier": "5",
+          "target_sheet": "A1.3",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 7/A1.3",
+          "identifier": "7",
+          "target_sheet": "A1.3",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 1/A1.3",
+          "identifier": "1",
+          "target_sheet": "A1.3",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 8/A1.3",
+          "identifier": "8",
+          "target_sheet": "A1.3",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 7/A1.3",
+          "identifier": "7",
+          "target_sheet": "A1.3",
+          "pattern": "detail_explicit"
+        }
+      ],
+      "24": [
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 4/A1.4",
+          "identifier": "4",
+          "target_sheet": "A1.4",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 3/A1.4",
+          "identifier": "3",
+          "target_sheet": "A1.4",
+          "pattern": "detail_explicit"
+        }
+      ],
+      "26": [
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 4/A4.4",
+          "identifier": "4",
+          "target_sheet": "A4.4",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 1/A2.0",
+          "identifier": "1",
+          "target_sheet": "A2.0",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 4/A4.4",
+          "identifier": "4",
+          "target_sheet": "A4.4",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "2 V-04.42",
+          "identifier": "2",
+          "target_sheet": "V-04.42",
+          "source_block_chars": 20,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "2 V-09.14",
+          "identifier": "2",
+          "target_sheet": "V-09.14",
+          "source_block_chars": 20,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "2 V-04.42",
+          "identifier": "2",
+          "target_sheet": "V-04.42",
+          "source_block_chars": 9,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "510 G-511",
+          "identifier": "510",
+          "target_sheet": "G-511",
+          "source_block_chars": 11,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "27": [
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 4/A4.4",
+          "identifier": "4",
+          "target_sheet": "A4.4",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 1/A2.0",
+          "identifier": "1",
+          "target_sheet": "A2.0",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 4/A4.4",
+          "identifier": "4",
+          "target_sheet": "A4.4",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "512 G-510",
+          "identifier": "512",
+          "target_sheet": "G-510",
+          "source_block_chars": 11,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "32": [
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE A6",
+          "target_sheet": "A6",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE A6",
+          "target_sheet": "A6",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET A6.1",
+          "target_sheet": "A6.1",
+          "pattern": "see_ref"
+        }
+      ],
+      "33": [
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET A6.1",
+          "target_sheet": "A6.1",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET A6.1",
+          "target_sheet": "A6.1",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET A6.1",
+          "target_sheet": "A6.1",
+          "pattern": "see_ref"
+        }
+      ],
+      "35": [
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 4/A1.1",
+          "identifier": "4",
+          "target_sheet": "A1.1",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 2/A7.1",
+          "identifier": "2",
+          "target_sheet": "A7.1",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 3/A1.1",
+          "identifier": "3",
+          "target_sheet": "A1.1",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "1 P-1",
+          "identifier": "1",
+          "target_sheet": "P-1",
+          "source_block_chars": 11,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "280 G-281",
+          "identifier": "280",
+          "target_sheet": "G-281",
+          "source_block_chars": 17,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "3 P-3",
+          "identifier": "3",
+          "target_sheet": "P-3",
+          "source_block_chars": 7,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "36": [
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 5/A4.4",
+          "identifier": "5",
+          "target_sheet": "A4.4",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 4/A1.1",
+          "identifier": "4",
+          "target_sheet": "A1.1",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 3/A4.4",
+          "identifier": "3",
+          "target_sheet": "A4.4",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 7/A4.4",
+          "identifier": "7",
+          "target_sheet": "A4.4",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 4/A1.1",
+          "identifier": "4",
+          "target_sheet": "A1.1",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 3/A7.1",
+          "identifier": "3",
+          "target_sheet": "A7.1",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "620 K-620",
+          "identifier": "620",
+          "target_sheet": "K-620",
+          "source_block_chars": 17,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "223 B-223",
+          "identifier": "223",
+          "target_sheet": "B-223",
+          "source_block_chars": 17,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "1 K-221",
+          "identifier": "1",
+          "target_sheet": "K-221",
+          "source_block_chars": 11,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "107 C-079",
+          "identifier": "107",
+          "target_sheet": "C-079",
+          "source_block_chars": 11,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "550 S-540",
+          "identifier": "550",
+          "target_sheet": "S-540",
+          "source_block_chars": 11,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "37": [
+        {
+          "ref_type": "detail",
+          "raw": "2 W-2",
+          "identifier": "2",
+          "target_sheet": "W-2",
+          "source_block_chars": 7,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "310 B-291",
+          "identifier": "310",
+          "target_sheet": "B-291",
+          "source_block_chars": 11,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "3 B-3",
+          "identifier": "3",
+          "target_sheet": "B-3",
+          "source_block_chars": 7,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "2 W-2",
+          "identifier": "2",
+          "target_sheet": "W-2",
+          "source_block_chars": 7,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "2 A5.2",
+          "identifier": "2",
+          "target_sheet": "A5.2",
+          "source_block_chars": 6,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "11 A5.2",
+          "identifier": "11",
+          "target_sheet": "A5.2",
+          "source_block_chars": 7,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "026 F-270",
+          "identifier": "026",
+          "target_sheet": "F-270",
+          "source_block_chars": 11,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "4 F-014",
+          "identifier": "4",
+          "target_sheet": "F-014",
+          "source_block_chars": 9,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "39": [
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET A0.1",
+          "target_sheet": "A0.1",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "351 P10",
+          "identifier": "351",
+          "target_sheet": "P10",
+          "source_block_chars": 18,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "40": [
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 2/A4.4",
+          "identifier": "2",
+          "target_sheet": "A4.4",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 6/A4.4",
+          "identifier": "6",
+          "target_sheet": "A4.4",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 3/A7.1",
+          "identifier": "3",
+          "target_sheet": "A7.1",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 5/A4.4",
+          "identifier": "5",
+          "target_sheet": "A4.4",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 2/A7.1",
+          "identifier": "2",
+          "target_sheet": "A7.1",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 8/A4.4",
+          "identifier": "8",
+          "target_sheet": "A4.4",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 3/A1.3",
+          "identifier": "3",
+          "target_sheet": "A1.3",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 4/A1.3",
+          "identifier": "4",
+          "target_sheet": "A1.3",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 3/A1.3",
+          "identifier": "3",
+          "target_sheet": "A1.3",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "16 P-1",
+          "identifier": "16",
+          "target_sheet": "P-1",
+          "source_block_chars": 9,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "16 P-2",
+          "identifier": "16",
+          "target_sheet": "P-2",
+          "source_block_chars": 9,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "16 P-1",
+          "identifier": "16",
+          "target_sheet": "P-1",
+          "source_block_chars": 9,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "16 P-1",
+          "identifier": "16",
+          "target_sheet": "P-1",
+          "source_block_chars": 15,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "41": [
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 3/A8.1",
+          "identifier": "3",
+          "target_sheet": "A8.1",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 2/A8.1",
+          "identifier": "2",
+          "target_sheet": "A8.1",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 4/A8.1",
+          "identifier": "4",
+          "target_sheet": "A8.1",
+          "pattern": "detail_explicit"
+        }
+      ],
+      "42": [
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET A5.0",
+          "target_sheet": "A5.0",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET A5.0",
+          "target_sheet": "A5.0",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET A5.0",
+          "target_sheet": "A5.0",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET A5.0",
+          "target_sheet": "A5.0",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET A5.0",
+          "target_sheet": "A5.0",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET A2.0",
+          "target_sheet": "A2.0",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET A2.1",
+          "target_sheet": "A2.1",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET A2.1",
+          "target_sheet": "A2.1",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "452 N-698",
+          "identifier": "452",
+          "target_sheet": "N-698",
+          "source_block_chars": 11,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "077 S-289",
+          "identifier": "077",
+          "target_sheet": "S-289",
+          "source_block_chars": 11,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "077 S-289",
+          "identifier": "077",
+          "target_sheet": "S-289",
+          "source_block_chars": 17,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "304 S-739",
+          "identifier": "304",
+          "target_sheet": "S-739",
+          "source_block_chars": 11,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "132 P-541",
+          "identifier": "132",
+          "target_sheet": "P-541",
+          "source_block_chars": 11,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "618 K-624",
+          "identifier": "618",
+          "target_sheet": "K-624",
+          "source_block_chars": 11,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "420 K-420",
+          "identifier": "420",
+          "target_sheet": "K-420",
+          "source_block_chars": 11,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "314 S-024",
+          "identifier": "314",
+          "target_sheet": "S-024",
+          "source_block_chars": 11,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "43": [
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET A6.1",
+          "target_sheet": "A6.1",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET A9.3",
+          "target_sheet": "A9.3",
+          "pattern": "see_ref"
+        }
+      ],
+      "46": [
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 1/S2.0",
+          "identifier": "1",
+          "target_sheet": "S2.0",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE S2",
+          "target_sheet": "S2",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE S2",
+          "target_sheet": "S2",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE S2",
+          "target_sheet": "S2",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE S2",
+          "target_sheet": "S2",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE\r\nSHEET S1.2",
+          "target_sheet": "S1.2",
+          "pattern": "see_ref"
+        }
+      ],
+      "47": [
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 6/S3.0.",
+          "identifier": "6",
+          "target_sheet": "S3.0.",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 4/S3.0",
+          "identifier": "4",
+          "target_sheet": "S3.0",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 2/S3.0",
+          "identifier": "2",
+          "target_sheet": "S3.0",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE S0.0",
+          "target_sheet": "S0.0",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE S3",
+          "target_sheet": "S3",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE S3",
+          "target_sheet": "S3",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE S4",
+          "target_sheet": "S4",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE S5",
+          "target_sheet": "S5",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE S5",
+          "target_sheet": "S5",
+          "pattern": "see_ref"
+        }
+      ],
+      "51": [
+        {
+          "ref_type": "detail",
+          "raw": "3 S5.0",
+          "identifier": "3",
+          "target_sheet": "S5.0",
+          "source_block_chars": 13,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "5 S5.0",
+          "identifier": "5",
+          "target_sheet": "S5.0",
+          "source_block_chars": 6,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "56": [
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL \r\n11/P3.2.",
+          "identifier": "11",
+          "target_sheet": "P3.2.",
+          "pattern": "detail_explicit"
+        }
+      ],
+      "57": [
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL \r\n11/P3.2.",
+          "identifier": "11",
+          "target_sheet": "P3.2.",
+          "pattern": "detail_explicit"
+        }
+      ],
+      "61": [
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET E3.0",
+          "target_sheet": "E3.0",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "2 F1",
+          "identifier": "2",
+          "target_sheet": "F1",
+          "source_block_chars": 5,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "66": [
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 4/H3.1.",
+          "identifier": "4",
+          "target_sheet": "H3.1.",
+          "pattern": "detail_explicit"
+        }
+      ],
+      "68": [
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET H1.2",
+          "target_sheet": "H1.2",
+          "pattern": "see_ref"
+        }
+      ],
+      "70": [
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE M1.0",
+          "target_sheet": "M1.0",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "3 A19",
+          "identifier": "3",
+          "target_sheet": "A19",
+          "source_block_chars": 10,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "71": [
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET H3.0",
+          "target_sheet": "H3.0",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET M3.0",
+          "target_sheet": "M3.0",
+          "pattern": "see_ref"
+        }
+      ],
+      "75": [
+        {
+          "ref_type": "detail",
+          "raw": "1 B-8",
+          "identifier": "1",
+          "target_sheet": "B-8",
+          "source_block_chars": 5,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "76": [
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET E2.1",
+          "target_sheet": "E2.1",
+          "pattern": "see_ref"
+        }
+      ],
+      "79": [
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET E2.0.",
+          "target_sheet": "E2.0.",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET E2.0.",
+          "target_sheet": "E2.0.",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "3 D-23",
+          "identifier": "3",
+          "target_sheet": "D-23",
+          "source_block_chars": 8,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "739 D-10",
+          "identifier": "739",
+          "target_sheet": "D-10",
+          "source_block_chars": 13,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "417 C-026",
+          "identifier": "417",
+          "target_sheet": "C-026",
+          "source_block_chars": 11,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "174 A-32",
+          "identifier": "174",
+          "target_sheet": "A-32",
+          "source_block_chars": 10,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "18 A-17",
+          "identifier": "18",
+          "target_sheet": "A-17",
+          "source_block_chars": 27,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "19 P-452",
+          "identifier": "19",
+          "target_sheet": "P-452",
+          "source_block_chars": 27,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "070 A-29",
+          "identifier": "070",
+          "target_sheet": "A-29",
+          "source_block_chars": 10,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "011 A-8",
+          "identifier": "011",
+          "target_sheet": "A-8",
+          "source_block_chars": 9,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "090 A-27",
+          "identifier": "090",
+          "target_sheet": "A-27",
+          "source_block_chars": 10,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "5 B-223",
+          "identifier": "5",
+          "target_sheet": "B-223",
+          "source_block_chars": 7,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "5 B-223",
+          "identifier": "5",
+          "target_sheet": "B-223",
+          "source_block_chars": 7,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "80": [
+        {
+          "ref_type": "detail",
+          "raw": "2 A-5",
+          "identifier": "2",
+          "target_sheet": "A-5",
+          "source_block_chars": 7,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "4 V-01",
+          "identifier": "4",
+          "target_sheet": "V-01",
+          "source_block_chars": 8,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "4 V-01",
+          "identifier": "4",
+          "target_sheet": "V-01",
+          "source_block_chars": 8,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "81": [
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE E6.1",
+          "target_sheet": "E6.1",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE E6.1",
+          "target_sheet": "E6.1",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "20 D-17",
+          "identifier": "20",
+          "target_sheet": "D-17",
+          "source_block_chars": 15,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "82": [
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET E3.0",
+          "target_sheet": "E3.0",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE E6.0",
+          "target_sheet": "E6.0",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE E6.0",
+          "target_sheet": "E6.0",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "6 B-6",
+          "identifier": "6",
+          "target_sheet": "B-6",
+          "source_block_chars": 7,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "83": [
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 6/E3.1.",
+          "identifier": "6",
+          "target_sheet": "E3.1.",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 3/E3.1",
+          "identifier": "3",
+          "target_sheet": "E3.1",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE\r\nDETAIL 7/E3.1.",
+          "identifier": "7",
+          "target_sheet": "E3.1.",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 7/E3.1.",
+          "identifier": "7",
+          "target_sheet": "E3.1.",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 7/E3.1",
+          "identifier": "7",
+          "target_sheet": "E3.1",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 7/E3.1.",
+          "identifier": "7",
+          "target_sheet": "E3.1.",
+          "pattern": "detail_explicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "SEE DETAIL 7/E3.1.",
+          "identifier": "7",
+          "target_sheet": "E3.1.",
+          "pattern": "detail_explicit"
+        }
+      ],
+      "84": [
+        {
+          "ref_type": "see_ref",
+          "raw": "See sheet E-7.1.",
+          "target_sheet": "E-7.1.",
+          "pattern": "see_ref"
+        }
+      ],
+      "85": [
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET M5.0",
+          "target_sheet": "M5.0",
+          "pattern": "see_ref"
+        }
+      ],
+      "86": [
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET E7.1",
+          "target_sheet": "E7.1",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET E7.1.",
+          "target_sheet": "E7.1.",
+          "pattern": "see_ref"
+        }
+      ],
+      "87": [
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET M5.0",
+          "target_sheet": "M5.0",
+          "pattern": "see_ref"
+        }
+      ]
+    },
+    "legends_by_page": {
+      "3": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "window_schedule",
+          "entry_count_estimate": 43
+        }
+      ],
+      "4": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 39
+        }
+      ],
+      "6": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "keynote",
+          "entry_count_estimate": 12
+        }
+      ],
+      "7": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "keynote",
+          "entry_count_estimate": 130
+        }
+      ],
+      "9": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "finish_schedule",
+          "entry_count_estimate": 4
+        }
+      ],
+      "10": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "notes",
+          "entry_count_estimate": 7
+        }
+      ],
+      "11": [
+        {
+          "header_keyword": "SCHEDULE",
+          "legend_type": "notes",
+          "entry_count_estimate": 1055
+        }
+      ],
+      "15": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 38
+        }
+      ],
+      "16": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "roof_notes",
+          "entry_count_estimate": 5
+        }
+      ],
+      "17": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 19
+        }
+      ],
+      "18": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 190
+        }
+      ],
+      "19": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 105
+        }
+      ],
+      "20": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 28
+        }
+      ],
+      "21": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "keynote",
+          "entry_count_estimate": 23
+        }
+      ],
+      "22": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "keynote",
+          "entry_count_estimate": 18
+        }
+      ],
+      "23": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 7
+        }
+      ],
+      "26": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "keynote",
+          "entry_count_estimate": 14
+        }
+      ],
+      "27": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "keynote",
+          "entry_count_estimate": 14
+        }
+      ],
+      "35": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "keynote",
+          "entry_count_estimate": 6
+        }
+      ],
+      "36": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "keynote",
+          "entry_count_estimate": 11
+        }
+      ],
+      "37": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "keynote",
+          "entry_count_estimate": 10
+        }
+      ],
+      "39": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 48
+        }
+      ],
+      "40": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "keynote",
+          "entry_count_estimate": 15
+        }
+      ],
+      "41": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "keynote",
+          "entry_count_estimate": 13
+        }
+      ],
+      "42": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "keynote",
+          "entry_count_estimate": 6
+        }
+      ],
+      "45": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 108
+        }
+      ],
+      "49": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "roof_notes",
+          "entry_count_estimate": 4
+        }
+      ],
+      "53": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "door_schedule",
+          "entry_count_estimate": 3
+        }
+      ],
+      "54": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 78
+        }
+      ],
+      "55": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 71
+        }
+      ],
+      "58": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "general_notes",
+          "entry_count_estimate": 89
+        }
+      ],
+      "61": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "roof_notes",
+          "entry_count_estimate": 25
+        }
+      ],
+      "62": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 24
+        }
+      ],
+      "63": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 76
+        }
+      ],
+      "64": [
+        {
+          "header_keyword": "MATERIAL",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 86
+        }
+      ],
+      "69": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "roof_notes",
+          "entry_count_estimate": 11
+        }
+      ],
+      "70": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "roof_notes",
+          "entry_count_estimate": 12
+        }
+      ],
+      "71": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 24
+        }
+      ],
+      "76": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "roof_notes",
+          "entry_count_estimate": 7
+        }
+      ],
+      "78": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "roof_notes",
+          "entry_count_estimate": 74
+        }
+      ],
+      "84": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "notes",
+          "entry_count_estimate": 3
+        }
+      ],
+      "85": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "notes",
+          "entry_count_estimate": 4
+        }
+      ]
+    },
+    "project_metadata": {
+      "project_name": "INFORMATION",
+      "project_address": "9228 COMMERCIAL WAY",
+      "project_number": "INFORMATION",
+      "owner": null,
+      "architect": null,
+      "total_building_sf": null,
+      "building_type": null,
+      "building_code": null,
+      "construction_type": null,
+      "occupancy_type": null,
+      "wind_speed_mph": null,
+      "system_classifications": null,
+      "scope_summary": null
+    },
+    "roof_page_indices": [
+      0,
+      18,
+      22,
+      23,
+      31,
+      32,
+      33,
+      63,
+      66,
+      71,
+      79,
+      81
+    ],
+    "page_type_histogram": {
+      "roof_plan": 12,
+      "section": 3,
+      "schedule_sheet": 9,
+      "elevation": 20,
+      "general_notes": 1,
+      "detail_sheet": 24,
+      "site_plan": 1,
+      "floor_plan": 8,
+      "ceiling_plan": 2,
+      "framing_plan": 5,
+      "unknown": 3
+    },
+    "confidence_histogram": {
+      "explicit": 39,
+      "strong": 45,
+      "inferred": 1,
+      "weak": 0,
+      "unknown": 3
+    }
+  },
+  "scope": {
+    "systems": [
+      {
+        "system_type": "tpo",
+        "attachment": "fully_adhered",
+        "manufacturer": "Johns Manville",
+        "manufacturer_candidates": [
+          {
+            "name": "Johns Manville",
+            "hits": 2
+          },
+          {
+            "name": "Tremco",
+            "hits": 1
+          }
+        ],
+        "thickness_markers": [],
+        "spec_sections": [
+          "07 54 23"
+        ],
+        "source_pages": [
+          19
+        ],
+        "confidence": 0.9
+      },
+      {
+        "system_type": "pvc",
+        "attachment": "fully_adhered",
+        "manufacturer": "Sika Sarnafil",
+        "manufacturer_candidates": [
+          {
+            "name": "Sika Sarnafil",
+            "hits": 1
+          }
+        ],
+        "thickness_markers": [],
+        "spec_sections": [
+          "07 54 19"
+        ],
+        "source_pages": [
+          19,
+          22
+        ],
+        "confidence": 0.9
+      },
+      {
+        "system_type": "metal_panel",
+        "attachment": "fully_adhered",
+        "manufacturer": null,
+        "manufacturer_candidates": [],
+        "thickness_markers": [],
+        "spec_sections": [
+          "07 62"
+        ],
+        "source_pages": [
+          31,
+          33,
+          63,
+          71
+        ],
+        "confidence": 0.7
+      },
+      {
+        "system_type": "epdm",
+        "attachment": "fully_adhered",
+        "manufacturer": "Johns Manville",
+        "manufacturer_candidates": [
+          {
+            "name": "Johns Manville",
+            "hits": 2
+          }
+        ],
+        "thickness_markers": [],
+        "spec_sections": [],
+        "source_pages": [
+          18,
+          62,
+          67
+        ],
+        "confidence": 0.7
+      },
+      {
+        "system_type": "spf",
+        "attachment": "fully_adhered",
+        "manufacturer": null,
+        "manufacturer_candidates": [],
+        "thickness_markers": [],
+        "spec_sections": [],
+        "source_pages": [
+          18,
+          59,
+          67
+        ],
+        "confidence": 0.5
+      },
+      {
+        "system_type": "built_up",
+        "attachment": "fully_adhered",
+        "manufacturer": "Tremco",
+        "manufacturer_candidates": [
+          {
+            "name": "Tremco",
+            "hits": 1
+          }
+        ],
+        "thickness_markers": [],
+        "spec_sections": [],
+        "source_pages": [
+          23
+        ],
+        "confidence": 0.7
+      }
+    ],
+    "fallback_used": false,
+    "evidence": {
+      "spec_section_hits": [
+        {
+          "key": "07 21",
+          "system": null,
+          "name": "Thermal Insulation",
+          "raw_match": "07 21 00",
+          "page_index": 18
+        },
+        {
+          "key": "07 54 23",
+          "system": "tpo",
+          "name": "TPO Membrane Roofing",
+          "raw_match": "07 54 23",
+          "page_index": 19
+        },
+        {
+          "key": "07 54 19",
+          "system": "pvc",
+          "name": "PVC Membrane Roofing",
+          "raw_match": "07 54 19",
+          "page_index": 19
+        },
+        {
+          "key": "07 84",
+          "system": null,
+          "name": "Firestopping",
+          "raw_match": "07 84 13",
+          "page_index": 19
+        },
+        {
+          "key": "07 92",
+          "system": null,
+          "name": "Joint Sealants",
+          "raw_match": "07 92 00",
+          "page_index": 19
+        },
+        {
+          "key": "07 62",
+          "system": "metal_panel",
+          "name": "Flashing and Sheet Metal",
+          "raw_match": "762",
+          "page_index": 71
+        }
+      ],
+      "manufacturer_hits": [
+        {
+          "manufacturer": "Sika Sarnafil",
+          "matched_name": "Sika",
+          "match_kind": "alias",
+          "supported_systems": [
+            "pvc"
+          ],
+          "page_index": 18
+        },
+        {
+          "manufacturer": "CertainTeed",
+          "matched_name": "CertainTeed",
+          "match_kind": "name",
+          "supported_systems": [
+            "shingle",
+            "modified_bitumen"
+          ],
+          "page_index": 18
+        },
+        {
+          "manufacturer": "Johns Manville",
+          "matched_name": "Johns Manville",
+          "match_kind": "name",
+          "supported_systems": [
+            "tpo",
+            "epdm",
+            "modified_bitumen"
+          ],
+          "page_index": 19
+        },
+        {
+          "manufacturer": "Tremco",
+          "matched_name": "Tremco",
+          "match_kind": "name",
+          "supported_systems": [
+            "tpo",
+            "modified_bitumen",
+            "built_up"
+          ],
+          "page_index": 19
+        },
+        {
+          "manufacturer": "Johns Manville",
+          "matched_name": "Johns Manville",
+          "match_kind": "name",
+          "supported_systems": [
+            "tpo",
+            "epdm",
+            "modified_bitumen"
+          ],
+          "page_index": 63
+        },
+        {
+          "manufacturer": "CertainTeed",
+          "matched_name": "CertainTeed",
+          "match_kind": "name",
+          "supported_systems": [
+            "shingle",
+            "modified_bitumen"
+          ],
+          "page_index": 63
+        }
+      ],
+      "attachment_hits": [
+        {
+          "method": "fully_adhered",
+          "page_index": 18
+        },
+        {
+          "method": "fully_adhered",
+          "page_index": 22
+        }
+      ],
+      "thickness_markers": [],
+      "insulation_markers": [
+        {
+          "marker": "polyisocyanurate",
+          "page_index": 18
+        },
+        {
+          "marker": "EPS",
+          "page_index": 18
+        },
+        {
+          "marker": "XPS",
+          "page_index": 18
+        },
+        {
+          "marker": "DensDeck",
+          "page_index": 18
+        },
+        {
+          "marker": "polyisocyanurate",
+          "page_index": 22
+        }
+      ],
+      "florida_signals": [
+        {
+          "marker": "FBC",
+          "page_index": 17
+        },
+        {
+          "marker": "UL 790",
+          "page_index": 18
+        },
+        {
+          "marker": "FBC",
+          "page_index": 63
+        },
+        {
+          "marker": "SMACNA",
+          "page_index": 63
+        },
+        {
+          "marker": "FBC",
+          "page_index": 64
+        },
+        {
+          "marker": "SMACNA",
+          "page_index": 64
+        },
+        {
+          "marker": "SMACNA",
+          "page_index": 71
+        }
+      ],
+      "system_type_keyword_hits": [
+        {
+          "system_type": "epdm",
+          "page_index": 18
+        },
+        {
+          "system_type": "spf",
+          "page_index": 18
+        },
+        {
+          "system_type": "tpo",
+          "page_index": 19
+        },
+        {
+          "system_type": "pvc",
+          "page_index": 22
+        },
+        {
+          "system_type": "built_up",
+          "page_index": 23
+        },
+        {
+          "system_type": "metal_panel",
+          "page_index": 31
+        },
+        {
+          "system_type": "metal_panel",
+          "page_index": 33
+        },
+        {
+          "system_type": "spf",
+          "page_index": 59
+        },
+        {
+          "system_type": "epdm",
+          "page_index": 62
+        },
+        {
+          "system_type": "metal_panel",
+          "page_index": 63
+        },
+        {
+          "system_type": "epdm",
+          "page_index": 67
+        },
+        {
+          "system_type": "spf",
+          "page_index": 67
+        }
+      ]
+    },
+    "pages_inspected": [
+      0,
+      2,
+      5,
+      6,
+      9,
+      10,
+      11,
+      12,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      22,
+      23,
+      31,
+      32,
+      33,
+      41,
+      42,
+      43,
+      44,
+      48,
+      59,
+      61,
+      62,
+      63,
+      64,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      75,
+      76,
+      77,
+      78,
+      79,
+      81,
+      84,
+      85,
+      87
+    ],
+    "pages_skipped_glazing": 1
+  },
+  "assembly": {
+    "systems": [
+      {
+        "system_type": "tpo",
+        "attachment": "fully_adhered",
+        "manufacturer": "Johns Manville",
+        "matched_assembly_key": "tpo_fully_adhered",
+        "assembly_category": "single_ply",
+        "required_total": 8,
+        "required_supported": 7,
+        "required_supported_components": [
+          "field_membrane",
+          "insulation",
+          "cover_board",
+          "membrane_adhesive",
+          "fasteners",
+          "base_flashing",
+          "termination_bar"
+        ],
+        "required_missing_components": [
+          "fastener_plates"
+        ],
+        "conditional_supported_components": [
+          "tapered_insulation",
+          "edge_metal",
+          "roof_drain",
+          "overflow_drain",
+          "scupper",
+          "pipe_boot",
+          "mechanical_curb",
+          "hatch",
+          "cricket",
+          "sealant"
+        ],
+        "component_evidence": {
+          "field_membrane": [
+            {
+              "page_index": 0,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 18,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 19,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 22,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 23,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 31,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 32,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 33,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 59,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 81,
+              "matched_keyword": "MEMBRANE"
+            }
+          ],
+          "insulation": [
+            {
+              "page_index": 0,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 18,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 19,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 22,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 23,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 31,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 32,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 33,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 39,
+              "matched_keyword": "EPS"
+            },
+            {
+              "page_index": 43,
+              "matched_keyword": "EPS"
+            },
+            {
+              "page_index": 59,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 61,
+              "matched_keyword": "EPS"
+            },
+            {
+              "page_index": 62,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 63,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 67,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 68,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 69,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 71,
+              "matched_keyword": "INSULATION"
+            }
+          ],
+          "cover_board": [
+            {
+              "page_index": 18,
+              "matched_keyword": "DENSDECK"
+            }
+          ],
+          "membrane_adhesive": [
+            {
+              "page_index": 18,
+              "matched_keyword": "ADHERED"
+            },
+            {
+              "page_index": 22,
+              "matched_keyword": "ADHERED"
+            },
+            {
+              "page_index": 59,
+              "matched_keyword": "ADHERED"
+            },
+            {
+              "page_index": 68,
+              "matched_keyword": "ADHERED"
+            }
+          ],
+          "fasteners": [
+            {
+              "page_index": 0,
+              "matched_keyword": "FASTENER"
+            },
+            {
+              "page_index": 9,
+              "matched_keyword": "SCREW"
+            },
+            {
+              "page_index": 18,
+              "matched_keyword": "FASTENER"
+            },
+            {
+              "page_index": 19,
+              "matched_keyword": "FASTENER"
+            },
+            {
+              "page_index": 31,
+              "matched_keyword": "FASTENER"
+            },
+            {
+              "page_index": 39,
+              "matched_keyword": "FASTENER"
+            },
+            {
+              "page_index": 41,
+              "matched_keyword": "FASTENER"
+            },
+            {
+              "page_index": 67,
+              "matched_keyword": "FASTENER"
+            },
+            {
+              "page_index": 68,
+              "matched_keyword": "FASTENER"
+            },
+            {
+              "page_index": 69,
+              "matched_keyword": "SCREW"
+            }
+          ],
+          "base_flashing": [
+            {
+              "page_index": 18,
+              "matched_keyword": "BASE FLASHING"
+            }
+          ],
+          "termination_bar": [
+            {
+              "page_index": 33,
+              "matched_keyword": "TERMINATION BAR"
+            }
+          ],
+          "tapered_insulation": [
+            {
+              "page_index": 22,
+              "matched_keyword": "TAPERED"
+            }
+          ],
+          "edge_metal": [
+            {
+              "page_index": 31,
+              "matched_keyword": "DRIP EDGE"
+            },
+            {
+              "page_index": 33,
+              "matched_keyword": "DRIP EDGE"
+            }
+          ],
+          "roof_drain": [
+            {
+              "page_index": 0,
+              "matched_keyword": "ROOF DRAIN"
+            },
+            {
+              "page_index": 62,
+              "matched_keyword": "ROOF DRAIN"
+            },
+            {
+              "page_index": 66,
+              "matched_keyword": "ROOF DRAIN"
+            }
+          ],
+          "overflow_drain": [
+            {
+              "page_index": 62,
+              "matched_keyword": "OVERFLOW DRAIN"
+            }
+          ],
+          "scupper": [
+            {
+              "page_index": 0,
+              "matched_keyword": "SCUPPER"
+            },
+            {
+              "page_index": 22,
+              "matched_keyword": "SCUPPER"
+            },
+            {
+              "page_index": 23,
+              "matched_keyword": "SCUPPER"
+            }
+          ],
+          "pipe_boot": [
+            {
+              "page_index": 12,
+              "matched_keyword": "PIPE BOOT"
+            },
+            {
+              "page_index": 59,
+              "matched_keyword": "PIPE BOOT"
+            }
+          ],
+          "mechanical_curb": [
+            {
+              "page_index": 68,
+              "matched_keyword": "RTU CURB"
+            },
+            {
+              "page_index": 81,
+              "matched_keyword": "RTU CURB"
+            }
+          ],
+          "hatch": [
+            {
+              "page_index": 6,
+              "matched_keyword": "HATCH"
+            },
+            {
+              "page_index": 22,
+              "matched_keyword": "ROOF HATCH"
+            },
+            {
+              "page_index": 23,
+              "matched_keyword": "ROOF HATCH"
+            },
+            {
+              "page_index": 43,
+              "matched_keyword": "ROOF HATCH"
+            }
+          ],
+          "cricket": [
+            {
+              "page_index": 22,
+              "matched_keyword": "CRICKET"
+            },
+            {
+              "page_index": 23,
+              "matched_keyword": "CRICKET"
+            }
+          ],
+          "sealant": [
+            {
+              "page_index": 0,
+              "matched_keyword": "CAULK"
+            },
+            {
+              "page_index": 18,
+              "matched_keyword": "SEALANT"
+            },
+            {
+              "page_index": 19,
+              "matched_keyword": "SEALANT"
+            },
+            {
+              "page_index": 23,
+              "matched_keyword": "SEALANT"
+            },
+            {
+              "page_index": 31,
+              "matched_keyword": "SEALANT"
+            },
+            {
+              "page_index": 32,
+              "matched_keyword": "SEALANT"
+            },
+            {
+              "page_index": 33,
+              "matched_keyword": "SEALANT"
+            },
+            {
+              "page_index": 39,
+              "matched_keyword": "SEALANT"
+            },
+            {
+              "page_index": 41,
+              "matched_keyword": "SEALANT"
+            },
+            {
+              "page_index": 48,
+              "matched_keyword": "SEALANT"
+            },
+            {
+              "page_index": 59,
+              "matched_keyword": "SEALANT"
+            },
+            {
+              "page_index": 63,
+              "matched_keyword": "SEALANT"
+            },
+            {
+              "page_index": 79,
+              "matched_keyword": "SEALANT"
+            }
+          ]
+        },
+        "warnings": [
+          {
+            "id": "drainage_exclusivity",
+            "rule": "A given drainage zone uses drains OR scuppers, not both",
+            "trigger_kind": "text_evidence",
+            "would_fire_when": "drain_count > 0 AND scupper_count > 0 on same zone",
+            "note": "Spec mentions both drains AND scuppers \u2014 distinct drainage zones expected; verify on plans"
+          },
+          {
+            "id": "overflow_pairing",
+            "rule": "Every primary scupper must have a paired overflow",
+            "trigger_kind": "text_evidence_missing",
+            "note": "Spec mentions scuppers but no overflow scuppers found in text"
+          },
+          {
+            "id": "curb_high_side_cricket",
+            "rule": "Curbs > 30\" require cricket on high side (IBC 1503.4)",
+            "trigger_kind": "would_fire_on_pin_data",
+            "note": "Curbs identified \u2014 cricket-required check awaits user pin data"
+          },
+          {
+            "id": "rtu_drives_curb",
+            "rule": "Each RTU requires a mechanical curb",
+            "trigger_kind": "would_fire_on_pin_data",
+            "note": "Awaits user pin data for RTUs and curbs"
+          }
+        ]
+      },
+      {
+        "system_type": "pvc",
+        "attachment": "fully_adhered",
+        "manufacturer": "Sika Sarnafil",
+        "matched_assembly_key": "pvc_fully_adhered",
+        "assembly_category": "single_ply",
+        "required_total": 8,
+        "required_supported": 7,
+        "required_supported_components": [
+          "field_membrane",
+          "insulation",
+          "cover_board",
+          "membrane_adhesive",
+          "fasteners",
+          "base_flashing",
+          "termination_bar"
+        ],
+        "required_missing_components": [
+          "fastener_plates"
+        ],
+        "conditional_supported_components": [],
+        "component_evidence": {
+          "field_membrane": [
+            {
+              "page_index": 0,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 18,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 19,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 22,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 23,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 31,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 32,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 33,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 59,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 81,
+              "matched_keyword": "MEMBRANE"
+            }
+          ],
+          "insulation": [
+            {
+              "page_index": 0,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 18,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 19,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 22,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 23,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 31,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 32,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 33,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 39,
+              "matched_keyword": "EPS"
+            },
+            {
+              "page_index": 43,
+              "matched_keyword": "EPS"
+            },
+            {
+              "page_index": 59,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 61,
+              "matched_keyword": "EPS"
+            },
+            {
+              "page_index": 62,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 63,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 67,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 68,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 69,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 71,
+              "matched_keyword": "INSULATION"
+            }
+          ],
+          "cover_board": [
+            {
+              "page_index": 18,
+              "matched_keyword": "DENSDECK"
+            }
+          ],
+          "membrane_adhesive": [
+            {
+              "page_index": 18,
+              "matched_keyword": "ADHERED"
+            },
+            {
+              "page_index": 22,
+              "matched_keyword": "ADHERED"
+            },
+            {
+              "page_index": 59,
+              "matched_keyword": "ADHERED"
+            },
+            {
+              "page_index": 68,
+              "matched_keyword": "ADHERED"
+            }
+          ],
+          "fasteners": [
+            {
+              "page_index": 0,
+              "matched_keyword": "FASTENER"
+            },
+            {
+              "page_index": 9,
+              "matched_keyword": "SCREW"
+            },
+            {
+              "page_index": 18,
+              "matched_keyword": "FASTENER"
+            },
+            {
+              "page_index": 19,
+              "matched_keyword": "FASTENER"
+            },
+            {
+              "page_index": 31,
+              "matched_keyword": "FASTENER"
+            },
+            {
+              "page_index": 39,
+              "matched_keyword": "FASTENER"
+            },
+            {
+              "page_index": 41,
+              "matched_keyword": "FASTENER"
+            },
+            {
+              "page_index": 67,
+              "matched_keyword": "FASTENER"
+            },
+            {
+              "page_index": 68,
+              "matched_keyword": "FASTENER"
+            },
+            {
+              "page_index": 69,
+              "matched_keyword": "SCREW"
+            }
+          ],
+          "base_flashing": [
+            {
+              "page_index": 18,
+              "matched_keyword": "BASE FLASHING"
+            }
+          ],
+          "termination_bar": [
+            {
+              "page_index": 33,
+              "matched_keyword": "TERMINATION BAR"
+            }
+          ]
+        },
+        "warnings": []
+      },
+      {
+        "system_type": "metal_panel",
+        "attachment": "fully_adhered",
+        "manufacturer": null,
+        "matched_assembly_key": "metal_panel_standing_seam",
+        "assembly_category": "metal",
+        "required_total": 6,
+        "required_supported": 2,
+        "required_supported_components": [
+          "metal_panel",
+          "underlayment"
+        ],
+        "required_missing_components": [
+          "panel_clip",
+          "ridge_cap",
+          "panel_closure",
+          "valley_flashing"
+        ],
+        "conditional_supported_components": [
+          "insulation",
+          "downspout",
+          "pipe_boot",
+          "sealant"
+        ],
+        "component_evidence": {
+          "metal_panel": [
+            {
+              "page_index": 33,
+              "matched_keyword": "METAL PANEL"
+            },
+            {
+              "page_index": 39,
+              "matched_keyword": "METAL PANEL"
+            },
+            {
+              "page_index": 63,
+              "matched_keyword": "METAL PANEL"
+            }
+          ],
+          "underlayment": [
+            {
+              "page_index": 9,
+              "matched_keyword": "FELT"
+            },
+            {
+              "page_index": 12,
+              "matched_keyword": "FELT"
+            }
+          ],
+          "insulation": [
+            {
+              "page_index": 0,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 18,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 19,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 22,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 23,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 31,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 32,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 33,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 39,
+              "matched_keyword": "EPS"
+            },
+            {
+              "page_index": 43,
+              "matched_keyword": "EPS"
+            },
+            {
+              "page_index": 59,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 61,
+              "matched_keyword": "EPS"
+            },
+            {
+              "page_index": 62,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 63,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 67,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 68,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 69,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 71,
+              "matched_keyword": "INSULATION"
+            }
+          ],
+          "downspout": [
+            {
+              "page_index": 0,
+              "matched_keyword": "DOWNSPOUT"
+            },
+            {
+              "page_index": 22,
+              "matched_keyword": "DOWNSPOUT"
+            },
+            {
+              "page_index": 23,
+              "matched_keyword": "DOWNSPOUT"
+            },
+            {
+              "page_index": 62,
+              "matched_keyword": "DOWNSPOUT"
+            }
+          ],
+          "pipe_boot": [
+            {
+              "page_index": 12,
+              "matched_keyword": "PIPE BOOT"
+            },
+            {
+              "page_index": 59,
+              "matched_keyword": "PIPE BOOT"
+            }
+          ],
+          "sealant": [
+            {
+              "page_index": 0,
+              "matched_keyword": "CAULK"
+            },
+            {
+              "page_index": 18,
+              "matched_keyword": "SEALANT"
+            },
+            {
+              "page_index": 19,
+              "matched_keyword": "SEALANT"
+            },
+            {
+              "page_index": 23,
+              "matched_keyword": "SEALANT"
+            },
+            {
+              "page_index": 31,
+              "matched_keyword": "SEALANT"
+            },
+            {
+              "page_index": 32,
+              "matched_keyword": "SEALANT"
+            },
+            {
+              "page_index": 33,
+              "matched_keyword": "SEALANT"
+            },
+            {
+              "page_index": 39,
+              "matched_keyword": "SEALANT"
+            },
+            {
+              "page_index": 41,
+              "matched_keyword": "SEALANT"
+            },
+            {
+              "page_index": 48,
+              "matched_keyword": "SEALANT"
+            },
+            {
+              "page_index": 59,
+              "matched_keyword": "SEALANT"
+            },
+            {
+              "page_index": 63,
+              "matched_keyword": "SEALANT"
+            },
+            {
+              "page_index": 79,
+              "matched_keyword": "SEALANT"
+            }
+          ]
+        },
+        "warnings": [
+          {
+            "id": "adhesive_requires_cover_board",
+            "rule": "Fully-adhered single-ply systems require a cover board",
+            "trigger_kind": "text_evidence_missing",
+            "note": "Attachment is fully_adhered but no cover board mentioned in spec"
+          }
+        ]
+      },
+      {
+        "system_type": "epdm",
+        "attachment": "fully_adhered",
+        "manufacturer": "Johns Manville",
+        "matched_assembly_key": "epdm_fully_adhered",
+        "assembly_category": "single_ply",
+        "required_total": 5,
+        "required_supported": 5,
+        "required_supported_components": [
+          "field_membrane",
+          "insulation",
+          "cover_board",
+          "membrane_adhesive",
+          "base_flashing"
+        ],
+        "required_missing_components": [],
+        "conditional_supported_components": [],
+        "component_evidence": {
+          "field_membrane": [
+            {
+              "page_index": 0,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 18,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 19,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 22,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 23,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 31,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 32,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 33,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 59,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 81,
+              "matched_keyword": "MEMBRANE"
+            }
+          ],
+          "insulation": [
+            {
+              "page_index": 0,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 18,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 19,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 22,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 23,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 31,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 32,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 33,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 39,
+              "matched_keyword": "EPS"
+            },
+            {
+              "page_index": 43,
+              "matched_keyword": "EPS"
+            },
+            {
+              "page_index": 59,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 61,
+              "matched_keyword": "EPS"
+            },
+            {
+              "page_index": 62,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 63,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 67,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 68,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 69,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 71,
+              "matched_keyword": "INSULATION"
+            }
+          ],
+          "cover_board": [
+            {
+              "page_index": 18,
+              "matched_keyword": "DENSDECK"
+            }
+          ],
+          "membrane_adhesive": [
+            {
+              "page_index": 18,
+              "matched_keyword": "ADHERED"
+            },
+            {
+              "page_index": 22,
+              "matched_keyword": "ADHERED"
+            },
+            {
+              "page_index": 59,
+              "matched_keyword": "ADHERED"
+            },
+            {
+              "page_index": 68,
+              "matched_keyword": "ADHERED"
+            }
+          ],
+          "base_flashing": [
+            {
+              "page_index": 18,
+              "matched_keyword": "BASE FLASHING"
+            }
+          ]
+        },
+        "warnings": []
+      },
+      {
+        "system_type": "spf",
+        "attachment": "fully_adhered",
+        "manufacturer": null,
+        "matched_assembly_key": "spray_polyurethane_foam",
+        "assembly_category": "other",
+        "required_total": 2,
+        "required_supported": 2,
+        "required_supported_components": [
+          "field_membrane",
+          "sealant"
+        ],
+        "required_missing_components": [],
+        "conditional_supported_components": [
+          "cover_board",
+          "edge_metal",
+          "roof_drain",
+          "pipe_boot"
+        ],
+        "component_evidence": {
+          "field_membrane": [
+            {
+              "page_index": 0,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 18,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 19,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 22,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 23,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 31,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 32,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 33,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 59,
+              "matched_keyword": "MEMBRANE"
+            },
+            {
+              "page_index": 81,
+              "matched_keyword": "MEMBRANE"
+            }
+          ],
+          "sealant": [
+            {
+              "page_index": 0,
+              "matched_keyword": "CAULK"
+            },
+            {
+              "page_index": 18,
+              "matched_keyword": "SEALANT"
+            },
+            {
+              "page_index": 19,
+              "matched_keyword": "SEALANT"
+            },
+            {
+              "page_index": 23,
+              "matched_keyword": "SEALANT"
+            },
+            {
+              "page_index": 31,
+              "matched_keyword": "SEALANT"
+            },
+            {
+              "page_index": 32,
+              "matched_keyword": "SEALANT"
+            },
+            {
+              "page_index": 33,
+              "matched_keyword": "SEALANT"
+            },
+            {
+              "page_index": 39,
+              "matched_keyword": "SEALANT"
+            },
+            {
+              "page_index": 41,
+              "matched_keyword": "SEALANT"
+            },
+            {
+              "page_index": 48,
+              "matched_keyword": "SEALANT"
+            },
+            {
+              "page_index": 59,
+              "matched_keyword": "SEALANT"
+            },
+            {
+              "page_index": 63,
+              "matched_keyword": "SEALANT"
+            },
+            {
+              "page_index": 79,
+              "matched_keyword": "SEALANT"
+            }
+          ],
+          "cover_board": [
+            {
+              "page_index": 18,
+              "matched_keyword": "DENSDECK"
+            }
+          ],
+          "edge_metal": [
+            {
+              "page_index": 31,
+              "matched_keyword": "DRIP EDGE"
+            },
+            {
+              "page_index": 33,
+              "matched_keyword": "DRIP EDGE"
+            }
+          ],
+          "roof_drain": [
+            {
+              "page_index": 0,
+              "matched_keyword": "ROOF DRAIN"
+            },
+            {
+              "page_index": 62,
+              "matched_keyword": "ROOF DRAIN"
+            },
+            {
+              "page_index": 66,
+              "matched_keyword": "ROOF DRAIN"
+            }
+          ],
+          "pipe_boot": [
+            {
+              "page_index": 12,
+              "matched_keyword": "PIPE BOOT"
+            },
+            {
+              "page_index": 59,
+              "matched_keyword": "PIPE BOOT"
+            }
+          ]
+        },
+        "warnings": [
+          {
+            "id": "overflow_pairing",
+            "rule": "Every primary drain must have a paired overflow",
+            "trigger_kind": "text_evidence_missing",
+            "note": "Spec mentions roof drains but no overflow drains found in text"
+          },
+          {
+            "id": "tapered_insulation_for_drainage",
+            "rule": "Flat roofs with drains typically require tapered insulation",
+            "trigger_kind": "text_evidence_missing",
+            "note": "Drainage present but tapered insulation not mentioned in text"
+          }
+        ]
+      },
+      {
+        "system_type": "built_up",
+        "attachment": "fully_adhered",
+        "manufacturer": "Tremco",
+        "matched_assembly_key": "built_up_roofing",
+        "assembly_category": "multi_ply",
+        "required_total": 7,
+        "required_supported": 4,
+        "required_supported_components": [
+          "insulation",
+          "cover_board",
+          "fasteners",
+          "base_flashing"
+        ],
+        "required_missing_components": [
+          "base_sheet",
+          "interply_felt",
+          "gravel_stop"
+        ],
+        "conditional_supported_components": [
+          "tapered_insulation",
+          "roof_drain",
+          "pipe_boot",
+          "mechanical_curb"
+        ],
+        "component_evidence": {
+          "insulation": [
+            {
+              "page_index": 0,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 18,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 19,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 22,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 23,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 31,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 32,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 33,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 39,
+              "matched_keyword": "EPS"
+            },
+            {
+              "page_index": 43,
+              "matched_keyword": "EPS"
+            },
+            {
+              "page_index": 59,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 61,
+              "matched_keyword": "EPS"
+            },
+            {
+              "page_index": 62,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 63,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 67,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 68,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 69,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 71,
+              "matched_keyword": "INSULATION"
+            }
+          ],
+          "cover_board": [
+            {
+              "page_index": 18,
+              "matched_keyword": "DENSDECK"
+            }
+          ],
+          "fasteners": [
+            {
+              "page_index": 0,
+              "matched_keyword": "FASTENER"
+            },
+            {
+              "page_index": 9,
+              "matched_keyword": "SCREW"
+            },
+            {
+              "page_index": 18,
+              "matched_keyword": "FASTENER"
+            },
+            {
+              "page_index": 19,
+              "matched_keyword": "FASTENER"
+            },
+            {
+              "page_index": 31,
+              "matched_keyword": "FASTENER"
+            },
+            {
+              "page_index": 39,
+              "matched_keyword": "FASTENER"
+            },
+            {
+              "page_index": 41,
+              "matched_keyword": "FASTENER"
+            },
+            {
+              "page_index": 67,
+              "matched_keyword": "FASTENER"
+            },
+            {
+              "page_index": 68,
+              "matched_keyword": "FASTENER"
+            },
+            {
+              "page_index": 69,
+              "matched_keyword": "SCREW"
+            }
+          ],
+          "base_flashing": [
+            {
+              "page_index": 18,
+              "matched_keyword": "BASE FLASHING"
+            }
+          ],
+          "tapered_insulation": [
+            {
+              "page_index": 22,
+              "matched_keyword": "TAPERED"
+            }
+          ],
+          "roof_drain": [
+            {
+              "page_index": 0,
+              "matched_keyword": "ROOF DRAIN"
+            },
+            {
+              "page_index": 62,
+              "matched_keyword": "ROOF DRAIN"
+            },
+            {
+              "page_index": 66,
+              "matched_keyword": "ROOF DRAIN"
+            }
+          ],
+          "pipe_boot": [
+            {
+              "page_index": 12,
+              "matched_keyword": "PIPE BOOT"
+            },
+            {
+              "page_index": 59,
+              "matched_keyword": "PIPE BOOT"
+            }
+          ],
+          "mechanical_curb": [
+            {
+              "page_index": 68,
+              "matched_keyword": "RTU CURB"
+            },
+            {
+              "page_index": 81,
+              "matched_keyword": "RTU CURB"
+            }
+          ]
+        },
+        "warnings": [
+          {
+            "id": "overflow_pairing",
+            "rule": "Every primary drain must have a paired overflow",
+            "trigger_kind": "text_evidence_missing",
+            "note": "Spec mentions roof drains but no overflow drains found in text"
+          },
+          {
+            "id": "curb_high_side_cricket",
+            "rule": "Curbs > 30\" require cricket on high side (IBC 1503.4)",
+            "trigger_kind": "would_fire_on_pin_data",
+            "note": "Curbs identified \u2014 cricket-required check awaits user pin data"
+          },
+          {
+            "id": "rtu_drives_curb",
+            "rule": "Each RTU requires a mechanical curb",
+            "trigger_kind": "would_fire_on_pin_data",
+            "note": "Awaits user pin data for RTUs and curbs"
+          }
+        ]
+      }
+    ],
+    "florida_signals": [
+      "FBC",
+      "SMACNA",
+      "UL 790"
+    ]
+  },
+  "provenance": {
+    "fields": {
+      "scope.systems[0].system_type": {
+        "extraction_method": "scope.find_spec_sections + scope.find_system_type_keywords",
+        "source_pages": [
+          19
+        ],
+        "confidence": 0.9,
+        "parser_value": "tpo"
+      },
+      "scope.systems[0].manufacturer": {
+        "extraction_method": "scope.find_manufacturers (filtered by system_type)",
+        "source_pages": [
+          19
+        ],
+        "confidence": 0.9,
+        "parser_value": "Johns Manville"
+      },
+      "scope.systems[0].attachment": {
+        "extraction_method": "scope.find_attachments (most-common)",
+        "confidence": 0.9,
+        "parser_value": "fully_adhered"
+      },
+      "scope.systems[0].spec_sections": {
+        "extraction_method": "scope.find_spec_sections",
+        "source_pages": [
+          19
+        ],
+        "parser_value": [
+          "07 54 23"
+        ]
+      },
+      "scope.systems[1].system_type": {
+        "extraction_method": "scope.find_spec_sections + scope.find_system_type_keywords",
+        "source_pages": [
+          19,
+          22
+        ],
+        "confidence": 0.9,
+        "parser_value": "pvc"
+      },
+      "scope.systems[1].manufacturer": {
+        "extraction_method": "scope.find_manufacturers (filtered by system_type)",
+        "source_pages": [
+          19,
+          22
+        ],
+        "confidence": 0.9,
+        "parser_value": "Sika Sarnafil"
+      },
+      "scope.systems[1].attachment": {
+        "extraction_method": "scope.find_attachments (most-common)",
+        "confidence": 0.9,
+        "parser_value": "fully_adhered"
+      },
+      "scope.systems[1].spec_sections": {
+        "extraction_method": "scope.find_spec_sections",
+        "source_pages": [
+          19,
+          22
+        ],
+        "parser_value": [
+          "07 54 19"
+        ]
+      },
+      "scope.systems[2].system_type": {
+        "extraction_method": "scope.find_spec_sections + scope.find_system_type_keywords",
+        "source_pages": [
+          31,
+          33,
+          63,
+          71
+        ],
+        "confidence": 0.7,
+        "parser_value": "metal_panel"
+      },
+      "scope.systems[2].attachment": {
+        "extraction_method": "scope.find_attachments (most-common)",
+        "confidence": 0.7,
+        "parser_value": "fully_adhered"
+      },
+      "scope.systems[2].spec_sections": {
+        "extraction_method": "scope.find_spec_sections",
+        "source_pages": [
+          31,
+          33,
+          63,
+          71
+        ],
+        "parser_value": [
+          "07 62"
+        ]
+      },
+      "scope.systems[3].system_type": {
+        "extraction_method": "scope.find_spec_sections + scope.find_system_type_keywords",
+        "source_pages": [
+          18,
+          62,
+          67
+        ],
+        "confidence": 0.7,
+        "parser_value": "epdm"
+      },
+      "scope.systems[3].manufacturer": {
+        "extraction_method": "scope.find_manufacturers (filtered by system_type)",
+        "source_pages": [
+          18,
+          62,
+          67
+        ],
+        "confidence": 0.7,
+        "parser_value": "Johns Manville"
+      },
+      "scope.systems[3].attachment": {
+        "extraction_method": "scope.find_attachments (most-common)",
+        "confidence": 0.7,
+        "parser_value": "fully_adhered"
+      },
+      "scope.systems[4].system_type": {
+        "extraction_method": "scope.find_spec_sections + scope.find_system_type_keywords",
+        "source_pages": [
+          18,
+          59,
+          67
+        ],
+        "confidence": 0.5,
+        "parser_value": "spf"
+      },
+      "scope.systems[4].attachment": {
+        "extraction_method": "scope.find_attachments (most-common)",
+        "confidence": 0.5,
+        "parser_value": "fully_adhered"
+      },
+      "scope.systems[5].system_type": {
+        "extraction_method": "scope.find_spec_sections + scope.find_system_type_keywords",
+        "source_pages": [
+          23
+        ],
+        "confidence": 0.7,
+        "parser_value": "built_up"
+      },
+      "scope.systems[5].manufacturer": {
+        "extraction_method": "scope.find_manufacturers (filtered by system_type)",
+        "source_pages": [
+          23
+        ],
+        "confidence": 0.7,
+        "parser_value": "Tremco"
+      },
+      "scope.systems[5].attachment": {
+        "extraction_method": "scope.find_attachments (most-common)",
+        "confidence": 0.7,
+        "parser_value": "fully_adhered"
+      },
+      "assembly.systems[0].matched_assembly_key": {
+        "extraction_method": "assembly.pick_assembly_key",
+        "parser_value": "tpo_fully_adhered"
+      },
+      "assembly.systems[1].matched_assembly_key": {
+        "extraction_method": "assembly.pick_assembly_key",
+        "parser_value": "pvc_fully_adhered"
+      },
+      "assembly.systems[2].matched_assembly_key": {
+        "extraction_method": "assembly.pick_assembly_key",
+        "parser_value": "metal_panel_standing_seam"
+      },
+      "assembly.systems[3].matched_assembly_key": {
+        "extraction_method": "assembly.pick_assembly_key",
+        "parser_value": "epdm_fully_adhered"
+      },
+      "assembly.systems[4].matched_assembly_key": {
+        "extraction_method": "assembly.pick_assembly_key",
+        "parser_value": "spray_polyurethane_foam"
+      },
+      "assembly.systems[5].matched_assembly_key": {
+        "extraction_method": "assembly.pick_assembly_key",
+        "parser_value": "built_up_roofing"
+      },
+      "dispatch.sheet_map": {
+        "extraction_method": "dispatch.extract_sheet_number on title-block text"
+      },
+      "dispatch.page_classifications": {
+        "extraction_method": "dispatch.classify_page using PAGE_CLASSIFICATION_KEYWORDS",
+        "rule_source": "seeds/dispatch_seed.py"
+      }
+    }
+  },
+  "extraction_metrics": {
+    "elapsed_seconds": 5.19,
+    "pages_processed": 88,
+    "page_type_histogram": {
+      "roof_plan": 12,
+      "section": 3,
+      "schedule_sheet": 9,
+      "elevation": 20,
+      "general_notes": 1,
+      "detail_sheet": 24,
+      "site_plan": 1,
+      "floor_plan": 8,
+      "ceiling_plan": 2,
+      "framing_plan": 5,
+      "unknown": 3
+    },
+    "confidence_histogram": {
+      "explicit": 39,
+      "strong": 45,
+      "inferred": 1,
+      "weak": 0,
+      "unknown": 3
+    },
+    "roof_pages_found": 12,
+    "scope_systems_identified": 6,
+    "scope_pages_inspected": 45,
+    "scope_fallback_used": false,
+    "scope_pages_skipped_glazing": 1,
+    "extracted_at": "2026-04-26T01:14:59.030067+00:00"
+  }
+}

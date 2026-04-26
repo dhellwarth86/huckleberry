@@ -1,0 +1,1966 @@
+{
+  "id": "hampshire-self-storage",
+  "schema_version": "0.1",
+  "source_pdf_ref": {
+    "id": "hampshire-self-storage",
+    "filename": "Hampshire Self Storage.pdf",
+    "local_path": "C:\\huck stage 2\\full bid sets\\Hampshire Self Storage.pdf",
+    "sha256": "f4282af5861dbcb9966b271e5452d4b24e5a5af3c80b7005579dd031a993989d",
+    "size_bytes": 73482629,
+    "page_count": 86,
+    "producer_hint": "STACK Construction Technologies",
+    "notes": "",
+    "uploaded_at": "2026-04-26T00:39:54.333611+00:00"
+  },
+  "dispatch": {
+    "page_classifications": [
+      {
+        "page_index": 0,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "cover",
+        "confidence": 0.9,
+        "matched_keyword": "COVER",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 1,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 2,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "unknown",
+        "confidence": 0.0,
+        "matched_keyword": null,
+        "matched_in": "default"
+      },
+      {
+        "page_index": 3,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "unknown",
+        "confidence": 0.0,
+        "matched_keyword": null,
+        "matched_in": "default"
+      },
+      {
+        "page_index": 4,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "unknown",
+        "confidence": 0.0,
+        "matched_keyword": null,
+        "matched_in": "default"
+      },
+      {
+        "page_index": 5,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "general_notes",
+        "confidence": 0.7,
+        "matched_keyword": "INDEX",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 6,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "general_notes",
+        "confidence": 0.7,
+        "matched_keyword": "INDEX",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 7,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "site_plan",
+        "confidence": 0.7,
+        "matched_keyword": "SITE PLAN",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 8,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 9,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "life_safety",
+        "confidence": 0.7,
+        "matched_keyword": "LIFE SAFETY",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 10,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "life_safety",
+        "confidence": 0.7,
+        "matched_keyword": "LIFE SAFETY",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 11,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "life_safety",
+        "confidence": 0.7,
+        "matched_keyword": "LIFE SAFETY",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 12,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "floor_plan",
+        "confidence": 0.7,
+        "matched_keyword": "FLOOR PLAN",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 13,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "unknown",
+        "confidence": 0.0,
+        "matched_keyword": null,
+        "matched_in": "default"
+      },
+      {
+        "page_index": 14,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "floor_plan",
+        "confidence": 0.7,
+        "matched_keyword": "FLOOR PLAN",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 15,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "floor_plan",
+        "confidence": 0.7,
+        "matched_keyword": "FLOOR PLAN",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 16,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "roof_plan",
+        "confidence": 0.7,
+        "matched_keyword": "ROOF PLAN",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 17,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "floor_plan",
+        "confidence": 0.7,
+        "matched_keyword": "FLOOR PLAN",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 18,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 19,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 20,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 21,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "ceiling_plan",
+        "confidence": 0.7,
+        "matched_keyword": "CEILING PLAN",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 22,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "schedule_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "SCHEDULE",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 23,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 24,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "elevation",
+        "confidence": 0.7,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 25,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "elevation",
+        "confidence": 0.7,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 26,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "elevation",
+        "confidence": 0.7,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 27,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "elevation",
+        "confidence": 0.7,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 28,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 29,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "section",
+        "confidence": 0.5,
+        "matched_keyword": "SECTION",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 30,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "section",
+        "confidence": 0.5,
+        "matched_keyword": "SECTION",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 31,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "section",
+        "confidence": 0.5,
+        "matched_keyword": "SECTION",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 32,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "unknown",
+        "confidence": 0.0,
+        "matched_keyword": null,
+        "matched_in": "default"
+      },
+      {
+        "page_index": 33,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 34,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "section",
+        "confidence": 0.5,
+        "matched_keyword": "SECTION",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 35,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "section",
+        "confidence": 0.5,
+        "matched_keyword": "SECTION",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 36,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "section",
+        "confidence": 0.7,
+        "matched_keyword": "SECTION",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 37,
+        "sheet_number": "S3.3",
+        "discipline": "STRUCTURAL",
+        "page_type": "section",
+        "confidence": 0.7,
+        "matched_keyword": "SECTION",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 38,
+        "sheet_number": "S3.3",
+        "discipline": "STRUCTURAL",
+        "page_type": "framing_plan",
+        "confidence": 0.7,
+        "matched_keyword": "FRAMING PLAN",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 39,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "framing_plan",
+        "confidence": 0.7,
+        "matched_keyword": "FRAMING PLAN",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 40,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "framing_plan",
+        "confidence": 0.7,
+        "matched_keyword": "FRAMING PLAN",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 41,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 42,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 43,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 44,
+        "sheet_number": "M0.1",
+        "discipline": "MECHANICAL",
+        "page_type": "detail_sheet",
+        "confidence": 0.9,
+        "matched_keyword": "DETAIL",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 45,
+        "sheet_number": "M1.1",
+        "discipline": "MECHANICAL",
+        "page_type": "mep_plan",
+        "confidence": 0.3,
+        "matched_keyword": null,
+        "matched_in": "fallback"
+      },
+      {
+        "page_index": 46,
+        "sheet_number": "M1.2",
+        "discipline": "MECHANICAL",
+        "page_type": "mep_plan",
+        "confidence": 0.3,
+        "matched_keyword": null,
+        "matched_in": "fallback"
+      },
+      {
+        "page_index": 47,
+        "sheet_number": "M1.3",
+        "discipline": "MECHANICAL",
+        "page_type": "mep_plan",
+        "confidence": 0.3,
+        "matched_keyword": null,
+        "matched_in": "fallback"
+      },
+      {
+        "page_index": 48,
+        "sheet_number": "M1.4",
+        "discipline": "MECHANICAL",
+        "page_type": "mep_plan",
+        "confidence": 0.3,
+        "matched_keyword": null,
+        "matched_in": "fallback"
+      },
+      {
+        "page_index": 49,
+        "sheet_number": "M1.5",
+        "discipline": "MECHANICAL",
+        "page_type": "mep_plan",
+        "confidence": 0.3,
+        "matched_keyword": null,
+        "matched_in": "fallback"
+      },
+      {
+        "page_index": 50,
+        "sheet_number": "M2.0",
+        "discipline": "MECHANICAL",
+        "page_type": "schedule_sheet",
+        "confidence": 0.9,
+        "matched_keyword": "SCHEDULE",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 51,
+        "sheet_number": "M3.0",
+        "discipline": "MECHANICAL",
+        "page_type": "detail_sheet",
+        "confidence": 0.9,
+        "matched_keyword": "DETAIL",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 52,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "schedule_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "SCHEDULE",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 53,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 54,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "unknown",
+        "confidence": 0.0,
+        "matched_keyword": null,
+        "matched_in": "default"
+      },
+      {
+        "page_index": 55,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "unknown",
+        "confidence": 0.0,
+        "matched_keyword": null,
+        "matched_in": "default"
+      },
+      {
+        "page_index": 56,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "unknown",
+        "confidence": 0.0,
+        "matched_keyword": null,
+        "matched_in": "default"
+      },
+      {
+        "page_index": 57,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "unknown",
+        "confidence": 0.0,
+        "matched_keyword": null,
+        "matched_in": "default"
+      },
+      {
+        "page_index": 58,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "unknown",
+        "confidence": 0.0,
+        "matched_keyword": null,
+        "matched_in": "default"
+      },
+      {
+        "page_index": 59,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "section",
+        "confidence": 0.5,
+        "matched_keyword": "SECTION",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 60,
+        "sheet_number": "L23A",
+        "discipline": "LANDSCAPE",
+        "page_type": "detail_sheet",
+        "confidence": 0.9,
+        "matched_keyword": "DETAIL",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 61,
+        "sheet_number": "L2A",
+        "discipline": "LANDSCAPE",
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 62,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "schedule_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "SCHEDULE",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 63,
+        "sheet_number": "AL9C",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 64,
+        "sheet_number": "NV-40",
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.9,
+        "matched_keyword": "DETAIL",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 65,
+        "sheet_number": "WA-6",
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 66,
+        "sheet_number": "E1.13",
+        "discipline": "ELECTRICAL",
+        "page_type": "detail_sheet",
+        "confidence": 0.9,
+        "matched_keyword": "DETAIL",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 67,
+        "sheet_number": "H1",
+        "discipline": null,
+        "page_type": "elevation",
+        "confidence": 0.9,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 68,
+        "sheet_number": "H1",
+        "discipline": null,
+        "page_type": "elevation",
+        "confidence": 0.9,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 69,
+        "sheet_number": "E0.12.",
+        "discipline": "ELECTRICAL",
+        "page_type": "elevation",
+        "confidence": 0.7,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 70,
+        "sheet_number": "L2",
+        "discipline": "LANDSCAPE",
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 71,
+        "sheet_number": "E3.14.",
+        "discipline": "ELECTRICAL",
+        "page_type": "detail_sheet",
+        "confidence": 0.9,
+        "matched_keyword": "DETAIL",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 72,
+        "sheet_number": "L2",
+        "discipline": "LANDSCAPE",
+        "page_type": "detail_sheet",
+        "confidence": 0.9,
+        "matched_keyword": "DETAIL",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 73,
+        "sheet_number": "E3.14",
+        "discipline": "ELECTRICAL",
+        "page_type": "roof_plan",
+        "confidence": 0.9,
+        "matched_keyword": "ROOF PLAN",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 74,
+        "sheet_number": "N23A",
+        "discipline": null,
+        "page_type": "ceiling_plan",
+        "confidence": 0.7,
+        "matched_keyword": "CEILING PLAN",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 75,
+        "sheet_number": "E1.11",
+        "discipline": "ELECTRICAL",
+        "page_type": "floor_plan",
+        "confidence": 0.7,
+        "matched_keyword": "FLOOR PLAN",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 76,
+        "sheet_number": "FA0.12",
+        "discipline": null,
+        "page_type": "schedule_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "SCHEDULE",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 77,
+        "sheet_number": "FA0.13",
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 78,
+        "sheet_number": "E0.12",
+        "discipline": "ELECTRICAL",
+        "page_type": "detail_sheet",
+        "confidence": 0.9,
+        "matched_keyword": "DETAIL",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 79,
+        "sheet_number": "E0.12.",
+        "discipline": "ELECTRICAL",
+        "page_type": "detail_sheet",
+        "confidence": 0.9,
+        "matched_keyword": "DETAIL",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 80,
+        "sheet_number": "E0.12.",
+        "discipline": "ELECTRICAL",
+        "page_type": "detail_sheet",
+        "confidence": 0.9,
+        "matched_keyword": "DETAIL",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 81,
+        "sheet_number": "FP0.1",
+        "discipline": "FIRE_PROTECTION",
+        "page_type": "mep_plan",
+        "confidence": 0.3,
+        "matched_keyword": null,
+        "matched_in": "fallback"
+      },
+      {
+        "page_index": 82,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 83,
+        "sheet_number": "FP1.1",
+        "discipline": "FIRE_PROTECTION",
+        "page_type": "mep_plan",
+        "confidence": 0.3,
+        "matched_keyword": null,
+        "matched_in": "fallback"
+      },
+      {
+        "page_index": 84,
+        "sheet_number": "FP1.2",
+        "discipline": "FIRE_PROTECTION",
+        "page_type": "mep_plan",
+        "confidence": 0.3,
+        "matched_keyword": null,
+        "matched_in": "fallback"
+      },
+      {
+        "page_index": 85,
+        "sheet_number": "FP1.3",
+        "discipline": "FIRE_PROTECTION",
+        "page_type": "mep_plan",
+        "confidence": 0.3,
+        "matched_keyword": null,
+        "matched_in": "fallback"
+      }
+    ],
+    "sheet_map": {
+      "37": "S3.3",
+      "38": "S3.3",
+      "44": "M0.1",
+      "45": "M1.1",
+      "46": "M1.2",
+      "47": "M1.3",
+      "48": "M1.4",
+      "49": "M1.5",
+      "50": "M2.0",
+      "51": "M3.0",
+      "60": "L23A",
+      "61": "L2A",
+      "63": "AL9C",
+      "64": "NV-40",
+      "65": "WA-6",
+      "66": "E1.13",
+      "67": "H1",
+      "68": "H1",
+      "69": "E0.12.",
+      "70": "L2",
+      "71": "E3.14.",
+      "72": "L2",
+      "73": "E3.14",
+      "74": "N23A",
+      "75": "E1.11",
+      "76": "FA0.12",
+      "77": "FA0.13",
+      "78": "E0.12",
+      "79": "E0.12.",
+      "80": "E0.12.",
+      "81": "FP0.1",
+      "83": "FP1.1",
+      "84": "FP1.2",
+      "85": "FP1.3"
+    },
+    "cross_references_by_page": {
+      "37": [
+        {
+          "ref_type": "detail",
+          "raw": "3 S3.2",
+          "identifier": "3",
+          "target_sheet": "S3.2",
+          "source_block_chars": 6,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "2 S3.2",
+          "identifier": "2",
+          "target_sheet": "S3.2",
+          "source_block_chars": 6,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "9 S3.1",
+          "identifier": "9",
+          "target_sheet": "S3.1",
+          "source_block_chars": 14,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "11 S3.1",
+          "identifier": "11",
+          "target_sheet": "S3.1",
+          "source_block_chars": 14,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "38": [
+        {
+          "ref_type": "detail",
+          "raw": "6 S3.2",
+          "identifier": "6",
+          "target_sheet": "S3.2",
+          "source_block_chars": 6,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "7 S3.2",
+          "identifier": "7",
+          "target_sheet": "S3.2",
+          "source_block_chars": 6,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "6 S3.2",
+          "identifier": "6",
+          "target_sheet": "S3.2",
+          "source_block_chars": 6,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "7 S3.2",
+          "identifier": "7",
+          "target_sheet": "S3.2",
+          "source_block_chars": 6,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "6 S3.2",
+          "identifier": "6",
+          "target_sheet": "S3.2",
+          "source_block_chars": 6,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "7 S3.2",
+          "identifier": "7",
+          "target_sheet": "S3.2",
+          "source_block_chars": 6,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "6 S3.2",
+          "identifier": "6",
+          "target_sheet": "S3.2",
+          "source_block_chars": 6,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "6 S3.3",
+          "identifier": "6",
+          "target_sheet": "S3.3",
+          "source_block_chars": 6,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "5 S3.3",
+          "identifier": "5",
+          "target_sheet": "S3.3",
+          "source_block_chars": 6,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "4 S3.3",
+          "identifier": "4",
+          "target_sheet": "S3.3",
+          "source_block_chars": 6,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "4 S3.3",
+          "identifier": "4",
+          "target_sheet": "S3.3",
+          "source_block_chars": 6,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "6 S3.3",
+          "identifier": "6",
+          "target_sheet": "S3.3",
+          "source_block_chars": 6,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "7 S3.2",
+          "identifier": "7",
+          "target_sheet": "S3.2",
+          "source_block_chars": 6,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "5 S3.3",
+          "identifier": "5",
+          "target_sheet": "S3.3",
+          "source_block_chars": 6,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "39": [
+        {
+          "ref_type": "detail",
+          "raw": "3 S3.3",
+          "identifier": "3",
+          "target_sheet": "S3.3",
+          "source_block_chars": 6,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "3 S3.3",
+          "identifier": "3",
+          "target_sheet": "S3.3",
+          "source_block_chars": 6,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "6 S3.2",
+          "identifier": "6",
+          "target_sheet": "S3.2",
+          "source_block_chars": 6,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "7 S3.2",
+          "identifier": "7",
+          "target_sheet": "S3.2",
+          "source_block_chars": 6,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "6 S3.2",
+          "identifier": "6",
+          "target_sheet": "S3.2",
+          "source_block_chars": 6,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "6 S3.2",
+          "identifier": "6",
+          "target_sheet": "S3.2",
+          "source_block_chars": 6,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "7 S3.2",
+          "identifier": "7",
+          "target_sheet": "S3.2",
+          "source_block_chars": 6,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "6 S3.2",
+          "identifier": "6",
+          "target_sheet": "S3.2",
+          "source_block_chars": 6,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "7 S3.2",
+          "identifier": "7",
+          "target_sheet": "S3.2",
+          "source_block_chars": 6,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "7 S3.2",
+          "identifier": "7",
+          "target_sheet": "S3.2",
+          "source_block_chars": 6,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "40": [
+        {
+          "ref_type": "detail",
+          "raw": "12 S3.2",
+          "identifier": "12",
+          "target_sheet": "S3.2",
+          "source_block_chars": 50,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "11 S3.2",
+          "identifier": "11",
+          "target_sheet": "S3.2",
+          "source_block_chars": 50,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "2 S3.3",
+          "identifier": "2",
+          "target_sheet": "S3.3",
+          "source_block_chars": 6,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "2 S3.3",
+          "identifier": "2",
+          "target_sheet": "S3.3",
+          "source_block_chars": 6,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "1 S3.3",
+          "identifier": "1",
+          "target_sheet": "S3.3",
+          "source_block_chars": 14,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "10 S3.2",
+          "identifier": "10",
+          "target_sheet": "S3.2",
+          "source_block_chars": 14,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "9 S3.2",
+          "identifier": "9",
+          "target_sheet": "S3.2",
+          "source_block_chars": 14,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "10 S3.2",
+          "identifier": "10",
+          "target_sheet": "S3.2",
+          "source_block_chars": 14,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "9 S3.2",
+          "identifier": "9",
+          "target_sheet": "S3.2",
+          "source_block_chars": 14,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "13 S3.2",
+          "identifier": "13",
+          "target_sheet": "S3.2",
+          "source_block_chars": 14,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "60": [
+        {
+          "ref_type": "detail",
+          "raw": "20 N3",
+          "identifier": "20",
+          "target_sheet": "N3",
+          "source_block_chars": 12,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "61": [
+        {
+          "ref_type": "detail",
+          "raw": "1 L2",
+          "identifier": "1",
+          "target_sheet": "L2",
+          "source_block_chars": 8,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "62": [
+        {
+          "ref_type": "detail",
+          "raw": "5 C1",
+          "identifier": "5",
+          "target_sheet": "C1",
+          "source_block_chars": 47,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "10 C3",
+          "identifier": "10",
+          "target_sheet": "C3",
+          "source_block_chars": 47,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "10 C3",
+          "identifier": "10",
+          "target_sheet": "C3",
+          "source_block_chars": 38,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "2 C4",
+          "identifier": "2",
+          "target_sheet": "C4",
+          "source_block_chars": 46,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "2 C4",
+          "identifier": "2",
+          "target_sheet": "C4",
+          "source_block_chars": 47,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "10 C4",
+          "identifier": "10",
+          "target_sheet": "C4",
+          "source_block_chars": 39,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "10 C4",
+          "identifier": "10",
+          "target_sheet": "C4",
+          "source_block_chars": 38,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "64": [
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET E0.13",
+          "target_sheet": "E0.13",
+          "pattern": "see_ref"
+        }
+      ],
+      "67": [
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET E3.15",
+          "target_sheet": "E3.15",
+          "pattern": "see_ref"
+        }
+      ],
+      "70": [
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET E0.14",
+          "target_sheet": "E0.14",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET E3.15",
+          "target_sheet": "E3.15",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "34 L1",
+          "identifier": "34",
+          "target_sheet": "L1",
+          "source_block_chars": 11,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "3 L1",
+          "identifier": "3",
+          "target_sheet": "L1",
+          "source_block_chars": 14,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "71": [
+        {
+          "ref_type": "detail",
+          "raw": "10 L1",
+          "identifier": "10",
+          "target_sheet": "L1",
+          "source_block_chars": 10,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "10 L1",
+          "identifier": "10",
+          "target_sheet": "L1",
+          "source_block_chars": 10,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "28 L2",
+          "identifier": "28",
+          "target_sheet": "L2",
+          "source_block_chars": 11,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "28 L2",
+          "identifier": "28",
+          "target_sheet": "L2",
+          "source_block_chars": 11,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "28 L2",
+          "identifier": "28",
+          "target_sheet": "L2",
+          "source_block_chars": 11,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "72": [
+        {
+          "ref_type": "detail",
+          "raw": "7 L1",
+          "identifier": "7",
+          "target_sheet": "L1",
+          "source_block_chars": 9,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "40 L1",
+          "identifier": "40",
+          "target_sheet": "L1",
+          "source_block_chars": 11,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "40 L1",
+          "identifier": "40",
+          "target_sheet": "L1",
+          "source_block_chars": 11,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "32 L2",
+          "identifier": "32",
+          "target_sheet": "L2",
+          "source_block_chars": 11,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "32 L2",
+          "identifier": "32",
+          "target_sheet": "L2",
+          "source_block_chars": 11,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "32 L2",
+          "identifier": "32",
+          "target_sheet": "L2",
+          "source_block_chars": 11,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "40 L1",
+          "identifier": "40",
+          "target_sheet": "L1",
+          "source_block_chars": 11,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "32 L2",
+          "identifier": "32",
+          "target_sheet": "L2",
+          "source_block_chars": 11,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "73": [
+        {
+          "ref_type": "detail",
+          "raw": "7 L1",
+          "identifier": "7",
+          "target_sheet": "L1",
+          "source_block_chars": 50,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "74": [
+        {
+          "ref_type": "detail",
+          "raw": "11 L11",
+          "identifier": "11",
+          "target_sheet": "L11",
+          "source_block_chars": 7,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "12 L12",
+          "identifier": "12",
+          "target_sheet": "L12",
+          "source_block_chars": 7,
+          "pattern": "detail_implicit"
+        },
+        {
+          "ref_type": "detail",
+          "raw": "12 L12",
+          "identifier": "12",
+          "target_sheet": "L12",
+          "source_block_chars": 18,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "75": [
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET E1.11",
+          "target_sheet": "E1.11",
+          "pattern": "see_ref"
+        }
+      ],
+      "78": [
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET E0.12",
+          "target_sheet": "E0.12",
+          "pattern": "see_ref"
+        }
+      ]
+    },
+    "legends_by_page": {
+      "44": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 8
+        }
+      ],
+      "53": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 6
+        }
+      ],
+      "60": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "roof_notes",
+          "entry_count_estimate": 39
+        }
+      ],
+      "61": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "roof_notes",
+          "entry_count_estimate": 16
+        }
+      ],
+      "62": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "door_schedule",
+          "entry_count_estimate": 490
+        }
+      ],
+      "63": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 145
+        }
+      ],
+      "64": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "general_notes",
+          "entry_count_estimate": 23
+        }
+      ],
+      "65": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "door_schedule",
+          "entry_count_estimate": 495
+        }
+      ],
+      "66": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "roof_notes",
+          "entry_count_estimate": 5
+        }
+      ],
+      "67": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "notes",
+          "entry_count_estimate": 5
+        }
+      ],
+      "70": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "roof_notes",
+          "entry_count_estimate": 5
+        }
+      ],
+      "73": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "roof_notes",
+          "entry_count_estimate": 13
+        }
+      ],
+      "74": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "door_schedule",
+          "entry_count_estimate": 7
+        }
+      ],
+      "75": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "roof_notes",
+          "entry_count_estimate": 78
+        }
+      ],
+      "76": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 76
+        }
+      ],
+      "77": [
+        {
+          "header_keyword": "KEY",
+          "legend_type": "door_schedule",
+          "entry_count_estimate": 74
+        }
+      ],
+      "78": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "roof_notes",
+          "entry_count_estimate": 7
+        }
+      ],
+      "82": [
+        {
+          "header_keyword": "MATERIAL",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 9
+        }
+      ]
+    },
+    "project_metadata": {
+      "project_name": "SITE US 301 & BALM ROAD HILLSBOROUGH COUNTY, FLORIDA HAMPSHIRE SELF-STORAGE RIVER",
+      "project_address": "3336 Grand Blvd",
+      "project_number": "SITE",
+      "owner": null,
+      "architect": null,
+      "total_building_sf": null,
+      "building_type": null,
+      "building_code": null,
+      "construction_type": null,
+      "occupancy_type": null,
+      "wind_speed_mph": null,
+      "system_classifications": null,
+      "scope_summary": null
+    },
+    "roof_page_indices": [
+      16,
+      73
+    ],
+    "page_type_histogram": {
+      "cover": 1,
+      "detail_sheet": 28,
+      "unknown": 10,
+      "general_notes": 2,
+      "site_plan": 1,
+      "life_safety": 3,
+      "floor_plan": 5,
+      "roof_plan": 2,
+      "ceiling_plan": 2,
+      "schedule_sheet": 5,
+      "elevation": 7,
+      "section": 8,
+      "framing_plan": 3,
+      "mep_plan": 9
+    },
+    "confidence_histogram": {
+      "explicit": 15,
+      "strong": 46,
+      "inferred": 6,
+      "weak": 9,
+      "unknown": 10
+    }
+  },
+  "scope": {
+    "systems": [
+      {
+        "system_type": "modified_bitumen",
+        "attachment": "ballasted",
+        "manufacturer": null,
+        "manufacturer_candidates": [],
+        "thickness_markers": [],
+        "spec_sections": [
+          "07 55"
+        ],
+        "source_pages": [
+          80
+        ],
+        "confidence": 0.7
+      },
+      {
+        "system_type": "metal_panel",
+        "attachment": "ballasted",
+        "manufacturer": null,
+        "manufacturer_candidates": [],
+        "thickness_markers": [],
+        "spec_sections": [],
+        "source_pages": [
+          63
+        ],
+        "confidence": 0.5
+      }
+    ],
+    "fallback_used": false,
+    "evidence": {
+      "spec_section_hits": [
+        {
+          "key": "07 55",
+          "system": "modified_bitumen",
+          "name": "Modified Bituminous Membrane",
+          "raw_match": "7 55",
+          "page_index": 80
+        }
+      ],
+      "manufacturer_hits": [],
+      "attachment_hits": [
+        {
+          "method": "ballasted",
+          "page_index": 60
+        }
+      ],
+      "thickness_markers": [],
+      "insulation_markers": [],
+      "florida_signals": [
+        {
+          "marker": "FBC",
+          "page_index": 60
+        },
+        {
+          "marker": "FBC",
+          "page_index": 65
+        }
+      ],
+      "system_type_keyword_hits": [
+        {
+          "system_type": "metal_panel",
+          "page_index": 63
+        }
+      ]
+    },
+    "pages_inspected": [
+      0,
+      1,
+      5,
+      6,
+      8,
+      16,
+      18,
+      19,
+      20,
+      22,
+      23,
+      28,
+      33,
+      41,
+      42,
+      43,
+      44,
+      50,
+      51,
+      52,
+      53,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      70,
+      71,
+      72,
+      73,
+      76,
+      77,
+      78,
+      79,
+      80,
+      82
+    ],
+    "pages_skipped_glazing": 0
+  },
+  "assembly": {
+    "systems": [
+      {
+        "system_type": "modified_bitumen",
+        "attachment": "ballasted",
+        "manufacturer": null,
+        "matched_assembly_key": "modified_bitumen_torched",
+        "assembly_category": "multi_ply",
+        "required_total": 7,
+        "required_supported": 2,
+        "required_supported_components": [
+          "insulation",
+          "fasteners"
+        ],
+        "required_missing_components": [
+          "base_sheet",
+          "cap_sheet",
+          "cover_board",
+          "fastener_plates",
+          "base_flashing"
+        ],
+        "conditional_supported_components": [
+          "tapered_insulation",
+          "sealant"
+        ],
+        "component_evidence": {
+          "insulation": [
+            {
+              "page_index": 44,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 61,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 63,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 77,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 82,
+              "matched_keyword": "INSULATION"
+            }
+          ],
+          "fasteners": [
+            {
+              "page_index": 44,
+              "matched_keyword": "FASTENER"
+            },
+            {
+              "page_index": 53,
+              "matched_keyword": "FASTENER"
+            },
+            {
+              "page_index": 63,
+              "matched_keyword": "SCREW"
+            },
+            {
+              "page_index": 65,
+              "matched_keyword": "SCREW"
+            },
+            {
+              "page_index": 76,
+              "matched_keyword": "FASTENER"
+            },
+            {
+              "page_index": 82,
+              "matched_keyword": "FASTENER"
+            }
+          ],
+          "tapered_insulation": [
+            {
+              "page_index": 53,
+              "matched_keyword": "TAPERED"
+            },
+            {
+              "page_index": 82,
+              "matched_keyword": "TAPERED"
+            }
+          ],
+          "sealant": [
+            {
+              "page_index": 44,
+              "matched_keyword": "SEALANT"
+            },
+            {
+              "page_index": 53,
+              "matched_keyword": "SEALANT"
+            },
+            {
+              "page_index": 82,
+              "matched_keyword": "SEALANT"
+            }
+          ]
+        },
+        "warnings": []
+      },
+      {
+        "system_type": "metal_panel",
+        "attachment": "ballasted",
+        "manufacturer": null,
+        "matched_assembly_key": "metal_panel_standing_seam",
+        "assembly_category": "metal",
+        "required_total": 6,
+        "required_supported": 0,
+        "required_supported_components": [],
+        "required_missing_components": [
+          "metal_panel",
+          "panel_clip",
+          "underlayment",
+          "ridge_cap",
+          "panel_closure",
+          "valley_flashing"
+        ],
+        "conditional_supported_components": [
+          "insulation",
+          "gutter",
+          "sealant"
+        ],
+        "component_evidence": {
+          "insulation": [
+            {
+              "page_index": 44,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 61,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 63,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 77,
+              "matched_keyword": "INSULATION"
+            },
+            {
+              "page_index": 82,
+              "matched_keyword": "INSULATION"
+            }
+          ],
+          "gutter": [
+            {
+              "page_index": 63,
+              "matched_keyword": "GUTTER"
+            }
+          ],
+          "sealant": [
+            {
+              "page_index": 44,
+              "matched_keyword": "SEALANT"
+            },
+            {
+              "page_index": 53,
+              "matched_keyword": "SEALANT"
+            },
+            {
+              "page_index": 82,
+              "matched_keyword": "SEALANT"
+            }
+          ]
+        },
+        "warnings": []
+      }
+    ],
+    "florida_signals": [
+      "FBC"
+    ]
+  },
+  "provenance": {
+    "fields": {
+      "scope.systems[0].system_type": {
+        "extraction_method": "scope.find_spec_sections + scope.find_system_type_keywords",
+        "source_pages": [
+          80
+        ],
+        "confidence": 0.7,
+        "parser_value": "modified_bitumen"
+      },
+      "scope.systems[0].attachment": {
+        "extraction_method": "scope.find_attachments (most-common)",
+        "confidence": 0.7,
+        "parser_value": "ballasted"
+      },
+      "scope.systems[0].spec_sections": {
+        "extraction_method": "scope.find_spec_sections",
+        "source_pages": [
+          80
+        ],
+        "parser_value": [
+          "07 55"
+        ]
+      },
+      "scope.systems[1].system_type": {
+        "extraction_method": "scope.find_spec_sections + scope.find_system_type_keywords",
+        "source_pages": [
+          63
+        ],
+        "confidence": 0.5,
+        "parser_value": "metal_panel"
+      },
+      "scope.systems[1].attachment": {
+        "extraction_method": "scope.find_attachments (most-common)",
+        "confidence": 0.5,
+        "parser_value": "ballasted"
+      },
+      "assembly.systems[0].matched_assembly_key": {
+        "extraction_method": "assembly.pick_assembly_key",
+        "parser_value": "modified_bitumen_torched"
+      },
+      "assembly.systems[1].matched_assembly_key": {
+        "extraction_method": "assembly.pick_assembly_key",
+        "parser_value": "metal_panel_standing_seam"
+      },
+      "dispatch.sheet_map": {
+        "extraction_method": "dispatch.extract_sheet_number on title-block text"
+      },
+      "dispatch.page_classifications": {
+        "extraction_method": "dispatch.classify_page using PAGE_CLASSIFICATION_KEYWORDS",
+        "rule_source": "seeds/dispatch_seed.py"
+      }
+    }
+  },
+  "extraction_metrics": {
+    "elapsed_seconds": 8.93,
+    "pages_processed": 86,
+    "page_type_histogram": {
+      "cover": 1,
+      "detail_sheet": 28,
+      "unknown": 10,
+      "general_notes": 2,
+      "site_plan": 1,
+      "life_safety": 3,
+      "floor_plan": 5,
+      "roof_plan": 2,
+      "ceiling_plan": 2,
+      "schedule_sheet": 5,
+      "elevation": 7,
+      "section": 8,
+      "framing_plan": 3,
+      "mep_plan": 9
+    },
+    "confidence_histogram": {
+      "explicit": 15,
+      "strong": 46,
+      "inferred": 6,
+      "weak": 9,
+      "unknown": 10
+    },
+    "roof_pages_found": 2,
+    "scope_systems_identified": 2,
+    "scope_pages_inspected": 38,
+    "scope_fallback_used": false,
+    "scope_pages_skipped_glazing": 0,
+    "extracted_at": "2026-04-26T01:14:23.163620+00:00"
+  }
+}

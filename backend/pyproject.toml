@@ -1,0 +1,46 @@
+[project]
+name = "huckleberry-backend"
+version = "0.1.0"
+description = "Huckleberry AI Phase 2 backend — PDF intake, data analysis, persistence"
+requires-python = ">=3.11"
+dependencies = [
+    # Web framework — included now so v0.2 doesn't need to re-add
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.32",
+    # Database
+    "sqlalchemy>=2.0",
+    "asyncpg>=0.30",
+    "alembic>=1.13",
+    # Pydantic — the wrapper schema lives in shared/, imported here
+    "pydantic>=2.9",
+    "pydantic-settings>=2.6",
+    # Object storage (S3-compatible)
+    "boto3>=1.35",
+    # PDF — pdfplumber is the experiment's starting library; others may be added based on findings
+    "pdfplumber>=0.11",
+    "pypdfium2>=4.30",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3",
+    "pytest-asyncio>=0.24",
+    "ruff>=0.7",
+    "mypy>=1.13",
+]
+
+[tool.setuptools.packages.find]
+include = ["app*", "seeds*", "scripts*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "UP", "B"]
+ignore = ["E501"]  # line length — covered by formatter
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+pythonpath = [".", "../shared"]

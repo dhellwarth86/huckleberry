@@ -1,0 +1,2215 @@
+{
+  "n_bidsets": 15,
+  "bidset_ids": [
+    "auto-zone-10891-jacksonville-mec-24-others",
+    "auto-zone-vero-beach-fl",
+    "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6",
+    "bearss-ave-distribution-center-university-marcobay-construction-3",
+    "chewy-vet-care-london-square-miami-jdr-fixtures",
+    "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction",
+    "hampshire-self-storage",
+    "panda-express-bradenton",
+    "panda-express-hialeah-gardens",
+    "panda-express-naples-cdo-visible-construction-corp",
+    "panda-express-san-antonio-candito-construction-2",
+    "shoppes-at-avalon-spring-hill-mec",
+    "taco-bell-weeki-wachee-compass-construction-management-2",
+    "vine-street-retail-center-kissimmee-great-southern-constructors",
+    "wendy-s-fort-myers-great-southern-constructors-3"
+  ],
+  "field_counts": {
+    "source_pdf_ref.id": 15,
+    "source_pdf_ref.sha256": 15,
+    "source_pdf_ref.size_bytes": 15,
+    "source_pdf_ref.page_count": 15,
+    "source_pdf_ref.producer_hint": 15,
+    "dispatch.page_classifications": 15,
+    "dispatch.sheet_map": 15,
+    "dispatch.cross_references_by_page": 15,
+    "dispatch.legends_by_page": 15,
+    "dispatch.project_metadata.project_name": 13,
+    "dispatch.project_metadata.project_address": 14,
+    "dispatch.project_metadata.project_number": 15,
+    "dispatch.project_metadata.owner": 10,
+    "dispatch.project_metadata.architect": 7,
+    "dispatch.project_metadata.total_building_sf": 2,
+    "dispatch.roof_page_indices": 13,
+    "dispatch.page_type_histogram": 15,
+    "dispatch.confidence_histogram": 15,
+    "scope.systems": 13,
+    "scope.systems[*].system_type": 13,
+    "scope.systems[*].attachment": 9,
+    "scope.systems[*].manufacturer": 7,
+    "scope.systems[*].spec_sections": 10,
+    "scope.systems[*].thickness_markers": 2,
+    "scope.systems[*].source_pages": 13,
+    "scope.systems[*].confidence": 13,
+    "scope.evidence.spec_section_hits": 14,
+    "scope.evidence.manufacturer_hits": 9,
+    "scope.evidence.attachment_hits": 9,
+    "scope.evidence.thickness_markers": 2,
+    "scope.evidence.insulation_markers": 8,
+    "scope.evidence.florida_signals": 13,
+    "scope.evidence.system_type_keyword_hits": 12,
+    "scope.fallback_used": 15,
+    "scope.pages_skipped_glazing": 15,
+    "assembly.systems": 13,
+    "assembly.systems[*].matched_assembly_key": 13,
+    "assembly.systems[*].required_supported_components": 13,
+    "assembly.systems[*].required_missing_components": 13,
+    "assembly.systems[*].component_evidence": 13,
+    "assembly.systems[*].warnings": 9,
+    "assembly.florida_signals": 13,
+    "provenance.fields": 15,
+    "extraction_metrics.elapsed_seconds": 15,
+    "extraction_metrics.pages_processed": 15,
+    "extraction_metrics.scope_systems_identified": 15
+  },
+  "coverage_matrix": {
+    "source_pdf_ref.id": {
+      "auto-zone-10891-jacksonville-mec-24-others": true,
+      "auto-zone-vero-beach-fl": true,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": true,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": true,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": true,
+      "hampshire-self-storage": true,
+      "panda-express-bradenton": true,
+      "panda-express-hialeah-gardens": true,
+      "panda-express-naples-cdo-visible-construction-corp": true,
+      "panda-express-san-antonio-candito-construction-2": true,
+      "shoppes-at-avalon-spring-hill-mec": true,
+      "taco-bell-weeki-wachee-compass-construction-management-2": true,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": true,
+      "wendy-s-fort-myers-great-southern-constructors-3": true
+    },
+    "source_pdf_ref.sha256": {
+      "auto-zone-10891-jacksonville-mec-24-others": true,
+      "auto-zone-vero-beach-fl": true,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": true,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": true,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": true,
+      "hampshire-self-storage": true,
+      "panda-express-bradenton": true,
+      "panda-express-hialeah-gardens": true,
+      "panda-express-naples-cdo-visible-construction-corp": true,
+      "panda-express-san-antonio-candito-construction-2": true,
+      "shoppes-at-avalon-spring-hill-mec": true,
+      "taco-bell-weeki-wachee-compass-construction-management-2": true,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": true,
+      "wendy-s-fort-myers-great-southern-constructors-3": true
+    },
+    "source_pdf_ref.size_bytes": {
+      "auto-zone-10891-jacksonville-mec-24-others": true,
+      "auto-zone-vero-beach-fl": true,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": true,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": true,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": true,
+      "hampshire-self-storage": true,
+      "panda-express-bradenton": true,
+      "panda-express-hialeah-gardens": true,
+      "panda-express-naples-cdo-visible-construction-corp": true,
+      "panda-express-san-antonio-candito-construction-2": true,
+      "shoppes-at-avalon-spring-hill-mec": true,
+      "taco-bell-weeki-wachee-compass-construction-management-2": true,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": true,
+      "wendy-s-fort-myers-great-southern-constructors-3": true
+    },
+    "source_pdf_ref.page_count": {
+      "auto-zone-10891-jacksonville-mec-24-others": true,
+      "auto-zone-vero-beach-fl": true,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": true,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": true,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": true,
+      "hampshire-self-storage": true,
+      "panda-express-bradenton": true,
+      "panda-express-hialeah-gardens": true,
+      "panda-express-naples-cdo-visible-construction-corp": true,
+      "panda-express-san-antonio-candito-construction-2": true,
+      "shoppes-at-avalon-spring-hill-mec": true,
+      "taco-bell-weeki-wachee-compass-construction-management-2": true,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": true,
+      "wendy-s-fort-myers-great-southern-constructors-3": true
+    },
+    "source_pdf_ref.producer_hint": {
+      "auto-zone-10891-jacksonville-mec-24-others": true,
+      "auto-zone-vero-beach-fl": true,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": true,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": true,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": true,
+      "hampshire-self-storage": true,
+      "panda-express-bradenton": true,
+      "panda-express-hialeah-gardens": true,
+      "panda-express-naples-cdo-visible-construction-corp": true,
+      "panda-express-san-antonio-candito-construction-2": true,
+      "shoppes-at-avalon-spring-hill-mec": true,
+      "taco-bell-weeki-wachee-compass-construction-management-2": true,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": true,
+      "wendy-s-fort-myers-great-southern-constructors-3": true
+    },
+    "dispatch.page_classifications": {
+      "auto-zone-10891-jacksonville-mec-24-others": true,
+      "auto-zone-vero-beach-fl": true,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": true,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": true,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": true,
+      "hampshire-self-storage": true,
+      "panda-express-bradenton": true,
+      "panda-express-hialeah-gardens": true,
+      "panda-express-naples-cdo-visible-construction-corp": true,
+      "panda-express-san-antonio-candito-construction-2": true,
+      "shoppes-at-avalon-spring-hill-mec": true,
+      "taco-bell-weeki-wachee-compass-construction-management-2": true,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": true,
+      "wendy-s-fort-myers-great-southern-constructors-3": true
+    },
+    "dispatch.sheet_map": {
+      "auto-zone-10891-jacksonville-mec-24-others": true,
+      "auto-zone-vero-beach-fl": true,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": true,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": true,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": true,
+      "hampshire-self-storage": true,
+      "panda-express-bradenton": true,
+      "panda-express-hialeah-gardens": true,
+      "panda-express-naples-cdo-visible-construction-corp": true,
+      "panda-express-san-antonio-candito-construction-2": true,
+      "shoppes-at-avalon-spring-hill-mec": true,
+      "taco-bell-weeki-wachee-compass-construction-management-2": true,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": true,
+      "wendy-s-fort-myers-great-southern-constructors-3": true
+    },
+    "dispatch.cross_references_by_page": {
+      "auto-zone-10891-jacksonville-mec-24-others": true,
+      "auto-zone-vero-beach-fl": true,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": true,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": true,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": true,
+      "hampshire-self-storage": true,
+      "panda-express-bradenton": true,
+      "panda-express-hialeah-gardens": true,
+      "panda-express-naples-cdo-visible-construction-corp": true,
+      "panda-express-san-antonio-candito-construction-2": true,
+      "shoppes-at-avalon-spring-hill-mec": true,
+      "taco-bell-weeki-wachee-compass-construction-management-2": true,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": true,
+      "wendy-s-fort-myers-great-southern-constructors-3": true
+    },
+    "dispatch.legends_by_page": {
+      "auto-zone-10891-jacksonville-mec-24-others": true,
+      "auto-zone-vero-beach-fl": true,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": true,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": true,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": true,
+      "hampshire-self-storage": true,
+      "panda-express-bradenton": true,
+      "panda-express-hialeah-gardens": true,
+      "panda-express-naples-cdo-visible-construction-corp": true,
+      "panda-express-san-antonio-candito-construction-2": true,
+      "shoppes-at-avalon-spring-hill-mec": true,
+      "taco-bell-weeki-wachee-compass-construction-management-2": true,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": true,
+      "wendy-s-fort-myers-great-southern-constructors-3": true
+    },
+    "dispatch.project_metadata.project_name": {
+      "auto-zone-10891-jacksonville-mec-24-others": true,
+      "auto-zone-vero-beach-fl": true,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": true,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": true,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": true,
+      "hampshire-self-storage": true,
+      "panda-express-bradenton": true,
+      "panda-express-hialeah-gardens": false,
+      "panda-express-naples-cdo-visible-construction-corp": true,
+      "panda-express-san-antonio-candito-construction-2": false,
+      "shoppes-at-avalon-spring-hill-mec": true,
+      "taco-bell-weeki-wachee-compass-construction-management-2": true,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": true,
+      "wendy-s-fort-myers-great-southern-constructors-3": true
+    },
+    "dispatch.project_metadata.project_address": {
+      "auto-zone-10891-jacksonville-mec-24-others": true,
+      "auto-zone-vero-beach-fl": true,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": true,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": false,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": true,
+      "hampshire-self-storage": true,
+      "panda-express-bradenton": true,
+      "panda-express-hialeah-gardens": true,
+      "panda-express-naples-cdo-visible-construction-corp": true,
+      "panda-express-san-antonio-candito-construction-2": true,
+      "shoppes-at-avalon-spring-hill-mec": true,
+      "taco-bell-weeki-wachee-compass-construction-management-2": true,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": true,
+      "wendy-s-fort-myers-great-southern-constructors-3": true
+    },
+    "dispatch.project_metadata.project_number": {
+      "auto-zone-10891-jacksonville-mec-24-others": true,
+      "auto-zone-vero-beach-fl": true,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": true,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": true,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": true,
+      "hampshire-self-storage": true,
+      "panda-express-bradenton": true,
+      "panda-express-hialeah-gardens": true,
+      "panda-express-naples-cdo-visible-construction-corp": true,
+      "panda-express-san-antonio-candito-construction-2": true,
+      "shoppes-at-avalon-spring-hill-mec": true,
+      "taco-bell-weeki-wachee-compass-construction-management-2": true,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": true,
+      "wendy-s-fort-myers-great-southern-constructors-3": true
+    },
+    "dispatch.project_metadata.owner": {
+      "auto-zone-10891-jacksonville-mec-24-others": false,
+      "auto-zone-vero-beach-fl": true,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": true,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": true,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": true,
+      "hampshire-self-storage": false,
+      "panda-express-bradenton": true,
+      "panda-express-hialeah-gardens": false,
+      "panda-express-naples-cdo-visible-construction-corp": true,
+      "panda-express-san-antonio-candito-construction-2": false,
+      "shoppes-at-avalon-spring-hill-mec": true,
+      "taco-bell-weeki-wachee-compass-construction-management-2": false,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": true,
+      "wendy-s-fort-myers-great-southern-constructors-3": true
+    },
+    "dispatch.project_metadata.architect": {
+      "auto-zone-10891-jacksonville-mec-24-others": false,
+      "auto-zone-vero-beach-fl": false,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": true,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": true,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": true,
+      "hampshire-self-storage": false,
+      "panda-express-bradenton": true,
+      "panda-express-hialeah-gardens": true,
+      "panda-express-naples-cdo-visible-construction-corp": false,
+      "panda-express-san-antonio-candito-construction-2": false,
+      "shoppes-at-avalon-spring-hill-mec": false,
+      "taco-bell-weeki-wachee-compass-construction-management-2": false,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": true,
+      "wendy-s-fort-myers-great-southern-constructors-3": false
+    },
+    "dispatch.project_metadata.total_building_sf": {
+      "auto-zone-10891-jacksonville-mec-24-others": false,
+      "auto-zone-vero-beach-fl": false,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": false,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": true,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": false,
+      "hampshire-self-storage": false,
+      "panda-express-bradenton": false,
+      "panda-express-hialeah-gardens": false,
+      "panda-express-naples-cdo-visible-construction-corp": false,
+      "panda-express-san-antonio-candito-construction-2": false,
+      "shoppes-at-avalon-spring-hill-mec": false,
+      "taco-bell-weeki-wachee-compass-construction-management-2": false,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": false,
+      "wendy-s-fort-myers-great-southern-constructors-3": false
+    },
+    "dispatch.roof_page_indices": {
+      "auto-zone-10891-jacksonville-mec-24-others": false,
+      "auto-zone-vero-beach-fl": false,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": true,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": true,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": true,
+      "hampshire-self-storage": true,
+      "panda-express-bradenton": true,
+      "panda-express-hialeah-gardens": true,
+      "panda-express-naples-cdo-visible-construction-corp": true,
+      "panda-express-san-antonio-candito-construction-2": true,
+      "shoppes-at-avalon-spring-hill-mec": true,
+      "taco-bell-weeki-wachee-compass-construction-management-2": true,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": true,
+      "wendy-s-fort-myers-great-southern-constructors-3": true
+    },
+    "dispatch.page_type_histogram": {
+      "auto-zone-10891-jacksonville-mec-24-others": true,
+      "auto-zone-vero-beach-fl": true,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": true,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": true,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": true,
+      "hampshire-self-storage": true,
+      "panda-express-bradenton": true,
+      "panda-express-hialeah-gardens": true,
+      "panda-express-naples-cdo-visible-construction-corp": true,
+      "panda-express-san-antonio-candito-construction-2": true,
+      "shoppes-at-avalon-spring-hill-mec": true,
+      "taco-bell-weeki-wachee-compass-construction-management-2": true,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": true,
+      "wendy-s-fort-myers-great-southern-constructors-3": true
+    },
+    "dispatch.confidence_histogram": {
+      "auto-zone-10891-jacksonville-mec-24-others": true,
+      "auto-zone-vero-beach-fl": true,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": true,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": true,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": true,
+      "hampshire-self-storage": true,
+      "panda-express-bradenton": true,
+      "panda-express-hialeah-gardens": true,
+      "panda-express-naples-cdo-visible-construction-corp": true,
+      "panda-express-san-antonio-candito-construction-2": true,
+      "shoppes-at-avalon-spring-hill-mec": true,
+      "taco-bell-weeki-wachee-compass-construction-management-2": true,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": true,
+      "wendy-s-fort-myers-great-southern-constructors-3": true
+    },
+    "scope.systems": {
+      "auto-zone-10891-jacksonville-mec-24-others": false,
+      "auto-zone-vero-beach-fl": false,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": true,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": true,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": true,
+      "hampshire-self-storage": true,
+      "panda-express-bradenton": true,
+      "panda-express-hialeah-gardens": true,
+      "panda-express-naples-cdo-visible-construction-corp": true,
+      "panda-express-san-antonio-candito-construction-2": true,
+      "shoppes-at-avalon-spring-hill-mec": true,
+      "taco-bell-weeki-wachee-compass-construction-management-2": true,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": true,
+      "wendy-s-fort-myers-great-southern-constructors-3": true
+    },
+    "scope.systems[*].system_type": {
+      "auto-zone-10891-jacksonville-mec-24-others": false,
+      "auto-zone-vero-beach-fl": false,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": true,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": true,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": true,
+      "hampshire-self-storage": true,
+      "panda-express-bradenton": true,
+      "panda-express-hialeah-gardens": true,
+      "panda-express-naples-cdo-visible-construction-corp": true,
+      "panda-express-san-antonio-candito-construction-2": true,
+      "shoppes-at-avalon-spring-hill-mec": true,
+      "taco-bell-weeki-wachee-compass-construction-management-2": true,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": true,
+      "wendy-s-fort-myers-great-southern-constructors-3": true
+    },
+    "scope.systems[*].attachment": {
+      "auto-zone-10891-jacksonville-mec-24-others": false,
+      "auto-zone-vero-beach-fl": false,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": false,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": false,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": true,
+      "hampshire-self-storage": true,
+      "panda-express-bradenton": false,
+      "panda-express-hialeah-gardens": true,
+      "panda-express-naples-cdo-visible-construction-corp": true,
+      "panda-express-san-antonio-candito-construction-2": true,
+      "shoppes-at-avalon-spring-hill-mec": true,
+      "taco-bell-weeki-wachee-compass-construction-management-2": true,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": true,
+      "wendy-s-fort-myers-great-southern-constructors-3": false
+    },
+    "scope.systems[*].manufacturer": {
+      "auto-zone-10891-jacksonville-mec-24-others": false,
+      "auto-zone-vero-beach-fl": false,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": true,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": false,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": false,
+      "hampshire-self-storage": false,
+      "panda-express-bradenton": false,
+      "panda-express-hialeah-gardens": true,
+      "panda-express-naples-cdo-visible-construction-corp": false,
+      "panda-express-san-antonio-candito-construction-2": false,
+      "shoppes-at-avalon-spring-hill-mec": true,
+      "taco-bell-weeki-wachee-compass-construction-management-2": true,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": true,
+      "wendy-s-fort-myers-great-southern-constructors-3": true
+    },
+    "scope.systems[*].spec_sections": {
+      "auto-zone-10891-jacksonville-mec-24-others": false,
+      "auto-zone-vero-beach-fl": false,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": true,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": false,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": true,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": false,
+      "hampshire-self-storage": true,
+      "panda-express-bradenton": true,
+      "panda-express-hialeah-gardens": true,
+      "panda-express-naples-cdo-visible-construction-corp": true,
+      "panda-express-san-antonio-candito-construction-2": false,
+      "shoppes-at-avalon-spring-hill-mec": true,
+      "taco-bell-weeki-wachee-compass-construction-management-2": true,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": true,
+      "wendy-s-fort-myers-great-southern-constructors-3": true
+    },
+    "scope.systems[*].thickness_markers": {
+      "auto-zone-10891-jacksonville-mec-24-others": false,
+      "auto-zone-vero-beach-fl": false,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": false,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": false,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": false,
+      "hampshire-self-storage": false,
+      "panda-express-bradenton": false,
+      "panda-express-hialeah-gardens": false,
+      "panda-express-naples-cdo-visible-construction-corp": false,
+      "panda-express-san-antonio-candito-construction-2": false,
+      "shoppes-at-avalon-spring-hill-mec": true,
+      "taco-bell-weeki-wachee-compass-construction-management-2": false,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": false,
+      "wendy-s-fort-myers-great-southern-constructors-3": false
+    },
+    "scope.systems[*].source_pages": {
+      "auto-zone-10891-jacksonville-mec-24-others": false,
+      "auto-zone-vero-beach-fl": false,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": true,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": true,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": true,
+      "hampshire-self-storage": true,
+      "panda-express-bradenton": true,
+      "panda-express-hialeah-gardens": true,
+      "panda-express-naples-cdo-visible-construction-corp": true,
+      "panda-express-san-antonio-candito-construction-2": true,
+      "shoppes-at-avalon-spring-hill-mec": true,
+      "taco-bell-weeki-wachee-compass-construction-management-2": true,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": true,
+      "wendy-s-fort-myers-great-southern-constructors-3": true
+    },
+    "scope.systems[*].confidence": {
+      "auto-zone-10891-jacksonville-mec-24-others": false,
+      "auto-zone-vero-beach-fl": false,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": true,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": true,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": true,
+      "hampshire-self-storage": true,
+      "panda-express-bradenton": true,
+      "panda-express-hialeah-gardens": true,
+      "panda-express-naples-cdo-visible-construction-corp": true,
+      "panda-express-san-antonio-candito-construction-2": true,
+      "shoppes-at-avalon-spring-hill-mec": true,
+      "taco-bell-weeki-wachee-compass-construction-management-2": true,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": true,
+      "wendy-s-fort-myers-great-southern-constructors-3": true
+    },
+    "scope.evidence.spec_section_hits": {
+      "auto-zone-10891-jacksonville-mec-24-others": false,
+      "auto-zone-vero-beach-fl": true,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": true,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": true,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": true,
+      "hampshire-self-storage": true,
+      "panda-express-bradenton": true,
+      "panda-express-hialeah-gardens": true,
+      "panda-express-naples-cdo-visible-construction-corp": true,
+      "panda-express-san-antonio-candito-construction-2": true,
+      "shoppes-at-avalon-spring-hill-mec": true,
+      "taco-bell-weeki-wachee-compass-construction-management-2": true,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": true,
+      "wendy-s-fort-myers-great-southern-constructors-3": true
+    },
+    "scope.evidence.manufacturer_hits": {
+      "auto-zone-10891-jacksonville-mec-24-others": false,
+      "auto-zone-vero-beach-fl": false,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": true,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": true,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": false,
+      "hampshire-self-storage": false,
+      "panda-express-bradenton": true,
+      "panda-express-hialeah-gardens": true,
+      "panda-express-naples-cdo-visible-construction-corp": false,
+      "panda-express-san-antonio-candito-construction-2": false,
+      "shoppes-at-avalon-spring-hill-mec": true,
+      "taco-bell-weeki-wachee-compass-construction-management-2": true,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": true,
+      "wendy-s-fort-myers-great-southern-constructors-3": true
+    },
+    "scope.evidence.attachment_hits": {
+      "auto-zone-10891-jacksonville-mec-24-others": false,
+      "auto-zone-vero-beach-fl": false,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": false,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": false,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": true,
+      "hampshire-self-storage": true,
+      "panda-express-bradenton": false,
+      "panda-express-hialeah-gardens": true,
+      "panda-express-naples-cdo-visible-construction-corp": true,
+      "panda-express-san-antonio-candito-construction-2": true,
+      "shoppes-at-avalon-spring-hill-mec": true,
+      "taco-bell-weeki-wachee-compass-construction-management-2": true,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": true,
+      "wendy-s-fort-myers-great-southern-constructors-3": false
+    },
+    "scope.evidence.thickness_markers": {
+      "auto-zone-10891-jacksonville-mec-24-others": false,
+      "auto-zone-vero-beach-fl": false,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": false,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": false,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": false,
+      "hampshire-self-storage": false,
+      "panda-express-bradenton": false,
+      "panda-express-hialeah-gardens": false,
+      "panda-express-naples-cdo-visible-construction-corp": false,
+      "panda-express-san-antonio-candito-construction-2": false,
+      "shoppes-at-avalon-spring-hill-mec": true,
+      "taco-bell-weeki-wachee-compass-construction-management-2": false,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": false,
+      "wendy-s-fort-myers-great-southern-constructors-3": false
+    },
+    "scope.evidence.insulation_markers": {
+      "auto-zone-10891-jacksonville-mec-24-others": false,
+      "auto-zone-vero-beach-fl": false,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": false,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": false,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": true,
+      "hampshire-self-storage": false,
+      "panda-express-bradenton": true,
+      "panda-express-hialeah-gardens": true,
+      "panda-express-naples-cdo-visible-construction-corp": true,
+      "panda-express-san-antonio-candito-construction-2": false,
+      "shoppes-at-avalon-spring-hill-mec": true,
+      "taco-bell-weeki-wachee-compass-construction-management-2": true,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": true,
+      "wendy-s-fort-myers-great-southern-constructors-3": false
+    },
+    "scope.evidence.florida_signals": {
+      "auto-zone-10891-jacksonville-mec-24-others": true,
+      "auto-zone-vero-beach-fl": false,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": true,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": true,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": true,
+      "hampshire-self-storage": true,
+      "panda-express-bradenton": true,
+      "panda-express-hialeah-gardens": true,
+      "panda-express-naples-cdo-visible-construction-corp": true,
+      "panda-express-san-antonio-candito-construction-2": false,
+      "shoppes-at-avalon-spring-hill-mec": true,
+      "taco-bell-weeki-wachee-compass-construction-management-2": true,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": true,
+      "wendy-s-fort-myers-great-southern-constructors-3": true
+    },
+    "scope.evidence.system_type_keyword_hits": {
+      "auto-zone-10891-jacksonville-mec-24-others": false,
+      "auto-zone-vero-beach-fl": false,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": true,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": true,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": true,
+      "hampshire-self-storage": true,
+      "panda-express-bradenton": true,
+      "panda-express-hialeah-gardens": true,
+      "panda-express-naples-cdo-visible-construction-corp": true,
+      "panda-express-san-antonio-candito-construction-2": true,
+      "shoppes-at-avalon-spring-hill-mec": true,
+      "taco-bell-weeki-wachee-compass-construction-management-2": true,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": true,
+      "wendy-s-fort-myers-great-southern-constructors-3": false
+    },
+    "scope.fallback_used": {
+      "auto-zone-10891-jacksonville-mec-24-others": true,
+      "auto-zone-vero-beach-fl": true,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": true,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": true,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": true,
+      "hampshire-self-storage": true,
+      "panda-express-bradenton": true,
+      "panda-express-hialeah-gardens": true,
+      "panda-express-naples-cdo-visible-construction-corp": true,
+      "panda-express-san-antonio-candito-construction-2": true,
+      "shoppes-at-avalon-spring-hill-mec": true,
+      "taco-bell-weeki-wachee-compass-construction-management-2": true,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": true,
+      "wendy-s-fort-myers-great-southern-constructors-3": true
+    },
+    "scope.pages_skipped_glazing": {
+      "auto-zone-10891-jacksonville-mec-24-others": true,
+      "auto-zone-vero-beach-fl": true,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": true,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": true,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": true,
+      "hampshire-self-storage": true,
+      "panda-express-bradenton": true,
+      "panda-express-hialeah-gardens": true,
+      "panda-express-naples-cdo-visible-construction-corp": true,
+      "panda-express-san-antonio-candito-construction-2": true,
+      "shoppes-at-avalon-spring-hill-mec": true,
+      "taco-bell-weeki-wachee-compass-construction-management-2": true,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": true,
+      "wendy-s-fort-myers-great-southern-constructors-3": true
+    },
+    "assembly.systems": {
+      "auto-zone-10891-jacksonville-mec-24-others": false,
+      "auto-zone-vero-beach-fl": false,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": true,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": true,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": true,
+      "hampshire-self-storage": true,
+      "panda-express-bradenton": true,
+      "panda-express-hialeah-gardens": true,
+      "panda-express-naples-cdo-visible-construction-corp": true,
+      "panda-express-san-antonio-candito-construction-2": true,
+      "shoppes-at-avalon-spring-hill-mec": true,
+      "taco-bell-weeki-wachee-compass-construction-management-2": true,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": true,
+      "wendy-s-fort-myers-great-southern-constructors-3": true
+    },
+    "assembly.systems[*].matched_assembly_key": {
+      "auto-zone-10891-jacksonville-mec-24-others": false,
+      "auto-zone-vero-beach-fl": false,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": true,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": true,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": true,
+      "hampshire-self-storage": true,
+      "panda-express-bradenton": true,
+      "panda-express-hialeah-gardens": true,
+      "panda-express-naples-cdo-visible-construction-corp": true,
+      "panda-express-san-antonio-candito-construction-2": true,
+      "shoppes-at-avalon-spring-hill-mec": true,
+      "taco-bell-weeki-wachee-compass-construction-management-2": true,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": true,
+      "wendy-s-fort-myers-great-southern-constructors-3": true
+    },
+    "assembly.systems[*].required_supported_components": {
+      "auto-zone-10891-jacksonville-mec-24-others": false,
+      "auto-zone-vero-beach-fl": false,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": true,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": true,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": true,
+      "hampshire-self-storage": true,
+      "panda-express-bradenton": true,
+      "panda-express-hialeah-gardens": true,
+      "panda-express-naples-cdo-visible-construction-corp": true,
+      "panda-express-san-antonio-candito-construction-2": true,
+      "shoppes-at-avalon-spring-hill-mec": true,
+      "taco-bell-weeki-wachee-compass-construction-management-2": true,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": true,
+      "wendy-s-fort-myers-great-southern-constructors-3": true
+    },
+    "assembly.systems[*].required_missing_components": {
+      "auto-zone-10891-jacksonville-mec-24-others": false,
+      "auto-zone-vero-beach-fl": false,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": true,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": true,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": true,
+      "hampshire-self-storage": true,
+      "panda-express-bradenton": true,
+      "panda-express-hialeah-gardens": true,
+      "panda-express-naples-cdo-visible-construction-corp": true,
+      "panda-express-san-antonio-candito-construction-2": true,
+      "shoppes-at-avalon-spring-hill-mec": true,
+      "taco-bell-weeki-wachee-compass-construction-management-2": true,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": true,
+      "wendy-s-fort-myers-great-southern-constructors-3": true
+    },
+    "assembly.systems[*].component_evidence": {
+      "auto-zone-10891-jacksonville-mec-24-others": false,
+      "auto-zone-vero-beach-fl": false,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": true,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": true,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": true,
+      "hampshire-self-storage": true,
+      "panda-express-bradenton": true,
+      "panda-express-hialeah-gardens": true,
+      "panda-express-naples-cdo-visible-construction-corp": true,
+      "panda-express-san-antonio-candito-construction-2": true,
+      "shoppes-at-avalon-spring-hill-mec": true,
+      "taco-bell-weeki-wachee-compass-construction-management-2": true,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": true,
+      "wendy-s-fort-myers-great-southern-constructors-3": true
+    },
+    "assembly.systems[*].warnings": {
+      "auto-zone-10891-jacksonville-mec-24-others": false,
+      "auto-zone-vero-beach-fl": false,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": true,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": true,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": true,
+      "hampshire-self-storage": false,
+      "panda-express-bradenton": true,
+      "panda-express-hialeah-gardens": true,
+      "panda-express-naples-cdo-visible-construction-corp": true,
+      "panda-express-san-antonio-candito-construction-2": false,
+      "shoppes-at-avalon-spring-hill-mec": false,
+      "taco-bell-weeki-wachee-compass-construction-management-2": true,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": true,
+      "wendy-s-fort-myers-great-southern-constructors-3": false
+    },
+    "assembly.florida_signals": {
+      "auto-zone-10891-jacksonville-mec-24-others": true,
+      "auto-zone-vero-beach-fl": false,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": true,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": true,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": true,
+      "hampshire-self-storage": true,
+      "panda-express-bradenton": true,
+      "panda-express-hialeah-gardens": true,
+      "panda-express-naples-cdo-visible-construction-corp": true,
+      "panda-express-san-antonio-candito-construction-2": false,
+      "shoppes-at-avalon-spring-hill-mec": true,
+      "taco-bell-weeki-wachee-compass-construction-management-2": true,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": true,
+      "wendy-s-fort-myers-great-southern-constructors-3": true
+    },
+    "provenance.fields": {
+      "auto-zone-10891-jacksonville-mec-24-others": true,
+      "auto-zone-vero-beach-fl": true,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": true,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": true,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": true,
+      "hampshire-self-storage": true,
+      "panda-express-bradenton": true,
+      "panda-express-hialeah-gardens": true,
+      "panda-express-naples-cdo-visible-construction-corp": true,
+      "panda-express-san-antonio-candito-construction-2": true,
+      "shoppes-at-avalon-spring-hill-mec": true,
+      "taco-bell-weeki-wachee-compass-construction-management-2": true,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": true,
+      "wendy-s-fort-myers-great-southern-constructors-3": true
+    },
+    "extraction_metrics.elapsed_seconds": {
+      "auto-zone-10891-jacksonville-mec-24-others": true,
+      "auto-zone-vero-beach-fl": true,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": true,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": true,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": true,
+      "hampshire-self-storage": true,
+      "panda-express-bradenton": true,
+      "panda-express-hialeah-gardens": true,
+      "panda-express-naples-cdo-visible-construction-corp": true,
+      "panda-express-san-antonio-candito-construction-2": true,
+      "shoppes-at-avalon-spring-hill-mec": true,
+      "taco-bell-weeki-wachee-compass-construction-management-2": true,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": true,
+      "wendy-s-fort-myers-great-southern-constructors-3": true
+    },
+    "extraction_metrics.pages_processed": {
+      "auto-zone-10891-jacksonville-mec-24-others": true,
+      "auto-zone-vero-beach-fl": true,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": true,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": true,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": true,
+      "hampshire-self-storage": true,
+      "panda-express-bradenton": true,
+      "panda-express-hialeah-gardens": true,
+      "panda-express-naples-cdo-visible-construction-corp": true,
+      "panda-express-san-antonio-candito-construction-2": true,
+      "shoppes-at-avalon-spring-hill-mec": true,
+      "taco-bell-weeki-wachee-compass-construction-management-2": true,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": true,
+      "wendy-s-fort-myers-great-southern-constructors-3": true
+    },
+    "extraction_metrics.scope_systems_identified": {
+      "auto-zone-10891-jacksonville-mec-24-others": true,
+      "auto-zone-vero-beach-fl": true,
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": true,
+      "bearss-ave-distribution-center-university-marcobay-construction-3": true,
+      "chewy-vet-care-london-square-miami-jdr-fixtures": true,
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": true,
+      "hampshire-self-storage": true,
+      "panda-express-bradenton": true,
+      "panda-express-hialeah-gardens": true,
+      "panda-express-naples-cdo-visible-construction-corp": true,
+      "panda-express-san-antonio-candito-construction-2": true,
+      "shoppes-at-avalon-spring-hill-mec": true,
+      "taco-bell-weeki-wachee-compass-construction-management-2": true,
+      "vine-street-retail-center-kissimmee-great-southern-constructors": true,
+      "wendy-s-fort-myers-great-southern-constructors-3": true
+    }
+  },
+  "dispatch_accuracy": {
+    "total_pages": 1121,
+    "total_roof_pages_classified": 95,
+    "architectural_sheets_total": 253,
+    "architectural_sheets_classified_roof": 31,
+    "architectural_sheets_classified_other": 222,
+    "page_type_distribution": {
+      "floor_plan": 91,
+      "unknown": 149,
+      "general_notes": 17,
+      "elevation": 259,
+      "detail_sheet": 289,
+      "ceiling_plan": 66,
+      "symbol_legend": 3,
+      "mep_plan": 24,
+      "schedule_sheet": 51,
+      "framing_plan": 30,
+      "roof_plan": 95,
+      "section": 26,
+      "site_plan": 11,
+      "cover": 4,
+      "life_safety": 6
+    },
+    "confidence_distribution": {
+      "strong": 595,
+      "unknown": 149,
+      "explicit": 338,
+      "weak": 24,
+      "inferred": 15
+    },
+    "no_keyword_match_unknown_count": 149
+  },
+  "scope_summary": {
+    "by_bidset": {
+      "auto-zone-10891-jacksonville-mec-24-others": [],
+      "auto-zone-vero-beach-fl": [],
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": [
+        {
+          "system_type": "modified_bitumen",
+          "attachment": null,
+          "manufacturer": "GAF",
+          "confidence": 0.9,
+          "spec_sections": [
+            "07 55"
+          ],
+          "source_pages_count": 1
+        },
+        {
+          "system_type": "built_up",
+          "attachment": null,
+          "manufacturer": "GAF",
+          "confidence": 0.7,
+          "spec_sections": [],
+          "source_pages_count": 1
+        },
+        {
+          "system_type": "spf",
+          "attachment": null,
+          "manufacturer": null,
+          "confidence": 0.5,
+          "spec_sections": [],
+          "source_pages_count": 1
+        },
+        {
+          "system_type": "tpo",
+          "attachment": null,
+          "manufacturer": "GAF",
+          "confidence": 0.7,
+          "spec_sections": [],
+          "source_pages_count": 1
+        }
+      ],
+      "bearss-ave-distribution-center-university-marcobay-construction-3": [
+        {
+          "system_type": "tpo",
+          "attachment": "mechanically_attached",
+          "manufacturer": "Tremco",
+          "confidence": 0.7,
+          "spec_sections": [],
+          "source_pages_count": 6
+        },
+        {
+          "system_type": "metal_panel",
+          "attachment": "mechanically_attached",
+          "manufacturer": null,
+          "confidence": 0.5,
+          "spec_sections": [],
+          "source_pages_count": 4
+        },
+        {
+          "system_type": "built_up",
+          "attachment": "mechanically_attached",
+          "manufacturer": "Tremco",
+          "confidence": 0.7,
+          "spec_sections": [],
+          "source_pages_count": 2
+        },
+        {
+          "system_type": "spf",
+          "attachment": "mechanically_attached",
+          "manufacturer": null,
+          "confidence": 0.5,
+          "spec_sections": [],
+          "source_pages_count": 2
+        }
+      ],
+      "chewy-vet-care-london-square-miami-jdr-fixtures": [
+        {
+          "system_type": "metal_panel",
+          "attachment": null,
+          "manufacturer": null,
+          "confidence": 0.7,
+          "spec_sections": [
+            "07 46"
+          ],
+          "source_pages_count": 1
+        },
+        {
+          "system_type": "tpo",
+          "attachment": null,
+          "manufacturer": null,
+          "confidence": 0.5,
+          "spec_sections": [],
+          "source_pages_count": 1
+        },
+        {
+          "system_type": "epdm",
+          "attachment": null,
+          "manufacturer": null,
+          "confidence": 0.5,
+          "spec_sections": [],
+          "source_pages_count": 1
+        }
+      ],
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": [
+        {
+          "system_type": "tpo",
+          "attachment": "fully_adhered",
+          "manufacturer": null,
+          "confidence": 0.5,
+          "spec_sections": [],
+          "source_pages_count": 2
+        },
+        {
+          "system_type": "epdm",
+          "attachment": "fully_adhered",
+          "manufacturer": null,
+          "confidence": 0.5,
+          "spec_sections": [],
+          "source_pages_count": 1
+        },
+        {
+          "system_type": "metal_panel",
+          "attachment": "fully_adhered",
+          "manufacturer": null,
+          "confidence": 0.5,
+          "spec_sections": [],
+          "source_pages_count": 1
+        }
+      ],
+      "hampshire-self-storage": [
+        {
+          "system_type": "modified_bitumen",
+          "attachment": "ballasted",
+          "manufacturer": null,
+          "confidence": 0.7,
+          "spec_sections": [
+            "07 55"
+          ],
+          "source_pages_count": 1
+        },
+        {
+          "system_type": "metal_panel",
+          "attachment": "ballasted",
+          "manufacturer": null,
+          "confidence": 0.5,
+          "spec_sections": [],
+          "source_pages_count": 1
+        }
+      ],
+      "panda-express-bradenton": [
+        {
+          "system_type": "built_up",
+          "attachment": null,
+          "manufacturer": null,
+          "confidence": 0.7,
+          "spec_sections": [
+            "07 52"
+          ],
+          "source_pages_count": 1
+        },
+        {
+          "system_type": "metal_panel",
+          "attachment": null,
+          "manufacturer": null,
+          "confidence": 0.7,
+          "spec_sections": [
+            "07 62"
+          ],
+          "source_pages_count": 2
+        },
+        {
+          "system_type": "pvc",
+          "attachment": null,
+          "manufacturer": null,
+          "confidence": 0.5,
+          "spec_sections": [],
+          "source_pages_count": 1
+        }
+      ],
+      "panda-express-hialeah-gardens": [
+        {
+          "system_type": "tpo",
+          "attachment": "mechanically_attached",
+          "manufacturer": "Johns Manville",
+          "confidence": 0.9,
+          "spec_sections": [
+            "07 54"
+          ],
+          "source_pages_count": 11
+        },
+        {
+          "system_type": "built_up",
+          "attachment": "mechanically_attached",
+          "manufacturer": null,
+          "confidence": 0.7,
+          "spec_sections": [
+            "07 52"
+          ],
+          "source_pages_count": 2
+        },
+        {
+          "system_type": "metal_panel",
+          "attachment": "mechanically_attached",
+          "manufacturer": null,
+          "confidence": 0.7,
+          "spec_sections": [
+            "07 62"
+          ],
+          "source_pages_count": 1
+        },
+        {
+          "system_type": "pvc",
+          "attachment": "mechanically_attached",
+          "manufacturer": null,
+          "confidence": 0.5,
+          "spec_sections": [],
+          "source_pages_count": 1
+        }
+      ],
+      "panda-express-naples-cdo-visible-construction-corp": [
+        {
+          "system_type": "built_up",
+          "attachment": "mechanically_attached",
+          "manufacturer": null,
+          "confidence": 0.7,
+          "spec_sections": [
+            "07 52"
+          ],
+          "source_pages_count": 2
+        },
+        {
+          "system_type": "metal_panel",
+          "attachment": "mechanically_attached",
+          "manufacturer": null,
+          "confidence": 0.7,
+          "spec_sections": [
+            "07 62"
+          ],
+          "source_pages_count": 1
+        },
+        {
+          "system_type": "shingle",
+          "attachment": "mechanically_attached",
+          "manufacturer": null,
+          "confidence": 0.7,
+          "spec_sections": [
+            "07 3100"
+          ],
+          "source_pages_count": 1
+        },
+        {
+          "system_type": "pvc",
+          "attachment": "mechanically_attached",
+          "manufacturer": null,
+          "confidence": 0.5,
+          "spec_sections": [],
+          "source_pages_count": 1
+        }
+      ],
+      "panda-express-san-antonio-candito-construction-2": [
+        {
+          "system_type": "metal_panel",
+          "attachment": "mechanically_attached",
+          "manufacturer": null,
+          "confidence": 0.5,
+          "spec_sections": [],
+          "source_pages_count": 1
+        }
+      ],
+      "shoppes-at-avalon-spring-hill-mec": [
+        {
+          "system_type": "tpo",
+          "attachment": "concealed_clip",
+          "manufacturer": "Carlisle",
+          "confidence": 0.9,
+          "spec_sections": [
+            "07 54"
+          ],
+          "source_pages_count": 4
+        },
+        {
+          "system_type": "metal_panel",
+          "attachment": "concealed_clip",
+          "manufacturer": null,
+          "confidence": 0.5,
+          "spec_sections": [],
+          "source_pages_count": 11
+        }
+      ],
+      "taco-bell-weeki-wachee-compass-construction-management-2": [
+        {
+          "system_type": "tpo",
+          "attachment": "fully_adhered",
+          "manufacturer": "Johns Manville",
+          "confidence": 0.9,
+          "spec_sections": [
+            "07 54 23"
+          ],
+          "source_pages_count": 1
+        },
+        {
+          "system_type": "pvc",
+          "attachment": "fully_adhered",
+          "manufacturer": "Sika Sarnafil",
+          "confidence": 0.9,
+          "spec_sections": [
+            "07 54 19"
+          ],
+          "source_pages_count": 2
+        },
+        {
+          "system_type": "metal_panel",
+          "attachment": "fully_adhered",
+          "manufacturer": null,
+          "confidence": 0.7,
+          "spec_sections": [
+            "07 62"
+          ],
+          "source_pages_count": 4
+        },
+        {
+          "system_type": "epdm",
+          "attachment": "fully_adhered",
+          "manufacturer": "Johns Manville",
+          "confidence": 0.7,
+          "spec_sections": [],
+          "source_pages_count": 3
+        },
+        {
+          "system_type": "spf",
+          "attachment": "fully_adhered",
+          "manufacturer": null,
+          "confidence": 0.5,
+          "spec_sections": [],
+          "source_pages_count": 3
+        },
+        {
+          "system_type": "built_up",
+          "attachment": "fully_adhered",
+          "manufacturer": "Tremco",
+          "confidence": 0.7,
+          "spec_sections": [],
+          "source_pages_count": 1
+        }
+      ],
+      "vine-street-retail-center-kissimmee-great-southern-constructors": [
+        {
+          "system_type": "metal_panel",
+          "attachment": "fully_adhered",
+          "manufacturer": null,
+          "confidence": 0.7,
+          "spec_sections": [
+            "07 61"
+          ],
+          "source_pages_count": 8
+        },
+        {
+          "system_type": "tpo",
+          "attachment": "fully_adhered",
+          "manufacturer": "GAF",
+          "confidence": 0.7,
+          "spec_sections": [],
+          "source_pages_count": 6
+        },
+        {
+          "system_type": "built_up",
+          "attachment": "fully_adhered",
+          "manufacturer": "GAF",
+          "confidence": 0.7,
+          "spec_sections": [],
+          "source_pages_count": 6
+        },
+        {
+          "system_type": "spf",
+          "attachment": "fully_adhered",
+          "manufacturer": null,
+          "confidence": 0.5,
+          "spec_sections": [],
+          "source_pages_count": 3
+        },
+        {
+          "system_type": "modified_bitumen",
+          "attachment": "fully_adhered",
+          "manufacturer": "GAF",
+          "confidence": 0.7,
+          "spec_sections": [],
+          "source_pages_count": 3
+        }
+      ],
+      "wendy-s-fort-myers-great-southern-constructors-3": [
+        {
+          "system_type": "shingle",
+          "attachment": null,
+          "manufacturer": "CertainTeed",
+          "confidence": 0.9,
+          "spec_sections": [
+            "07 31"
+          ],
+          "source_pages_count": 1
+        }
+      ]
+    },
+    "system_type_counts": {
+      "metal_panel": 11,
+      "tpo": 8,
+      "built_up": 7,
+      "spf": 4,
+      "pvc": 4,
+      "modified_bitumen": 3,
+      "epdm": 3,
+      "shingle": 2
+    },
+    "manufacturer_counts": {
+      "GAF": 6,
+      "Tremco": 3,
+      "Johns Manville": 3,
+      "Carlisle": 1,
+      "Sika Sarnafil": 1,
+      "CertainTeed": 1
+    },
+    "attachment_counts": {
+      "fully_adhered": 14,
+      "mechanically_attached": 13,
+      "ballasted": 2,
+      "concealed_clip": 2
+    },
+    "thickness_marker_counts": {
+      "60 mil": 9,
+      "45 mil": 2
+    },
+    "florida_signal_counts": {
+      "FBC": 38,
+      "SMACNA": 15,
+      "NOA": 8,
+      "UL 790": 1
+    },
+    "insulation_marker_counts": {
+      "R-30": 16,
+      "cover board": 10,
+      "polyisocyanurate": 8,
+      "EPS": 8,
+      "R-20": 5,
+      "polyiso": 5,
+      "R-25": 4,
+      "R-38": 2,
+      "XPS": 1,
+      "DensDeck": 1
+    },
+    "fallback_used_count": 0,
+    "bidsets_with_any_system": 13,
+    "bidsets_with_manufacturer": 7,
+    "bidsets_with_florida_signals": 13
+  },
+  "assembly_summary": {
+    "by_bidset": {
+      "auto-zone-10891-jacksonville-mec-24-others": [],
+      "auto-zone-vero-beach-fl": [],
+      "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6": [
+        {
+          "system_type": "modified_bitumen",
+          "matched_assembly_key": "modified_bitumen_torched",
+          "required_supported": 1,
+          "required_total": 7,
+          "warning_ids": [
+            "overflow_pairing",
+            "tapered_insulation_for_drainage",
+            "curb_high_side_cricket",
+            "rtu_drives_curb",
+            "fbc_hvhz_applies"
+          ]
+        },
+        {
+          "system_type": "built_up",
+          "matched_assembly_key": "built_up_roofing",
+          "required_supported": 1,
+          "required_total": 7,
+          "warning_ids": [
+            "overflow_pairing",
+            "tapered_insulation_for_drainage",
+            "curb_high_side_cricket",
+            "rtu_drives_curb",
+            "fbc_hvhz_applies"
+          ]
+        },
+        {
+          "system_type": "spf",
+          "matched_assembly_key": "spray_polyurethane_foam",
+          "required_supported": 1,
+          "required_total": 2,
+          "warning_ids": [
+            "overflow_pairing",
+            "tapered_insulation_for_drainage",
+            "fbc_hvhz_applies"
+          ]
+        },
+        {
+          "system_type": "tpo",
+          "matched_assembly_key": "tpo_mechanically_attached",
+          "required_supported": 1,
+          "required_total": 7,
+          "warning_ids": [
+            "drainage_exclusivity",
+            "overflow_pairing",
+            "tapered_insulation_for_drainage",
+            "curb_high_side_cricket",
+            "rtu_drives_curb",
+            "fbc_hvhz_applies"
+          ]
+        }
+      ],
+      "bearss-ave-distribution-center-university-marcobay-construction-3": [
+        {
+          "system_type": "tpo",
+          "matched_assembly_key": "tpo_mechanically_attached",
+          "required_supported": 4,
+          "required_total": 7,
+          "warning_ids": [
+            "overflow_pairing",
+            "tapered_insulation_for_drainage",
+            "fbc_hvhz_applies"
+          ]
+        },
+        {
+          "system_type": "metal_panel",
+          "matched_assembly_key": "metal_panel_standing_seam",
+          "required_supported": 1,
+          "required_total": 6,
+          "warning_ids": [
+            "fbc_hvhz_applies"
+          ]
+        },
+        {
+          "system_type": "built_up",
+          "matched_assembly_key": "built_up_roofing",
+          "required_supported": 3,
+          "required_total": 7,
+          "warning_ids": [
+            "overflow_pairing",
+            "tapered_insulation_for_drainage",
+            "fbc_hvhz_applies"
+          ]
+        },
+        {
+          "system_type": "spf",
+          "matched_assembly_key": "spray_polyurethane_foam",
+          "required_supported": 2,
+          "required_total": 2,
+          "warning_ids": [
+            "overflow_pairing",
+            "tapered_insulation_for_drainage",
+            "fbc_hvhz_applies"
+          ]
+        }
+      ],
+      "chewy-vet-care-london-square-miami-jdr-fixtures": [
+        {
+          "system_type": "metal_panel",
+          "matched_assembly_key": "metal_panel_standing_seam",
+          "required_supported": 1,
+          "required_total": 6,
+          "warning_ids": []
+        },
+        {
+          "system_type": "tpo",
+          "matched_assembly_key": "tpo_mechanically_attached",
+          "required_supported": 3,
+          "required_total": 7,
+          "warning_ids": [
+            "curb_high_side_cricket",
+            "rtu_drives_curb"
+          ]
+        },
+        {
+          "system_type": "epdm",
+          "matched_assembly_key": "epdm_mechanically_attached",
+          "required_supported": 3,
+          "required_total": 6,
+          "warning_ids": []
+        }
+      ],
+      "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction": [
+        {
+          "system_type": "tpo",
+          "matched_assembly_key": "tpo_fully_adhered",
+          "required_supported": 5,
+          "required_total": 8,
+          "warning_ids": [
+            "overflow_pairing"
+          ]
+        },
+        {
+          "system_type": "epdm",
+          "matched_assembly_key": "epdm_fully_adhered",
+          "required_supported": 4,
+          "required_total": 5,
+          "warning_ids": []
+        },
+        {
+          "system_type": "metal_panel",
+          "matched_assembly_key": "metal_panel_standing_seam",
+          "required_supported": 0,
+          "required_total": 6,
+          "warning_ids": [
+            "adhesive_requires_cover_board"
+          ]
+        }
+      ],
+      "hampshire-self-storage": [
+        {
+          "system_type": "modified_bitumen",
+          "matched_assembly_key": "modified_bitumen_torched",
+          "required_supported": 2,
+          "required_total": 7,
+          "warning_ids": []
+        },
+        {
+          "system_type": "metal_panel",
+          "matched_assembly_key": "metal_panel_standing_seam",
+          "required_supported": 0,
+          "required_total": 6,
+          "warning_ids": []
+        }
+      ],
+      "panda-express-bradenton": [
+        {
+          "system_type": "built_up",
+          "matched_assembly_key": "built_up_roofing",
+          "required_supported": 4,
+          "required_total": 7,
+          "warning_ids": [
+            "overflow_pairing",
+            "curb_high_side_cricket",
+            "rtu_drives_curb"
+          ]
+        },
+        {
+          "system_type": "metal_panel",
+          "matched_assembly_key": "metal_panel_standing_seam",
+          "required_supported": 1,
+          "required_total": 6,
+          "warning_ids": []
+        },
+        {
+          "system_type": "pvc",
+          "matched_assembly_key": "pvc_mechanically_attached",
+          "required_supported": 5,
+          "required_total": 7,
+          "warning_ids": []
+        }
+      ],
+      "panda-express-hialeah-gardens": [
+        {
+          "system_type": "tpo",
+          "matched_assembly_key": "tpo_mechanically_attached",
+          "required_supported": 5,
+          "required_total": 7,
+          "warning_ids": [
+            "drainage_exclusivity",
+            "overflow_pairing",
+            "curb_high_side_cricket",
+            "rtu_drives_curb",
+            "fbc_hvhz_applies"
+          ]
+        },
+        {
+          "system_type": "built_up",
+          "matched_assembly_key": "built_up_roofing",
+          "required_supported": 4,
+          "required_total": 7,
+          "warning_ids": [
+            "overflow_pairing",
+            "curb_high_side_cricket",
+            "rtu_drives_curb",
+            "fbc_hvhz_applies"
+          ]
+        },
+        {
+          "system_type": "metal_panel",
+          "matched_assembly_key": "metal_panel_standing_seam",
+          "required_supported": 2,
+          "required_total": 6,
+          "warning_ids": [
+            "fbc_hvhz_applies"
+          ]
+        },
+        {
+          "system_type": "pvc",
+          "matched_assembly_key": "pvc_mechanically_attached",
+          "required_supported": 5,
+          "required_total": 7,
+          "warning_ids": [
+            "fbc_hvhz_applies"
+          ]
+        }
+      ],
+      "panda-express-naples-cdo-visible-construction-corp": [
+        {
+          "system_type": "built_up",
+          "matched_assembly_key": "built_up_roofing",
+          "required_supported": 4,
+          "required_total": 7,
+          "warning_ids": [
+            "overflow_pairing",
+            "curb_high_side_cricket",
+            "rtu_drives_curb",
+            "fbc_hvhz_applies"
+          ]
+        },
+        {
+          "system_type": "metal_panel",
+          "matched_assembly_key": "metal_panel_standing_seam",
+          "required_supported": 2,
+          "required_total": 6,
+          "warning_ids": [
+            "fbc_hvhz_applies"
+          ]
+        },
+        {
+          "system_type": "shingle",
+          "matched_assembly_key": "asphalt_shingles",
+          "required_supported": 4,
+          "required_total": 8,
+          "warning_ids": [
+            "fbc_hvhz_applies"
+          ]
+        },
+        {
+          "system_type": "pvc",
+          "matched_assembly_key": "pvc_mechanically_attached",
+          "required_supported": 5,
+          "required_total": 7,
+          "warning_ids": [
+            "fbc_hvhz_applies"
+          ]
+        }
+      ],
+      "panda-express-san-antonio-candito-construction-2": [
+        {
+          "system_type": "metal_panel",
+          "matched_assembly_key": "metal_panel_standing_seam",
+          "required_supported": 1,
+          "required_total": 6,
+          "warning_ids": []
+        }
+      ],
+      "shoppes-at-avalon-spring-hill-mec": [
+        {
+          "system_type": "tpo",
+          "matched_assembly_key": "tpo_mechanically_attached",
+          "required_supported": 3,
+          "required_total": 7,
+          "warning_ids": []
+        },
+        {
+          "system_type": "metal_panel",
+          "matched_assembly_key": "metal_panel_standing_seam",
+          "required_supported": 1,
+          "required_total": 6,
+          "warning_ids": []
+        }
+      ],
+      "taco-bell-weeki-wachee-compass-construction-management-2": [
+        {
+          "system_type": "tpo",
+          "matched_assembly_key": "tpo_fully_adhered",
+          "required_supported": 7,
+          "required_total": 8,
+          "warning_ids": [
+            "drainage_exclusivity",
+            "overflow_pairing",
+            "curb_high_side_cricket",
+            "rtu_drives_curb"
+          ]
+        },
+        {
+          "system_type": "pvc",
+          "matched_assembly_key": "pvc_fully_adhered",
+          "required_supported": 7,
+          "required_total": 8,
+          "warning_ids": []
+        },
+        {
+          "system_type": "metal_panel",
+          "matched_assembly_key": "metal_panel_standing_seam",
+          "required_supported": 2,
+          "required_total": 6,
+          "warning_ids": [
+            "adhesive_requires_cover_board"
+          ]
+        },
+        {
+          "system_type": "epdm",
+          "matched_assembly_key": "epdm_fully_adhered",
+          "required_supported": 5,
+          "required_total": 5,
+          "warning_ids": []
+        },
+        {
+          "system_type": "spf",
+          "matched_assembly_key": "spray_polyurethane_foam",
+          "required_supported": 2,
+          "required_total": 2,
+          "warning_ids": [
+            "overflow_pairing",
+            "tapered_insulation_for_drainage"
+          ]
+        },
+        {
+          "system_type": "built_up",
+          "matched_assembly_key": "built_up_roofing",
+          "required_supported": 4,
+          "required_total": 7,
+          "warning_ids": [
+            "overflow_pairing",
+            "curb_high_side_cricket",
+            "rtu_drives_curb"
+          ]
+        }
+      ],
+      "vine-street-retail-center-kissimmee-great-southern-constructors": [
+        {
+          "system_type": "metal_panel",
+          "matched_assembly_key": "metal_panel_standing_seam",
+          "required_supported": 2,
+          "required_total": 6,
+          "warning_ids": [
+            "adhesive_requires_cover_board",
+            "fbc_hvhz_applies"
+          ]
+        },
+        {
+          "system_type": "tpo",
+          "matched_assembly_key": "tpo_fully_adhered",
+          "required_supported": 7,
+          "required_total": 8,
+          "warning_ids": [
+            "drainage_exclusivity",
+            "curb_high_side_cricket",
+            "rtu_drives_curb",
+            "fbc_hvhz_applies"
+          ]
+        },
+        {
+          "system_type": "built_up",
+          "matched_assembly_key": "built_up_roofing",
+          "required_supported": 6,
+          "required_total": 7,
+          "warning_ids": [
+            "overflow_pairing",
+            "curb_high_side_cricket",
+            "rtu_drives_curb",
+            "fbc_hvhz_applies"
+          ]
+        },
+        {
+          "system_type": "spf",
+          "matched_assembly_key": "spray_polyurethane_foam",
+          "required_supported": 2,
+          "required_total": 2,
+          "warning_ids": [
+            "overflow_pairing",
+            "tapered_insulation_for_drainage",
+            "fbc_hvhz_applies"
+          ]
+        },
+        {
+          "system_type": "modified_bitumen",
+          "matched_assembly_key": "modified_bitumen_torched",
+          "required_supported": 6,
+          "required_total": 7,
+          "warning_ids": [
+            "overflow_pairing",
+            "curb_high_side_cricket",
+            "rtu_drives_curb",
+            "fbc_hvhz_applies"
+          ]
+        }
+      ],
+      "wendy-s-fort-myers-great-southern-constructors-3": [
+        {
+          "system_type": "shingle",
+          "matched_assembly_key": "asphalt_shingles",
+          "required_supported": 3,
+          "required_total": 8,
+          "warning_ids": []
+        }
+      ]
+    },
+    "matched_assembly_counts": {
+      "metal_panel_standing_seam": 11,
+      "built_up_roofing": 7,
+      "tpo_mechanically_attached": 5,
+      "spray_polyurethane_foam": 4,
+      "modified_bitumen_torched": 3,
+      "tpo_fully_adhered": 3,
+      "pvc_mechanically_attached": 3,
+      "epdm_fully_adhered": 2,
+      "asphalt_shingles": 2,
+      "epdm_mechanically_attached": 1,
+      "pvc_fully_adhered": 1
+    },
+    "warning_id_counts": {
+      "fbc_hvhz_applies": 21,
+      "overflow_pairing": 18,
+      "curb_high_side_cricket": 13,
+      "rtu_drives_curb": 13,
+      "tapered_insulation_for_drainage": 9,
+      "drainage_exclusivity": 4,
+      "adhesive_requires_cover_board": 3
+    },
+    "components_required_total": 264,
+    "components_supported_total": 131,
+    "components_supported_pct": 49.6,
+    "bidsets_with_matched_assembly": 13,
+    "bidsets_with_any_warning": 9
+  },
+  "inclusion_decisions": {
+    "source_pdf_ref.id": {
+      "count": 15,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": true,
+      "has_consumer": true,
+      "consumer": "Routing key on every API call between frontend and backend.",
+      "decision": "PROMOTE"
+    },
+    "source_pdf_ref.sha256": {
+      "count": 15,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": true,
+      "has_consumer": true,
+      "consumer": "Integrity check on download; deduplication.",
+      "decision": "PROMOTE"
+    },
+    "source_pdf_ref.size_bytes": {
+      "count": 15,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": true,
+      "has_consumer": true,
+      "consumer": "Storage accounting.",
+      "decision": "PROMOTE"
+    },
+    "source_pdf_ref.page_count": {
+      "count": 15,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": true,
+      "has_consumer": true,
+      "consumer": "PAGES-tab thumbnail grid + viewer page navigation in v0.3.",
+      "decision": "PROMOTE"
+    },
+    "source_pdf_ref.producer_hint": {
+      "count": 15,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": true,
+      "has_consumer": false,
+      "consumer": null,
+      "decision": "DEFER (consumer)"
+    },
+    "dispatch.page_classifications": {
+      "count": 15,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": true,
+      "has_consumer": true,
+      "consumer": "PAGES-tab classification badges; viewer's first-page-defaults-to-roof_plan logic.",
+      "decision": "PROMOTE"
+    },
+    "dispatch.sheet_map": {
+      "count": 15,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": true,
+      "has_consumer": true,
+      "consumer": "Sheet-number column in TAKEOFF / Excel export; deep-link references.",
+      "decision": "PROMOTE"
+    },
+    "dispatch.cross_references_by_page": {
+      "count": 15,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": true,
+      "has_consumer": false,
+      "consumer": null,
+      "decision": "DEFER (consumer)"
+    },
+    "dispatch.legends_by_page": {
+      "count": 15,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": true,
+      "has_consumer": false,
+      "consumer": null,
+      "decision": "DEFER (consumer)"
+    },
+    "dispatch.project_metadata.project_name": {
+      "count": 13,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": true,
+      "has_consumer": true,
+      "consumer": "Excel export header; project search.",
+      "decision": "PROMOTE"
+    },
+    "dispatch.project_metadata.project_address": {
+      "count": 14,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": true,
+      "has_consumer": true,
+      "consumer": "Excel export header; HVHZ county determination (FBC).",
+      "decision": "PROMOTE"
+    },
+    "dispatch.project_metadata.project_number": {
+      "count": 15,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": true,
+      "has_consumer": true,
+      "consumer": "Excel export header; estimator filing reference.",
+      "decision": "PROMOTE"
+    },
+    "dispatch.project_metadata.owner": {
+      "count": 10,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": true,
+      "has_consumer": false,
+      "consumer": null,
+      "decision": "DEFER (consumer)"
+    },
+    "dispatch.project_metadata.architect": {
+      "count": 7,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": true,
+      "has_consumer": false,
+      "consumer": null,
+      "decision": "DEFER (consumer)"
+    },
+    "dispatch.project_metadata.total_building_sf": {
+      "count": 2,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": false,
+      "has_consumer": true,
+      "consumer": "Sanity-check vs measured roof area.",
+      "decision": "DEFER (frequency)"
+    },
+    "dispatch.roof_page_indices": {
+      "count": 13,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": true,
+      "has_consumer": true,
+      "consumer": "Viewer auto-navigates to first roof page on PDF open.",
+      "decision": "PROMOTE"
+    },
+    "dispatch.page_type_histogram": {
+      "count": 15,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": true,
+      "has_consumer": false,
+      "consumer": null,
+      "decision": "DEFER (consumer)"
+    },
+    "dispatch.confidence_histogram": {
+      "count": 15,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": true,
+      "has_consumer": false,
+      "consumer": null,
+      "decision": "DEFER (consumer)"
+    },
+    "scope.systems": {
+      "count": 13,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": true,
+      "has_consumer": true,
+      "consumer": "SCOPE-tab card list; per-system Excel sheets.",
+      "decision": "PROMOTE"
+    },
+    "scope.systems[*].system_type": {
+      "count": 13,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": true,
+      "has_consumer": true,
+      "consumer": "Pin/edge/polygon palette derivation; assembly lookup.",
+      "decision": "PROMOTE"
+    },
+    "scope.systems[*].attachment": {
+      "count": 9,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": true,
+      "has_consumer": true,
+      "consumer": "Disambiguates which ROOF_SYSTEMS entry to use.",
+      "decision": "PROMOTE"
+    },
+    "scope.systems[*].manufacturer": {
+      "count": 7,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": true,
+      "has_consumer": true,
+      "consumer": "Excel Manufacturer column; vendor-specific NOA/spec data.",
+      "decision": "PROMOTE"
+    },
+    "scope.systems[*].spec_sections": {
+      "count": 10,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": true,
+      "has_consumer": true,
+      "consumer": "Cross-reference back to spec page; estimator audit trail.",
+      "decision": "PROMOTE"
+    },
+    "scope.systems[*].thickness_markers": {
+      "count": 2,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": false,
+      "has_consumer": true,
+      "consumer": "Excel material column; warranty calculation.",
+      "decision": "DEFER (frequency)"
+    },
+    "scope.systems[*].source_pages": {
+      "count": 13,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": true,
+      "has_consumer": true,
+      "consumer": "Click-to-page navigation in SCOPE tab.",
+      "decision": "PROMOTE"
+    },
+    "scope.systems[*].confidence": {
+      "count": 13,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": true,
+      "has_consumer": true,
+      "consumer": "Drives 'parser said X, please confirm' UX in v0.3.",
+      "decision": "PROMOTE"
+    },
+    "scope.evidence.spec_section_hits": {
+      "count": 14,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": true,
+      "has_consumer": true,
+      "consumer": "Provenance audit trail; not user-facing directly.",
+      "decision": "PROMOTE"
+    },
+    "scope.evidence.manufacturer_hits": {
+      "count": 9,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": true,
+      "has_consumer": true,
+      "consumer": "Provenance audit trail.",
+      "decision": "PROMOTE"
+    },
+    "scope.evidence.attachment_hits": {
+      "count": 9,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": true,
+      "has_consumer": true,
+      "consumer": "Provenance audit trail.",
+      "decision": "PROMOTE"
+    },
+    "scope.evidence.thickness_markers": {
+      "count": 2,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": false,
+      "has_consumer": true,
+      "consumer": "Provenance.",
+      "decision": "DEFER (frequency)"
+    },
+    "scope.evidence.insulation_markers": {
+      "count": 8,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": true,
+      "has_consumer": true,
+      "consumer": "Provenance + flat-roof detection.",
+      "decision": "PROMOTE"
+    },
+    "scope.evidence.florida_signals": {
+      "count": 13,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": true,
+      "has_consumer": true,
+      "consumer": "Triggers FBC HVHZ warning chip in SCOPE / TAKEOFF.",
+      "decision": "PROMOTE"
+    },
+    "scope.evidence.system_type_keyword_hits": {
+      "count": 12,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": true,
+      "has_consumer": true,
+      "consumer": "Provenance.",
+      "decision": "PROMOTE"
+    },
+    "scope.fallback_used": {
+      "count": 15,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": true,
+      "has_consumer": true,
+      "consumer": "QA flag \u2014 fallback systems show 'low confidence' badge.",
+      "decision": "PROMOTE"
+    },
+    "scope.pages_skipped_glazing": {
+      "count": 15,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": true,
+      "has_consumer": false,
+      "consumer": null,
+      "decision": "DEFER (consumer)"
+    },
+    "assembly.systems": {
+      "count": 13,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": true,
+      "has_consumer": true,
+      "consumer": "TAKEOFF tab line items.",
+      "decision": "PROMOTE"
+    },
+    "assembly.systems[*].matched_assembly_key": {
+      "count": 13,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": true,
+      "has_consumer": true,
+      "consumer": "Drives takeoff component shopping list.",
+      "decision": "PROMOTE"
+    },
+    "assembly.systems[*].required_supported_components": {
+      "count": 13,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": true,
+      "has_consumer": true,
+      "consumer": "Excel takeoff rows that have evidence.",
+      "decision": "PROMOTE"
+    },
+    "assembly.systems[*].required_missing_components": {
+      "count": 13,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": true,
+      "has_consumer": true,
+      "consumer": "Excel takeoff rows flagged 'expected but not found'.",
+      "decision": "PROMOTE"
+    },
+    "assembly.systems[*].component_evidence": {
+      "count": 13,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": true,
+      "has_consumer": true,
+      "consumer": "Provenance per takeoff row.",
+      "decision": "PROMOTE"
+    },
+    "assembly.systems[*].warnings": {
+      "count": 9,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": true,
+      "has_consumer": true,
+      "consumer": "TAKEOFF / SCOPE warning chips.",
+      "decision": "PROMOTE"
+    },
+    "assembly.florida_signals": {
+      "count": 13,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": true,
+      "has_consumer": true,
+      "consumer": "FBC warning panel.",
+      "decision": "PROMOTE"
+    },
+    "provenance.fields": {
+      "count": 15,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": true,
+      "has_consumer": true,
+      "consumer": "Phase 3 ML training labels; v0.3 'parser said vs you said' UX.",
+      "decision": "PROMOTE"
+    },
+    "extraction_metrics.elapsed_seconds": {
+      "count": 15,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": true,
+      "has_consumer": false,
+      "consumer": null,
+      "decision": "DEFER (consumer)"
+    },
+    "extraction_metrics.pages_processed": {
+      "count": 15,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": true,
+      "has_consumer": false,
+      "consumer": null,
+      "decision": "DEFER (consumer)"
+    },
+    "extraction_metrics.scope_systems_identified": {
+      "count": 15,
+      "out_of": 15,
+      "threshold": 3,
+      "threshold_met": true,
+      "has_consumer": false,
+      "consumer": null,
+      "decision": "DEFER (consumer)"
+    }
+  }
+}

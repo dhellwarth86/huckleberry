@@ -1,0 +1,460 @@
+{
+  "id": "auto-zone-10891-jacksonville-mec-24-others",
+  "schema_version": "0.1",
+  "source_pdf_ref": {
+    "id": "auto-zone-10891-jacksonville-mec-24-others",
+    "filename": "Auto Zone #10891 - Jacksonville - MEC + 24 Others.pdf",
+    "local_path": "C:\\huck stage 2\\full bid sets\\Auto Zone #10891 - Jacksonville - MEC + 24 Others.pdf",
+    "sha256": "f7b182d1450c13e6c5e1e49407c97f1a2a46c6481ad3e9dd28c3ec3c2ea97d8c",
+    "size_bytes": 25734532,
+    "page_count": 28,
+    "producer_hint": "STACK Construction Technologies",
+    "notes": "",
+    "uploaded_at": "2026-04-26T00:39:52.317576+00:00"
+  },
+  "dispatch": {
+    "page_classifications": [
+      {
+        "page_index": 0,
+        "sheet_number": "T1.0",
+        "discipline": null,
+        "page_type": "floor_plan",
+        "confidence": 0.7,
+        "matched_keyword": "FLOOR PLAN",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 1,
+        "sheet_number": "T2.0",
+        "discipline": null,
+        "page_type": "unknown",
+        "confidence": 0.0,
+        "matched_keyword": null,
+        "matched_in": "default"
+      },
+      {
+        "page_index": 2,
+        "sheet_number": "T3.0",
+        "discipline": null,
+        "page_type": "unknown",
+        "confidence": 0.0,
+        "matched_keyword": null,
+        "matched_in": "default"
+      },
+      {
+        "page_index": 3,
+        "sheet_number": "T4.0",
+        "discipline": null,
+        "page_type": "general_notes",
+        "confidence": 0.7,
+        "matched_keyword": "GENERAL NOTE",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 4,
+        "sheet_number": "A4.1",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "floor_plan",
+        "confidence": 0.9,
+        "matched_keyword": "FLOOR PLAN",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 5,
+        "sheet_number": "A2.0",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "floor_plan",
+        "confidence": 0.9,
+        "matched_keyword": "FLOOR PLAN",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 6,
+        "sheet_number": "A2.1",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "elevation",
+        "confidence": 0.9,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 7,
+        "sheet_number": "A3.0",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "elevation",
+        "confidence": 0.9,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 8,
+        "sheet_number": "A4.0",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "elevation",
+        "confidence": 0.9,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 9,
+        "sheet_number": "A4.1",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "elevation",
+        "confidence": 0.9,
+        "matched_keyword": "ELEVATION",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 10,
+        "sheet_number": "A5.0",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "detail_sheet",
+        "confidence": 0.9,
+        "matched_keyword": "DETAIL",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 11,
+        "sheet_number": "A6.0",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "ceiling_plan",
+        "confidence": 0.9,
+        "matched_keyword": "CEILING PLAN",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 12,
+        "sheet_number": "AS1.0",
+        "discipline": "ARCHITECTURAL",
+        "page_type": "detail_sheet",
+        "confidence": 0.7,
+        "matched_keyword": "DETAIL",
+        "matched_in": "page_text"
+      },
+      {
+        "page_index": 13,
+        "sheet_number": "D1.0",
+        "discipline": null,
+        "page_type": "floor_plan",
+        "confidence": 0.9,
+        "matched_keyword": "FLOOR PLAN",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 14,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "unknown",
+        "confidence": 0.0,
+        "matched_keyword": null,
+        "matched_in": "default"
+      },
+      {
+        "page_index": 15,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "unknown",
+        "confidence": 0.0,
+        "matched_keyword": null,
+        "matched_in": "default"
+      },
+      {
+        "page_index": 16,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "symbol_legend",
+        "confidence": 0.7,
+        "matched_keyword": "LEGEND",
+        "matched_in": "title_block"
+      },
+      {
+        "page_index": 17,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "unknown",
+        "confidence": 0.0,
+        "matched_keyword": null,
+        "matched_in": "default"
+      },
+      {
+        "page_index": 18,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "unknown",
+        "confidence": 0.0,
+        "matched_keyword": null,
+        "matched_in": "default"
+      },
+      {
+        "page_index": 19,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "unknown",
+        "confidence": 0.0,
+        "matched_keyword": null,
+        "matched_in": "default"
+      },
+      {
+        "page_index": 20,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "unknown",
+        "confidence": 0.0,
+        "matched_keyword": null,
+        "matched_in": "default"
+      },
+      {
+        "page_index": 21,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "unknown",
+        "confidence": 0.0,
+        "matched_keyword": null,
+        "matched_in": "default"
+      },
+      {
+        "page_index": 22,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "unknown",
+        "confidence": 0.0,
+        "matched_keyword": null,
+        "matched_in": "default"
+      },
+      {
+        "page_index": 23,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "unknown",
+        "confidence": 0.0,
+        "matched_keyword": null,
+        "matched_in": "default"
+      },
+      {
+        "page_index": 24,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "unknown",
+        "confidence": 0.0,
+        "matched_keyword": null,
+        "matched_in": "default"
+      },
+      {
+        "page_index": 25,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "unknown",
+        "confidence": 0.0,
+        "matched_keyword": null,
+        "matched_in": "default"
+      },
+      {
+        "page_index": 26,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "unknown",
+        "confidence": 0.0,
+        "matched_keyword": null,
+        "matched_in": "default"
+      },
+      {
+        "page_index": 27,
+        "sheet_number": null,
+        "discipline": null,
+        "page_type": "unknown",
+        "confidence": 0.0,
+        "matched_keyword": null,
+        "matched_in": "default"
+      }
+    ],
+    "sheet_map": {
+      "0": "T1.0",
+      "1": "T2.0",
+      "2": "T3.0",
+      "3": "T4.0",
+      "4": "A4.1",
+      "5": "A2.0",
+      "6": "A2.1",
+      "7": "A3.0",
+      "8": "A4.0",
+      "9": "A4.1",
+      "10": "A5.0",
+      "11": "A6.0",
+      "12": "AS1.0",
+      "13": "D1.0"
+    },
+    "cross_references_by_page": {
+      "0": [
+        {
+          "ref_type": "detail",
+          "raw": "2 R3",
+          "identifier": "2",
+          "target_sheet": "R3",
+          "source_block_chars": 39,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "4": [
+        {
+          "ref_type": "detail",
+          "raw": "0 A4.1",
+          "identifier": "0",
+          "target_sheet": "A4.1",
+          "source_block_chars": 12,
+          "pattern": "detail_implicit"
+        }
+      ],
+      "13": [
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET A2.0.",
+          "target_sheet": "A2.0.",
+          "pattern": "see_ref"
+        },
+        {
+          "ref_type": "see_ref",
+          "raw": "SEE SHEET A6.0",
+          "target_sheet": "A6.0",
+          "pattern": "see_ref"
+        }
+      ]
+    },
+    "legends_by_page": {
+      "0": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "material_notes",
+          "entry_count_estimate": 20
+        }
+      ],
+      "3": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "general_notes",
+          "entry_count_estimate": 5
+        }
+      ],
+      "5": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "door_schedule",
+          "entry_count_estimate": 15
+        }
+      ],
+      "12": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "notes",
+          "entry_count_estimate": 4
+        }
+      ],
+      "13": [
+        {
+          "header_keyword": "NOTE",
+          "legend_type": "keynote",
+          "entry_count_estimate": 11
+        }
+      ]
+    },
+    "project_metadata": {
+      "project_name": "EMERGENCY EXISTING LIGHT W/BATTERY BACKUP, SEE",
+      "project_address": "11915 Beach Blvd",
+      "project_number": "NAME",
+      "owner": null,
+      "architect": null,
+      "total_building_sf": null,
+      "building_type": null,
+      "building_code": null,
+      "construction_type": null,
+      "occupancy_type": null,
+      "wind_speed_mph": null,
+      "system_classifications": null,
+      "scope_summary": null
+    },
+    "roof_page_indices": [],
+    "page_type_histogram": {
+      "floor_plan": 4,
+      "unknown": 15,
+      "general_notes": 1,
+      "elevation": 4,
+      "detail_sheet": 2,
+      "ceiling_plan": 1,
+      "symbol_legend": 1
+    },
+    "confidence_histogram": {
+      "explicit": 9,
+      "strong": 4,
+      "inferred": 0,
+      "weak": 0,
+      "unknown": 15
+    }
+  },
+  "scope": {
+    "systems": [],
+    "fallback_used": false,
+    "evidence": {
+      "spec_section_hits": [],
+      "manufacturer_hits": [],
+      "attachment_hits": [],
+      "thickness_markers": [],
+      "insulation_markers": [],
+      "florida_signals": [
+        {
+          "marker": "FBC",
+          "page_index": 10
+        }
+      ],
+      "system_type_keyword_hits": []
+    },
+    "pages_inspected": [
+      3,
+      10,
+      12,
+      16
+    ],
+    "pages_skipped_glazing": 0
+  },
+  "assembly": {
+    "systems": [],
+    "florida_signals": [
+      "FBC"
+    ]
+  },
+  "provenance": {
+    "fields": {
+      "dispatch.sheet_map": {
+        "extraction_method": "dispatch.extract_sheet_number on title-block text"
+      },
+      "dispatch.page_classifications": {
+        "extraction_method": "dispatch.classify_page using PAGE_CLASSIFICATION_KEYWORDS",
+        "rule_source": "seeds/dispatch_seed.py"
+      }
+    }
+  },
+  "extraction_metrics": {
+    "elapsed_seconds": 350.66,
+    "pages_processed": 28,
+    "page_type_histogram": {
+      "floor_plan": 4,
+      "unknown": 15,
+      "general_notes": 1,
+      "elevation": 4,
+      "detail_sheet": 2,
+      "ceiling_plan": 1,
+      "symbol_legend": 1
+    },
+    "confidence_histogram": {
+      "explicit": 9,
+      "strong": 4,
+      "inferred": 0,
+      "weak": 0,
+      "unknown": 15
+    },
+    "roof_pages_found": 0,
+    "scope_systems_identified": 0,
+    "scope_pages_inspected": 4,
+    "scope_fallback_used": false,
+    "scope_pages_skipped_glazing": 0,
+    "extracted_at": "2026-04-26T01:05:34.805341+00:00"
+  }
+}
