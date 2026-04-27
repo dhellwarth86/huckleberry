@@ -23,6 +23,12 @@ dependencies = [
     # via fitz, rapidfuzz for sheet-number / firm-name correlation in dispatch_gate.
     "PyMuPDF>=1.24.0",
     "rapidfuzz>=3.0.0",
+    # B.2 geometry engine port (TracePoint): cv2 contour detection,
+    # numpy matrix math, shapely polygon ops, Pillow image I/O.
+    "opencv-python>=4.9.0",
+    "numpy>=1.26.0",
+    "shapely>=2.0.0",
+    "Pillow>=10.0.0",
 ]
 
 [project.optional-dependencies]
