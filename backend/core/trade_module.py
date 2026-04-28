@@ -59,6 +59,16 @@ class TradeModuleInput:
     page_legends: list = field(default_factory=list)
     page_zones: list = field(default_factory=list)
 
+    # --- Tabular data (e.g., schedule pages) ---
+    # Added in C.3b for schedule-driven trade modules (glazing first, then
+    # plumbing / electrical / mechanical when those modules ship). Optional;
+    # default None preserves C.1/C.2 behaviour. RoofingModule (C.2) ignores
+    # this field. Type is intentionally loose — table representation is the
+    # producer's choice (pdfplumber rows, dispatch's `_parse_tables_on_page`
+    # output, or a future Table dataclass) and consumers cast as needed.
+    # See MARCH_ORDERS_C_3b.md §0 (deliberate adaptation of C.1-ported file).
+    tables: Optional[list[Any]] = None
+
     # --- Project-level scope (accumulated from scope/cover pages) ---
     project_scope: Optional[Any] = None
 
