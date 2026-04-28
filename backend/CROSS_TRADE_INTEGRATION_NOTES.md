@@ -1,0 +1,56 @@
+# Cross-Trade Integration Notes
+
+**Purpose.** The trade-module contract at `backend/core/trade_module.py` is single-trade by design — one module, one page, one `TradeModuleInput`, one `TradeModuleOutput`. Real commercial-construction takeoffs cross trade boundaries. This document names the obvious crossings and where each gets decided architecturally. It is NOT the cross-trade architecture document — that's Phase C.4. It is the starter map.
+
+**Status.** Authored 2026-04-27 in C.1, alongside the verbatim port of `trade_module.py`. Four interactions named; others (plumbing risers, electrical conduit, fire sprinkler, lightning, solar PV) are intentionally deferred per `MARCH_ORDERS_C_1.md` §4.4.
+
+**Why these four.** They appeared in real bid sets in the diagnostic corpus (e.g., the Shoppes-at-Avalon page-by-page read in `CLAUDE.md` §2 surfaced RTU penetrations, parapet-with-coping at storefront extents, standing-seam awnings adjacent to main TPO roof, and a B22 metal deck mentioned only on rasterized structural sheets). They are the boundaries the C.2 roofing module will hit first. The others are real but lower-priority for the C.2/C.3/C.4 path.
+
+---
+
+## 1. RTU / roofing ↔ mechanical
+
+**What the interaction is.** A rooftop unit (RTU) — packaged HVAC, exhaust fan, makeup-air unit — is simultaneously a mechanical scope item and a roofing penetration. The mechanical estimator counts the unit, sizes the supply/return ducts, and specifies the equipment schedule. The roofing estimator does not own the unit, but every RTU on the roof drives a curb (factory or field-built), curb flashing, perimeter membrane reinforcement, often a walkpad path for service access, and sometimes a condensate scupper or drain-pan tie-in. The Shoppes-at-Avalon read surfaced "multiple RTU penetrations" as a real driver of roofing labor and material; it is the most common cross-trade case in commercial roofing.
+
+**What info has to flow.** From mechanical to roofing: per-RTU position (bbox or center point in PDF coordinates), curb size (or a flag that a field-built curb is required), unit weight class (drives whether structural reinforcement is in scope), and whether the unit is new or replacement-in-kind. From roofing to mechanical: parapet height around the perimeter (drives crane-rigging vs. lift placement), roof pitch and drainage path (drives where condensate can discharge), and any walkpad routing constraints the estimator has already committed to. None of this flow exists today — `TradeModuleInput` is per-page and per-trade, with no cross-module channel.
+
+**Which phase decides.** **Phase C.4 — cross-trade relationships layer.** The mechanical trade module is not on the immediate C.2/C.3 roadmap (C.2 = roofing, C.3 = glazing per CLAUDE.md §5), so the boundary surfaces only when mechanical ships. Until then, roofing's RTU detection (text-label callouts via `equipment_callouts` in `TradeModuleInput`) is the single source of truth for the count, with no ground-truth check from mechanical's side. The C.4 design will need a shared per-bidset entity (likely living at the `PlanSetContext` extension that Phase D introduces) that both modules write positions into and read counts from, with the existing pin=count rule from CLAUDE.md §5 v1.0 Hard Rules generalized across trades.
+
+---
+
+## 2. Storefront / glazing ↔ roofing
+
+**What the interaction is.** Where a storefront (or curtain wall) meets the roof system, the building envelope changes hands. Glazing owns the storefront frame, the glass, and the head/sill/jamb sealants. Roofing owns the parapet (if any), the counterflashing that laps over the storefront's head receiver, and any membrane termination at the wall-roof junction. Two common patterns drive this: (a) storefront extends to the underside of a parapet cap, and roofing's counterflashing terminates against the storefront head; (b) storefront extends to a soffit or canopy, and the canopy itself is a separate roof system (standing-seam awning at Shoppes-at-Avalon was an example of this — distinct from the main TPO roof). Either way, both modules carry a "transition detail" and only one of them owns the linear footage of flashing.
+
+**What info has to flow.** From glazing to roofing: storefront extents (head elevation in plan + start/end point in PDF coordinates), receiver type (continuous vs. clip-on, drives the counterflashing profile), and whether a separator gasket is specified. From roofing to glazing: parapet height at the storefront line (drives whether the storefront tucks under a cap or terminates at a head receiver), counterflashing material and color (drives any aesthetic coordination), and the linear-footage assignment (which module's takeoff carries it — typically roofing for membrane-side flashing, glazing for the head receiver itself). The convention "linear footage assigned to one module by detail reference" is the cleanest way to avoid double-counting; it is not yet enforced anywhere in code.
+
+**Which phase decides.** **Phase C.4 — cross-trade relationships layer.** C.3 ships the glazing module (per CLAUDE.md §5), at which point this boundary becomes live. The decision the C.4 design must make: do we model the linear footage as a shared resource owned by a single module (with the other module reading it for context), or as two separate line items in two separate modules with a deduplication rule at takeoff-export time? The latter is simpler but creates double-counting risk; the former requires a cross-module write channel that doesn't exist yet.
+
+---
+
+## 3. Siding ↔ roofing transition
+
+**What the interaction is.** Where a wall siding system terminates at the roofline — at an eave, at a rake, or at a step (where a lower roof butts a higher wall) — the two systems mechanically tie together with flashing. The siding system owns the wall cladding and any J-channel, starter strip, or termination trim at the bottom edge of the siding course. Roofing owns the drip edge at eaves, the step flashing or kick-out flashing at wall-to-roof intersections, and any underlayment that laps up the wall a specified distance. The detail that ties them — typically a metal flashing piece bent to lap both systems — appears in both trade's spec sections, and its labor is usually roofing's (the roofer installs the flashing during membrane work; the siding installer covers the upper leg with cladding).
+
+**What info has to flow.** From siding to roofing: termination elevation along each wall (drives where the upturned membrane leg ends), termination type (J-channel vs. starter strip vs. trim), and whether siding is installed before or after roofing (sequence matters for kick-out flashing geometry). From roofing to siding: drip-edge profile and color (visible at the eave below siding), step-flashing exposure height (drives how far up the wall siding must hold off), and any membrane termination bar visible at the wall-base condition. The siding trade module is parked at this stage — `glazing_assemblies.py` and `glazing_materials.py` exist with no consumer per CLAUDE.md §2, and there is no analogous siding seed file yet — so the boundary is theoretical until a siding module is on the roadmap.
+
+**Which phase decides.** **Phase C.4 — cross-trade relationships layer**, with the same caveat as RTU: surfaces only when both modules ship. C.3 (glazing) is the near-neighbor trade module and may park siding indefinitely. If siding arrives before C.4, the roofing module should still produce its flashing line items unconditionally (the linear footage is roofing's whether siding ships or not), and the siding module — when built — will need to read roofing's wall-line transitions to decide its own termination heights.
+
+---
+
+## 4. Structural deck ↔ roofing
+
+**What the interaction is.** The deck below the roof system — B22 metal deck, concrete, plywood, gypsum, lightweight insulating concrete — is structural's scope to specify and the steel/concrete/framing trades' to install. But the roofing system specification depends on the deck. Fastener selection (mechanically attached membrane), substrate compatibility (some membranes require a slip sheet on certain decks), insulation attachment method (adhered vs. mechanically fastened), and warranty eligibility (manufacturer warranties commonly require deck-type approval) all read the deck spec. The roofing estimator does not specify the deck, but every roofing takeoff line that mentions fasteners, substrate, or insulation attachment is downstream of a deck-type decision someone else made.
+
+**What info has to flow.** From structural to roofing: deck type (metal / concrete / wood / etc.), gauge or thickness, span direction, and any deck-mounted equipment or curbs already in scope. From roofing to structural: nothing meaningful — roofing is a downstream consumer here, not a peer collaborator. The deck spec usually appears in structural drawings (roof framing plan, structural notes) and sometimes in a roofing spec section that quotes structural by reference. The Shoppes-at-Avalon read flagged "B22 metal deck (only on rasterized structural sheets)" as an example where the information was present but not extractable by current parsing — a backend-pipeline limitation, not a contract limitation.
+
+**Which phase decides.** **Deferred — surfaces only when a structural trade module is on the roadmap.** Structural is not on the C.2/C.3/C.4 path. In the interim, roofing handles the deck dependency by reading deck mentions out of the project_scope or interior_text_blocks fields of `TradeModuleInput` (already defined in the contract) and treating it as a soft signal. If the deck type is not extractable (e.g., rasterized structural sheets), the roofing module should mark the affected line items as `manual_needed` and let the estimator confirm. The eventual structural module — if Huckleberry ever builds one — would feed deck spec into a shared per-bidset entity at the C.4 layer the same way the RTU and storefront cases do.
+
+---
+
+## What this document is NOT
+
+- **Not the C.4 cross-trade relationships architecture document.** That document will define the shared per-bidset entity, the write channel between modules, the deduplication rule for linear-footage items, and the conflict-resolution policy when two modules disagree on a position or count. C.4 is design work; this is a starter map.
+- **Not exhaustive.** Per `MARCH_ORDERS_C_1.md` §4.4, the following cross-trade interactions are intentionally excluded from this document: plumbing roof drains' connection to interior plumbing risers, electrical conduit penetrations through the roof, fire sprinkler heads through the roof, lightning protection / grounding, solar PV on roof. They are real interactions but lower-priority than the four named above for the C.2/C.3 path.
+- **Not a contract.** The trade-module contract is `backend/core/trade_module.py` and stays single-trade. Any cross-module data flow added by C.4 will live at a layer above the contract — likely a shared entity at the `PlanSetContext` extension Phase D introduces — not as new fields on `TradeModuleInput` or `TradeModuleOutput`.
+- **Not a roadmap.** The phase decisions noted above (Phase C.4 for three of four; deferred for structural deck) are the canonical reference; this document records them in one place for convenience.
