@@ -211,7 +211,10 @@ These were ratified 2026-04-25 as the architectural foundation of Phase 2 and re
     - `backend/core/roofing_vocabulary.py` (C.2 commit `74772b6`)
     - `backend/core/glazing_vocabulary.py` (C.3b commit `14f4f53`)
 
-    **Vault-ruled when sealed:** GlazingModule (C.3c future) and every future trade module.
+    **Vault-ruled at sealing (2026-04-28):**
+    - `backend/core/glazing_module.py` (C.3c-build sealing commit on branch `phase2-v0.3-C3c-glazing-module`) — first Huckleberry-original trade module; rough-ship per Daniel's 2026-04-28 spec (verbatim in `MARCH_ORDERS_C_3c_build.md` §1). Module docstring lists known limitations explicitly. Behavior validation deferred to the C.3c-run sweep (separate phase).
+
+    **Vault-ruled when sealed:** every future trade module.
 
     **Tuning sessions** are dedicated, separate from `core/` work, with the relevant module as the only editing target and `core/` files frozen. Tuning of a vault-ruled module in the same session that touches the core pipeline is the named anti-pattern this rule prevents.
 
