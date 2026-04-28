@@ -90,6 +90,20 @@ class TradeModuleOutput:
     warnings: list[str] = field(default_factory=list)
     equipment_pins: list[dict] = field(default_factory=list)
 
+    # --- Per-item structured records for schedule-driven trade modules ---
+    # Added in C.3c-build for GlazingModule (glazing first, then any future
+    # trade module whose output is row-shaped: door schedules, fixture
+    # schedules, equipment schedules, etc.). Optional; default None preserves
+    # C.1/C.2 behaviour. RoofingModule (C.2) ignores these fields. Each list
+    # holds dicts whose keys are the per-item field names defined in the
+    # producing module's spec (e.g., MARCH_ORDERS_C_3c_build.md §1 for
+    # glazing). Type is intentionally loose — concrete record shape is the
+    # producer's choice; consumers cast as needed. See CLAUDE.md §3 Decision
+    # 15 'Contract evolution' clause for the additive-only rule.
+    glazing_items: Optional[list[dict]] = None
+    door_items: Optional[list[dict]] = None
+    storefront_items: Optional[list[dict]] = None
+
 
 class TradeModule(Protocol):
     """Protocol every trade module implements."""
