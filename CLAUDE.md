@@ -200,7 +200,22 @@ These were ratified 2026-04-25 as the architectural foundation of Phase 2 and re
 12. **Step 12 (manufacturer dropdown) abandoned.** Manufacturer detection is rule-based via the seeds, not user-selected.
 13. **No frontend rebuild during Phase 2.** The v6.3.5 frontend stays. A new API-driven frontend gets built during the realignment Phase E, but that's separate from this list.
 14. **Experiment success = Pydantic schema + findings report.** v0.1 experiment shipped exactly this.
-15. **The vault rule.** From TracePoint paper §7.5: the debug module must not be modified in the same session that modifies core pipeline files. Adopted as Huckleberry-wide for any diagnostic instrumentation.
+15. **The vault rule.** From TracePoint paper §7.5: the debug module must not be modified in the same session that modifies core pipeline files. Adopted as Huckleberry-wide for any diagnostic instrumentation, including trade modules.
+
+    **Trade-module application (2026-04-28).** Trade modules ship "rough" — best-effort first pass against the contract, with vocabulary and logic that's reasonable but not fine-tuned against real bidsets. They get vault-ruled at the end of their rough-ship phase. After vault-rule application, the module is frozen as a stable observer/extractor in the same status as TracePoint's debug module relative to its core pipeline. Future fine-tuning happens in separate sessions where the module is the editing target and the rest of the pipeline is frozen, OR in completely new module versions, not by silently editing the frozen one.
+
+    **Reason.** Rough modules are diagnostic surfaces. We learn what they get right and what they get wrong by running them against real bidsets and observing outputs. If they are tuned in the same session that we learn their behavior, prior diagnostic findings become stale and the module loses its value as a stable observer of what the pipeline produces.
+
+    **Vault-ruled retroactively (2026-04-28):**
+    - `backend/core/roofing_module.py` (C.2 commit `74772b6`)
+    - `backend/core/roofing_vocabulary.py` (C.2 commit `74772b6`)
+    - `backend/core/glazing_vocabulary.py` (C.3b commit `14f4f53`)
+
+    **Vault-ruled when sealed:** GlazingModule (C.3c future) and every future trade module.
+
+    **Tuning sessions** are dedicated, separate from `core/` work, with the relevant module as the only editing target and `core/` files frozen. Tuning of a vault-ruled module in the same session that touches the core pipeline is the named anti-pattern this rule prevents.
+
+    **Contract evolution.** The trade module Protocol and the `TradeFieldValue` / `TradeModuleInput` / `TradeModuleOutput` dataclasses CAN be extended additively (as `TradeModuleInput.tables` was extended in C.3b commit `7ea9abb`) when multi-trade reality requires it. The vault rule applies to module behavior, not to contract evolution.
 16. **Karpathy procedure is mandatory.** Read first → failing tests first → minimum implementation → 100% green floor → commit. The B-16/17/18 anti-pattern is the named failure mode this discipline prevents.
 17. **Sacred files held every gate.** Phase 1 HTML, Phase 2 v0.1 backend, ported TracePoint files, seed files. Modifying sacred files requires explicit user approval at a phase gate, not in-session.
 18. **Diagnostic-first development.** TracePoint paper §3.1, §8.1: every major feature follows the same pattern — write a diagnostic script first, run it across the corpus, report findings, only then write production code. Adopted Huckleberry-wide.
