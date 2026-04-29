@@ -1,0 +1,5670 @@
+======================================================================
+PAGE-TYPE VERIFICATION + COUPLING DIAGNOSTIC
+Date: 2026-04-29T16:24:44.333671+00:00
+Branch: phase2-v0.3-page-type-verification
+Bidsets: ['shoppes-at-avalon', 'vine-street', 'bearss-ave']
+Diagnostic mode: True
+Block 5 page cap: 20
+Block 5 hard cap: 360s per bidset
+======================================================================
+
+=== BLOCK 3 (one-shot): filter4_cache_audit ===
+##DIAG_START:filter4_cache_audit##
+{
+  "plan_set_context_fields": [
+    "pdf_path",
+    "pdf_hash",
+    "total_pages",
+    "sheet_map",
+    "page_to_sheet",
+    "sheet_map_source",
+    "pages",
+    "all_cross_refs",
+    "resolved_count",
+    "unresolved_count",
+    "all_legends",
+    "legends_by_type",
+    "project",
+    "trade_contexts",
+    "bid",
+    "architect_profile",
+    "project_scope",
+    "filters_completed",
+    "dispatch_complete",
+    "dispatch_timestamp",
+    "dispatch_warnings"
+  ],
+  "page_context_fields": [
+    "page_index",
+    "sheet_number",
+    "title",
+    "discipline",
+    "page_type",
+    "scale",
+    "confidence",
+    "zones",
+    "primary_zone",
+    "legends",
+    "cross_refs_out",
+    "cross_refs_in",
+    "callout_texts",
+    "spec_note_texts",
+    "has_drawing_area",
+    "has_title_block",
+    "has_details",
+    "has_schedule",
+    "has_legend",
+    "detail_count",
+    "source_tag"
+  ],
+  "table_field_search": {
+    "fields_with_table_in_name_planset": [],
+    "fields_with_table_in_name_pagectx": [],
+    "any_raw_tables_cached": false,
+    "evidence_lines": [
+      "dispatch_gate.py line 744: tables = page.extract_tables() \u2014 local-scope",
+      "dispatch_gate.py line 768-776: legends.append(Legend(...)) \u2014 wraps each table into a Legend object",
+      "dispatch_gate.py line 777: return legends \u2014 returns Legend objects, not raw tables",
+      "dispatch_gate.py line 840-841: legends.extend(table_legends) \u2014 only Legend objects propagated",
+      "dispatch_gate.py line 855: ctx.all_legends = clean_legends \u2014 only filtered Legend objects stored",
+      "context.py PlanSetContext + PageContext \u2014 no 'tables' or 'raw_tables' field; field lists enumerated above"
+    ]
+  },
+  "implication_for_bug3_fix": "raw tables not cached anywhere on PlanSetContext or PageContext; the eventual fix needs either (a) cache add to PlanSetContext or PageContext (touches dispatch's data contract), (b) per-page re-extraction in trade_input_builder (the harness pattern the sweep + profile already use; pays extract_tables cost twice if Filter 4 also runs on the same page), or (c) extension of _parse_tables_on_page in dispatch_gate.py to optionally cache raw tables alongside the Legend objects (one-touch, dispatch-side)."
+}
+##DIAG_END:filter4_cache_audit##
+Wrote C:\huck stage 2\huckleberry\backend\PAGE_TYPE_VERIFICATION_filter4_cache_audit.md (5345 bytes)
+
+=== BIDSET: shoppes-at-avalon (Shoppes at Avalon — Spring Hill — MEC) ===
+PDF: C:\huck stage 2\full bid sets\Shoppes at Avalon - Spring Hill - MEC.pdf
+[shoppes-at-avalon] run_dispatch...
+[shoppes-at-avalon] dispatch complete in 59.27s (total_pages=97)
+[shoppes-at-avalon] Block 1: page_type_histogram
+##DIAG_START:page_type_histogram:shoppes-at-avalon##
+{
+  "total_pages": 97,
+  "total_mapped_pages": 19,
+  "total_pages_has_legend": 1,
+  "total_pages_has_schedule": 1,
+  "histogram": {
+    "unknown": 34,
+    "detail_sheet": 31,
+    "elevation": 14,
+    "roof_plan": 4,
+    "ceiling_plan": 4,
+    "floor_plan": 4,
+    "section": 4,
+    "general_notes": 1,
+    "framing_plan": 1
+  },
+  "per_page": [
+    {
+      "page_idx": 0,
+      "sheet_num": "LS-101",
+      "sheet_title": "LIFE SAFETY PLAN",
+      "page_type": "roof_plan",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 1,
+      "sheet_num": "A-601",
+      "sheet_title": "DOOR TYPES, SCHEDULES, AND DETAILS",
+      "page_type": "elevation",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 2,
+      "sheet_num": "G-003",
+      "sheet_title": "WALL TYPES",
+      "page_type": "elevation",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 3,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "ceiling_plan",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 4,
+      "sheet_num": "A-402",
+      "sheet_title": "DUMPSTER ENCLOSURE PLANS AND DETAILS",
+      "page_type": "general_notes",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 5,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "roof_plan",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 6,
+      "sheet_num": "A-102",
+      "sheet_title": "DIMENSIONED BUILDING PLAN",
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 7,
+      "sheet_num": "A-111",
+      "sheet_title": "REFLECTED CEILING PLAN",
+      "page_type": "ceiling_plan",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 8,
+      "sheet_num": "A-101",
+      "sheet_title": "OVERALL BUILDING PLAN",
+      "page_type": "elevation",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 9,
+      "sheet_num": "A-306",
+      "sheet_title": "BUILDING SECTIONS AND ROOF ACCESS LADDER DETAILS",
+      "page_type": "elevation",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 10,
+      "sheet_num": "A-301",
+      "sheet_title": "WALL SECTIONS",
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 11,
+      "sheet_num": "A-302",
+      "sheet_title": "WALL SECTIONS",
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 12,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 13,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 14,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 15,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 16,
+      "sheet_num": "A-401",
+      "sheet_title": "PLAN DETAILS",
+      "page_type": "detail_sheet",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 17,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 18,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "elevation",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 19,
+      "sheet_num": "A-602",
+      "sheet_title": "WINDOW TYPES",
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 20,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 21,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 22,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 23,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 24,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 25,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 26,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 27,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 28,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 29,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 30,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 31,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "roof_plan",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 32,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "elevation",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 33,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "elevation",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 34,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 35,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 36,
+      "sheet_num": "A-100",
+      "sheet_title": "ARCHITECTURAL SITE PLAN",
+      "page_type": "elevation",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 37,
+      "sheet_num": "A-201",
+      "sheet_title": "EXTERIOR ELEVATIONS",
+      "page_type": "floor_plan",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 38,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "floor_plan",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 39,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "ceiling_plan",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 40,
+      "sheet_num": "A-121",
+      "sheet_title": "ROOF PLAN",
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 41,
+      "sheet_num": "A-303",
+      "sheet_title": "WALL SECTIONS",
+      "page_type": "elevation",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 42,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "elevation",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 43,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 44,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 45,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "section",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 46,
+      "sheet_num": "A-304",
+      "sheet_title": "WALL SECTIONS",
+      "page_type": "section",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 47,
+      "sheet_num": "A-305",
+      "sheet_title": "WALL SECTIONS",
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 48,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 49,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 50,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 51,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 52,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 53,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 54,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 55,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 56,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 57,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 58,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 59,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 60,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 61,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 62,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 63,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 64,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "roof_plan",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 65,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "elevation",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 66,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "elevation",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 67,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 68,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 69,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "elevation",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 70,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "floor_plan",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 71,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "floor_plan",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 72,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "ceiling_plan",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 73,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 74,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "elevation",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 75,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 76,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 77,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 78,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "section",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 79,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "section",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 80,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 81,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 82,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 83,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 84,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 85,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 86,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 87,
+      "sheet_num": "S-401",
+      "sheet_title": "FRAMING DETAILS",
+      "page_type": "framing_plan",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 88,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 89,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 90,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 91,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 92,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 93,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 94,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 95,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 96,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    }
+  ]
+}
+##DIAG_END:page_type_histogram:shoppes-at-avalon##
+[shoppes-at-avalon] Block 2: schedule_bearing_audit
+##DIAG_START:schedule_bearing_audit:shoppes-at-avalon##
+{
+  "total_schedule_bearing": 1,
+  "classified_as_schedule_sheet": 0,
+  "classified_as_other_count": 1,
+  "other_classification_breakdown": {
+    "elevation": 1
+  },
+  "schedule_bearing_pages": [
+    {
+      "page_idx": 1,
+      "sheet_num": "A-601",
+      "sheet_title": "DOOR TYPES, SCHEDULES, AND DETAILS",
+      "current_type": "elevation"
+    }
+  ],
+  "other_classified_pages": [
+    {
+      "page_idx": 1,
+      "sheet_num": "A-601",
+      "sheet_title": "DOOR TYPES, SCHEDULES, AND DETAILS",
+      "current_type": "elevation"
+    }
+  ]
+}
+##DIAG_END:schedule_bearing_audit:shoppes-at-avalon##
+[shoppes-at-avalon] Block 4: reclassification_simulation
+##DIAG_START:reclassification_simulation:shoppes-at-avalon##
+{
+  "total_pages": 97,
+  "total_changed": 13,
+  "transition_histogram": {
+    "elevation -> schedule_sheet": 9,
+    "roof_plan -> schedule_sheet": 2,
+    "ceiling_plan -> schedule_sheet": 1,
+    "framing_plan -> schedule_sheet": 1
+  },
+  "schedule_bearing_pages_not_currently_sched": 1,
+  "schedule_bearing_pages_flipped_to_sched": 1,
+  "schedule_bearing_flip_coverage": 1.0,
+  "new_misclassifications_count": 12,
+  "new_misclassifications_sample": [
+    {
+      "page_idx": 0,
+      "sheet_num": "LS-101",
+      "sheet_title": "LIFE SAFETY PLAN",
+      "current_type": "roof_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 3,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "ceiling_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 5,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "roof_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 18,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 32,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 33,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 41,
+      "sheet_num": "A-303",
+      "sheet_title": "WALL SECTIONS",
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 42,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 65,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 66,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 74,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 87,
+      "sheet_num": "S-401",
+      "sheet_title": "FRAMING DETAILS",
+      "current_type": "framing_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.9,
+      "changed": true,
+      "legend_count": 1
+    }
+  ],
+  "changed_pages": [
+    {
+      "page_idx": 0,
+      "sheet_num": "LS-101",
+      "sheet_title": "LIFE SAFETY PLAN",
+      "current_type": "roof_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 1,
+      "sheet_num": "A-601",
+      "sheet_title": "DOOR TYPES, SCHEDULES, AND DETAILS",
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 3,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "ceiling_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 5,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "roof_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 18,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 32,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 33,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 41,
+      "sheet_num": "A-303",
+      "sheet_title": "WALL SECTIONS",
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 42,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 65,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 66,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 74,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 87,
+      "sheet_num": "S-401",
+      "sheet_title": "FRAMING DETAILS",
+      "current_type": "framing_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.9,
+      "changed": true,
+      "legend_count": 1
+    }
+  ],
+  "schedule_bearing_flip_pages": [
+    {
+      "page_idx": 1,
+      "sheet_num": "A-601",
+      "sheet_title": "DOOR TYPES, SCHEDULES, AND DETAILS",
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    }
+  ]
+}
+##DIAG_END:reclassification_simulation:shoppes-at-avalon##
+[shoppes-at-avalon] Block 5: table_extraction_validation (cap=20, hard_cap=360.0s)
+##DIAG_START:table_extraction_validation:shoppes-at-avalon##
+{
+  "total_changed_to_sched": 13,
+  "page_cap_applied": false,
+  "page_cap": 20,
+  "pages_validated": 13,
+  "total_tables_extracted": 558,
+  "total_rows_extracted": 2236,
+  "wallclock_seconds": 61.5466,
+  "pages_with_tables": 13,
+  "extraction_errors": [],
+  "per_page": [
+    {
+      "page_idx": 87,
+      "sheet_num": "S-401",
+      "sheet_title": "FRAMING DETAILS",
+      "current_type": "framing_plan",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 10,
+      "total_rows": 48,
+      "headers_first5": [
+        "5\" lc:f'-c::fll\n(1",
+        "I\nl\nt I\nI\nI ' '\n22KC-54 '\n6AR JOI :>T5 I\nI\nI I\nI\nI\nI\nI\nI\nL_\n-- '\nI-- ---\nf- --- ",
+        ".\" \\\nC)\nI\nC)\n,I)\n/\n..v",
+        "\u2022",
+        "PRINT RECORD"
+      ],
+      "wallclock_seconds": 0.6999,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 0,
+      "sheet_num": "LS-101",
+      "sheet_title": "LIFE SAFETY PLAN",
+      "current_type": "roof_plan",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 33,
+      "total_rows": 124,
+      "headers_first5": [
+        "DRAWING INDEX\nGENERAL\nSHEET TITLE\nG-001 COVER SHEET\nG-002 GENERAL NOTES AND ABBR",
+        "GENERAL",
+        "G-001 COVER SHEET",
+        "Tel: 770 -910- 9740",
+        "ARCHITECTURAL"
+      ],
+      "wallclock_seconds": 7.565,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 1,
+      "sheet_num": "A-601",
+      "sheet_title": "DOOR TYPES, SCHEDULES, AND DETAILS",
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 98,
+      "total_rows": 385,
+      "headers_first5": [
+        "FIRE MARSHAL CONDITIONS OF APPROVA L-APPLICABLE CODES: NFPA 101 LIF",
+        "SPRINKLER SYSTEM NOTES:",
+        "FIREWALL OUTLET",
+        "DOORS AND ACCESSIBILITY",
+        "BASE BUILDING INSULATION MUST BE LOCATED AT THE ROOF, NOT THE CEILING,"
+      ],
+      "wallclock_seconds": 4.9916,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 3,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "ceiling_plan",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 6,
+      "total_rows": 27,
+      "headers_first5": [
+        "Tel: 770 - 910- 9740",
+        "LEGEND AND GENERAL NOTES:",
+        "THIS DRAWING IS THE PROPERTY OF MAXDESIGN GROUP,",
+        "OFFICE BUILDING\nFE\nTOTAL LEASABLE SQUARE\nFOOTAGE = 4,351 SF\n30 PEOPLE\nS\n9'\n7\n36\"",
+        ""
+      ],
+      "wallclock_seconds": 1.1415,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 5,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "roof_plan",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 14,
+      "total_rows": 47,
+      "headers_first5": [
+        "KEY NOTE LEGEND",
+        "1 CONCRETE SIDEWALK, BROOM FINISH W/ JOINTS AT 6'-0\" MAX - REFER TO CIVIL DWGS F",
+        "1",
+        "Tel: 770 - 910- 9740",
+        "6"
+      ],
+      "wallclock_seconds": 1.8377,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 18,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 21,
+      "total_rows": 89,
+      "headers_first5": [
+        "DOOR SCHEDULE",
+        "DOOR HARDWARE",
+        "100 LOBBY ENTRY DOOR ALUM/GLASS STOREFRONT DOOR TYPE-B REFER TO ELEVATION 3' - 0",
+        "Tel: 770 - 910- 9740",
+        "1."
+      ],
+      "wallclock_seconds": 1.1752,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 32,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 106,
+      "total_rows": 414,
+      "headers_first5": [
+        "FIRE MARSHAL CONDITIONS OF APPROVA L-APPLICABLE CODES: NFPA 101 LIF",
+        "SPRINKLER SYSTEM NOTES:",
+        "FIREWALL OUTLET",
+        "DOORS AND ACCESSIBILITY",
+        "BASE BUILDING INSULATION MUST BE LOCATED AT THE ROOF, NOT THE CEILING,"
+      ],
+      "wallclock_seconds": 5.6411,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 33,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 64,
+      "total_rows": 222,
+      "headers_first5": [
+        "WALL SCHEDULE",
+        "Tel: 770 - 910 - 9740",
+        "NOT TO BE USED ON ANOTHER PROJECT AND SHALL BE",
+        "DIETRICH FTC -",
+        "BELOW - 8\" (NOM.) CONCRETE BLOCK W/ REINFORCING AND FOAM INSULATION FILLED CELLS"
+      ],
+      "wallclock_seconds": 2.951,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 41,
+      "sheet_num": "A-303",
+      "sheet_title": "WALL SECTIONS",
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 22,
+      "total_rows": 104,
+      "headers_first5": [
+        "",
+        "",
+        "5\nM-3\nEF-4\n19 19\nP-1 P-1\nEF-1\nST-1 M-3\n18 18\n20\n4\nEF-4\n4\nEF-4\n14\n19 19\n13\nP-1 P-",
+        "19' -",
+        "NOT TO BE USED ON ANOTHER PROJECT AND SHALL BE"
+      ],
+      "wallclock_seconds": 7.6558,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 42,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 24,
+      "total_rows": 118,
+      "headers_first5": [
+        "T.O. HIGH PARAPET",
+        "",
+        "",
+        "Tel: 770 - 910 - 9740",
+        "T.O. MID PARAPET"
+      ],
+      "wallclock_seconds": 8.071,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 65,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 98,
+      "total_rows": 387,
+      "headers_first5": [
+        "FIRE MARSHAL CONDITIONS OF APPROVA L-APPLICABLE CODES: NFPA 101 LIF",
+        "SPRINKLER SYSTEM NOTES:",
+        "FIREWALL OUTLET",
+        "DOORS AND ACCESSIBILITY",
+        "BASE BUILDING INSULATION MUST BE LOCATED AT THE ROOF, NOT THE CEILING,"
+      ],
+      "wallclock_seconds": 5.6972,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 66,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 45,
+      "total_rows": 173,
+      "headers_first5": [
+        "WALL SCHEDULE",
+        "MIN.",
+        "Tel: 770 - 910 - 9740",
+        "THIS DRAWING IS THE PROPERTY OF MAXDESIGN GROUP,",
+        "DIETRICH FTC - 500 WITH"
+      ],
+      "wallclock_seconds": 2.5787,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 74,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 17,
+      "total_rows": 98,
+      "headers_first5": [
+        "",
+        "T.O. HIGH PARAPET",
+        "",
+        "Tel: 770 - 910 - 9740",
+        ""
+      ],
+      "wallclock_seconds": 11.5409,
+      "legend_count": 0
+    }
+  ],
+  "aborted_due_to_hard_cap": false,
+  "hard_cap_seconds": 360.0
+}
+##DIAG_END:table_extraction_validation:shoppes-at-avalon##
+[shoppes-at-avalon] wrote C:\huck stage 2\huckleberry\backend\PAGE_TYPE_VERIFICATION_shoppes-at-avalon.md (43163 bytes)
+
+=== BIDSET: vine-street (Vine Street Retail Center — Kissimmee — Great Southern Constructors) ===
+PDF: C:\huck stage 2\full bid sets\Vine Street Retail Center - Kissimmee - Great Southern Constructors.pdf
+[vine-street] run_dispatch...
+[vine-street] dispatch complete in 82.40s (total_pages=138)
+[vine-street] Block 1: page_type_histogram
+##DIAG_START:page_type_histogram:vine-street##
+{
+  "total_pages": 138,
+  "total_mapped_pages": 35,
+  "total_pages_has_legend": 34,
+  "total_pages_has_schedule": 25,
+  "histogram": {
+    "detail_sheet": 33,
+    "unknown": 32,
+    "section": 13,
+    "schedule_sheet": 11,
+    "roof_plan": 9,
+    "floor_plan": 9,
+    "elevation": 9,
+    "site_plan": 6,
+    "ceiling_plan": 6,
+    "framing_plan": 6,
+    "general_notes": 2,
+    "mep_plan": 2
+  },
+  "per_page": [
+    {
+      "page_idx": 0,
+      "sheet_num": "G-0.0",
+      "sheet_title": "COVER SHEET",
+      "page_type": "section",
+      "confidence": 0.5,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 1,
+      "sheet_num": "G-0.1",
+      "sheet_title": "SITE PLOT PLAN",
+      "page_type": "site_plan",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 2,
+      "sheet_num": "G-2.0",
+      "sheet_title": "CODE ANALYSIS",
+      "page_type": "roof_plan",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 3,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "section",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 4,
+      "sheet_num": "A-2.4",
+      "sheet_title": "EXTERIOR DETAILS AND SECTIONS",
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 5,
+      "sheet_num": "G-4.0",
+      "sheet_title": "WALL TYPES",
+      "page_type": "detail_sheet",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 6,
+      "sheet_num": "G-5.0",
+      "sheet_title": "UL RATINGS - 1 HOUR FIRE WALL",
+      "page_type": "general_notes",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 7,
+      "sheet_num": "A-0.1",
+      "sheet_title": "BUILDING B SLAB PLAN",
+      "page_type": "floor_plan",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 8,
+      "sheet_num": "A-1.0",
+      "sheet_title": "BUILDING B - NOTED FRAMING PLAN",
+      "page_type": "floor_plan",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 9,
+      "sheet_num": "A-1.1",
+      "sheet_title": "BUILDING B - LIFESAFETY PLAN/ OCCUPANCY",
+      "page_type": "schedule_sheet",
+      "confidence": 0.7,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 10,
+      "sheet_num": "A-1.2",
+      "sheet_title": "BUILDING B - WALL SECTIONS",
+      "page_type": "elevation",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 11,
+      "sheet_num": "A-1.3",
+      "sheet_title": "BUILDING B - ROOF PLAN",
+      "page_type": "roof_plan",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 12,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "elevation",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 13,
+      "sheet_num": "A-2.2",
+      "sheet_title": "EXTERIOR DETAILS AND SECTIONS",
+      "page_type": "detail_sheet",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 14,
+      "sheet_num": "A-2.3",
+      "sheet_title": "EXTERIOR DETAILS AND SECTIONS",
+      "page_type": "section",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 15,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 16,
+      "sheet_num": "A-3.0",
+      "sheet_title": "PLUMBING FIXTURES AND  ACCESSORIES",
+      "page_type": "schedule_sheet",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 2
+    },
+    {
+      "page_idx": 17,
+      "sheet_num": "A-4.0",
+      "sheet_title": "BUILDING B - REFLECTIVE CEILING PLAN",
+      "page_type": "ceiling_plan",
+      "confidence": 0.7,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 18,
+      "sheet_num": "S-0.1",
+      "sheet_title": "GENERAL NOTES",
+      "page_type": "section",
+      "confidence": 0.7,
+      "has_legend": true,
+      "has_schedule": false,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 19,
+      "sheet_num": "S-0.2",
+      "sheet_title": "GENERAL NOTES",
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": false,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 20,
+      "sheet_num": "S-0.3",
+      "sheet_title": "GENERAL NOTES",
+      "page_type": "framing_plan",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 2
+    },
+    {
+      "page_idx": 21,
+      "sheet_num": "A1",
+      "sheet_title": "",
+      "page_type": "elevation",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 22,
+      "sheet_num": "S-2.0",
+      "sheet_title": "BLOCK AND LINTEL PLAN",
+      "page_type": "detail_sheet",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 23,
+      "sheet_num": "S-3.0",
+      "sheet_title": "ROOF FRAMING PLAN",
+      "page_type": "framing_plan",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 24,
+      "sheet_num": "S-4.0",
+      "sheet_title": "WALL SECTIONS AND STRUCTURAL DETAILS",
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 25,
+      "sheet_num": "E-0.0",
+      "sheet_title": "ELECTRICAL GENERAL NOTES",
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 2
+    },
+    {
+      "page_idx": 26,
+      "sheet_num": "E-1.0",
+      "sheet_title": "BUILDING B ELECTRICAL POWER PLAN",
+      "page_type": "schedule_sheet",
+      "confidence": 0.7,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 27,
+      "sheet_num": "E-2.0",
+      "sheet_title": "BUILDING B ELECTRICAL LIGHTING PLAN",
+      "page_type": "schedule_sheet",
+      "confidence": 0.7,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 2
+    },
+    {
+      "page_idx": 28,
+      "sheet_num": "E-3.0",
+      "sheet_title": "ELECTRICAL RISER AND SUB-PANELS",
+      "page_type": "ceiling_plan",
+      "confidence": 0.7,
+      "has_legend": true,
+      "has_schedule": false,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 29,
+      "sheet_num": "P-0.1",
+      "sheet_title": "PLUMBING SITE PLAN",
+      "page_type": "site_plan",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 30,
+      "sheet_num": "P-0.2",
+      "sheet_title": "PLUMBING GENERAL NOTES",
+      "page_type": "floor_plan",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 31,
+      "sheet_num": "P-1.0",
+      "sheet_title": "BUILDING B - WATER - PLUMBING PLAN",
+      "page_type": "mep_plan",
+      "confidence": 0.3,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 32,
+      "sheet_num": "P-2.0",
+      "sheet_title": "BUILDING B - SANITARY - PLUMBING PLAN",
+      "page_type": "mep_plan",
+      "confidence": 0.3,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 33,
+      "sheet_num": "P-3.0",
+      "sheet_title": "BUILDING B - ROOF PLAN",
+      "page_type": "roof_plan",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 34,
+      "sheet_num": "P-4.0",
+      "sheet_title": "PLUMBING DETAILS",
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 35,
+      "sheet_num": "M-1.0",
+      "sheet_title": "MECHANICAL LAYOUT",
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 36,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 37,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 38,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 39,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 40,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 41,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 42,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 43,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 44,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 45,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 46,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 47,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 48,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 49,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 50,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 51,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 52,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 53,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 54,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 55,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 56,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 57,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 58,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 59,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 60,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 61,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 62,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 63,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 64,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 65,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 66,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 67,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 68,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "section",
+      "confidence": 0.5,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 69,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "site_plan",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 70,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "roof_plan",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 71,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "section",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 72,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 73,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 74,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "floor_plan",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 75,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "floor_plan",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 76,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "schedule_sheet",
+      "confidence": 0.7,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 77,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "elevation",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 78,
+      "sheet_num": "A-1.4",
+      "sheet_title": "BUILDING A - ROOF PLAN",
+      "page_type": "roof_plan",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 79,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "elevation",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 80,
+      "sheet_num": "A-2.1",
+      "sheet_title": "BUILDING B - EXTERIOR ELEVATIONS",
+      "page_type": "detail_sheet",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 81,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "section",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 82,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 83,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "ceiling_plan",
+      "confidence": 0.7,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 84,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "section",
+      "confidence": 0.7,
+      "has_legend": true,
+      "has_schedule": false,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 85,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": false,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 86,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "framing_plan",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 2
+    },
+    {
+      "page_idx": 87,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "elevation",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 88,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "section",
+      "confidence": 0.5,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 89,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 90,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "framing_plan",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 91,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 2
+    },
+    {
+      "page_idx": 92,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "schedule_sheet",
+      "confidence": 0.7,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 93,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "schedule_sheet",
+      "confidence": 0.7,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 2
+    },
+    {
+      "page_idx": 94,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "ceiling_plan",
+      "confidence": 0.7,
+      "has_legend": true,
+      "has_schedule": false,
+      "legend_count": 2
+    },
+    {
+      "page_idx": 95,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "site_plan",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 96,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "floor_plan",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 97,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 98,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 99,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "roof_plan",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 100,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 101,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 102,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "section",
+      "confidence": 0.5,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 103,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "site_plan",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 104,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "roof_plan",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 105,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "section",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 106,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 107,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 108,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "general_notes",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 109,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "floor_plan",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 110,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "floor_plan",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 111,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "schedule_sheet",
+      "confidence": 0.7,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 112,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "elevation",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 113,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "roof_plan",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 114,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "elevation",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 115,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 116,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "section",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 117,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 118,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "schedule_sheet",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 2
+    },
+    {
+      "page_idx": 119,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "ceiling_plan",
+      "confidence": 0.7,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 120,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "section",
+      "confidence": 0.7,
+      "has_legend": true,
+      "has_schedule": false,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 121,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": false,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 122,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "framing_plan",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 2
+    },
+    {
+      "page_idx": 123,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "elevation",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 124,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 125,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "framing_plan",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 126,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 127,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 2
+    },
+    {
+      "page_idx": 128,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "schedule_sheet",
+      "confidence": 0.7,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 129,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "schedule_sheet",
+      "confidence": 0.7,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 2
+    },
+    {
+      "page_idx": 130,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "ceiling_plan",
+      "confidence": 0.7,
+      "has_legend": true,
+      "has_schedule": false,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 131,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "site_plan",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 132,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "floor_plan",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 133,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 134,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 135,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "roof_plan",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 136,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 137,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    }
+  ]
+}
+##DIAG_END:page_type_histogram:vine-street##
+[vine-street] Block 2: schedule_bearing_audit
+##DIAG_START:schedule_bearing_audit:vine-street##
+{
+  "total_schedule_bearing": 0,
+  "classified_as_schedule_sheet": 0,
+  "classified_as_other_count": 0,
+  "other_classification_breakdown": {},
+  "schedule_bearing_pages": [],
+  "other_classified_pages": []
+}
+##DIAG_END:schedule_bearing_audit:vine-street##
+[vine-street] Block 4: reclassification_simulation
+##DIAG_START:reclassification_simulation:vine-street##
+{
+  "total_pages": 138,
+  "total_changed": 32,
+  "transition_histogram": {
+    "detail_sheet -> schedule_sheet": 9,
+    "floor_plan -> schedule_sheet": 6,
+    "ceiling_plan -> schedule_sheet": 6,
+    "roof_plan -> schedule_sheet": 3,
+    "elevation -> schedule_sheet": 3,
+    "framing_plan -> schedule_sheet": 3,
+    "mep_plan -> unknown": 2
+  },
+  "schedule_bearing_pages_not_currently_sched": 0,
+  "schedule_bearing_pages_flipped_to_sched": 0,
+  "schedule_bearing_flip_coverage": null,
+  "new_misclassifications_count": 30,
+  "new_misclassifications_sample": [
+    {
+      "page_idx": 2,
+      "sheet_num": "G-2.0",
+      "sheet_title": "CODE ANALYSIS",
+      "current_type": "roof_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.9,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 8,
+      "sheet_num": "A-1.0",
+      "sheet_title": "BUILDING B - NOTED FRAMING PLAN",
+      "current_type": "floor_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 13,
+      "sheet_num": "A-2.2",
+      "sheet_title": "EXTERIOR DETAILS AND SECTIONS",
+      "current_type": "detail_sheet",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 17,
+      "sheet_num": "A-4.0",
+      "sheet_title": "BUILDING B - REFLECTIVE CEILING PLAN",
+      "current_type": "ceiling_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 19,
+      "sheet_num": "S-0.2",
+      "sheet_title": "GENERAL NOTES",
+      "current_type": "detail_sheet",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.9,
+      "changed": true,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 21,
+      "sheet_num": "A1",
+      "sheet_title": "",
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 23,
+      "sheet_num": "S-3.0",
+      "sheet_title": "ROOF FRAMING PLAN",
+      "current_type": "framing_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 28,
+      "sheet_num": "E-3.0",
+      "sheet_title": "ELECTRICAL RISER AND SUB-PANELS",
+      "current_type": "ceiling_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 30,
+      "sheet_num": "P-0.2",
+      "sheet_title": "PLUMBING GENERAL NOTES",
+      "current_type": "floor_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 35,
+      "sheet_num": "M-1.0",
+      "sheet_title": "MECHANICAL LAYOUT",
+      "current_type": "detail_sheet",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.9,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 70,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "roof_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.9,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 75,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "floor_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 80,
+      "sheet_num": "A-2.1",
+      "sheet_title": "BUILDING B - EXTERIOR ELEVATIONS",
+      "current_type": "detail_sheet",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 83,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "ceiling_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 85,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "detail_sheet",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.9,
+      "changed": true,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 87,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 90,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "framing_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 94,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "ceiling_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 2
+    },
+    {
+      "page_idx": 96,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "floor_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 101,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "detail_sheet",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    }
+  ],
+  "changed_pages": [
+    {
+      "page_idx": 2,
+      "sheet_num": "G-2.0",
+      "sheet_title": "CODE ANALYSIS",
+      "current_type": "roof_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.9,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 8,
+      "sheet_num": "A-1.0",
+      "sheet_title": "BUILDING B - NOTED FRAMING PLAN",
+      "current_type": "floor_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 13,
+      "sheet_num": "A-2.2",
+      "sheet_title": "EXTERIOR DETAILS AND SECTIONS",
+      "current_type": "detail_sheet",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 17,
+      "sheet_num": "A-4.0",
+      "sheet_title": "BUILDING B - REFLECTIVE CEILING PLAN",
+      "current_type": "ceiling_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 19,
+      "sheet_num": "S-0.2",
+      "sheet_title": "GENERAL NOTES",
+      "current_type": "detail_sheet",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.9,
+      "changed": true,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 21,
+      "sheet_num": "A1",
+      "sheet_title": "",
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 23,
+      "sheet_num": "S-3.0",
+      "sheet_title": "ROOF FRAMING PLAN",
+      "current_type": "framing_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 28,
+      "sheet_num": "E-3.0",
+      "sheet_title": "ELECTRICAL RISER AND SUB-PANELS",
+      "current_type": "ceiling_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 30,
+      "sheet_num": "P-0.2",
+      "sheet_title": "PLUMBING GENERAL NOTES",
+      "current_type": "floor_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 31,
+      "sheet_num": "P-1.0",
+      "sheet_title": "BUILDING B - WATER - PLUMBING PLAN",
+      "current_type": "mep_plan",
+      "simulated_type": "unknown",
+      "simulated_confidence": 0.0,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 32,
+      "sheet_num": "P-2.0",
+      "sheet_title": "BUILDING B - SANITARY - PLUMBING PLAN",
+      "current_type": "mep_plan",
+      "simulated_type": "unknown",
+      "simulated_confidence": 0.0,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 35,
+      "sheet_num": "M-1.0",
+      "sheet_title": "MECHANICAL LAYOUT",
+      "current_type": "detail_sheet",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.9,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 70,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "roof_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.9,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 75,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "floor_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 80,
+      "sheet_num": "A-2.1",
+      "sheet_title": "BUILDING B - EXTERIOR ELEVATIONS",
+      "current_type": "detail_sheet",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 83,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "ceiling_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 85,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "detail_sheet",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.9,
+      "changed": true,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 87,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 90,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "framing_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 94,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "ceiling_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 2
+    },
+    {
+      "page_idx": 96,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "floor_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 101,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "detail_sheet",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 104,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "roof_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.9,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 110,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "floor_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 115,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "detail_sheet",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 119,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "ceiling_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 121,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "detail_sheet",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.9,
+      "changed": true,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 123,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 125,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "framing_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 130,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "ceiling_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 132,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "floor_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 137,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "detail_sheet",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.9,
+      "changed": true,
+      "legend_count": 0
+    }
+  ],
+  "schedule_bearing_flip_pages": []
+}
+##DIAG_END:reclassification_simulation:vine-street##
+[vine-street] Block 5: table_extraction_validation (cap=20, hard_cap=360.0s)
+##DIAG_START:table_extraction_validation:vine-street##
+{
+  "total_changed_to_sched": 30,
+  "page_cap_applied": true,
+  "page_cap": 20,
+  "pages_validated": 20,
+  "total_tables_extracted": 172,
+  "total_rows_extracted": 980,
+  "wallclock_seconds": 126.687,
+  "pages_with_tables": 20,
+  "extraction_errors": [],
+  "per_page": [
+    {
+      "page_idx": 94,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "ceiling_plan",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 5,
+      "total_rows": 12,
+      "headers_first5": [
+        "GENERAL NOTES NOTE:\nELECTRIC SERVICE AND METER\nLOCATED ON BUILDING B",
+        "1440 EXT WALL LIGHT\n840 EXT WALL LIGHT\n1320 EXT WALL LIGHT\n- SPARE S - B 20/1 5 ",
+        "C G\nD H\nEL\nE I",
+        "ECTRICAL CONTRACTOR\nTO VERIFY LOCATION",
+        ""
+      ],
+      "wallclock_seconds": 37.6804,
+      "legend_count": 2
+    },
+    {
+      "page_idx": 17,
+      "sheet_num": "A-4.0",
+      "sheet_title": "BUILDING B - REFLECTIVE CEILING PLAN",
+      "current_type": "ceiling_plan",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 5,
+      "total_rows": 25,
+      "headers_first5": [
+        "LIGHTING FIXTURE SCHEDULE",
+        "",
+        "",
+        "",
+        "REV DATE"
+      ],
+      "wallclock_seconds": 1.4284,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 19,
+      "sheet_num": "S-0.2",
+      "sheet_title": "GENERAL NOTES",
+      "current_type": "detail_sheet",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 13,
+      "total_rows": 51,
+      "headers_first5": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "wallclock_seconds": 1.5713,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 28,
+      "sheet_num": "E-3.0",
+      "sheet_title": "ELECTRICAL RISER AND SUB-PANELS",
+      "current_type": "ceiling_plan",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 9,
+      "total_rows": 95,
+      "headers_first5": [
+        "GENERAL NOTES",
+        "SUBPANEL: \"U\" = UNITS: C,D,E,F,G,H,I",
+        "SUBPANEL: \"HP\"",
+        "",
+        "CONDUIT AND CONDUCTOR SCHEDULE"
+      ],
+      "wallclock_seconds": 2.2004,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 83,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "ceiling_plan",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 3,
+      "total_rows": 24,
+      "headers_first5": [
+        "LIGHTING FIXTURE SCHEDULE",
+        "",
+        "REV DATE"
+      ],
+      "wallclock_seconds": 0.9199,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 85,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "detail_sheet",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 12,
+      "total_rows": 66,
+      "headers_first5": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "wallclock_seconds": 1.4895,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 119,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "ceiling_plan",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 5,
+      "total_rows": 26,
+      "headers_first5": [
+        "LIGHTING FIXTURE SCHEDULE",
+        "",
+        "",
+        "",
+        "REV DATE"
+      ],
+      "wallclock_seconds": 1.4752,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 121,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "detail_sheet",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 13,
+      "total_rows": 63,
+      "headers_first5": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "wallclock_seconds": 1.4401,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 130,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "ceiling_plan",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 2,
+      "total_rows": 4,
+      "headers_first5": [
+        "WEEKS ARCHITECTURE AND DESI",
+        "CEPT/ TIMER 20/1\nCEPT/ TIMER 20/1 1 A\n3 B 2 20/1 SHEL\n4 20/1 REST L LIGHTS 960\n."
+      ],
+      "wallclock_seconds": 45.4503,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 2,
+      "sheet_num": "G-2.0",
+      "sheet_title": "CODE ANALYSIS",
+      "current_type": "roof_plan",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 12,
+      "total_rows": 104,
+      "headers_first5": [
+        "",
+        "ARCH. GENERAL NOTES",
+        "ARCH. SYMBOLS LEGEND",
+        "CODE SUMMARY INFORMATION",
+        "SHEET INDEX"
+      ],
+      "wallclock_seconds": 3.1973,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 8,
+      "sheet_num": "A-1.0",
+      "sheet_title": "BUILDING B - NOTED FRAMING PLAN",
+      "current_type": "floor_plan",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 11,
+      "total_rows": 58,
+      "headers_first5": [
+        "",
+        "",
+        "",
+        "AREA CALCS PER UNIT",
+        "18'-10\" 45'-2\" 18'-10\" 20'-1\" 21'-4\""
+      ],
+      "wallclock_seconds": 1.812,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 13,
+      "sheet_num": "A-2.2",
+      "sheet_title": "EXTERIOR DETAILS AND SECTIONS",
+      "current_type": "detail_sheet",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 5,
+      "total_rows": 46,
+      "headers_first5": [
+        "",
+        "NIM\n\"4\n3\" MIN",
+        "",
+        "",
+        "REV DATE"
+      ],
+      "wallclock_seconds": 2.593,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 21,
+      "sheet_num": "A1",
+      "sheet_title": "",
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 19,
+      "total_rows": 74,
+      "headers_first5": [
+        "STEM WALL - CHART",
+        "",
+        "",
+        "",
+        "BLOCK WALL FILL CELLS"
+      ],
+      "wallclock_seconds": 1.8882,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 23,
+      "sheet_num": "S-3.0",
+      "sheet_title": "ROOF FRAMING PLAN",
+      "current_type": "framing_plan",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 11,
+      "total_rows": 51,
+      "headers_first5": [
+        "",
+        "",
+        "",
+        "*",
+        "ANGLE SIZE\n\"D\""
+      ],
+      "wallclock_seconds": 2.6374,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 30,
+      "sheet_num": "P-0.2",
+      "sheet_title": "PLUMBING GENERAL NOTES",
+      "current_type": "floor_plan",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 5,
+      "total_rows": 24,
+      "headers_first5": [
+        "PLUMBING SPECIFICATIONS",
+        "PLUMBING FIXTURE SCHEDULE",
+        "",
+        "BASIC PLUMBING MATERIAL\nREQUIREMENTS:",
+        "REV DATE"
+      ],
+      "wallclock_seconds": 1.1749,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 35,
+      "sheet_num": "M-1.0",
+      "sheet_title": "MECHANICAL LAYOUT",
+      "current_type": "detail_sheet",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 5,
+      "total_rows": 27,
+      "headers_first5": [
+        "UNIT SCHEDULE",
+        "TYPE DESCRIPTION\nSURFACE MOUNTED LIGHT FIXTURE/ FAN COMBO,\n800 LUMEN LED, BLACK ",
+        "",
+        "FAN SCHEDULE",
+        "REV DATE"
+      ],
+      "wallclock_seconds": 7.311,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 70,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "roof_plan",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 11,
+      "total_rows": 96,
+      "headers_first5": [
+        "ARCH. GENERAL NOTES",
+        "ARCH. SYMBOLS LEGEND",
+        "CODE SUMMARY INFORMATION",
+        "SHEET INDEX",
+        ""
+      ],
+      "wallclock_seconds": 3.7366,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 75,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "floor_plan",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 7,
+      "total_rows": 23,
+      "headers_first5": [
+        "BLOCK WALL FILL CE",
+        "",
+        "AREA CALCS PER UNIT",
+        "",
+        ""
+      ],
+      "wallclock_seconds": 3.7749,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 80,
+      "sheet_num": "A-2.1",
+      "sheet_title": "BUILDING B - EXTERIOR ELEVATIONS",
+      "current_type": "detail_sheet",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 3,
+      "total_rows": 39,
+      "headers_first5": [
+        "WEEKS ARCHITECTURE AND DESIGN",
+        "",
+        "REV DATE"
+      ],
+      "wallclock_seconds": 2.6893,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 87,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 16,
+      "total_rows": 72,
+      "headers_first5": [
+        "",
+        "STEM WALL - CHART",
+        "",
+        "7\n6'-4\" 4'-0\" 6'-4\" 1 1\n\" 5'-4 \"\n2 3'-0\" 2 9'-0\" 1'-4\" 8'-7\" 11'-10\" 8'-7\"",
+        "F1"
+      ],
+      "wallclock_seconds": 2.217,
+      "legend_count": 0
+    }
+  ],
+  "aborted_due_to_hard_cap": false,
+  "hard_cap_seconds": 360.0
+}
+##DIAG_END:table_extraction_validation:vine-street##
+WARN: [vine-street] Block 5 wall-clock 126.7s exceeded 120s soft cap (soft observation, not §7 stop)
+[vine-street] wrote C:\huck stage 2\huckleberry\backend\PAGE_TYPE_VERIFICATION_vine-street.md (62928 bytes)
+
+=== BIDSET: bearss-ave (Bearss Ave Distribution Center — University — Marcobay Construction (3)) ===
+PDF: C:\huck stage 2\full bid sets\Bearss Ave Distribution Center - University - Marcobay Construction (3).pdf
+[bearss-ave] run_dispatch...
+[bearss-ave] dispatch complete in 85.43s (total_pages=91)
+[bearss-ave] Block 1: page_type_histogram
+##DIAG_START:page_type_histogram:bearss-ave##
+{
+  "total_pages": 91,
+  "total_mapped_pages": 44,
+  "total_pages_has_legend": 53,
+  "total_pages_has_schedule": 23,
+  "histogram": {
+    "elevation": 27,
+    "detail_sheet": 27,
+    "floor_plan": 15,
+    "schedule_sheet": 7,
+    "cover": 4,
+    "site_plan": 3,
+    "life_safety": 2,
+    "roof_plan": 2,
+    "section": 2,
+    "mep_plan": 1,
+    "unknown": 1
+  },
+  "per_page": [
+    {
+      "page_idx": 0,
+      "sheet_num": "A-001",
+      "sheet_title": "COVER SHEET  SHEET NUMBER: A-001  PROJECT NAME: BEARSS AVENUE DISTRIBUTION CENTER - BUILDING 1",
+      "page_type": "cover",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": false,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 1,
+      "sheet_num": "A-002",
+      "sheet_title": "CODE & LIFE SAFETY",
+      "page_type": "life_safety",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": false,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 2,
+      "sheet_num": "A-003",
+      "sheet_title": "ARCHITECTURAL SITE PLAN",
+      "page_type": "site_plan",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 3,
+      "sheet_num": "A-202",
+      "sheet_title": "PANEL ELEVATIONS, WALL SECTIONS, & DETAILS",
+      "page_type": "roof_plan",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 4,
+      "sheet_num": "A-402",
+      "sheet_title": "MISC. DETAILS",
+      "page_type": "floor_plan",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 5,
+      "sheet_num": "A-201",
+      "sheet_title": "EXTERIOR ELEVATIONS",
+      "page_type": "elevation",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 6,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "elevation",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 7,
+      "sheet_num": "A-401",
+      "sheet_title": "ROOF MISC. DETAILS",
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": false,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 8,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 9,
+      "sheet_num": "A-501",
+      "sheet_title": "UL DETAILS",
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 10,
+      "sheet_num": "A-601",
+      "sheet_title": "DOOR & WINDOW SCHEDULES, FRAMES & DETAILS",
+      "page_type": "elevation",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 11,
+      "sheet_num": "S-000",
+      "sheet_title": "COVER",
+      "page_type": "cover",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 12,
+      "sheet_num": "S-100",
+      "sheet_title": "GENERAL NOTES",
+      "page_type": "elevation",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 8
+    },
+    {
+      "page_idx": 13,
+      "sheet_num": "S-101",
+      "sheet_title": "GRAVITY & LATERAL LOADING",
+      "page_type": "detail_sheet",
+      "confidence": 0.7,
+      "has_legend": true,
+      "has_schedule": false,
+      "legend_count": 2
+    },
+    {
+      "page_idx": 14,
+      "sheet_num": "S-102",
+      "sheet_title": "BUILDING CLEAR HEIGHT ELEVATIONS",
+      "page_type": "elevation",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 15,
+      "sheet_num": "S-103",
+      "sheet_title": "SPECIAL INSPECTIONS",
+      "page_type": "section",
+      "confidence": 0.7,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 8
+    },
+    {
+      "page_idx": 16,
+      "sheet_num": "S-200",
+      "sheet_title": "OVERALL FOUNDATION PLAN",
+      "page_type": "schedule_sheet",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 5
+    },
+    {
+      "page_idx": 17,
+      "sheet_num": "S-210",
+      "sheet_title": "OVERALL ROOF  FRAMING PLAN",
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": false,
+      "legend_count": 2
+    },
+    {
+      "page_idx": 18,
+      "sheet_num": "S-300",
+      "sheet_title": "OVERALL TILT PANEL PLAN",
+      "page_type": "elevation",
+      "confidence": 0.7,
+      "has_legend": true,
+      "has_schedule": false,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 19,
+      "sheet_num": "S-301",
+      "sheet_title": "TILT PANEL EMBED/REINF SECTIONS & DETAILS",
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": false,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 20,
+      "sheet_num": "S-310",
+      "sheet_title": "NORTH TILT PANEL ELEVATIONS",
+      "page_type": "elevation",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": false,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 21,
+      "sheet_num": "S-311",
+      "sheet_title": "EAST TILT PANEL ELEVATIONS",
+      "page_type": "elevation",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": false,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 22,
+      "sheet_num": "S-312",
+      "sheet_title": "SOUTH TILT PANEL ELEVATIONS",
+      "page_type": "elevation",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": false,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 23,
+      "sheet_num": "S-313",
+      "sheet_title": "WEST TILT PANEL ELEVATIONS",
+      "page_type": "elevation",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": false,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 24,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "elevation",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 25,
+      "sheet_num": "S-321",
+      "sheet_title": "TILT REBAR ELEVATION",
+      "page_type": "elevation",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 26,
+      "sheet_num": "S-322",
+      "sheet_title": "TILT REBAR ELEVATION",
+      "page_type": "elevation",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 27,
+      "sheet_num": "S-323",
+      "sheet_title": "TILT REBAR ELEVATION",
+      "page_type": "elevation",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 28,
+      "sheet_num": "S-400",
+      "sheet_title": "CMU SECTIONS AND DETAILS",
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 29,
+      "sheet_num": "S-500",
+      "sheet_title": "FOUNDATION SECTIONS AND DETAILS",
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 30,
+      "sheet_num": "S-501",
+      "sheet_title": "FOUNDATION SECTIONS AND DETAILS",
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 3
+    },
+    {
+      "page_idx": 31,
+      "sheet_num": "S-510",
+      "sheet_title": "SLAB ON GRADE SECTIONS AND DETAILS",
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": false,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 32,
+      "sheet_num": "S-520",
+      "sheet_title": "STEEL FRAMING SECTIONS AND DETAILS",
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": false,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 33,
+      "sheet_num": "S-530",
+      "sheet_title": "BRACE FRAMING SECTIONS & DETAILS",
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": false,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 34,
+      "sheet_num": "M-001",
+      "sheet_title": "MECHANICAL GENERAL",
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 35,
+      "sheet_num": "M-002",
+      "sheet_title": "MECHANICAL SCHEDULES & DETAILS",
+      "page_type": "detail_sheet",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 36,
+      "sheet_num": "M-100",
+      "sheet_title": "MECHANICAL PLANS",
+      "page_type": "mep_plan",
+      "confidence": 0.3,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 37,
+      "sheet_num": "P-001",
+      "sheet_title": "PLUMBING GENERAL",
+      "page_type": "floor_plan",
+      "confidence": 0.7,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 3
+    },
+    {
+      "page_idx": 38,
+      "sheet_num": "P-002",
+      "sheet_title": "PLUMBING SPECIFICATIONS",
+      "page_type": "schedule_sheet",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 7
+    },
+    {
+      "page_idx": 39,
+      "sheet_num": "P-100",
+      "sheet_title": "PLUMBING FLOOR PLAN",
+      "page_type": "floor_plan",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 40,
+      "sheet_num": "E-001",
+      "sheet_title": "ELECTRICAL GENERAL",
+      "page_type": "floor_plan",
+      "confidence": 0.7,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 6
+    },
+    {
+      "page_idx": 41,
+      "sheet_num": "E-002",
+      "sheet_title": "LIGHTING GENERAL",
+      "page_type": "floor_plan",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 42,
+      "sheet_num": "E-101",
+      "sheet_title": "ELECTRICAL SITE PLAN",
+      "page_type": "site_plan",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": false,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 43,
+      "sheet_num": "E-201",
+      "sheet_title": "ELECTRICAL PLAN - LIGHTING",
+      "page_type": "floor_plan",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 2
+    },
+    {
+      "page_idx": 44,
+      "sheet_num": "E-301",
+      "sheet_title": "FLOOR PLAN - POWER",
+      "page_type": "floor_plan",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": false,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 45,
+      "sheet_num": "E-401",
+      "sheet_title": "ELECTRICAL RISER & SCHEDULES",
+      "page_type": "schedule_sheet",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 9
+    },
+    {
+      "page_idx": 46,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "cover",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": false,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 47,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "life_safety",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": false,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 48,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "site_plan",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 49,
+      "sheet_num": "A-101",
+      "sheet_title": "OVERALL FLOOR PLAN & ROOF PLANS",
+      "page_type": "roof_plan",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 50,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "floor_plan",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 51,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "elevation",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 52,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "elevation",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 53,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": false,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 54,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 55,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 56,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "elevation",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 57,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "cover",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 58,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "elevation",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 7
+    },
+    {
+      "page_idx": 59,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.7,
+      "has_legend": true,
+      "has_schedule": false,
+      "legend_count": 2
+    },
+    {
+      "page_idx": 60,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "elevation",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 61,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "section",
+      "confidence": 0.7,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 8
+    },
+    {
+      "page_idx": 62,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "schedule_sheet",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 5
+    },
+    {
+      "page_idx": 63,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": false,
+      "legend_count": 2
+    },
+    {
+      "page_idx": 64,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "schedule_sheet",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 6
+    },
+    {
+      "page_idx": 65,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": false,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 66,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "elevation",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": false,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 67,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "elevation",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": false,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 68,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "elevation",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": false,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 69,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "elevation",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": false,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 70,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "elevation",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 71,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "elevation",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 72,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "elevation",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 73,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "elevation",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 74,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 75,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 76,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 3
+    },
+    {
+      "page_idx": 77,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": false,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 78,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": false,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 79,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": false,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 80,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "floor_plan",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 81,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "detail_sheet",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": false,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 82,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "unknown",
+      "confidence": 0.0,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 83,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "floor_plan",
+      "confidence": 0.7,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 3
+    },
+    {
+      "page_idx": 84,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "schedule_sheet",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 7
+    },
+    {
+      "page_idx": 85,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "floor_plan",
+      "confidence": 0.9,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 86,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "floor_plan",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 6
+    },
+    {
+      "page_idx": 87,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "floor_plan",
+      "confidence": 0.7,
+      "has_legend": false,
+      "has_schedule": false,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 88,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "floor_plan",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 2
+    },
+    {
+      "page_idx": 89,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "floor_plan",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 2
+    },
+    {
+      "page_idx": 90,
+      "sheet_num": null,
+      "sheet_title": null,
+      "page_type": "schedule_sheet",
+      "confidence": 0.9,
+      "has_legend": true,
+      "has_schedule": true,
+      "legend_count": 8
+    }
+  ]
+}
+##DIAG_END:page_type_histogram:bearss-ave##
+[bearss-ave] Block 2: schedule_bearing_audit
+##DIAG_START:schedule_bearing_audit:bearss-ave##
+{
+  "total_schedule_bearing": 3,
+  "classified_as_schedule_sheet": 1,
+  "classified_as_other_count": 2,
+  "other_classification_breakdown": {
+    "elevation": 1,
+    "detail_sheet": 1
+  },
+  "schedule_bearing_pages": [
+    {
+      "page_idx": 10,
+      "sheet_num": "A-601",
+      "sheet_title": "DOOR & WINDOW SCHEDULES, FRAMES & DETAILS",
+      "current_type": "elevation"
+    },
+    {
+      "page_idx": 35,
+      "sheet_num": "M-002",
+      "sheet_title": "MECHANICAL SCHEDULES & DETAILS",
+      "current_type": "detail_sheet"
+    },
+    {
+      "page_idx": 45,
+      "sheet_num": "E-401",
+      "sheet_title": "ELECTRICAL RISER & SCHEDULES",
+      "current_type": "schedule_sheet"
+    }
+  ],
+  "other_classified_pages": [
+    {
+      "page_idx": 10,
+      "sheet_num": "A-601",
+      "sheet_title": "DOOR & WINDOW SCHEDULES, FRAMES & DETAILS",
+      "current_type": "elevation"
+    },
+    {
+      "page_idx": 35,
+      "sheet_num": "M-002",
+      "sheet_title": "MECHANICAL SCHEDULES & DETAILS",
+      "current_type": "detail_sheet"
+    }
+  ]
+}
+##DIAG_END:schedule_bearing_audit:bearss-ave##
+[bearss-ave] Block 4: reclassification_simulation
+##DIAG_START:reclassification_simulation:bearss-ave##
+{
+  "total_pages": 91,
+  "total_changed": 18,
+  "transition_histogram": {
+    "elevation -> schedule_sheet": 7,
+    "floor_plan -> schedule_sheet": 7,
+    "detail_sheet -> schedule_sheet": 3,
+    "mep_plan -> unknown": 1
+  },
+  "schedule_bearing_pages_not_currently_sched": 2,
+  "schedule_bearing_pages_flipped_to_sched": 2,
+  "schedule_bearing_flip_coverage": 1.0,
+  "new_misclassifications_count": 15,
+  "new_misclassifications_sample": [
+    {
+      "page_idx": 5,
+      "sheet_num": "A-201",
+      "sheet_title": "EXTERIOR ELEVATIONS",
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.9,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 12,
+      "sheet_num": "S-100",
+      "sheet_title": "GENERAL NOTES",
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.9,
+      "changed": true,
+      "legend_count": 8
+    },
+    {
+      "page_idx": 18,
+      "sheet_num": "S-300",
+      "sheet_title": "OVERALL TILT PANEL PLAN",
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 34,
+      "sheet_num": "M-001",
+      "sheet_title": "MECHANICAL GENERAL",
+      "current_type": "detail_sheet",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.9,
+      "changed": true,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 37,
+      "sheet_num": "P-001",
+      "sheet_title": "PLUMBING GENERAL",
+      "current_type": "floor_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 3
+    },
+    {
+      "page_idx": 40,
+      "sheet_num": "E-001",
+      "sheet_title": "ELECTRICAL GENERAL",
+      "current_type": "floor_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 6
+    },
+    {
+      "page_idx": 41,
+      "sheet_num": "E-002",
+      "sheet_title": "LIGHTING GENERAL",
+      "current_type": "floor_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 51,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.9,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 56,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.9,
+      "changed": true,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 58,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.9,
+      "changed": true,
+      "legend_count": 7
+    },
+    {
+      "page_idx": 80,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "floor_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 81,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "detail_sheet",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.9,
+      "changed": true,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 83,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "floor_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 3
+    },
+    {
+      "page_idx": 86,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "floor_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.9,
+      "changed": true,
+      "legend_count": 6
+    },
+    {
+      "page_idx": 87,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "floor_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    }
+  ],
+  "changed_pages": [
+    {
+      "page_idx": 5,
+      "sheet_num": "A-201",
+      "sheet_title": "EXTERIOR ELEVATIONS",
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.9,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 10,
+      "sheet_num": "A-601",
+      "sheet_title": "DOOR & WINDOW SCHEDULES, FRAMES & DETAILS",
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.9,
+      "changed": true,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 12,
+      "sheet_num": "S-100",
+      "sheet_title": "GENERAL NOTES",
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.9,
+      "changed": true,
+      "legend_count": 8
+    },
+    {
+      "page_idx": 18,
+      "sheet_num": "S-300",
+      "sheet_title": "OVERALL TILT PANEL PLAN",
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 34,
+      "sheet_num": "M-001",
+      "sheet_title": "MECHANICAL GENERAL",
+      "current_type": "detail_sheet",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.9,
+      "changed": true,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 35,
+      "sheet_num": "M-002",
+      "sheet_title": "MECHANICAL SCHEDULES & DETAILS",
+      "current_type": "detail_sheet",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 36,
+      "sheet_num": "M-100",
+      "sheet_title": "MECHANICAL PLANS",
+      "current_type": "mep_plan",
+      "simulated_type": "unknown",
+      "simulated_confidence": 0.0,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 37,
+      "sheet_num": "P-001",
+      "sheet_title": "PLUMBING GENERAL",
+      "current_type": "floor_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 3
+    },
+    {
+      "page_idx": 40,
+      "sheet_num": "E-001",
+      "sheet_title": "ELECTRICAL GENERAL",
+      "current_type": "floor_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 6
+    },
+    {
+      "page_idx": 41,
+      "sheet_num": "E-002",
+      "sheet_title": "LIGHTING GENERAL",
+      "current_type": "floor_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 51,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.9,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 56,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.9,
+      "changed": true,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 58,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.9,
+      "changed": true,
+      "legend_count": 7
+    },
+    {
+      "page_idx": 80,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "floor_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 81,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "detail_sheet",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.9,
+      "changed": true,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 83,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "floor_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 3
+    },
+    {
+      "page_idx": 86,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "floor_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.9,
+      "changed": true,
+      "legend_count": 6
+    },
+    {
+      "page_idx": 87,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "floor_plan",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    }
+  ],
+  "schedule_bearing_flip_pages": [
+    {
+      "page_idx": 10,
+      "sheet_num": "A-601",
+      "sheet_title": "DOOR & WINDOW SCHEDULES, FRAMES & DETAILS",
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.9,
+      "changed": true,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 35,
+      "sheet_num": "M-002",
+      "sheet_title": "MECHANICAL SCHEDULES & DETAILS",
+      "current_type": "detail_sheet",
+      "simulated_type": "schedule_sheet",
+      "simulated_confidence": 0.7,
+      "changed": true,
+      "legend_count": 0
+    }
+  ]
+}
+##DIAG_END:reclassification_simulation:bearss-ave##
+[bearss-ave] Block 5: table_extraction_validation (cap=20, hard_cap=360.0s)
+##DIAG_START:table_extraction_validation:bearss-ave##
+{
+  "total_changed_to_sched": 17,
+  "page_cap_applied": false,
+  "page_cap": 20,
+  "pages_validated": 17,
+  "total_tables_extracted": 832,
+  "total_rows_extracted": 4685,
+  "wallclock_seconds": 102.6578,
+  "pages_with_tables": 17,
+  "extraction_errors": [],
+  "per_page": [
+    {
+      "page_idx": 12,
+      "sheet_num": "S-100",
+      "sheet_title": "GENERAL NOTES",
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 101,
+      "total_rows": 715,
+      "headers_first5": [
+        "STRUCTURAL STEEL, STEEL JOISTS, STEEL DECK :",
+        "ABBREVIATIONS SCHEDULE",
+        "ABBREVIATIONS SCHEDULE",
+        "STRUCTURE DESIGNED IN ACCORDANCE WITH THE FLORIDA BUILDING CODE",
+        "STRUCTURAL STEEL"
+      ],
+      "wallclock_seconds": 19.7184,
+      "legend_count": 8
+    },
+    {
+      "page_idx": 58,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 106,
+      "total_rows": 689,
+      "headers_first5": [
+        "ABBREVIATIONS SCHEDULE",
+        "ABBREVIATIONS SCHEDULE",
+        "STRUCTURAL STEEL, STEEL JOISTS, STEEL DECK :",
+        "POST INSTALLED ANCHOR",
+        "STRUCTURE DESIGNED IN ACCORDANCE WITH THE FLORIDA BUILDING CODE,"
+      ],
+      "wallclock_seconds": 17.0703,
+      "legend_count": 7
+    },
+    {
+      "page_idx": 40,
+      "sheet_num": "E-001",
+      "sheet_title": "ELECTRICAL GENERAL",
+      "current_type": "floor_plan",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 102,
+      "total_rows": 397,
+      "headers_first5": [
+        "\"3",
+        "ELECTRICAL SPECIFICATIONS ELECTRICAL GENERAL NOTES ELECTRICAL GENERAL SYMBOLS LE",
+        "ELECTRICAL SPECIFICATIONS",
+        "ELECTRICAL GENERAL NOTES",
+        "ELECTRICAL GENERAL SYMBOLS LEGEND"
+      ],
+      "wallclock_seconds": 6.7454,
+      "legend_count": 6
+    },
+    {
+      "page_idx": 86,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "floor_plan",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 107,
+      "total_rows": 413,
+      "headers_first5": [
+        "\"3",
+        "ELECTRICAL SPECIFICATIONS ELECTRICAL GENERAL NOTES\nELECTRICAL GENERAL SYMBOLS LE",
+        "ELECTRICAL SPECIFICATIONS",
+        "ELECTRICAL GENERAL NOTES",
+        "ELECTRICAL GENERAL SYMBOLS LEGEND"
+      ],
+      "wallclock_seconds": 6.9821,
+      "legend_count": 6
+    },
+    {
+      "page_idx": 37,
+      "sheet_num": "P-001",
+      "sheet_title": "PLUMBING GENERAL",
+      "current_type": "floor_plan",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 22,
+      "total_rows": 190,
+      "headers_first5": [
+        "PLUMBING GENERAL NOTES FIRE PROTECTION GENERAL NOTES PLUMBING ABBREVIATIONS PLUM",
+        "PLUMBING ABBREVIATIONS",
+        "PLUMBING LEGEND",
+        "ADA COMPLIANCE",
+        "Atlanta"
+      ],
+      "wallclock_seconds": 1.8832,
+      "legend_count": 3
+    },
+    {
+      "page_idx": 83,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "floor_plan",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 21,
+      "total_rows": 196,
+      "headers_first5": [
+        "PLUMBING GENERAL NOTES FIRE PROTECTION GENERAL NOTES PLUMBING ABBREVIATIONS PLUM",
+        "PLUMBING ABBREVIATIONS",
+        "PLUMBING LEGEND",
+        "ADA COMPLIANCE",
+        "Atlanta"
+      ],
+      "wallclock_seconds": 1.9251,
+      "legend_count": 3
+    },
+    {
+      "page_idx": 10,
+      "sheet_num": "A-601",
+      "sheet_title": "DOOR & WINDOW SCHEDULES, FRAMES & DETAILS",
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 46,
+      "total_rows": 188,
+      "headers_first5": [
+        "DOOR SCHEDULE\nFire Under Frame Frame Frame Hea\nType Mark Rating Width Height Thi",
+        "DOOR SCHEDULE",
+        "OVERHEAD AND PERSONNEL DOORS AND FRAMES TO",
+        "ALL OVERHEAD DOORS LOCATED AT DOCK LEVELER",
+        "ALL HARDWARE TO BE DULL CHROME FINISH (626D)"
+      ],
+      "wallclock_seconds": 3.076,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 18,
+      "sheet_num": "S-300",
+      "sheet_title": "OVERALL TILT PANEL PLAN",
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 35,
+      "total_rows": 160,
+      "headers_first5": [
+        "55' - 0\" 52' - 0\" 52' - 0\" 52' - 0\" 52' - 0\" 52' - 0\" 52' - 0\" 52' - 0\" 52' - 0\"",
+        "(N101",
+        "N110)",
+        "(N122",
+        "TH = 8\""
+      ],
+      "wallclock_seconds": 3.0806,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 34,
+      "sheet_num": "M-001",
+      "sheet_title": "MECHANICAL GENERAL",
+      "current_type": "detail_sheet",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 69,
+      "total_rows": 573,
+      "headers_first5": [
+        "\"3",
+        "MECHANICAL ABBREVIATIONS DUCTWORK SYMBOLS MECHANICAL SPECIFICATIONS\nABBREVIATION",
+        "MECHANICAL ABBREVIATIONS",
+        "DUCTWORK SYMBOLS",
+        "MECHANICAL SPECIFICATIONS"
+      ],
+      "wallclock_seconds": 13.0631,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 56,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 45,
+      "total_rows": 183,
+      "headers_first5": [
+        "DOOR SCHEDULE\nFire Under Frame Frame Frame\nType Mark Rating Width Height Thickne",
+        "DOOR SCHEDULE",
+        "OVERHEAD AND PERSONNEL DOORS AND FRAMES TO",
+        "ALL OVERHEAD DOORS LOCATED AT DOCK LEVELER",
+        "ALL HARDWARE TO BE DULL CHROME FINISH (626D)"
+      ],
+      "wallclock_seconds": 3.0904,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 81,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "detail_sheet",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 20,
+      "total_rows": 77,
+      "headers_first5": [
+        "\"3",
+        "SPLIT SYSTEM AIR CONDITIONING UNIT SCHEDULE\nFAN COIL UNIT AIR COOLED CONDENSING ",
+        "404 -881 -5300",
+        "Atlanta",
+        "SPLIT SYSTEM AIR CONDITIONING UNIT SCHEDULE"
+      ],
+      "wallclock_seconds": 0.9389,
+      "legend_count": 1
+    },
+    {
+      "page_idx": 5,
+      "sheet_num": "A-201",
+      "sheet_title": "EXTERIOR ELEVATIONS",
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 12,
+      "total_rows": 38,
+      "headers_first5": [
+        "",
+        "CENTER -",
+        "RETNEC\nNOITUBIRTSID\nEUNEVA\nSSRAEB\n:EMAN\nTCEJORP\n102",
+        "",
+        "LL GLASS WITHIN 2' OF DOOR SWING TO BE TEMPERED."
+      ],
+      "wallclock_seconds": 5.3359,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 35,
+      "sheet_num": "M-002",
+      "sheet_title": "MECHANICAL SCHEDULES & DETAILS",
+      "current_type": "detail_sheet",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 20,
+      "total_rows": 84,
+      "headers_first5": [
+        "\"3",
+        "SPLIT SYSTEM AIR CONDITIONING UNIT SCHEDULE\nFAN COIL UNIT AIR COOLED CONDENSING ",
+        "404 -881 -5300",
+        "Atlanta",
+        "SPLIT SYSTEM AIR CONDITIONING UNIT SCHEDULE"
+      ],
+      "wallclock_seconds": 1.2384,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 41,
+      "sheet_num": "E-002",
+      "sheet_title": "LIGHTING GENERAL",
+      "current_type": "floor_plan",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 21,
+      "total_rows": 87,
+      "headers_first5": [
+        "\"3",
+        "LIGHT FIXTURE SCHEDULE LIGHTING CONTROL LEGEND - WIRED\nITEM DESCRIPTION MANUFACT",
+        "LIGHT FIXTURE SCHEDULE",
+        "LIGHTING CONTROL LEGEND - WIRED",
+        "LIGHTING CONTROL LEGEND -"
+      ],
+      "wallclock_seconds": 0.3578,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 51,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "elevation",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 14,
+      "total_rows": 37,
+      "headers_first5": [
+        "38' -0",
+        "",
+        "",
+        "",
+        "CENTER -"
+      ],
+      "wallclock_seconds": 4.8135,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 80,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "floor_plan",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 70,
+      "total_rows": 572,
+      "headers_first5": [
+        "\"3",
+        "MECHANICAL ABBREVIATIONS DUCTWORK SYMBOLS MECHANICAL SPECIFICATIONS\nABBREVIATION",
+        "MECHANICAL ABBREVIATIONS",
+        "DUCTWORK SYMBOLS",
+        "MECHANICAL SPECIFICATIONS"
+      ],
+      "wallclock_seconds": 12.9885,
+      "legend_count": 0
+    },
+    {
+      "page_idx": 87,
+      "sheet_num": null,
+      "sheet_title": null,
+      "current_type": "floor_plan",
+      "simulated_type": "schedule_sheet",
+      "tables_extracted": 21,
+      "total_rows": 86,
+      "headers_first5": [
+        "\"3",
+        "LIGHTING CONTROL LEGEND - WIRED\nLIGHT FIXTURE SCHEDULE\nITEM DESCRIPTION MANUFACT",
+        "LIGHTING CONTROL LEGEND - WIRED",
+        "LIGHT FIXTURE SCHEDULE",
+        "LIGHTING CONTROL LEGEND -"
+      ],
+      "wallclock_seconds": 0.3502,
+      "legend_count": 0
+    }
+  ],
+  "aborted_due_to_hard_cap": false,
+  "hard_cap_seconds": 360.0
+}
+##DIAG_END:table_extraction_validation:bearss-ave##
+[bearss-ave] wrote C:\huck stage 2\huckleberry\backend\PAGE_TYPE_VERIFICATION_bearss-ave.md (48404 bytes)
+
+=== GATE REPORT ===
+Wrote C:\huck stage 2\huckleberry\backend\PAGE_TYPE_VERIFICATION_GATE_REPORT.md (6465 bytes)
+
+======================================================================
+COMPLETE
+Bidsets processed: 3
+Total wall-clock (bidset loop): 539.7s
+  shoppes-at-avalon: dispatch=59.3s, block5=61.5s, sched_bearing=1, would_flip=1, tables_extracted=558
+  vine-street: dispatch=82.4s, block5=126.7s, sched_bearing=0, would_flip=0, tables_extracted=172
+  bearss-ave: dispatch=85.4s, block5=102.7s, sched_bearing=3, would_flip=2, tables_extracted=832
+======================================================================
