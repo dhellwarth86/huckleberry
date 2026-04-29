@@ -456,6 +456,13 @@ class PlanSetContext:
     # Trade Contexts (registry — modules populate, NOT dispatch)
     trade_contexts: dict[str, TradeContext] = field(default_factory=dict)
 
+    # D.1: Per-page TradeModuleOutput records, populated when run_dispatch
+    # runs with storage activated (storage="auto" or a Storage instance).
+    # Shape: {page_idx: {trade_name: TradeModuleOutput}}. Default empty dict
+    # preserves all v0.2 / Phase B / Phase C ship behaviour for storage=None
+    # callers (calibration harness, legacy tests).
+    trade_module_outputs: dict[int, dict[str, Any]] = field(default_factory=dict)
+
     # Bid Context (Filter 7 — user input)
     bid: BidContext = field(default_factory=BidContext)
 

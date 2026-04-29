@@ -1441,17 +1441,219 @@ def run_scope_scanner(engine, doc, ctx: PlanSetContext) -> None:
     )
 
 
+# D.1: Stage 13 — trade module wiring helpers.
+#
+# Approach: when storage is activated, run_dispatch invokes Roofing + Glazing
+# modules per page after Filter 5 / scope_scanner / project_metadata complete.
+# Inputs are built via core.trade_input_builder.build_trade_input(), which now
+# (post-calibration Bug 3 fix) reads page_ctx.raw_tables and populates
+# TradeModuleInput.tables. Geometry-derived polygon fields are zeroed because
+# Stages 6–9 are not yet wired into run_dispatch (deferred to D.2/E); this
+# matches the C.2-established equivalent path used by sweep / calibration
+# harnesses. Module outputs land on ctx.trade_module_outputs.
+
+def _build_dispatch_only_input(ctx: PlanSetContext, page_idx: int,
+                               text_blocks: list, raw_tables):
+    """D.1: build a TradeModuleInput without geometry results.
+
+    Geometry isn't wired into dispatch yet (Phase D.2/E), so polygon-derived
+    fields are zeroed, mirroring the C.2-established direct-construction
+    pattern used by the calibration / sweep harnesses. The dispatch-side
+    state (page_type, page_legends, page_zones, raw_tables, project_scope)
+    is wired through correctly.
+    """
+    from core.trade_module import TradeModuleInput
+
+    page_ctx = ctx.pages.get(page_idx)
+    page_type = "UNKNOWN"
+    page_legends: list = []
+    page_zones: list = []
+    if page_ctx is not None:
+        pt = getattr(page_ctx, "page_type", None)
+        page_type = getattr(pt, "value", str(pt)) if pt is not None else "UNKNOWN"
+        page_legends = list(page_ctx.legends or [])
+        page_zones = list(page_ctx.zones or [])
+
+    return TradeModuleInput(
+        polygon_area_sqin=0.0,
+        polygon_area_sf=0.0,
+        polygon_perimeter_in=0.0,
+        polygon_perimeter_lf=0.0,
+        polygon_bbox=(0.0, 0.0, 0.0, 0.0),
+        polygon_vertices=0,
+        scale_fpi=0.0,
+        scale_source="unwired",
+        scale_confidence=0.0,
+        detection_source="none",
+        interior_text_blocks=text_blocks,
+        equipment_callouts=[],
+        dimension_strings=[],
+        page_type=page_type,
+        page_legends=page_legends,
+        page_zones=page_zones,
+        tables=raw_tables if raw_tables else None,
+        project_scope=getattr(ctx, "project_scope", None),
+        page_number=page_idx,
+    )
+
+
+def _run_trade_modules(engine: PDFEngine, doc, ctx: PlanSetContext) -> None:
+    """D.1: Stage 13 — run RoofingModule + GlazingModule for every page.
+
+    Per-page errors are caught and logged to ctx.dispatch_warnings without
+    aborting the loop. If the per-module error rate exceeds 25% of pages
+    attempted, a single summary warning is appended (the §11 #6 stop is
+    triggered by the gate harness reading dispatch_warnings, not by this
+    helper raising — keeps run_dispatch's contract simple).
+    """
+    from core.roofing_module import RoofingModule
+    from core.glazing_module import GlazingModule
+
+    roofing_mod = RoofingModule()
+    glazing_mod = GlazingModule()
+
+    pages_attempted = 0
+    roofing_errors = 0
+    glazing_errors = 0
+
+    use_pdfplumber = _pdfplumber is not None
+    pdf = None
+    if use_pdfplumber:
+        try:
+            pdf = _pdfplumber.open(ctx.pdf_path)
+        except Exception as exc:
+            ctx.dispatch_warnings.append(
+                f"trade module wiring: pdfplumber.open failed ({type(exc).__name__}); "
+                "trade modules skipped"
+            )
+            return
+
+    try:
+        for page_idx in sorted(ctx.pages.keys()):
+            page_ctx = ctx.pages[page_idx]
+            text_blocks: list = []
+            raw_tables = page_ctx.raw_tables  # cached by Filter 4 for SCHEDULE pages
+
+            # Pull per-page text blocks via pdfplumber (cheap; Filter 4 already
+            # paid extract_tables() for schedule pages so raw_tables is reused).
+            # Also fall back to extract_tables() for non-schedule pages so
+            # door/glazing schedules on non-SCHEDULE_SHEET-classified pages
+            # land on TradeModuleInput.tables — matches the calibration
+            # harness's all-pages table coverage and avoids module output
+            # regression.
+            if pdf is not None and page_idx < len(pdf.pages):
+                try:
+                    pdf_page = pdf.pages[page_idx]
+                    words = pdf_page.extract_words() or []
+                    for w in words:
+                        try:
+                            text_blocks.append(TextBlock(
+                                text=str(w.get("text", "")),
+                                x0=float(w.get("x0", 0.0)),
+                                y0=float(w.get("top", 0.0)),
+                                x1=float(w.get("x1", 0.0)),
+                                y1=float(w.get("bottom", 0.0)),
+                                page=page_idx,
+                            ))
+                        except Exception:
+                            continue
+                    if not raw_tables:
+                        try:
+                            ext = pdf_page.extract_tables() or []
+                            if ext:
+                                raw_tables = [t for t in ext if t]
+                        except Exception:
+                            pass
+                except Exception:
+                    text_blocks = []
+
+            tinput = _build_dispatch_only_input(ctx, page_idx, text_blocks, raw_tables)
+            pages_attempted += 1
+            per_page: dict = {}
+
+            try:
+                per_page["roofing"] = roofing_mod.analyze(tinput)
+            except Exception as exc:
+                roofing_errors += 1
+                ctx.dispatch_warnings.append(
+                    f"trade module page {page_idx} roofing.analyze raised "
+                    f"{type(exc).__name__}: {str(exc)[:120]}"
+                )
+
+            try:
+                per_page["glazing"] = glazing_mod.analyze(tinput)
+            except Exception as exc:
+                glazing_errors += 1
+                ctx.dispatch_warnings.append(
+                    f"trade module page {page_idx} glazing.analyze raised "
+                    f"{type(exc).__name__}: {str(exc)[:120]}"
+                )
+
+            if per_page:
+                ctx.trade_module_outputs[page_idx] = per_page
+    finally:
+        if pdf is not None:
+            try:
+                pdf.close()
+            except Exception:
+                pass
+
+    # §11 #6: surface error-rate threshold. Hard stop is the harness's job.
+    if pages_attempted > 0:
+        r_rate = roofing_errors / pages_attempted
+        g_rate = glazing_errors / pages_attempted
+        if r_rate > 0.25:
+            ctx.dispatch_warnings.append(
+                f"trade module wiring: roofing error rate {r_rate:.0%} "
+                f"({roofing_errors}/{pages_attempted}) exceeds 25% threshold"
+            )
+        if g_rate > 0.25:
+            ctx.dispatch_warnings.append(
+                f"trade module wiring: glazing error rate {g_rate:.0%} "
+                f"({glazing_errors}/{pages_attempted}) exceeds 25% threshold"
+            )
+
+    ctx.filters_completed.append("stage_13_trade_modules")  # D.1
+
+
+_DEFAULT_STORAGE_INSTANCE = None  # D.1: lazy singleton for storage="auto"
+
+
+def _resolve_storage(storage):
+    """D.1: resolve the storage argument per Phase D.1 march orders §4.
+
+    - storage=None: legacy no-op (preserves test_dispatch.py expectations)
+    - storage="auto": lazily construct a default SQLite-backed StorageEngine,
+      cached as a module-level singleton for the process lifetime
+    - any other value: assumed to be a pre-constructed storage instance
+    """
+    if storage is None:
+        return None
+    if storage == "auto":
+        global _DEFAULT_STORAGE_INSTANCE
+        if _DEFAULT_STORAGE_INSTANCE is None:
+            from core.storage import StorageEngine
+            _DEFAULT_STORAGE_INSTANCE = StorageEngine()
+        return _DEFAULT_STORAGE_INSTANCE
+    return storage
+
+
 def run_dispatch(pdf_path: str | Path, storage=None) -> PlanSetContext:
     """
     Run the full dispatch gate on a PDF plan set.
     Returns a populated PlanSetContext.
 
-    If storage is provided, also runs architect-firm detection after
-    Filter 5 and attaches the profile (or a stub) to ctx.architect_profile.
+    If storage is provided (instance or "auto" sentinel — D.1), also runs
+    architect-firm detection after Filter 5 and attaches the profile (or a
+    stub) to ctx.architect_profile, and wires RoofingModule + GlazingModule
+    into the production call path so per-page TradeModuleOutput records land
+    on ctx.trade_module_outputs.
     """
     pdf_path = Path(pdf_path)
     engine = PDFEngine()
     doc = engine.open(pdf_path)
+
+    storage = _resolve_storage(storage)  # D.1: lazy default storage activation
 
     ctx = PlanSetContext(
         pdf_path=str(pdf_path),
@@ -1494,6 +1696,17 @@ def run_dispatch(pdf_path: str | Path, storage=None) -> PlanSetContext:
 
         # Project Metadata
         _extract_project_metadata(engine, doc, ctx)
+
+        # D.1: Stage 13 — wire trade modules into the production path. Only
+        # runs when storage is activated (storage=None preserves legacy
+        # test path that expects no module side-effects). Errors per page
+        # are logged to dispatch_warnings; >25% per-module error rate is
+        # surfaced as a single warning per the §11 #6 stop threshold.
+        if storage is not None:
+            try:
+                _run_trade_modules(engine, doc, ctx)
+            except Exception as e:
+                ctx.dispatch_warnings.append(f"trade module wiring failed: {e}")
 
         # Leak check
         ctx.dispatch_warnings.extend(check_for_leaks(ctx))

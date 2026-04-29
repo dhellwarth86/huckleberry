@@ -40,6 +40,11 @@ These are TracePoint files ported into the Huckleberry backend. Each has been ve
 | `backend/core/roofing_vocabulary.py` | 575 | `ec6c17f8955ef8e27c3ff1d552b299a6962c9d0b` | `diff = 0` + SHA-1 match against `tracepoint_port/TracePoint/modules/roofing/vocabulary.py` (zero edits — discovery's expectation that `from data.*` imports existed was wrong; source is stdlib-only) | C.2 ship 2026-04-27 | `74772b6` |
 | `backend/core/roofing_module.py` | 434 | `ae9e5b284191b45de419faacf11771da27a548f9` | 1 same-character import edit on line 34 (`from modules.roofing.vocabulary` → `from core.roofing_vocabulary`); diff vs source shows EXACTLY this line and nothing else | C.2 ship 2026-04-27 | `74772b6` |
 | `backend/core/trade_input_builder.py` | ~162 | `1221504636f6208014f05dd1931d2837f4b1cc5d` | extracted-helper deliberate adaptation per `MARCH_ORDERS_C_2.md §2`. Function body of `build_trade_input()` + 6 helpers byte-identical to source via Python-bytes-level slice diff. FastAPI route handler (`run_trade_module`) excluded; FastAPI imports excluded. | C.2 ship 2026-04-27 | `74772b6` |
+| `backend/core/dispatch_gate.py` (D.1 modifications) | +159 / −2 | (post-D.1; not separately tracked) | Three D.1 additions (all line-tagged `# D.1:`): (1) `_resolve_storage(storage)` helper + `_DEFAULT_STORAGE_INSTANCE` lazy singleton; `storage="auto"` triggers default `StorageEngine()` construction, `storage=None` preserves legacy no-op for tests/calibration/sweep harnesses. (2) `_build_dispatch_only_input()` + `_run_trade_modules()` Stage 13 helpers (RoofingModule + GlazingModule per page, errors caught and logged to `dispatch_warnings` without aborting; `>25%` per-module error-rate surfaced as warning per orders §11 #6). (3) `run_dispatch()` invokes `_run_trade_modules()` after `_extract_project_metadata()` when `storage is not None`; appends `"stage_13_trade_modules"` to `ctx.filters_completed`. Verified empirically: Silverleaf hard gate PASS (see §D row below). | D.1 ship 2026-04-29 | (D.1 commit on `phase2-v0.3-D1-storage-and-module-wiring`) |
+| `backend/core/context.py` (D.1 modifications) | +7 / −0 | (post-D.1; not separately tracked) | Single additive field on `PlanSetContext`: `trade_module_outputs: dict[int, dict[str, Any]] = field(default_factory=dict)`. Default empty dict preserves all legacy behaviour (`storage=None` callers see no change). `Any` typing avoids importing `core.trade_module` from the platform schema (preserves trade-agnostic invariant). RoofingModule/GlazingModule outputs land here when D.1 Stage 13 wiring runs. | D.1 ship 2026-04-29 | (D.1 commit) |
+| `backend/core/dispatch_gate.py` (calibration modifications, retroactive ledger entry) | (calibration) | (post-calibration) | Two same-character / same-line edits per `backend/CALIBRATION_GATE_REPORT_silverleaf.md`: line 105 SCHEDULE rule moved to position 0 in `_PAGE_TYPE_RULES` (Bug 1 fix, calibration iter 1); lines 733–842 `_parse_tables_on_page` returns `(legends, raw_tables)` tuple, `run_filter_4` stores raw_tables on `page_ctx.raw_tables` (Bug 3 fix, calibration iter 2). Sacred-floor-preserving (216/19/0 maintained). | Calibration ship 2026-04-29 | `2c56913` |
+| `backend/core/context.py` (calibration modifications, retroactive ledger entry) | (calibration) | (post-calibration) | Single additive field on `PageContext`: `raw_tables: Optional[list] = None` (Bug 3 fix, calibration iter 2). | Calibration ship 2026-04-29 | `2c56913` |
+| `backend/core/trade_input_builder.py` (calibration modifications, retroactive ledger entry) | (calibration) | (post-calibration) | `build_trade_input()` reads `page_ctx.raw_tables` and passes to `TradeModuleInput(tables=...)` (Bug 3 fix Path c, calibration iter 2). | Calibration ship 2026-04-29 | `2c56913` |
 
 **Total verbatim port lines:** B.1 (500) + B.2 (1,212) + B.3 (442) + B.4 (700) + C.1 (90) + C.2 vocabulary (575) + C.2 module (434) + C.2 trade_input_builder (~162) = **~4,115 lines** verbatim or near-verbatim across Phase B + C.1 + C.2.
 
@@ -189,6 +194,8 @@ These are read-only diagnostic scripts or extended-thinking sessions that were e
 | D-8 mechanical re-verification + gap-list re-verification | (interactive Claude Code session, mechanical `len()` against parked seeds + SHA-1 verification + 14-entry duplicate check) | Documentation patch via commit `eb49a08`; CLAUDE.md §3 Decision 15 extended to cover trade modules; vault rule applied retroactively to RoofingModule, roofing_vocabulary, glazing_vocabulary | 2026-04-28 |
 | Three-bidset sweep (Shoppes-at-Avalon / Vine Street / Bearss Ave) | `backend/scripts/sweep_three_bidsets.py` (untracked one-shot harness) — `run_dispatch` + per-page `RoofingModule().analyze` + per-page `GlazingModule().analyze` + `run_debug(ctx)` | `backend/SWEEP_OBSERVATION_shoppes-at-avalon.md` + `backend/SWEEP_OBSERVATION_vine-street.md` + `backend/SWEEP_OBSERVATION_bearss-ave.md` (committed via `cf107dd`) | 2026-04-28 |
 | Bearss Ave profile diagnostic (pages 15 high-content + 82 low-content) | `backend/scripts/profile_diagnostic.py` (tracked reusable harness) — `time.perf_counter()` × 3 repeats × 4 ops × 2 pages | `backend/PROFILE_DIAGNOSTIC_bearss-ave.md` (committed via `112bca7`) | 2026-04-29 |
+| Silverleaf calibration session (B2607 AEA — 40 pages) | `backend/scripts/calibrate_silverleaf.py` (tracked reusable harness) — baseline + 2 fix iterations + iter-3-skipped | `backend/CALIBRATION_RUN_silverleaf_iter_{0,1,2}.md` + `backend/CALIBRATION_GATE_REPORT_silverleaf.md` (committed via `2c56913`) | 2026-04-29 |
+| Silverleaf D.1 hard gate (wired pipeline end-to-end) | `backend/scripts/d1_silverleaf_hardgate.py` (tracked reusable harness) — `run_dispatch(storage="auto")` + aggregate from `ctx.trade_module_outputs` + 7-criterion comparison vs calibration iter 2 baseline | `backend/D_HARD_GATE_silverleaf.md` (committed via D.1 commit) | 2026-04-29 |
 
 ### Pass 1 headline numbers (measured, not estimated)
 
@@ -214,6 +221,26 @@ These are read-only diagnostic scripts or extended-thinking sessions that were e
 - Debug section 6 emitted 1 / 46 / 145 legend entries respectively; 0 / 0 / 1 quality flag.
 - All 3 × 3 = 9 stub markers (sections 2, 4, 5 across the three bidsets) confirmed exact.
 - **Replicates the intake-diagnostic Pass 2 finding** that the dispatch gate's detected_system path produces `None` on STACK-corpus bidsets where roofing scope is present but the manufacturer-mention paths sit in negation, non-roofing, or non-Division-7-proximate contexts. NOT graded as bug or feature; the receipt is replication, not correctness adjudication. Compare Taco Bell's 2026-04-28 C.5 run-through: `detected_system="tpo"` confidence 0.95, `scope_pages=[18, 19]` — clean positive on the bidset whose Division 7 spec sits at known coordinates. The sweep adds three negative receipts to that one positive.
+
+### Silverleaf D.1 hard gate headline numbers (measured 2026-04-29)
+
+- Wired-dispatch wall-clock 139.8s — under the 187.1s budget (+30% of calibration iter 2's combined dispatch+modules 143.9s; orders §7 criterion 2's intent: "Wiring adds module call time, which is expected; the budget accommodates that").
+- Module output exact parity with calibration iter 2: roofing 338 fields / glazing 20 / door 81 / storefront 6.
+- 18/18 schedule_sheet pages have populated `raw_tables` (cached by Filter 4 + falling back to per-page `extract_tables()` in Stage 13 for non-schedule pages, matching the calibration harness's all-pages table coverage).
+- 0 per-page module errors (error rate 0.0%); 1 dispatch warning (Filter 4 quality gate; same as calibration).
+- Debug section 6: 60 legends, 0 quality flags (parity).
+- 5 vault-ruled module SHA-1s match pre-session: `roofing_module.py` `ae9e5b28…`, `glazing_module.py` `52c01442…`, `roofing_vocabulary.py` `ec6c17f8…`, `glazing_vocabulary.py` `64249c8e…`, `debug_module.py` `78f71d90…`.
+- All 5 frontend HTML SHA-1s match pre-session (vault-treated): 6.3.1 `a80463ef…`, 6.3.2 `09702119…`, 6.3.3 `e8ba836c…`, 6.3.4 `aaeddf68…`, 6.3.5 `cf3765d6…`.
+- Backend test floor 216/19/0 unchanged (zero new tests added).
+- Pipeline confirmation: `ctx.filters_completed = ['filter_1', 'filter_2', 'filter_4', 'filter_3', 'filter_5', 'stage_13_trade_modules']`.
+
+### Silverleaf calibration session headline numbers (measured 2026-04-29)
+
+- Baseline iter 0: 8 schedule_sheet, 8 elevation, 8 detail_sheet, 49 legends, 30.7s dispatch.
+- Bug 1 fix iter 1: schedule_sheet 8→18 (4 correctly flipped via `has_schedule=True`; 6 over-classified by full-text SCHEDULE keyword match — pages 0/4/11/15/21/31), elevation 8→3, detail_sheet 8→5, legends 49→60, dispatch 30.7→59.2s; quality_flags held at 0 (no downstream noise).
+- Bug 3 fix iter 2: dispatch output unchanged (plumbing-only fix); `_parse_tables_on_page` now returns `(legends, raw_tables)` tuple; raw_tables cached on `PageContext.raw_tables`; `build_trade_input` reads them into `TradeModuleInput.tables`. Module output (via direct-construction harness): 338 roofing fields, 20 glazing / 81 door / 6 storefront items.
+- Iter 3 skipped — diminishing returns (no remaining dispatch-structural problem).
+- Vault rule held throughout (5 modules SHA-1-verified unchanged); zero new tests; zero new dependencies; zero `pyproject.toml` modifications. Backend test floor 216/19/0 maintained across all iterations.
 
 ### Bearss Ave profile diagnostic headline numbers (measured 2026-04-29)
 

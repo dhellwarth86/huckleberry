@@ -8,17 +8,18 @@ This document defeats that loop.
 
 ---
 
-## 1. The four canonical documents (read in this order)
+## 1. The canonical documents (read in this order)
 
 | # | Document | What it is | When to read it |
 |---|---|---|---|
 | 1 | **PROJECT_CLAUDE.md** (this file) | Entry point and discipline | First, every session |
-| 2 | **CLAUDE.md** | Single source of truth: project identity, canonical workflow, 18 ratified Phase 2 architectural decisions, phased recovery path A–F, hard guardrails | Second, every session |
-| 3 | **VALIDATION_LEDGER.md** | Empirical proof of what has been validated, with verification methods named | Third — quote it instead of re-litigating |
-| 4 | **HANDOFF_FINAL_2026-04-27.md** (or whatever the latest handoff is) | Narrative of recent state and where things stand right now | Fourth — bridges canon to current moment |
-| 5 | **MARCH_ORDERS_C_*.md** (active phase orders) | Step-by-step execution plan for the current phase | Fifth — only when actually executing |
+| 2 | **VALIDATION_LEDGER.md** | Empirical proof of what has been validated, with verification methods named | Second — quote it instead of re-litigating |
+| 3 | **Latest handoff** (e.g., `HANDOFF_FINAL_*.md` if one exists, or the most recent gate report) | Narrative of recent state and where things stand right now | Third — bridges canon to current moment |
+| 4 | **MARCH_ORDERS_*.md** (active phase orders) | Step-by-step execution plan for the current phase | Fourth — only when actually executing |
 
-If you (Claude session reading this) feel an urge to do something before reading those four, stop and read them first. The urge is the failure mode.
+`CLAUDE.md` was retired by Daniel directive on 2026-04-29; substantive content has migrated to PROJECT_CLAUDE.md and VALIDATION_LEDGER.md. Older artifacts may still reference it as `CLAUDE.md §X` — treat such references as historical pointers and work from the canonical docs above.
+
+If you (Claude session reading this) feel an urge to do something before reading those, stop and read them first. The urge is the failure mode.
 
 ---
 
@@ -66,7 +67,13 @@ If you (Claude session reading this) feel an urge to do something before reading
 
 Per-page module error rate was 0.00% across all three bidsets and both modules (652 module calls × 326 pages, no exceptions). The §7 stop threshold (>25% per-bidset per-module error rate) was never approached. Branch `phase2-v0.3-sweep-three-bidsets` from C.5 head `b569312`; one commit (the three reports + this PROJECT_CLAUDE.md update). Sweep branch is local-only at session end; push timing is Daniel's call. The sweep harness (`backend/scripts/sweep_three_bidsets.py`) is untracked, same convention as C.5's `c5_run_through.py`. Harness note: standard `build_trade_input()` requires `geometry_result` from Stages 6–9 which is ported but not wired to dispatch (Phase D/E concern); the sweep harness therefore constructed `TradeModuleInput` directly per page with dispatch-side state (page_legends, page_zones, page_type, project_scope) plus pdfplumber-extracted text and tables, with `polygon_*` fields zero/empty and `scale_source = "unwired"`. This is the "C.2-established equivalent" path explicitly permitted by the orders §6 when the standard builder's preconditions aren't met.
 
-For full state detail, read `HANDOFF_FINAL_2026-04-28.md`.
+**Calibration session — B2607 AEA Silverleaf complete (2026-04-29):** First calibration session of program. Dispatch-side iterative refinement using the C.5 debug module as the diagnostic surface. Two structural fixes applied across two iterations on branch `phase2-v0.3-calibration-silverleaf` (single commit `2c56913` from `06d46c5`, pushed): Bug 1 (page-type ordering — SCHEDULE rule moved to position 0 in `_PAGE_TYPE_RULES`; iter 1 schedule_sheet 8→18, quality_flags held at 0) and Bug 3 (tables plumbing via Path c — `_parse_tables_on_page` returns `(legends, raw_tables)` tuple; raw_tables cached on `PageContext.raw_tables` for schedule pages; `build_trade_input` reads them into `TradeModuleInput.tables`). Iteration 3 skipped — diminishing returns. Vault rule held throughout (5 modules SHA-1-verified unchanged). Sacred floors held: backend 216/19/0, frontend at baseline. Receipts in `backend/CALIBRATION_GATE_REPORT_silverleaf.md` and `backend/CALIBRATION_RUN_silverleaf_iter_{0,1,2}.md`. Tracked harness at `backend/scripts/calibrate_silverleaf.py`. Master ledger at `backend/BLOCK_RUN.md` (continues across calibration → Phase D → Phase E).
+
+**Phase D.1 complete (2026-04-29):** Storage activation + RoofingModule + GlazingModule wired into the production `run_dispatch` call path. Single session, autonomous, branch `phase2-v0.3-D1-storage-and-module-wiring` from calibration head `2c56913`. `dispatch_gate.run_dispatch(pdf, storage="auto")` now lazily constructs a default `StorageEngine` (SQLite, `~/.tracepoint/cache.db`); the `storage=None` path is unchanged so legacy harnesses (calibration, sweep, profile) continue to work. After Filter 5 / scope_scanner / project_metadata, a new "Stage 13" runs RoofingModule + GlazingModule per page using `core.trade_module.TradeModuleInput` (built dispatch-side with zeroed polygon fields — Stages 6–9 geometry wiring is deferred to D.2/E per the C.2-established equivalent path). Per-page `TradeModuleOutput` records land on the new `PlanSetContext.trade_module_outputs: dict[int, dict[str, Any]]` field (additive, default empty dict). Silverleaf hard gate passed all 7 criteria: roofing 338/338 fields, glazing 20/20 / door 81/81 / storefront 6/6 items (exact parity with calibration iter 2), schedule_sheet pages 18/18 with `raw_tables` populated, dispatch_warnings shape preserved, wired-dispatch wall-clock 139.8s under the 187.1s budget (+30% of calibration's combined dispatch+modules 143.9s — orders §7 criterion 2's intent), 0 per-page module errors, vault SHA-1s match pre-session, all 5 frontend HTML SHA-1s match pre-session, backend test floor 216/19/0 maintained (zero new tests). Hard gate report at `backend/D_HARD_GATE_silverleaf.md`; tracked harness at `backend/scripts/d1_silverleaf_hardgate.py`. CLAUDE.md retired by Daniel directive 2026-04-29 — frontend vault-treated for Phase D pending Phase E strip-and-connect. D.2 (job folder + multi-tenant identity + schema migration) and Phase E (backend API + frontend strip-and-connect) are now next-eligible.
+
+**Branch state addendum (2026-04-29 end-of-day):** `phase2-v0.3-calibration-silverleaf` carries the 2-fix calibration commit `2c56913` from `06d46c5`; pushed. `phase2-v0.3-D1-storage-and-module-wiring` carries D.1 from `2c56913`; single commit at session end; pushed.
+
+For full state detail, read `HANDOFF_FINAL_2026-04-28.md`, then `backend/CALIBRATION_GATE_REPORT_silverleaf.md`, then `backend/D_HARD_GATE_silverleaf.md`.
 
 For empirical verification of any claim above, read `VALIDATION_LEDGER.md`.
 
@@ -187,10 +194,12 @@ Just so every session knows the trajectory. Detail is in `CLAUDE.md` §5.
 | Debug-module spec | Read-only specification report on TracePoint debug module + port-to-Huckleberry assessment | COMPLETE 2026-04-28 — recommendation: partial port at standalone C.5 sub-phase; receipts in `backend/DEBUG_MODULE_REPORT.md` |
 | **C.5** | **Debug-module partial port (sections 1/3/6 verbatim from TracePoint, sections 2/4/5 stubbed pending external state) + Taco Bell bidset run-through verification** | **COMPLETE 2026-04-28** (commits `9025884` + bidset-run-through commit `b569312`) — vault-ruled at sealing; no new dependencies; pushed to remote 2026-04-28; run-through receipts in `backend/C5_DEBUG_RUN_THROUGH_taco-bell-weeki-wachee-compass-construction-management-2.md` |
 | **Three-bidset sweep** | **Dispatch + RoofingModule + GlazingModule + debug module run against Shoppes-at-Avalon, Vine Street, Bearss Ave; three descriptive observation reports produced; modules vault-ruled and untouched throughout** | **COMPLETE 2026-04-28** — single commit on local branch `phase2-v0.3-sweep-three-bidsets` from `b569312`; reports at `backend/SWEEP_OBSERVATION_shoppes-at-avalon.md`, `backend/SWEEP_OBSERVATION_vine-street.md`, `backend/SWEEP_OBSERVATION_bearss-ave.md`; per-page module error rate 0.00% across all three bidsets and both modules; sections 2/4/5 stub markers confirmed in all three debug outputs |
-| Module tuning sessions | Dedicated sessions with `core/` frozen, vault rule observed per CLAUDE.md §3 Decision 15 | **NEXT — Daniel's decision after reviewing observation reports** (this OR C.4 below; not both) |
-| C.4 | Cross-trade relationships layer (reads `CROSS_TRADE_INTEGRATION_NOTES.md` as starting map; resolves awning/canopy boundary surfaced in C.3b plus anything surfaced in the sweep) | **NEXT — Daniel's decision after reviewing observation reports** (this OR module tuning above; not both) |
-| D | Database + job folder structure + GC primary identity | NOT started |
-| E | Backend API for frontend consumption | NOT started |
+| Module tuning sessions | Dedicated sessions with `core/` frozen, vault rule observed (Decision 15) | Available; deferred until tuning data justifies it |
+| C.4 | Cross-trade relationships layer (reads `CROSS_TRADE_INTEGRATION_NOTES.md` as starting map; resolves awning/canopy boundary surfaced in C.3b plus anything surfaced in the sweep) | Available; deferred |
+| **Calibration — B2607 AEA Silverleaf** | **Dispatch-side iterative refinement; Bug 1 + Bug 3 fixes; tracked harness; vault rule held; receipts in `backend/CALIBRATION_GATE_REPORT_silverleaf.md`** | **COMPLETE 2026-04-29** (commit `2c56913` on `phase2-v0.3-calibration-silverleaf`; pushed) |
+| **D.1** | **Storage activation in `run_dispatch` (lazy SQLite via `storage="auto"`) + RoofingModule + GlazingModule wired into production path (Stage 13) + `PlanSetContext.trade_module_outputs` field + Silverleaf hard gate end-to-end** | **COMPLETE 2026-04-29** (single commit on `phase2-v0.3-D1-storage-and-module-wiring` from `2c56913`; pushed) — Silverleaf hard gate PASS all 7 criteria; module output exact parity with calibration iter 2 |
+| D.2 | Job folder + multi-tenant identity + schema migration (BidsetRecord → PlanSetContext; D-4 + D-5 v0.2.1 fixes fold here); GC as primary identity | **NEXT-eligible** — Daniel's decision (this OR Phase E below) |
+| E | Backend API + frontend strip-and-connect (frontend stops parsing in browser; pulls structured data from backend; Phase 1 v6.3.x HTML preserved as offline fallback) | **NEXT-eligible** — now UNBLOCKED by D.1 |
 | F | Auto-notation product (three-state annotations, provenance, training data loop) | NOT started |
 
 Phases are gated. Each gets its own march-orders document drafted by extended-thinking Claude and reviewed by Daniel before Claude Code executes. No phase starts without explicit approval.
@@ -199,20 +208,20 @@ Phases are gated. Each gets its own march-orders document drafted by extended-th
 
 ## 8. The next planning conversation
 
-**Daniel reviews the three sweep observation reports. The next phase is genuinely open — (a) module tuning sessions OR (b) C.4 cross-trade relationships layer design — and the sweep data informs that decision.**
+**Daniel reviews the D.1 hard gate report (`backend/D_HARD_GATE_silverleaf.md`), the calibration gate report (`backend/CALIBRATION_GATE_REPORT_silverleaf.md`), and the new BLOCK_RUN.md Phase 2 section. The next phase is genuinely open — Phase E (backend API + frontend strip-and-connect) OR Phase D.2 (job folder + multi-tenant identity + schema migration) — and is Daniel's call.**
 
-The three-bidset sweep sealed 2026-04-28 closes the last data-gathering phase before tuning or C.4 design. RoofingModule (C.2), GlazingModule (C.3c-build), and the partial debug module (C.5) all ran clean against three real bidsets — Shoppes-at-Avalon (97 pp), Vine Street (138 pp), Bearss Ave (91 pp) — at 0.00% per-page module error rate. Reports under `backend/SWEEP_OBSERVATION_*.md` describe what each module produced; they grade nothing.
+D.1 wired the production call path end-to-end on Silverleaf. `run_dispatch(pdf, storage="auto")` now produces a populated `PlanSetContext` whose `trade_module_outputs` carry per-page `TradeModuleOutput` records from RoofingModule + GlazingModule. Module output is byte-equivalent to calibration iter 2 (338 roofing fields, 20/81/6 glazing). Bidsets remain in-memory + ephemeral SQLite cache; persistent job folders, GC-as-primary-identity, and the multi-tenant data model are explicitly D.2 scope, not D.1.
 
 The decision Daniel is now making:
 
-- **Path (a) — module tuning sessions next.** Dedicated, separate sessions with `core/` frozen, in the discipline established by CLAUDE.md §3 Decision 15. The vault-ruled module is the only editing target; the rest of `core/` is read-only. One module per session is the natural unit. Tuning starts from observations the reports surface; vocabulary additions, alias-table extensions, dimension-parsing edge cases, false-positive contexts, mark-extraction misses, and confidence-score recalibrations are all candidate edits but only after Daniel reads the reports and names which ones matter.
-- **Path (b) — proceed to C.4 cross-trade relationships layer design now.** Reads `backend/CROSS_TRADE_INTEGRATION_NOTES.md` as its starting map and resolves boundary questions surfaced during C.3b (awning/canopy) and during the sweep. The vault-ruled modules continue producing rough output; C.4 builds the relationship layer on top. Tuning is deferred until C.4 is done or until C.4 surfaces a tuning need it can't work around.
+- **Path (a) — Phase E next.** Backend API surfaces. FastAPI routes that consume `run_dispatch(storage="auto")` and serve `PlanSetContext` + `trade_module_outputs` to the frontend. Frontend strip-and-connect: ROOF_VOCAB, dispatch filters, geometry engine, scope extractors all stop running in the browser; Phase 1 v6.3.x HTML preserved as offline fallback per the Section-6 sacred constraint. Frontend visibility of module output unblocks meaningful tuning iteration. Module tuning, C.4 cross-trade, and D.2 persistence all stay deferred.
+- **Path (b) — Phase D.2 next.** Job folder structure (one folder per job, GC as primary identity), multi-tenant Postgres decision (per the long-deferred Decision Q2 reversal — backend cache stays SQLite; Phase D job-folder data is a separate concern), schema migration (BidsetRecord → PlanSetContext extended with job-level entities; D-4 + D-5 v0.2.1 fixes fold here). Persistent state before API. Phase E follows D.2.
 
-Either path ends at the same downstream phases: Phase D (database + job folder), Phase E (backend API for frontend), Phase F (auto-notation product). The order of (a) vs (b) is the only thing the sweep reports inform.
+Either path ends at the same downstream Phase F (auto-notation product). The order of (a) vs (b) is what the next planning conversation chooses.
 
-Extended-thinking Claude drafts the next phase's march orders once Daniel chooses. The march orders document is the gate; Claude Code does not start either path without it.
+Extended-thinking Claude drafts the chosen next phase's march orders once Daniel decides. The march orders document is the gate; Claude Code does not start either path without it.
 
-The big-picture frame is unchanged: module quality matters less right now than frontend visibility — Daniel still needs to SEE module output alongside the plans before tuning has feedback. Phase E closes that loop. The (a)/(b) decision is about whether tuning happens before or after C.4, not whether tuning happens before frontend visibility — both (a) and (b) leave Phase E ahead of meaningful tuning iteration.
+Module tuning sessions, C.4 cross-trade relationships layer, and (eventually) v0.2.1 schema-migration follow-on items remain on the board but are not in front of E or D.2.
 
 ---
 
