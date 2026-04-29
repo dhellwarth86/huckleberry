@@ -432,5 +432,93 @@ territory; not v0.2.1.
 
 ---
 
+> **Note on D-6 / D-7 / D-8 numbering:** D-6 was never assigned in
+> this register. D-7 and D-8 are project-level identifiers used in
+> `VALIDATION_LEDGER.md` §B as informational rows (TracePoint roofing-
+> test absence; C.3a inventory miscounts). They are not file-level
+> Discovered Issues entries here. The next file-level entry is D-9,
+> matching `MARCH_ORDERS_profile_and_housekeeping.md` §7.4.
+
+---
+
+## D-9 — `glazing_module.py` docstring "known limitations" list undersells the actual code in four places
+
+**Discovered:** 2026-04-28 during extended-thinking review of the
+C.3c-build ship (commit `6001042`).
+**Filed:** 2026-04-29 per `MARCH_ORDERS_profile_and_housekeeping.md`
+§7.4.
+**Status:** observation only. NOT a fix list. NOT scheduled.
+**Belongs to:** future glazing tuning session, with the vault rule
+active per CLAUDE.md §3 Decision 15. The docstring update is itself a
+tuning action and goes in a vault-respecting session (`backend/core/`
+frozen except for the target module).
+
+**Context.** `backend/core/glazing_module.py` ships with an explicit
+"Known limitations (rough-ship, deliberately not addressed in this
+phase)" list in its module docstring (lines ~49–80). The list serves
+two purposes: it tells the future tuning session where to start, and
+it is the rough-ship contract the vault rule freezes around. C.3c-build
+discipline (orders §1) has the docstring matching code reality.
+Extended-thinking review surfaced four places where the code does
+something the docstring doesn't name.
+
+**Drift items.** All line numbers refer to `glazing_module.py` at C.3c-
+build sealing commit (`6001042`); they may shift in any later commit
+that modifies the file (vault rule means that should not happen
+in-session anyway).
+
+1. **Lines 686–688: three fields collapse into one classifier.**
+   `door_type`, `frame_type`, and `material` all derive from a single
+   `_classify_door_type(joined)` call. Three nominally-distinct
+   schedule columns, one heuristic. Docstring limitation #7 covers
+   single-vs-pair classification only — does NOT name the
+   type/frame/material collapse. A door schedule that distinguishes
+   these three fields independently would not be captured by the
+   current code, regardless of how complete the schedule is.
+
+2. **Line 214: `_NUMERIC_DOOR_RE` hardcoded to 100–199.** The bare
+   numeric door-mark regex matches "typical retail" door numbering
+   (door 100, 101, …, 199). Multi-story bidsets that number doors
+   200–299 (second floor), 300–399 (third floor), etc., will miss
+   every numeric mark above 199. The pattern is not exposed in any
+   docstring limitation — the limitation list mentions architect-
+   specific naming schemes outside the W-/D-/SF- prefix family but
+   does not name this specific numeric range.
+
+3. **Line 280: `_match_system` half-token threshold.** System name
+   matching uses
+   `best_hits >= max(1, len(best_name.split("_")) // 2)`. For two-
+   token system names ("storefront_captured", "curtain_wall_4side",
+   etc.), the threshold is `max(1, 1)` = 1 — i.e., any single token in
+   any candidate row matches. "captured" alone matches "storefront_
+   captured"; "wall" alone matches "curtain_wall_4side". The docstring
+   does not name the half-token threshold or its consequence on short
+   system names.
+
+4. **Line 207: `_MARK_RE` includes more prefixes than the docstring.**
+   Docstring limitation #3 enumerates W-/D-/SF-/WIN-/DOOR- as the
+   recognized mark prefixes. The actual `_MARK_RE` adds HW (hardware
+   set), HM (hollow metal), FR (frame?), and a bare `D` followed by a
+   number. The mismatch isn't a bug — the broader regex is probably
+   right — but the docstring claims a narrower surface than the code
+   delivers.
+
+**Discipline note.** D-9 is a docstring-vs-code drift issue, not a
+behavior bug, but the docstring is part of the rough-ship contract and
+the vault rule freezes the rough-ship contract. Fixing the docstring
+mid-session would itself be a vault-rule violation. The future tuning
+session for the glazing module includes "reconcile docstring with
+actual code" as part of its scope.
+
+**No action this session.** D-9 is logged here so it does not get
+re-discovered. The four items above are the inventory; the tuning
+session decides whether to update the docstring (cheap), tighten the
+code to match (more expensive), or extend the docstring AND tighten
+the regex/classifier (most invasive). Sweep observation reports
+2026-04-28 + profile diagnostic 2026-04-29 are the data inputs that
+inform whether any of these matter on real bidsets.
+
+---
+
 
 

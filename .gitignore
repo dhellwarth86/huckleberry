@@ -50,6 +50,11 @@ backend/scripts/v0.2_sweep.log
 # v0.2 dispatch outputs are committed; tmp files stay excluded.
 backend/test_fixtures/v0.2_outputs/*.tmp
 
+# Public-corpus observation sweep outputs — observation only, NOT a v0.2
+# deliverable. Daniel decides post-hoc whether to commit / archive / discard.
+# Excluded by default so `git add -A` does not stage them.
+backend/test_fixtures/public_corpus_outputs/
+
 # tracepoint_port/ — read-only reference material (mirror of C:/TracePoint/)
 # placed in the working tree alongside v0.2 rubric briefs. NOT v0.2 work
 # product. Excluded so v0.2's commit narrative stays focused on the port
