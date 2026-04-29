@@ -126,6 +126,89 @@ Backend 216 passed, 19 skipped, 0 failed. Frontend 138/138 (verified at pre-flig
 
 ---
 
+## Phase 2.5: Housekeeping — safe_for_removal sweep (2026-04-29)
+
+**Branch:** `phase2-v0.3-housekeeping-safe-for-removal` (from D.1 head `b478456`)
+**Trigger:** Daniel directive 2026-04-29 — clear retired files into `safe_for_removal/` folder before D.2 starts; manifest preserves recovery info; folder reviewed and deleted in future session, manifest preserved as wiki source.
+**Scope discipline:** No production-code touches; no vault-ruled module touches; no frontend touches; no test suite touches; no canonical doc edits beyond a single PROJECT_CLAUDE.md §3 paragraph.
+
+### Files created
+- `safe_for_removal/` (new directory at workspace root)
+- `safe_for_removal/README.md`
+- `safe_for_removal/MANIFEST.md` — load-bearing artifact (survives folder deletion as wiki source)
+- `safe_for_removal/march_orders/` — 3 retired completed-phase march orders
+- `safe_for_removal/previous_handoff/contents/` — 5 archived handoff files (4 superseded handoffs + 1 archive copy of retired CLAUDE.md)
+- `safe_for_removal/previous_orders/contents/` — 16 archived march orders + 2 STEP files
+- `safe_for_removal/anomalous_nested_repo_huckleberry/repo_root` — embedded gitlink to anomalous nested repo found at workspace root
+- `safe_for_removal/intake_diagnostic_outputs/` — 2 reports + 2 scripts + 2 summary JSONs + 19 per-bidset CSVs
+- `safe_for_removal/pre_phase_B_validation/` — 5 markdown reports + 6 superseded scripts
+- `safe_for_removal/superseded_scripts/` — 2 one-shot harnesses (c5_run_through.py, sweep_three_bidsets.py)
+- `safe_for_removal/old_terminal_logs/` — 1 v0.2-era sweep log
+- `backend/HOUSEKEEPING_GATE_REPORT.md` — final gate report
+
+### Files moved
+**Tracked moves (git rename, history preserved):** 25 files
+- Workspace-root MARCH_ORDERS (3): `MARCH_ORDERS_calibration_silverleaf.md`, `MARCH_ORDERS_profile_and_housekeeping.md`, `MARCH_ORDERS_three_bidset_sweep.md` → `safe_for_removal/march_orders/`
+- `previous handoff/` (4): `HANDOFF_2026-04-26.md`, `HANDOFF_FINAL_2026-04-27.md`, `HANDOFF_v3_2026-04-27.md`, `PHASE_2_HANDOFF.md` → `safe_for_removal/previous_handoff/contents/`
+- `previous orders/` (12): all `MARCH_ORDERS_B_*.md`, `MARCH_ORDERS_C_*.md`, `MARCH_ORDERS_D8_FOLLOWUP.md`, `MARCH_ORDERS_page_type_verification.md`, `STEP_17_REVIEW_CHECKLIST.md`, `STEP_18_DECISION_BRIEF.md` → `safe_for_removal/previous_orders/contents/`
+- `backend/INTAKE_DIAGNOSTIC*.md` (2) + `backend/scripts/intake_diagnostic*.py` (2) → `safe_for_removal/intake_diagnostic_outputs/`
+- `backend/EXPERIMENT_*.md` (2) + `backend/PUBLIC_CORPUS_OBSERVATIONS.md` + `backend/TRACEPOINT_DISCOVERY.md` + `backend/V0_2_VALIDATION.md` (5) → `safe_for_removal/pre_phase_B_validation/`
+- `backend/scripts/run_experiment.py` + `analyze_outputs.py` + `compare_v0.1_to_v0.2.py` + `verify_v02_outputs.py` + `run_dispatch_on_15_bidsets.py` + `run_dispatch_on_public_corpus.py` (6) → `safe_for_removal/pre_phase_B_validation/`
+- `backend/scripts/c5_run_through.py` + `sweep_three_bidsets.py` (2) → `safe_for_removal/superseded_scripts/`
+
+**Untracked moves (newly added under safe_for_removal/):** 28 items
+- 1 archive copy of CLAUDE.md (Daniel's pre-session archive)
+- 4 archive duplicates of MARCH_ORDERS already moved via the workspace-root path (calibration, profile/housekeeping, three-bidset sweep — Daniel had pre-staged these)
+- 19 intake-diagnostic CSVs (previously untracked at `backend/test_fixtures/intake_diagnostic_outputs/`)
+- 2 intake-diagnostic summary JSONs
+- 1 anomalous nested repo (gitlink only)
+- 1 v0.2_sweep.log
+
+**Total: 53 file/path moves across 8 categories.** Soft observation per orders §11 #7: count between 50 and 100, surfaced for awareness but not a hard stop.
+
+### Files modified
+- `PROJECT_CLAUDE.md` — single new paragraph appended to §3 (housekeeping complete note); no other sections touched per orders §6
+- `backend/BLOCK_RUN.md` — this section (Phase 2.5) added between Phase 2 and Phase 3 per orders §7
+
+### Files deleted
+None this session. (Files in `safe_for_removal/` pending Daniel review before deletion.) Note: an unstaged deletion of root `CLAUDE.md` exists in working tree from Daniel's pre-session retirement movement; that deletion is NOT staged in this commit per orders §0 instruction to leave CLAUDE.md untouched.
+
+### Commits
+- Single housekeeping commit on `phase2-v0.3-housekeeping-safe-for-removal` (SHA recorded after commit lands)
+
+### Pushes
+- Branch pushed to origin at session end
+
+### Vault-ruled files touched
+None. SHA-1 verification at session end (matches pre-session captured at HK.0):
+- `roofing_module.py`: `ae9e5b284191b45de419faacf11771da27a548f9`
+- `glazing_module.py`: `52c014421915ec6a66b4a6860b71a0a3274920f2`
+- `roofing_vocabulary.py`: `ec6c17f8955ef8e27c3ff1d552b299a6962c9d0b`
+- `glazing_vocabulary.py`: `64249c8ef5f7d9db50added3c9a40836cba356ea`
+- `debug_module.py`: `78f71d9030cde3b173389603f5f39bd6bedaac07`
+
+### Frontend touched
+None. SHA-1 verification at session end (matches pre-session):
+- `Huckleberry_AI_6.3.1_Scope.html`: `a80463efe09a51e21c54635c34469fb64172f7b7`
+- `Huckleberry_AI_6.3.2_Scope.html`: `09702119c7c299ae03c4b8f401c1a1a2c4db1626`
+- `Huckleberry_AI_6.3.3_Scope.html`: `e8ba836c64df15277c9f8a36b7e28031f7b61f2a`
+- `Huckleberry_AI_6.3.4_Scope.html`: `aaeddf686c8c74d79b2409d1b4fde1831b7f02c3`
+- `Huckleberry_AI_6.3.5_Scope.html`: `cf3765d61fd6f17de46024a3a84c62f25b19b3c5`
+
+### Sacred floor at session end
+Backend 216 passed, 19 skipped, 0 failed (verified pre-flight at HK.0 and post-moves before commit). Frontend at baseline (SHA-1 verified, suite not re-run since frontend was untouched).
+
+### Ambiguous — left in place, surfacing for Daniel review
+Three Phase 2 v0.1-era scripts in `backend/scripts/` were left in place because their forward use is plausibly relevant to D.2 (job folder structure):
+- `local_manifest.py` — Phase 2 v0.1 local-mode manifest generator (no S3 dependency). Could inform D.2 job-folder design.
+- `upload_fixtures.py` — S3-compatible object-storage upload utility. Could be relevant to a future production-storage decision.
+- `verify_fixtures.py` — paired with upload_fixtures.py.
+- `backend/test_fixtures/bidsets.json` — manifest file possibly consumed by the above; left in place for safety.
+
+Daniel may want to retire any of the above in a follow-up housekeeping session if he confirms they're not needed for D.2.
+
+---
+
 ## Phase 3: Phase E — backend API + frontend consumption (TBD)
 
 (Populated by Phase E session.)

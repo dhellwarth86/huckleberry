@@ -1,0 +1,230 @@
+Phase 2 v0.2 Step 16 sweep — processing 15 bidset(s)
+Outputs go to C:\huck stage 2\huckleberry\backend\test_fixtures\v0.2_outputs
+
+  [run]  auto-zone-10891-jacksonville-mec-24-others  (Auto Zone #10891 - Jacksonville - MEC + 24 Others.pdf, 28 pp)
+  [done] auto-zone-10891-jacksonville-mec-24-others  (34.2s, 28p)
+         filename:        Auto Zone #10891 - Jacksonville - MEC + 24 Others.pdf
+         dispatch_done:   True
+         filters:         ['filter_1', 'filter_2', 'filter_4', 'filter_3', 'filter_5']
+         sheet_map:       source=drawing_index  count=31
+         cross_refs:      2 total, 0 resolved (0%)
+         legends:         1 total
+         page_types:      unknown=15, floor_plan=4, elevation=4, general_notes=1, detail_sheet=1, ceiling_plan=1
+         project_scope:   detected_system=None conf=0.00 scope_pages=0
+
+  [run]  auto-zone-vero-beach-fl  (Auto Zone Vero Beach, FL.pdf, 61 pp)
+  [done] auto-zone-vero-beach-fl  (71.0s, 61p)
+         filename:        Auto Zone Vero Beach, FL.pdf
+         dispatch_done:   True
+         filters:         ['filter_1', 'filter_2', 'filter_4', 'filter_3', 'filter_5']
+         sheet_map:       source=title_blocks  count=23
+         cross_refs:      46 total, 6 resolved (13%)
+         legends:         27 total
+         page_types:      unknown=30, general_notes=22, detail_sheet=5, schedule_sheet=2, elevation=1, section=1
+         project_scope:   detected_system=None conf=0.00 scope_pages=0
+         warnings(2):
+             - Filter 4 quality gate: 14 of 41 legends removed (27 kept)
+             - LOW RESOLUTION: 13% cross-references resolved
+
+  [run]  b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6  (B2607 AEA Silverleaf - St Augustine - Accelerated Construction Services (6).pdf, 40 pp)
+  [done] b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6  (36.6s, 40p)
+         filename:        B2607 AEA Silverleaf - St Augustine - Accelerated Construction Services (6).pdf
+         dispatch_done:   True
+         filters:         ['filter_1', 'filter_2', 'filter_4', 'filter_3', 'filter_5']
+         sheet_map:       source=drawing_index  count=10
+         cross_refs:      63 total, 0 resolved (0%)
+         legends:         49 total
+         page_types:      elevation=8, detail_sheet=8, schedule_sheet=8, unknown=4, section=3, framing_plan=2
+         project_scope:   detected_system=None conf=0.00 scope_pages=0
+         warnings(1):
+             - Filter 4 quality gate: 26 of 75 legends removed (49 kept)
+
+  [run]  bearss-ave-distribution-center-university-marcobay-construction-3  (Bearss Ave Distribution Center - University - Marcobay Construction (3).pdf, 91 pp)
+  [done] bearss-ave-distribution-center-university-marcobay-construction-3  (79.2s, 91p)
+         filename:        Bearss Ave Distribution Center - University - Marcobay Construction (3).pdf
+         dispatch_done:   True
+         filters:         ['filter_1', 'filter_2', 'filter_4', 'filter_3', 'filter_5']
+         sheet_map:       source=drawing_index  count=47
+         cross_refs:      232 total, 86 resolved (37%)
+         legends:         145 total
+         page_types:      elevation=27, detail_sheet=27, floor_plan=15, schedule_sheet=7, cover=4, site_plan=3
+         project_scope:   detected_system=None conf=0.00 scope_pages=0
+         warnings(1):
+             - Filter 4 quality gate: 196 of 341 legends removed (145 kept)
+
+  [run]  chewy-vet-care-london-square-miami-jdr-fixtures  (Chewy Vet Care-London Square - Miami - JDR Fixtures .pdf, 93 pp)
+  [done] chewy-vet-care-london-square-miami-jdr-fixtures  (134.8s, 93p)
+         filename:        Chewy Vet Care-London Square - Miami - JDR Fixtures .pdf
+         dispatch_done:   True
+         filters:         ['filter_1', 'filter_2', 'filter_4', 'filter_3', 'filter_5']
+         sheet_map:       source=drawing_index  count=89
+         cross_refs:      14 total, 1 resolved (7%)
+         legends:         172 total
+         page_types:      elevation=25, detail_sheet=17, schedule_sheet=16, general_notes=6, ceiling_plan=6, mep_plan=6
+         project_scope:   detected_system=None conf=0.00 scope_pages=0
+         warnings(2):
+             - Filter 4 quality gate: 651 of 823 legends removed (172 kept)
+             - LOW RESOLUTION: 7% cross-references resolved
+
+  [skip] chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction  (output exists)
+  [run]  hampshire-self-storage  (Hampshire Self Storage.pdf, 86 pp)
+  [done] hampshire-self-storage  (224.1s, 86p)
+         filename:        Hampshire Self Storage.pdf
+         dispatch_done:   True
+         filters:         ['filter_1', 'filter_2', 'filter_4', 'filter_3', 'filter_5']
+         sheet_map:       source=title_blocks  count=37
+         cross_refs:      82 total, 40 resolved (49%)
+         legends:         37 total
+         page_types:      detail_sheet=23, unknown=13, schedule_sheet=11, mep_plan=10, section=9, elevation=4
+         project_scope:   detected_system=None conf=0.00 scope_pages=0
+         warnings(1):
+             - Filter 4 quality gate: 52 of 89 legends removed (37 kept)
+
+  [run]  panda-express-naples-cdo-visible-construction-corp  (Panda Express - Naples - CDO & Visible Construction Corp.pdf, 98 pp)
+  [done] panda-express-naples-cdo-visible-construction-corp  (213.8s, 98p)
+         filename:        Panda Express - Naples - CDO & Visible Construction Corp.pdf
+         dispatch_done:   True
+         filters:         ['filter_1', 'filter_2', 'filter_4', 'filter_3', 'filter_5']
+         sheet_map:       source=drawing_index  count=86
+         cross_refs:      354 total, 134 resolved (38%)
+         legends:         86 total
+         page_types:      detail_sheet=47, elevation=14, schedule_sheet=9, roof_plan=6, floor_plan=4, ceiling_plan=3
+         project_scope:   detected_system=None conf=0.00 scope_pages=0
+         warnings(1):
+             - Filter 4 quality gate: 29 of 115 legends removed (86 kept)
+
+  [run]  panda-express-san-antonio-candito-construction-2  (Panda Express - San Antonio - Candito Construction (2).pdf, 38 pp)
+  [done] panda-express-san-antonio-candito-construction-2  (45.2s, 38p)
+         filename:        Panda Express - San Antonio - Candito Construction (2).pdf
+         dispatch_done:   True
+         filters:         ['filter_1', 'filter_2', 'filter_4', 'filter_3', 'filter_5']
+         sheet_map:       source=drawing_index  count=31
+         cross_refs:      65 total, 1 resolved (2%)
+         legends:         40 total
+         page_types:      elevation=12, detail_sheet=11, schedule_sheet=4, floor_plan=3, section=2, roof_plan=2
+         project_scope:   detected_system=None conf=0.00 scope_pages=0
+         warnings(2):
+             - Filter 4 quality gate: 16 of 56 legends removed (40 kept)
+             - LOW RESOLUTION: 2% cross-references resolved
+
+  [run]  panda-express-bradenton  (Panda Express Bradenton.pdf, 59 pp)
+  [done] panda-express-bradenton  (95.5s, 59p)
+         filename:        Panda Express Bradenton.pdf
+         dispatch_done:   True
+         filters:         ['filter_1', 'filter_2', 'filter_4', 'filter_3', 'filter_5']
+         sheet_map:       source=drawing_index  count=77
+         cross_refs:      276 total, 118 resolved (43%)
+         legends:         60 total
+         page_types:      detail_sheet=22, elevation=9, roof_plan=7, schedule_sheet=7, ceiling_plan=5, floor_plan=4
+         project_scope:   detected_system=None conf=0.00 scope_pages=0
+         warnings(1):
+             - Filter 4 quality gate: 27 of 87 legends removed (60 kept)
+
+  [run]  panda-express-hialeah-gardens  (Panda Express Hialeah Gardens.pdf, 101 pp)
+  [done] panda-express-hialeah-gardens  (209.3s, 101p)
+         filename:        Panda Express Hialeah Gardens.pdf
+         dispatch_done:   True
+         filters:         ['filter_1', 'filter_2', 'filter_4', 'filter_3', 'filter_5']
+         sheet_map:       source=drawing_index  count=20
+         cross_refs:      423 total, 6 resolved (1%)
+         legends:         88 total
+         page_types:      detail_sheet=50, elevation=13, schedule_sheet=13, roof_plan=7, unknown=4, floor_plan=4
+         project_scope:   detected_system=None conf=0.00 scope_pages=0
+         warnings(2):
+             - Filter 4 quality gate: 40 of 128 legends removed (88 kept)
+             - LOW RESOLUTION: 1% cross-references resolved
+
+  [run]  shoppes-at-avalon-spring-hill-mec  (Shoppes at Avalon - Spring Hill - MEC.pdf, 97 pp)
+  [done] shoppes-at-avalon-spring-hill-mec  (76.8s, 97p)
+         filename:        Shoppes at Avalon - Spring Hill - MEC.pdf
+         dispatch_done:   True
+         filters:         ['filter_1', 'filter_2', 'filter_4', 'filter_3', 'filter_5']
+         sheet_map:       source=drawing_index  count=30
+         cross_refs:      5 total, 4 resolved (80%)
+         legends:         1 total
+         page_types:      unknown=34, detail_sheet=31, elevation=14, roof_plan=4, ceiling_plan=4, floor_plan=4
+         project_scope:   detected_system=None conf=0.00 scope_pages=0
+         warnings(1):
+             - Filter 4 quality gate: 2 of 3 legends removed (1 kept)
+
+  [run]  taco-bell-weeki-wachee-compass-construction-management-2  (Taco Bell - Weeki Wachee - Compass Construction Management (2).pdf, 88 pp)
+  [done] taco-bell-weeki-wachee-compass-construction-management-2  (83.3s, 88p)
+         filename:        Taco Bell - Weeki Wachee - Compass Construction Management (2).pdf
+         dispatch_done:   True
+         filters:         ['filter_1', 'filter_2', 'filter_4', 'filter_3', 'filter_5']
+         sheet_map:       source=drawing_index  count=92
+         cross_refs:      372 total, 118 resolved (32%)
+         legends:         108 total
+         page_types:      detail_sheet=33, elevation=16, schedule_sheet=13, roof_plan=6, floor_plan=5, section=3
+         project_scope:   detected_system='tpo' conf=0.95 scope_pages=2
+         warnings(1):
+             - Filter 4 quality gate: 128 of 236 legends removed (108 kept)
+
+  [run]  vine-street-retail-center-kissimmee-great-southern-constructors  (Vine Street Retail Center - Kissimmee - Great Southern Constructors.pdf, 138 pp)
+  [done] vine-street-retail-center-kissimmee-great-southern-constructors  (96.7s, 138p)
+         filename:        Vine Street Retail Center - Kissimmee - Great Southern Constructors.pdf
+         dispatch_done:   True
+         filters:         ['filter_1', 'filter_2', 'filter_4', 'filter_3', 'filter_5']
+         sheet_map:       source=drawing_index  count=44
+         cross_refs:      313 total, 291 resolved (93%)
+         legends:         46 total
+         page_types:      detail_sheet=33, unknown=32, section=13, schedule_sheet=11, roof_plan=9, floor_plan=9
+         project_scope:   detected_system=None conf=0.00 scope_pages=0
+         warnings(1):
+             - Filter 4 quality gate: 8 of 54 legends removed (46 kept)
+
+  [run]  wendy-s-fort-myers-great-southern-constructors-3  (Wendy's - Fort Myers - Great Southern Constructors (3).pdf, 64 pp)
+  [done] wendy-s-fort-myers-great-southern-constructors-3  (576.5s, 64p)
+         filename:        Wendy's - Fort Myers - Great Southern Constructors (3).pdf
+         dispatch_done:   True
+         filters:         ['filter_1', 'filter_2', 'filter_4', 'filter_3', 'filter_5']
+         sheet_map:       source=drawing_index  count=11
+         cross_refs:      2 total, 0 resolved (0%)
+         legends:         28 total
+         page_types:      detail_sheet=17, unknown=14, schedule_sheet=9, elevation=9, section=4, ceiling_plan=3
+         project_scope:   detected_system=None conf=0.00 scope_pages=0
+         warnings(1):
+             - Filter 4 quality gate: 15 of 43 legends removed (28 kept)
+
+
+========================================================================
+CORPUS SUMMARY — 14 ok, 0 failed, total 1977.3s
+========================================================================
+Pages processed:          1,082
+Cross-refs:               2,249 total, 805 resolved (36%)
+Legends total:            888
+Bidsets with detected_system: 1/14
+    tpo                       1
+Bidsets with empty scope: 13/14
+    auto-zone-10891-jacksonville-mec-24-others  (system=None, scope_pages=0)
+    auto-zone-vero-beach-fl  (system=None, scope_pages=0)
+    b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6  (system=None, scope_pages=0)
+    bearss-ave-distribution-center-university-marcobay-construction-3  (system=None, scope_pages=0)
+    chewy-vet-care-london-square-miami-jdr-fixtures  (system=None, scope_pages=0)
+    hampshire-self-storage  (system=None, scope_pages=0)
+    panda-express-naples-cdo-visible-construction-corp  (system=None, scope_pages=0)
+    panda-express-san-antonio-candito-construction-2  (system=None, scope_pages=0)
+    panda-express-bradenton  (system=None, scope_pages=0)
+    panda-express-hialeah-gardens  (system=None, scope_pages=0)
+    shoppes-at-avalon-spring-hill-mec  (system=None, scope_pages=0)
+    vine-street-retail-center-kissimmee-great-southern-constructors  (system=None, scope_pages=0)
+    wendy-s-fort-myers-great-southern-constructors-3  (system=None, scope_pages=0)
+
+Page-type distribution (corpus-wide):
+    detail_sheet              325
+    elevation                 165
+    unknown                   154
+    schedule_sheet            110
+    floor_plan                 59
+    roof_plan                  51
+    section                    47
+    general_notes              44
+    ceiling_plan               36
+    site_plan                  21
+    mep_plan                   21
+    framing_plan               19
+    cover                      17
+    life_safety                11
+    symbol_legend               2
+
+Filter-order audit: 14/14 match ['filter_1', 'filter_2', 'filter_4', 'filter_3', 'filter_5']  OK

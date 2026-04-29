@@ -1,0 +1,94 @@
+page_index,sheet_number,discipline_prefix,page_type,confidence,word_count,in_scope_pages,has_roofing_evidence,system_hits,spec_section_hits,manufacturer_hits_total,manufacturer_hits_positive,manufacturer_hits_negation,manufacturer_hit_names,material_thickness_hits,material_insulation_hits,material_metal_hits,florida_signal_hits,accessory_hit,unresolved_xrefs_on_page
+0,G001,G,general_notes,0.9,528,False,False,,,0,0,0,,,,,,False,0
+1,G002,G,detail_sheet,0.9,2287,False,False,,,0,0,0,,,,,,False,0
+2,G003,G,detail_sheet,0.9,1841,False,False,,,0,0,0,,,,,,False,0
+3,G004,G,life_safety,0.9,1081,False,True,,,0,0,0,,,,,FBC,False,0
+4,G005,G,elevation,0.7,1896,False,True,pvc,,0,0,0,,,,,,False,0
+5,G006,G,site_plan,0.9,371,False,False,,,0,0,0,,,,,,False,1
+6,AD101,AD,floor_plan,0.9,357,False,False,,,0,0,0,,,,,,False,0
+7,AD121,AD,ceiling_plan,0.9,325,False,False,,,0,0,0,,,,,,False,0
+8,A219,A,life_safety,0.9,1233,False,False,,,0,0,0,,,,,,False,1
+9,A111,A,schedule_sheet,0.9,2480,False,True,,07 46,0,0,0,,,,,,False,0
+10,A121,A,ceiling_plan,0.9,1171,False,False,,,0,0,0,,,,,,False,1
+11,A512,A,schedule_sheet,0.9,1132,False,True,pvc,,0,0,0,,,,,,False,0
+12,A141,A,roof_plan,0.9,202,False,True,tpo,,0,0,0,,,,,,False,0
+13,A201,A,elevation,0.9,322,False,False,,,0,0,0,,,,,,False,1
+14,A211,A,elevation,0.9,519,False,False,,,0,0,0,,,,,,False,0
+15,A212,A,elevation,0.9,559,False,False,,,0,0,0,,,,,,False,1
+16,A213,A,elevation,0.9,503,False,False,,,0,0,0,,,,,,False,0
+17,A214,A,elevation,0.9,664,False,False,,,0,0,0,,,,,,False,0
+18,A215,A,elevation,0.9,482,False,False,,,0,0,0,,,,,,False,0
+19,A532,A,elevation,0.9,501,False,False,,,0,0,0,,,,,,False,0
+20,A217,A,elevation,0.9,474,False,False,,,0,0,0,,,,,,False,0
+21,A218,A,elevation,0.9,447,False,False,,,0,0,0,,,,,,False,0
+22,,,elevation,0.9,616,False,False,,,0,0,0,,,,,,False,0
+23,A401,A,elevation,0.9,598,False,False,,,0,0,0,,,,,,False,0
+24,A402,A,elevation,0.9,526,False,False,,,0,0,0,,,,,,False,0
+25,A511,A,elevation,0.9,745,False,False,,,0,0,0,,,,,,False,0
+26,,,detail_sheet,0.9,730,False,False,,,0,0,0,,,,,,False,0
+27,A531,A,detail_sheet,0.9,1746,False,False,,,0,0,0,,,,,,False,0
+28,,,ceiling_plan,0.9,640,False,True,pvc,,0,0,0,,,,,,False,0
+29,,,detail_sheet,0.9,551,False,False,,,0,0,0,,,,,,False,0
+30,A541,A,ceiling_plan,0.9,703,False,False,,,0,0,0,,,,,,False,1
+31,A611,A,schedule_sheet,0.9,1867,False,False,,,0,0,0,,,,,,False,0
+32,A612,A,detail_sheet,0.9,713,False,False,,,0,0,0,,,,,,False,0
+33,A901,A,detail_sheet,0.7,3287,False,True,,07 92,0,0,0,,,,,,True,0
+34,A902,A,elevation,0.7,2904,False,False,,,0,0,0,,,,,,False,0
+35,A903,A,elevation,0.7,4456,False,False,,,0,0,0,,,,,,False,0
+36,A904,A,schedule_sheet,0.9,4533,False,False,,,0,0,0,,,,,,False,0
+37,A905,A,elevation,0.7,5180,False,False,,,0,0,0,,,,,,False,0
+38,A906,A,section,0.7,4892,False,False,,,0,0,0,,,,,,False,0
+39,A907,A,detail_sheet,0.7,3848,False,False,,,0,0,0,,,,,,False,0
+40,A908,A,elevation,0.7,3057,False,True,,07 92,2,2,0,Tremco;Sika Sarnafil,,,,,True,0
+41,A909,A,schedule_sheet,0.9,3764,False,False,,,0,0,0,,,,,,False,0
+42,A910,A,schedule_sheet,0.9,4097,False,True,pvc,07 92,0,0,0,,,,,,True,0
+43,A911,A,schedule_sheet,0.9,4600,False,True,pvc,07 92,1,1,0,CertainTeed,,,,,True,0
+44,A912,A,ceiling_plan,0.7,3283,False,True,pvc,,0,0,0,,,,,,False,0
+45,A913,A,elevation,0.7,2212,False,True,pvc,,0,0,0,,,,,,False,0
+46,A914,A,elevation,0.7,3401,False,True,built_up,07 92,0,0,0,,,,,,True,0
+47,S000,S,general_notes,0.9,3671,False,False,,,0,0,0,,,,,,False,0
+48,S201,S,framing_plan,0.9,465,False,False,,,0,0,0,,,,,,False,0
+49,S202,S,framing_plan,0.7,499,False,False,,,0,0,0,,,,,,False,0
+50,S301,S,detail_sheet,0.7,577,False,False,,,0,0,0,,,,,,False,0
+51,S302,S,detail_sheet,0.7,452,False,False,,,0,0,0,,,,,,False,0
+52,P-000,P,general_notes,0.9,1969,False,True,pvc,,0,0,0,,,,,,False,1
+53,P-500,P,elevation,0.7,523,False,False,,,0,0,0,,,,,,False,0
+54,,,unknown,0.0,660,False,False,,,0,0,0,,,,,,False,0
+55,,,roof_plan,0.7,165,False,False,,,0,0,0,,,,,,False,0
+56,P-300,P,mep_plan,0.3,239,False,False,,,0,0,0,,,,,,False,0
+57,P-301,P,mep_plan,0.3,246,False,False,,,0,0,0,,,,,,False,0
+58,P-400,P,schedule_sheet,0.9,2810,False,True,epdm;pvc,,0,0,0,,,,,,False,0
+59,,,detail_sheet,0.9,1579,False,False,,,0,0,0,,,,,,False,0
+60,P-600,P,cover,0.9,5683,False,True,pvc,,1,1,0,Tremco,,,,,False,0
+61,P-601,P,elevation,0.7,4887,False,True,pvc,,2,2,0,Johns Manville;CertainTeed,,,,,False,0
+62,FP000,FP,detail_sheet,0.9,1515,False,True,,07 42,0,0,0,,,,,,False,2
+63,FP101,FP,floor_plan,0.9,1896,False,True,,07 42,0,0,0,,,,,,False,0
+64,FP300,FP,schedule_sheet,0.9,6278,False,True,,07 42,0,0,0,,,,,,False,0
+65,FP301,FP,schedule_sheet,0.9,5519,False,True,,07 42,0,0,0,,,,,,False,0
+66,M-000,M,general_notes,0.9,2710,False,False,,,0,0,0,,,,,,False,2
+67,M-500,M,floor_plan,0.9,684,False,False,,,0,0,0,,,,,,False,0
+68,M-501,M,roof_plan,0.9,337,False,False,,,0,0,0,,,,,,False,0
+69,M-400,M,schedule_sheet,0.9,2161,False,True,,07 55,0,0,0,,,,,,False,0
+70,,,detail_sheet,0.9,696,False,False,,,0,0,0,,,,,,False,0
+71,,,detail_sheet,0.9,1323,False,False,,,0,0,0,,,,,,False,0
+72,,,unknown,0.0,103,False,False,,,0,0,0,,,,,,False,0
+73,,,section,0.7,5996,False,False,,,0,0,0,,,,,,False,0
+74,,,ceiling_plan,0.7,4942,False,True,,,2,2,0,Johns Manville;CertainTeed,,,,SMACNA,False,0
+75,MD-101,MD,mep_plan,0.3,145,False,False,,,0,0,0,,,,,,False,0
+76,MD-201,MD,mep_plan,0.3,132,False,False,,,0,0,0,,,,,,False,0
+77,E-000,E,schedule_sheet,0.9,2404,False,False,,,0,0,0,,,,,,False,2
+78,E-001,E,general_notes,0.9,1097,False,False,,,0,0,0,,,,,,False,0
+79,E-101,E,detail_sheet,0.7,1233,False,False,,,0,0,0,,,,,,False,0
+80,E-201,E,elevation,0.7,1297,False,False,,,0,0,0,,,,,,False,0
+81,E-202,E,elevation,0.7,536,False,False,,,0,0,0,,,,,,False,0
+82,,,general_notes,0.7,937,False,False,,,0,0,0,,,,,,False,0
+83,E-301,E,mep_plan,0.3,370,False,False,,,0,0,0,,,,,,False,0
+84,E-400,E,schedule_sheet,0.9,2010,False,True,pvc,,0,0,0,,,,,,False,0
+85,E-401,E,schedule_sheet,0.9,2082,False,False,,,0,0,0,,,,,,False,0
+86,E-500,E,detail_sheet,0.9,1266,False,False,,,0,0,0,,,,,,False,0
+87,E-501,E,schedule_sheet,0.9,1872,False,False,,,0,0,0,,,,,,False,0
+88,E-600,E,mep_plan,0.3,103,False,False,,,0,0,0,,,,,,False,0
+89,E-700,E,elevation,0.7,5303,False,False,,,0,0,0,,,,,,False,0
+90,E-701,E,detail_sheet,0.7,4103,False,True,pvc,,1,1,0,CertainTeed,,,,,False,0
+91,E-702,E,schedule_sheet,0.7,2261,False,False,,,0,0,0,,,,,,False,0
+92,,,unknown,0.0,934,False,False,,,0,0,0,,,,,,False,0

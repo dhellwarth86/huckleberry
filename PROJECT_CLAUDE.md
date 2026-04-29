@@ -73,6 +73,8 @@ Per-page module error rate was 0.00% across all three bidsets and both modules (
 
 **Branch state addendum (2026-04-29 end-of-day):** `phase2-v0.3-calibration-silverleaf` carries the 2-fix calibration commit `2c56913` from `06d46c5`; pushed. `phase2-v0.3-D1-storage-and-module-wiring` carries D.1 from `2c56913`; single commit at session end; pushed.
 
+**Workspace housekeeping complete (2026-04-29):** Retired / no-longer-needed files moved to `safe_for_removal/` folder per `MARCH_ORDERS_housekeeping_safe_for_removal.md`. Manifest at `safe_for_removal/MANIFEST.md` documents what was moved, why, and what to look at if related issues surface. The folder will be removed in a future session after Daniel reviews; the MANIFEST.md is preserved as a wiki source. Tracked branch: `phase2-v0.3-housekeeping-safe-for-removal` from D.1 head.
+
 For full state detail, read `HANDOFF_FINAL_2026-04-28.md`, then `backend/CALIBRATION_GATE_REPORT_silverleaf.md`, then `backend/D_HARD_GATE_silverleaf.md`.
 
 For empirical verification of any claim above, read `VALIDATION_LEDGER.md`.

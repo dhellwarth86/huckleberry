@@ -1,0 +1,39 @@
+page_index,sheet_number,discipline_prefix,page_type,confidence,word_count,in_scope_pages,has_roofing_evidence,system_hits,spec_section_hits,manufacturer_hits_total,manufacturer_hits_positive,manufacturer_hits_negation,manufacturer_hit_names,material_thickness_hits,material_insulation_hits,material_metal_hits,florida_signal_hits,accessory_hit,unresolved_xrefs_on_page
+0,,,site_plan,0.9,777,False,False,,,0,0,0,,,,,,False,0
+1,M6,M,elevation,0.7,2955,False,False,,,0,0,0,,,,,,False,7
+2,A-403,A,section,0.5,882,False,False,,,0,0,0,,,,,,False,0
+3,,,floor_plan,0.9,2206,False,False,,,0,0,0,,,,,,False,2
+4,,,floor_plan,0.9,1559,False,False,,,0,0,0,,,,,,False,1
+5,,,ceiling_plan,0.9,1339,False,False,,,0,0,0,,,,,,False,0
+6,,,floor_plan,0.9,799,False,False,,,0,0,0,,,,,,False,0
+7,,,roof_plan,0.9,1271,False,True,pvc,07 22,0,0,0,,,,,,False,25
+8,,,detail_sheet,0.7,892,False,False,,,0,0,0,,,,,,False,0
+9,,,elevation,0.9,1222,False,True,,,1,1,0,Berridge,,,,,False,1
+10,C02,C,elevation,0.9,821,False,False,,,0,0,0,,,,,,False,0
+11,,,schedule_sheet,0.9,909,False,True,pvc;metal_panel,,0,0,0,,,EPS,,,False,0
+12,,,schedule_sheet,0.9,800,False,True,pvc;metal_panel,,0,0,0,,,EPS,,,False,0
+13,,,schedule_sheet,0.9,712,False,True,,,0,0,0,,,EPS,,,False,0
+14,,,elevation,0.9,855,False,True,pvc;metal_panel,,0,0,0,,,EPS,,,False,0
+15,,,detail_sheet,0.9,917,False,True,metal_panel,,0,0,0,,,EPS,,,False,0
+16,,,detail_sheet,0.9,1557,False,True,pvc,,0,0,0,,,EPS,,,False,0
+17,,,detail_sheet,0.9,1431,False,True,pvc;metal_panel,,0,0,0,,,EPS,,,False,0
+18,,,detail_sheet,0.9,1290,False,True,pvc,,0,0,0,,,EPS,,,False,0
+19,,,elevation,0.9,846,False,False,,,0,0,0,,,,,,False,0
+20,,,elevation,0.9,1922,False,False,,,0,0,0,,,,,,False,1
+21,,,detail_sheet,0.9,1634,False,False,,,0,0,0,,,,,,False,0
+22,,,detail_sheet,0.9,446,False,False,,,0,0,0,,,,,,False,0
+23,,,detail_sheet,0.9,3415,False,False,,,0,0,0,,,,,,False,0
+24,,,elevation,0.7,1224,False,False,,,0,0,0,,,,,,False,0
+25,D2B,D,elevation,0.9,855,False,False,,,0,0,0,,,,,,False,1
+26,,,elevation,0.9,788,False,False,,,0,0,0,,,,,,False,0
+27,CO2,CO,elevation,0.9,1493,False,False,,,0,0,0,,,,,,False,0
+28,,,elevation,0.9,1311,False,False,,,0,0,0,,,,,,False,0
+29,,,general_notes,0.9,3623,False,True,,07 22,0,0,0,,,,,,False,0
+30,,,roof_plan,0.7,1351,False,True,,07 22,0,0,0,,,,,,False,0
+31,,,elevation,0.7,1050,False,False,,,0,0,0,,,,,,False,0
+32,,,framing_plan,0.9,1179,False,True,metal_panel,,0,0,0,,,,,,False,16
+33,,,detail_sheet,0.9,1486,False,False,,,0,0,0,,,,,,False,0
+34,,,detail_sheet,0.9,641,False,False,,,0,0,0,,,,,,False,0
+35,,,schedule_sheet,0.9,1732,False,False,,,0,0,0,,,,,,False,7
+36,,,section,0.7,933,False,False,,,0,0,0,,,,,,False,3
+37,,,detail_sheet,0.9,822,False,False,,,0,0,0,,,,,,False,0

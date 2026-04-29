@@ -1,0 +1,967 @@
+{
+  "n_bidsets": 10,
+  "n_failures": 0,
+  "n_hits_total": 35,
+  "elapsed_s": 47.4,
+  "vocabulary_source": "seeds/roofing_spec_database.py (verbatim, not extended)",
+  "title_block_x_frac": 0.6,
+  "title_block_y_frac": 0.6,
+  "repeating_threshold": 5,
+  "nearby_spec_radius": 200,
+  "drawing_index_min_sheets": 10,
+  "drawing_index_scan_pages": 10,
+  "location_aggregate": {
+    "body_text_other": 31,
+    "drawing_index_page": 1,
+    "title_block_zone": 2,
+    "negation_window": 1
+  },
+  "results": [
+    {
+      "bidset_id": "chewy-vet-care-london-square-miami-jdr-fixtures",
+      "sheet_map_source": "drawing_index",
+      "drawing_index_page": 0,
+      "n_hits": 9,
+      "hits": [
+        {
+          "bidset_id": "chewy-vet-care-london-square-miami-jdr-fixtures",
+          "page_index": 40,
+          "sheet_number": "A908",
+          "page_type": "elevation",
+          "canonical": "Tremco",
+          "matched_name": "Tremco",
+          "context_80": "Corporation - Building Components. c. Tremco Incorporated. C. Silicone, Nonstaining,",
+          "match_bbox": [
+            896.0250854492188,
+            618.0498657226562,
+            917.56689453125,
+            626.6659545898438
+          ],
+          "page_w": 2592.0,
+          "page_h": 1728.0,
+          "is_in_title_block_zone": false,
+          "is_in_drawing_index": false,
+          "negated": false,
+          "nearby_spec_section_ref": null,
+          "is_repeating_text": false,
+          "repeating_page_count": 2
+        },
+        {
+          "bidset_id": "chewy-vet-care-london-square-miami-jdr-fixtures",
+          "page_index": 40,
+          "sheet_number": "A908",
+          "page_type": "elevation",
+          "canonical": "Sika Sarnafil",
+          "matched_name": "Sika",
+          "context_80": "he following: a. Pecora Corporation. b. Sika Corporation - Building Components. c.",
+          "match_bbox": [
+            896.3858642578125,
+            607.0098266601562,
+            908.927978515625,
+            615.6259155273438
+          ],
+          "page_w": 2592.0,
+          "page_h": 1728.0,
+          "is_in_title_block_zone": false,
+          "is_in_drawing_index": false,
+          "negated": false,
+          "nearby_spec_section_ref": null,
+          "is_repeating_text": false,
+          "repeating_page_count": 1
+        },
+        {
+          "bidset_id": "chewy-vet-care-london-square-miami-jdr-fixtures",
+          "page_index": 43,
+          "sheet_number": "A911",
+          "page_type": "schedule_sheet",
+          "canonical": "CertainTeed",
+          "matched_name": "Saint-Gobain",
+          "context_80": "mited to the following: a. CertainTeed; SAINT-GOBAIN. b. Georgia-Pacific Gypsum LLC. c. US",
+          "match_bbox": [
+            932.8568725585938,
+            341.46533203125,
+            978.49462890625,
+            350.0803527832031
+          ],
+          "page_w": 2592.0,
+          "page_h": 1728.0,
+          "is_in_title_block_zone": false,
+          "is_in_drawing_index": false,
+          "negated": false,
+          "nearby_spec_section_ref": null,
+          "is_repeating_text": false,
+          "repeating_page_count": 4
+        },
+        {
+          "bidset_id": "chewy-vet-care-london-square-miami-jdr-fixtures",
+          "page_index": 60,
+          "sheet_number": "P-600",
+          "page_type": "cover",
+          "canonical": "Tremco",
+          "matched_name": "Tremco",
+          "context_80": "es Inc., United States Gypsum Company, Tremco, or 3M Corp. Through and Membrane Penet",
+          "match_bbox": [
+            1771.8978271484375,
+            698.8604125976562,
+            1804.1251220703125,
+            711.8406372070312
+          ],
+          "page_w": 2592.0,
+          "page_h": 1728.0,
+          "is_in_title_block_zone": false,
+          "is_in_drawing_index": false,
+          "negated": false,
+          "nearby_spec_section_ref": null,
+          "is_repeating_text": false,
+          "repeating_page_count": 2
+        },
+        {
+          "bidset_id": "chewy-vet-care-london-square-miami-jdr-fixtures",
+          "page_index": 61,
+          "sheet_number": "P-601",
+          "page_type": "elevation",
+          "canonical": "Johns Manville",
+          "matched_name": "Johns Manville",
+          "context_80": "CertainTeed Corp., Knauf Insulation, Johns Manville or Owens Corning. Provide Insulation th",
+          "match_bbox": [
+            313.31890869140625,
+            511.15692138671875,
+            376.2041931152344,
+            524.1371459960938
+          ],
+          "page_w": 2592.0,
+          "page_h": 1728.0,
+          "is_in_title_block_zone": false,
+          "is_in_drawing_index": false,
+          "negated": false,
+          "nearby_spec_section_ref": null,
+          "is_repeating_text": false,
+          "repeating_page_count": 2
+        },
+        {
+          "bidset_id": "chewy-vet-care-london-square-miami-jdr-fixtures",
+          "page_index": 61,
+          "sheet_number": "P-601",
+          "page_type": "elevation",
+          "canonical": "CertainTeed",
+          "matched_name": "CertainTeed",
+          "context_80": "provide a continuous vapor barrier by CertainTeed Corp., Knauf Insulation, Johns Manvill",
+          "match_bbox": [
+            153.695068359375,
+            511.15692138671875,
+            206.01559448242188,
+            524.1371459960938
+          ],
+          "page_w": 2592.0,
+          "page_h": 1728.0,
+          "is_in_title_block_zone": false,
+          "is_in_drawing_index": false,
+          "negated": false,
+          "nearby_spec_section_ref": null,
+          "is_repeating_text": false,
+          "repeating_page_count": 4
+        },
+        {
+          "bidset_id": "chewy-vet-care-london-square-miami-jdr-fixtures",
+          "page_index": 74,
+          "sheet_number": "",
+          "page_type": "ceiling_plan",
+          "canonical": "Johns Manville",
+          "matched_name": "Johns Manville",
+          "context_80": "inteed Corp. \u201cToughgard\u201d or equivalent, Johns Manville, Owens-Corning, or Knauf. Provide round",
+          "match_bbox": [
+            390.23175048828125,
+            507.797607421875,
+            453.1170349121094,
+            520.77783203125
+          ],
+          "page_w": 2592.0,
+          "page_h": 1728.0,
+          "is_in_title_block_zone": false,
+          "is_in_drawing_index": false,
+          "negated": false,
+          "nearby_spec_section_ref": null,
+          "is_repeating_text": false,
+          "repeating_page_count": 2
+        },
+        {
+          "bidset_id": "chewy-vet-care-london-square-miami-jdr-fixtures",
+          "page_index": 74,
+          "sheet_number": "",
+          "page_type": "ceiling_plan",
+          "canonical": "CertainTeed",
+          "matched_name": "CertainTeed",
+          "context_80": "ck, 1-1/2 pound density, minimum R-6.3 Certainteed Corp. \u201cToughgard\u201d or equivalent, Johns",
+          "match_bbox": [
+            198.163330078125,
+            507.797607421875,
+            247.31723022460938,
+            520.77783203125
+          ],
+          "page_w": 2592.0,
+          "page_h": 1728.0,
+          "is_in_title_block_zone": false,
+          "is_in_drawing_index": false,
+          "negated": false,
+          "nearby_spec_section_ref": null,
+          "is_repeating_text": false,
+          "repeating_page_count": 4
+        },
+        {
+          "bidset_id": "chewy-vet-care-london-square-miami-jdr-fixtures",
+          "page_index": 90,
+          "sheet_number": "E-701",
+          "page_type": "detail_sheet",
+          "canonical": "CertainTeed",
+          "matched_name": "CertainTeed",
+          "context_80": "ional, Anamet Electrical, Amco, Cantex, Certainteed, Condux International, Elecsys, Electri",
+          "match_bbox": [
+            561.7243041992188,
+            371.7002868652344,
+            610.8779907226562,
+            384.6805419921875
+          ],
+          "page_w": 2592.0,
+          "page_h": 1728.0,
+          "is_in_title_block_zone": false,
+          "is_in_drawing_index": false,
+          "negated": false,
+          "nearby_spec_section_ref": null,
+          "is_repeating_text": false,
+          "repeating_page_count": 4
+        }
+      ],
+      "canonical_page_counts": {
+        "Tremco": 2,
+        "Sika Sarnafil": 1,
+        "CertainTeed": 4,
+        "Johns Manville": 2
+      },
+      "repeating_canonicals": [],
+      "elapsed_s": 4.1
+    },
+    {
+      "bidset_id": "wendy-s-fort-myers-great-southern-constructors-3",
+      "sheet_map_source": "drawing_index",
+      "drawing_index_page": 6,
+      "n_hits": 6,
+      "hits": [
+        {
+          "bidset_id": "wendy-s-fort-myers-great-southern-constructors-3",
+          "page_index": 5,
+          "sheet_number": "",
+          "page_type": "detail_sheet",
+          "canonical": "CertainTeed",
+          "matched_name": "CertainTeed",
+          "context_80": "NS-CORNING. EQUAL PRODUCT BY ARMSTRONG, CERTAINTEED, SCHULLER OR KNAUF MAY BE PROVIDED AT C",
+          "match_bbox": [
+            1805.0721435546875,
+            919.1737670898438,
+            1863.4962158203125,
+            927.4537963867188
+          ],
+          "page_w": 2592.0,
+          "page_h": 1728.0,
+          "is_in_title_block_zone": false,
+          "is_in_drawing_index": false,
+          "negated": false,
+          "nearby_spec_section_ref": null,
+          "is_repeating_text": false,
+          "repeating_page_count": 3
+        },
+        {
+          "bidset_id": "wendy-s-fort-myers-great-southern-constructors-3",
+          "page_index": 10,
+          "sheet_number": "",
+          "page_type": "schedule_sheet",
+          "canonical": "CertainTeed",
+          "matched_name": "CertainTeed",
+          "context_80": "E SCHULLER. EQUAL PRODUCT BY ARMSTRONG, CERTAINTEED, OWENS-CORNING OR KNAUF MAY BE FURNISHE",
+          "match_bbox": [
+            1235.30615234375,
+            1768.0203857421875,
+            1243.586181640625,
+            1826.444091796875
+          ],
+          "page_w": 2592.0,
+          "page_h": 1728.0,
+          "is_in_title_block_zone": false,
+          "is_in_drawing_index": false,
+          "negated": false,
+          "nearby_spec_section_ref": null,
+          "is_repeating_text": false,
+          "repeating_page_count": 3
+        },
+        {
+          "bidset_id": "wendy-s-fort-myers-great-southern-constructors-3",
+          "page_index": 14,
+          "sheet_number": "",
+          "page_type": "cover",
+          "canonical": "CertainTeed",
+          "matched_name": "CertainTeed",
+          "context_80": "- FINISHES SUSPENDED ACOUSTICAL CEILING CERTAINTEED ORDERING: Hamilton Parker/CBC and HJC",
+          "match_bbox": [
+            837.2999267578125,
+            130.46327209472656,
+            877.0419311523438,
+            137.5524444580078
+          ],
+          "page_w": 2592.0,
+          "page_h": 1728.0,
+          "is_in_title_block_zone": false,
+          "is_in_drawing_index": false,
+          "negated": false,
+          "nearby_spec_section_ref": null,
+          "is_repeating_text": false,
+          "repeating_page_count": 3
+        },
+        {
+          "bidset_id": "wendy-s-fort-myers-great-southern-constructors-3",
+          "page_index": 14,
+          "sheet_number": "",
+          "page_type": "cover",
+          "canonical": "Sika Sarnafil",
+          "matched_name": "Sarnafil",
+          "context_80": "ussell@holcim.com Updated 7.15.24 (Mia) SARNAFIL ROOFING SYSTEMS CANTON, MA 608-270-0053",
+          "match_bbox": [
+            276.719970703125,
+            811.6431884765625,
+            304.6300964355469,
+            818.7323608398438
+          ],
+          "page_w": 2592.0,
+          "page_h": 1728.0,
+          "is_in_title_block_zone": false,
+          "is_in_drawing_index": false,
+          "negated": false,
+          "nearby_spec_section_ref": null,
+          "is_repeating_text": false,
+          "repeating_page_count": 1
+        },
+        {
+          "bidset_id": "wendy-s-fort-myers-great-southern-constructors-3",
+          "page_index": 52,
+          "sheet_number": "",
+          "page_type": "elevation",
+          "canonical": "Johns Manville",
+          "matched_name": "Johns Manville",
+          "context_80": "BOARDS. 'ENRGY 3' INSULATION BOARDS BY JOHNS MANVILLE ARE AN ACCEPTABLE EQUAL. PERIMETER INSU",
+          "match_bbox": [
+            1213.8382568359375,
+            853.6806640625,
+            1292.40234375,
+            862.8021850585938
+          ],
+          "page_w": 2592.0,
+          "page_h": 1728.0,
+          "is_in_title_block_zone": false,
+          "is_in_drawing_index": false,
+          "negated": false,
+          "nearby_spec_section_ref": null,
+          "is_repeating_text": false,
+          "repeating_page_count": 1
+        },
+        {
+          "bidset_id": "wendy-s-fort-myers-great-southern-constructors-3",
+          "page_index": 52,
+          "sheet_number": "",
+          "page_type": "elevation",
+          "canonical": "Tremco",
+          "matched_name": "Tremco",
+          "context_80": "MANUFACTURED BY BOSTIK, INC., PECORA OR TREMCO. (JS-4) SINGLE-COMPONENT, PURABLE, MOIS",
+          "match_bbox": [
+            1532.2979736328125,
+            1368.9605712890625,
+            1571.82177734375,
+            1378.0821533203125
+          ],
+          "page_w": 2592.0,
+          "page_h": 1728.0,
+          "is_in_title_block_zone": false,
+          "is_in_drawing_index": false,
+          "negated": false,
+          "nearby_spec_section_ref": null,
+          "is_repeating_text": false,
+          "repeating_page_count": 1
+        }
+      ],
+      "canonical_page_counts": {
+        "CertainTeed": 3,
+        "Sika Sarnafil": 1,
+        "Johns Manville": 1,
+        "Tremco": 1
+      },
+      "repeating_canonicals": [],
+      "elapsed_s": 9.6
+    },
+    {
+      "bidset_id": "bearss-ave-distribution-center-university-marcobay-construction-3",
+      "sheet_map_source": "drawing_index",
+      "drawing_index_page": 0,
+      "n_hits": 4,
+      "hits": [
+        {
+          "bidset_id": "bearss-ave-distribution-center-university-marcobay-construction-3",
+          "page_index": 0,
+          "sheet_number": "A-001",
+          "page_type": "cover",
+          "canonical": "Tremco",
+          "matched_name": "Tremco",
+          "context_80": "AULKED TO FULL HEIGHT, BOTH SIDES, WITH TREMCO DYMERIC POLYURETHANE OR EQUAL WITH BACK",
+          "match_bbox": [
+            2309.154296875,
+            1215.4971923828125,
+            2335.177734375,
+            1223.3978271484375
+          ],
+          "page_w": 3024.0,
+          "page_h": 2160.0,
+          "is_in_title_block_zone": false,
+          "is_in_drawing_index": true,
+          "negated": false,
+          "nearby_spec_section_ref": null,
+          "is_repeating_text": false,
+          "repeating_page_count": 4
+        },
+        {
+          "bidset_id": "bearss-ave-distribution-center-university-marcobay-construction-3",
+          "page_index": 5,
+          "sheet_number": "A-201",
+          "page_type": "elevation",
+          "canonical": "Tremco",
+          "matched_name": "Tremco",
+          "context_80": "Y DYMERIC / DYMERIC 511 COLOR: TO MATCH TREMCO ANODIZED ALUMINUM (ALTERNATE - BLACK) A",
+          "match_bbox": [
+            2489.994140625,
+            1894.999267578125,
+            2517.74609375,
+            1903.2784423828125
+          ],
+          "page_w": 3024.0,
+          "page_h": 2160.0,
+          "is_in_title_block_zone": true,
+          "is_in_drawing_index": false,
+          "negated": false,
+          "nearby_spec_section_ref": null,
+          "is_repeating_text": false,
+          "repeating_page_count": 4
+        },
+        {
+          "bidset_id": "bearss-ave-distribution-center-university-marcobay-construction-3",
+          "page_index": 46,
+          "sheet_number": "",
+          "page_type": "cover",
+          "canonical": "Tremco",
+          "matched_name": "Tremco",
+          "context_80": "AULKED TO FULL HEIGHT, BOTH SIDES, WITH TREMCO DYMERIC POLYURETHANE OR EQUAL WITH BACK",
+          "match_bbox": [
+            2312.99462890625,
+            1214.8970947265625,
+            2339.01806640625,
+            1222.7977294921875
+          ],
+          "page_w": 3024.0,
+          "page_h": 2160.0,
+          "is_in_title_block_zone": false,
+          "is_in_drawing_index": false,
+          "negated": false,
+          "nearby_spec_section_ref": null,
+          "is_repeating_text": false,
+          "repeating_page_count": 4
+        },
+        {
+          "bidset_id": "bearss-ave-distribution-center-university-marcobay-construction-3",
+          "page_index": 51,
+          "sheet_number": "",
+          "page_type": "elevation",
+          "canonical": "Tremco",
+          "matched_name": "Tremco",
+          "context_80": "Y DYMERIC / DYMERIC 511 COLOR: TO MATCH TREMCO ANODIZED ALUMINUM (ALTERNATE - BLACK) A",
+          "match_bbox": [
+            2487.234130859375,
+            1892.71923828125,
+            2514.986083984375,
+            1900.9984130859375
+          ],
+          "page_w": 3024.0,
+          "page_h": 2160.0,
+          "is_in_title_block_zone": true,
+          "is_in_drawing_index": false,
+          "negated": false,
+          "nearby_spec_section_ref": null,
+          "is_repeating_text": false,
+          "repeating_page_count": 4
+        }
+      ],
+      "canonical_page_counts": {
+        "Tremco": 4
+      },
+      "repeating_canonicals": [],
+      "elapsed_s": 5.5
+    },
+    {
+      "bidset_id": "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6",
+      "sheet_map_source": "drawing_index",
+      "drawing_index_page": 1,
+      "n_hits": 3,
+      "hits": [
+        {
+          "bidset_id": "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6",
+          "page_index": 14,
+          "sheet_number": "",
+          "page_type": "cover",
+          "canonical": "GAF",
+          "matched_name": "EverGuard",
+          "context_80": "EEL DOORS 16355.2 4 ROOFING PRODUCT GAF EVERGUARD TPO 5293.1 5 PANEL WALLS NOT USED 6 SHU",
+          "match_bbox": [
+            1095.526123046875,
+            1105.308349609375,
+            1141.5665283203125,
+            1118.2811279296875
+          ],
+          "page_w": 2592.0,
+          "page_h": 1728.0,
+          "is_in_title_block_zone": false,
+          "is_in_drawing_index": false,
+          "negated": false,
+          "nearby_spec_section_ref": null,
+          "is_repeating_text": false,
+          "repeating_page_count": 3
+        },
+        {
+          "bidset_id": "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6",
+          "page_index": 27,
+          "sheet_number": "",
+          "page_type": "roof_plan",
+          "canonical": "GAF",
+          "matched_name": "EverGuard",
+          "context_80": "ED \u25cf 5 ROOF DRAIN PROVIDED - GAF EVERGUARD 4\" x 6\" \u25cf 2023 FBC, PLUMBING EDITION",
+          "match_bbox": [
+            1938.492919921875,
+            541.7262573242188,
+            1992.7021484375,
+            554.7064819335938
+          ],
+          "page_w": 2592.0,
+          "page_h": 1728.0,
+          "is_in_title_block_zone": false,
+          "is_in_drawing_index": false,
+          "negated": false,
+          "nearby_spec_section_ref": null,
+          "is_repeating_text": false,
+          "repeating_page_count": 3
+        },
+        {
+          "bidset_id": "b2607-aea-silverleaf-st-augustine-accelerated-construction-services-6",
+          "page_index": 32,
+          "sheet_number": "",
+          "page_type": "elevation",
+          "canonical": "GAF",
+          "matched_name": "EverGuard",
+          "context_80": "- 0 1/2\" 6 1/4\" 6\" 5 1/4\" 5\" REINFORCED EVERGUARD MEMBRANE EVERGUARD TPO CUT EDGE SEALAN",
+          "match_bbox": [
+            961.802978515625,
+            44.581600189208984,
+            1000.1824951171875,
+            55.392242431640625
+          ],
+          "page_w": 2592.0,
+          "page_h": 1728.0,
+          "is_in_title_block_zone": false,
+          "is_in_drawing_index": false,
+          "negated": false,
+          "nearby_spec_section_ref": null,
+          "is_repeating_text": false,
+          "repeating_page_count": 3
+        }
+      ],
+      "canonical_page_counts": {
+        "GAF": 3
+      },
+      "repeating_canonicals": [],
+      "elapsed_s": 1.5
+    },
+    {
+      "bidset_id": "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction",
+      "sheet_map_source": "drawing_index",
+      "drawing_index_page": 0,
+      "n_hits": 3,
+      "hits": [
+        {
+          "bidset_id": "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction",
+          "page_index": 4,
+          "sheet_number": "G013",
+          "page_type": "section",
+          "canonical": "Versico",
+          "matched_name": "Versico Roofing",
+          "context_80": "arable Alternate Roof Manufacturers: 1. Versico Roofing Systems, (480) 528-6923, Jeff Kelly,jef",
+          "match_bbox": [
+            1123.6614990234375,
+            1286.6400146484375,
+            1134.29541015625,
+            1347.2489013671875
+          ],
+          "page_w": 2592.0,
+          "page_h": 1728.0,
+          "is_in_title_block_zone": false,
+          "is_in_drawing_index": false,
+          "negated": false,
+          "nearby_spec_section_ref": null,
+          "is_repeating_text": false,
+          "repeating_page_count": 1
+        },
+        {
+          "bidset_id": "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction",
+          "page_index": 4,
+          "sheet_number": "G013",
+          "page_type": "section",
+          "canonical": "Berridge",
+          "matched_name": "Berridge",
+          "context_80": "1. Ribbed Panel a. HR-16 wall panel by BERRIDGE or similar to be approved by Chipotle 2",
+          "match_bbox": [
+            508.2864990234375,
+            832.9791259765625,
+            518.92041015625,
+            872.2308349609375
+          ],
+          "page_w": 2592.0,
+          "page_h": 1728.0,
+          "is_in_title_block_zone": false,
+          "is_in_drawing_index": false,
+          "negated": false,
+          "nearby_spec_section_ref": null,
+          "is_repeating_text": false,
+          "repeating_page_count": 1
+        },
+        {
+          "bidset_id": "chipotle-tarpon-springs-shell-tarpon-springs-strategic-construction",
+          "page_index": 4,
+          "sheet_number": "G013",
+          "page_type": "section",
+          "canonical": "Tremco",
+          "matched_name": "Tremco",
+          "context_80": "aterials: A. Poly urethane sealants: 1. Tremco Commercial Sealants (800) 321-7906, int",
+          "match_bbox": [
+            887.3665161132812,
+            1850.56494140625,
+            898.0003662109375,
+            1880.0516357421875
+          ],
+          "page_w": 2592.0,
+          "page_h": 1728.0,
+          "is_in_title_block_zone": false,
+          "is_in_drawing_index": false,
+          "negated": false,
+          "nearby_spec_section_ref": null,
+          "is_repeating_text": false,
+          "repeating_page_count": 1
+        }
+      ],
+      "canonical_page_counts": {
+        "Versico": 1,
+        "Berridge": 1,
+        "Tremco": 1
+      },
+      "repeating_canonicals": [],
+      "elapsed_s": 2.3
+    },
+    {
+      "bidset_id": "shoppes-at-avalon-spring-hill-mec",
+      "sheet_map_source": "drawing_index",
+      "drawing_index_page": 0,
+      "n_hits": 4,
+      "hits": [
+        {
+          "bidset_id": "shoppes-at-avalon-spring-hill-mec",
+          "page_index": 8,
+          "sheet_number": "A-101",
+          "page_type": "elevation",
+          "canonical": "Firestone",
+          "matched_name": "Firestone",
+          "context_80": "ELOW 60 MIL TPO BY CARLISLE OR EQUAL - (FIRESTONE AND DUROLAST ARE NOT ACCEPTABLE MANUFA",
+          "match_bbox": [
+            994.7384643554688,
+            764.8501586914062,
+            1005.3945922851562,
+            819.42724609375
+          ],
+          "page_w": 2592.0,
+          "page_h": 1728.0,
+          "is_in_title_block_zone": false,
+          "is_in_drawing_index": false,
+          "negated": true,
+          "nearby_spec_section_ref": null,
+          "is_repeating_text": false,
+          "repeating_page_count": 1
+        },
+        {
+          "bidset_id": "shoppes-at-avalon-spring-hill-mec",
+          "page_index": 8,
+          "sheet_number": "A-101",
+          "page_type": "elevation",
+          "canonical": "Carlisle",
+          "matched_name": "Carlisle",
+          "context_80": "NOPY WITH TIE-RODS BELOW 60 MIL TPO BY CARLISLE OR EQUAL - (FIRESTONE AND DUROLAST ARE",
+          "match_bbox": [
+            983.8786010742188,
+            707.7492065429688,
+            994.5347290039062,
+            753.661865234375
+          ],
+          "page_w": 2592.0,
+          "page_h": 1728.0,
+          "is_in_title_block_zone": false,
+          "is_in_drawing_index": false,
+          "negated": false,
+          "nearby_spec_section_ref": null,
+          "is_repeating_text": false,
+          "repeating_page_count": 1
+        },
+        {
+          "bidset_id": "shoppes-at-avalon-spring-hill-mec",
+          "page_index": 34,
+          "sheet_number": "",
+          "page_type": "detail_sheet",
+          "canonical": "CertainTeed",
+          "matched_name": "Saint-Gobain",
+          "context_80": "IX, PRC, PRC2, PRX, RHX, MDX, ETX, PRX2 SAINT-GOBAIN GYPROC MIDDLE EAST FZE \u2014 Type Gyproc Fi",
+          "match_bbox": [
+            584.4608154296875,
+            1748.7799072265625,
+            594.4979858398438,
+            1814.0947265625
+          ],
+          "page_w": 2592.0,
+          "page_h": 1728.0,
+          "is_in_title_block_zone": false,
+          "is_in_drawing_index": false,
+          "negated": false,
+          "nearby_spec_section_ref": null,
+          "is_repeating_text": false,
+          "repeating_page_count": 2
+        },
+        {
+          "bidset_id": "shoppes-at-avalon-spring-hill-mec",
+          "page_index": 67,
+          "sheet_number": "",
+          "page_type": "detail_sheet",
+          "canonical": "CertainTeed",
+          "matched_name": "Saint-Gobain",
+          "context_80": "IX, PRC, PRC2, PRX, RHX, MDX, ETX, PRX2 SAINT-GOBAIN GYPROC MIDDLE EAST FZE \u2014 Type Gyproc Fi",
+          "match_bbox": [
+            583.311767578125,
+            1751.3228759765625,
+            593.3489379882812,
+            1816.625244140625
+          ],
+          "page_w": 2592.0,
+          "page_h": 1728.0,
+          "is_in_title_block_zone": false,
+          "is_in_drawing_index": false,
+          "negated": false,
+          "nearby_spec_section_ref": null,
+          "is_repeating_text": false,
+          "repeating_page_count": 2
+        }
+      ],
+      "canonical_page_counts": {
+        "Firestone": 1,
+        "Carlisle": 1,
+        "CertainTeed": 2
+      },
+      "repeating_canonicals": [],
+      "elapsed_s": 6.2
+    },
+    {
+      "bidset_id": "vine-street-retail-center-kissimmee-great-southern-constructors",
+      "sheet_map_source": "drawing_index",
+      "drawing_index_page": 2,
+      "n_hits": 3,
+      "hits": [
+        {
+          "bidset_id": "vine-street-retail-center-kissimmee-great-southern-constructors",
+          "page_index": 11,
+          "sheet_number": "A-1.3",
+          "page_type": "roof_plan",
+          "canonical": "GAF",
+          "matched_name": "EverGuard",
+          "context_80": "LEAD FLASHING 1\" (25 mm) DOWN INTO PIPE EVERGUARD\u00ae MEMBRANE OPTIONAL REGLET OR SURFACE MO",
+          "match_bbox": [
+            2210.025390625,
+            1288.800048828125,
+            2220.6318359375,
+            1355.982177734375
+          ],
+          "page_w": 3456.0,
+          "page_h": 2592.0,
+          "is_in_title_block_zone": false,
+          "is_in_drawing_index": false,
+          "negated": false,
+          "nearby_spec_section_ref": null,
+          "is_repeating_text": false,
+          "repeating_page_count": 3
+        },
+        {
+          "bidset_id": "vine-street-retail-center-kissimmee-great-southern-constructors",
+          "page_index": 78,
+          "sheet_number": "A-1.4",
+          "page_type": "roof_plan",
+          "canonical": "GAF",
+          "matched_name": "EverGuard",
+          "context_80": "LEAD FLASHING 1\" (25 mm) DOWN INTO PIPE EVERGUARD\u00ae MEMBRANE OPTIONAL REGLET OR SURFACE MO",
+          "match_bbox": [
+            708.4249877929688,
+            2461.47998046875,
+            719.0333251953125,
+            2528.6728515625
+          ],
+          "page_w": 3456.0,
+          "page_h": 2592.0,
+          "is_in_title_block_zone": false,
+          "is_in_drawing_index": false,
+          "negated": false,
+          "nearby_spec_section_ref": null,
+          "is_repeating_text": false,
+          "repeating_page_count": 3
+        },
+        {
+          "bidset_id": "vine-street-retail-center-kissimmee-great-southern-constructors",
+          "page_index": 113,
+          "sheet_number": "",
+          "page_type": "roof_plan",
+          "canonical": "GAF",
+          "matched_name": "EverGuard",
+          "context_80": "LEAD FLASHING 1\" (25 mm) DOWN INTO PIPE EVERGUARD\u00ae MEMBRANE OPTIONAL REGLET OR SURFACE MO",
+          "match_bbox": [
+            2212.744873046875,
+            1290.820068359375,
+            2223.353271484375,
+            1358.012939453125
+          ],
+          "page_w": 3456.0,
+          "page_h": 2592.0,
+          "is_in_title_block_zone": false,
+          "is_in_drawing_index": false,
+          "negated": false,
+          "nearby_spec_section_ref": null,
+          "is_repeating_text": false,
+          "repeating_page_count": 3
+        }
+      ],
+      "canonical_page_counts": {
+        "GAF": 3
+      },
+      "repeating_canonicals": [],
+      "elapsed_s": 4.8
+    },
+    {
+      "bidset_id": "panda-express-san-antonio-candito-construction-2",
+      "sheet_map_source": "drawing_index",
+      "drawing_index_page": 1,
+      "n_hits": 1,
+      "hits": [
+        {
+          "bidset_id": "panda-express-san-antonio-candito-construction-2",
+          "page_index": 9,
+          "sheet_number": "",
+          "page_type": "elevation",
+          "canonical": "Berridge",
+          "matched_name": "Berridge",
+          "context_80": "LED W/ DOWN LIGHT AROUND BUILDING MTL-3 BERRIDGE TEE PANEL, 24 GA. STEEL MATTE BLACK - 1",
+          "match_bbox": [
+            169.67845153808594,
+            249.95111083984375,
+            205.5337677001953,
+            258.89300537109375
+          ],
+          "page_w": 2592.0,
+          "page_h": 1728.0,
+          "is_in_title_block_zone": false,
+          "is_in_drawing_index": false,
+          "negated": false,
+          "nearby_spec_section_ref": null,
+          "is_repeating_text": false,
+          "repeating_page_count": 1
+        }
+      ],
+      "canonical_page_counts": {
+        "Berridge": 1
+      },
+      "repeating_canonicals": [],
+      "elapsed_s": 2.0
+    },
+    {
+      "bidset_id": "panda-express-bradenton",
+      "sheet_map_source": "drawing_index",
+      "drawing_index_page": 0,
+      "n_hits": 1,
+      "hits": [
+        {
+          "bidset_id": "panda-express-bradenton",
+          "page_index": 32,
+          "sheet_number": "M-000",
+          "page_type": "schedule_sheet",
+          "canonical": "Johns Manville",
+          "matched_name": "Johns Manville",
+          "context_80": "TS AND GREASE DUCTS. DUCT WRAP SHALL BE JOHNS MANVILLE MICROLITE OR EQUAL WITH FOIL/SCRIM/KRAF",
+          "match_bbox": [
+            893.1770629882812,
+            2182.1611328125,
+            904.1780395507812,
+            2259.861328125
+          ],
+          "page_w": 2592.0,
+          "page_h": 1728.0,
+          "is_in_title_block_zone": false,
+          "is_in_drawing_index": false,
+          "negated": false,
+          "nearby_spec_section_ref": null,
+          "is_repeating_text": false,
+          "repeating_page_count": 1
+        }
+      ],
+      "canonical_page_counts": {
+        "Johns Manville": 1
+      },
+      "repeating_canonicals": [],
+      "elapsed_s": 3.1
+    },
+    {
+      "bidset_id": "panda-express-hialeah-gardens",
+      "sheet_map_source": "drawing_index",
+      "drawing_index_page": 0,
+      "n_hits": 1,
+      "hits": [
+        {
+          "bidset_id": "panda-express-hialeah-gardens",
+          "page_index": 72,
+          "sheet_number": "",
+          "page_type": "schedule_sheet",
+          "canonical": "Johns Manville",
+          "matched_name": "Johns Manville",
+          "context_80": "TS AND GREASE DUCTS. DUCT WRAP SHALL BE JOHNS MANVILLE MICROLITE OR EQUAL WITH FOIL/SCRIM/KRAF",
+          "match_bbox": [
+            893.39697265625,
+            2181.7919921875,
+            904.3983764648438,
+            2259.49462890625
+          ],
+          "page_w": 2592.0,
+          "page_h": 1728.0,
+          "is_in_title_block_zone": false,
+          "is_in_drawing_index": false,
+          "negated": false,
+          "nearby_spec_section_ref": null,
+          "is_repeating_text": false,
+          "repeating_page_count": 1
+        }
+      ],
+      "canonical_page_counts": {
+        "Johns Manville": 1
+      },
+      "repeating_canonicals": [],
+      "elapsed_s": 8.3
+    }
+  ],
+  "failures": []
+}
