@@ -213,6 +213,7 @@ These were ratified 2026-04-25 as the architectural foundation of Phase 2 and re
 
     **Vault-ruled at sealing (2026-04-28):**
     - `backend/core/glazing_module.py` (C.3c-build sealing commit on branch `phase2-v0.3-C3c-glazing-module`) — first Huckleberry-original trade module; rough-ship per Daniel's 2026-04-28 spec (verbatim in `MARCH_ORDERS_C_3c_build.md` §1). Module docstring lists known limitations explicitly. Behavior validation deferred to the C.3c-run sweep (separate phase).
+    - `backend/core/debug_module.py` (C.5 partial-port sealing commit on branch `phase2-v0.3-C5-debug-module-port`) — TracePoint debug-module port, the original vault-rule subject from TracePoint paper §7.5. Sections 1 (dispatch health), 3 (page intelligence), 6 (legend contents + quality flags) ported verbatim from TracePoint source SHA-1 `b5a4cf93ca7c02116fc00f6dc5a1514da1b18b60`. Sections 2 (scale comparison), 4 (cross-reference graph), 5 (geometry diagnostics) stubbed pending external state per `backend/DEBUG_MODULE_REPORT.md` (scale-engine route, networkx + sheet-index, geometry results respectively). C.5 partial port; vault rule applies to all six sections, stubbed and ported alike. Tuning of sections 1/3/6 happens in dedicated sessions with `core/` frozen. Unstubbing of sections 2/4/5 is a future phase decision (D/E).
 
     **Vault-ruled when sealed:** every future trade module.
 
