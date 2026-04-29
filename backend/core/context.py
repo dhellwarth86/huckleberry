@@ -202,6 +202,9 @@ class PageContext:
     has_legend: bool = False
     detail_count: int = 0
 
+    # Raw table data from pdfplumber (populated by Filter 4 for schedule pages)
+    raw_tables: Optional[list] = None
+
     source_tag: Optional[SourceTag] = None
 
 

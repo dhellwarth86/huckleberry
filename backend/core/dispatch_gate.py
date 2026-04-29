@@ -103,13 +103,13 @@ _DISCIPLINE_MAP = {
 
 # Page type keywords: (keywords, PageType, title_conf, page_conf)
 _PAGE_TYPE_RULES = [
+    (["SCHEDULE"], PageType.SCHEDULE_SHEET, CONFIDENCE_EXPLICIT, CONFIDENCE_STRONG),
     (["ROOF PLAN"], PageType.ROOF_PLAN, CONFIDENCE_EXPLICIT, CONFIDENCE_STRONG),
     (["FLOOR PLAN", "SLAB PLAN"], PageType.FLOOR_PLAN, CONFIDENCE_EXPLICIT, CONFIDENCE_STRONG),
     (["FRAMING PLAN", "NOTED FRAMING"], PageType.FRAMING_PLAN, CONFIDENCE_EXPLICIT, CONFIDENCE_STRONG),
     (["CEILING PLAN", "RCP", "REFLECTED"], PageType.CEILING_PLAN, CONFIDENCE_EXPLICIT, CONFIDENCE_STRONG),
     (["ELEVATION"], PageType.ELEVATION, CONFIDENCE_EXPLICIT, CONFIDENCE_STRONG),
     (["DETAIL"], PageType.DETAIL_SHEET, CONFIDENCE_EXPLICIT, CONFIDENCE_STRONG),
-    (["SCHEDULE"], PageType.SCHEDULE_SHEET, CONFIDENCE_EXPLICIT, CONFIDENCE_STRONG),
     (["SECTION"], PageType.SECTION, CONFIDENCE_STRONG, CONFIDENCE_INFERRED),
     (["GENERAL NOTE", "INDEX", "ABBREVIAT"], PageType.GENERAL_NOTES, CONFIDENCE_EXPLICIT, CONFIDENCE_STRONG),
     (["SITE PLAN", "SITE PLOT"], PageType.SITE_PLAN, CONFIDENCE_EXPLICIT, CONFIDENCE_STRONG),
@@ -730,19 +730,21 @@ def _find_legends_on_page(text_blocks, page_idx: int) -> list[Legend]:
     return legends
 
 
-def _parse_tables_on_page(pdf_path: str, page_idx: int) -> list[Legend]:
+def _parse_tables_on_page(pdf_path: str, page_idx: int) -> tuple[list[Legend], list]:
     """Use pdfplumber to extract table data from a page.
-    Returns Legend objects. Falls back to empty list on failure."""
+    Returns (Legend objects, raw_tables). Falls back to ([], []) on failure."""
     if not _pdfplumber:
-        return []
+        return [], []
     try:
         pdf = _pdfplumber.open(pdf_path)
         if page_idx >= len(pdf.pages):
             pdf.close()
-            return []
+            return [], []
         page = pdf.pages[page_idx]
         tables = page.extract_tables()
         pdf.close()
+
+        raw_tables = list(tables) if tables else []
 
         legends = []
         for table in tables:
@@ -774,9 +776,9 @@ def _parse_tables_on_page(pdf_path: str, page_idx: int) -> list[Legend]:
                     confidence=CONFIDENCE_INFERRED,
                     source_tag=SourceTag("filter_4_pdfplumber", CONFIDENCE_INFERRED, "table extraction"),
                 ))
-        return legends
+        return legends, raw_tables
     except Exception:
-        return []
+        return [], []
 
 
 def _quality_check_legends(legends: list[Legend]) -> list[Legend]:
@@ -837,8 +839,10 @@ def run_filter_4(engine: PDFEngine, doc, ctx: PlanSetContext):
         # Supplement: pdfplumber table extraction on schedule pages
         page_ctx = ctx.pages.get(page_idx)
         if page_ctx and page_ctx.page_type == PageType.SCHEDULE_SHEET:
-            table_legends = _parse_tables_on_page(ctx.pdf_path, page_idx)
+            table_legends, raw_tables = _parse_tables_on_page(ctx.pdf_path, page_idx)
             legends.extend(table_legends)
+            if raw_tables:
+                page_ctx.raw_tables = raw_tables
 
         raw_legends.extend(legends)
 

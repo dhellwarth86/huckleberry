@@ -131,6 +131,7 @@ def build_trade_input(geometry_result: dict,
     page_type = "UNKNOWN"
     page_legends: list = []
     page_zones: list = []
+    page_tables: list | None = None
     project_scope = None
     if dispatch_ctx is not None:
         page_ctx = dispatch_ctx.pages.get(page_num)
@@ -138,6 +139,7 @@ def build_trade_input(geometry_result: dict,
             page_type = getattr(page_ctx.page_type, "value", str(page_ctx.page_type))
             page_legends = list(page_ctx.legends or [])
             page_zones = list(page_ctx.zones or [])
+            page_tables = getattr(page_ctx, "raw_tables", None)
         project_scope = getattr(dispatch_ctx, "project_scope", None)
 
     return TradeModuleInput(
@@ -159,4 +161,5 @@ def build_trade_input(geometry_result: dict,
         page_zones=page_zones,
         project_scope=project_scope,
         page_number=page_num,
+        tables=page_tables,
     )
