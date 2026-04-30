@@ -569,8 +569,58 @@ None. Smoke 4/4 PASS; no other stop conditions triggered. (The single stop condi
 
 ---
 
-## Phase 7: E.2 — Frontend strip + connect (TBD)
+## Phase 7: E.2.0 — Frontend strip-and-connect read-only diagnostic (2026-04-30)
 
-(Populated by E.2 session. E.1 + 6.5 discipline-patches produced the API surface E.2 will consume. Per `backend/E0_FRONTEND_AUDIT.md`, E.2 is a re-architecture: ~3,800–4,100 lines of backend-shaped JS removed from v6.3.5; ~45% of file. Probably needs sub-phasing per spec §15.)
+**Branch:** `phase2-v0.3-E2-0-strip-plan` (from `29d2ef8`)
+**Trigger:** Daniel directive 2026-04-30 — MARCH ORDERS Phase E.2.0: produce design deliverables specifying E.2.1 through E.2.hard-gate. Read-only: zero code changes, zero test changes, zero dependency changes.
+
+### Files created
+- `backend/E2_0_STRIP_PLAN.md` — D1: line-by-line strip plan for v6.3.5 (14 strip targets S1–S14, planSet shape analysis, 5 gaps, 5 risks)
+- `backend/E2_0_NEW_FILE_DESIGN.md` — D2: structural skeleton of `frontend/src/Huckleberry_AI_phase2.v1.0.0.html` (7-tab layout, status bar spec, script ordering)
+- `backend/E2_0_API_CLIENT_SPEC.md` — D3: `apiClient` wrapper spec (3 real methods, 3 stubs, `apiCall` helper, error matrix)
+- `backend/E2_0_TEST_FLOOR_PROPOSAL.md` — D4: test floor proposal (138 → 25, with honest gap documentation)
+- `backend/E2_0_GATE_REPORT.md` — gate report for E.2.0
+
+### Files modified
+- `PROJECT_CLAUDE.md` — §3 paragraph appended (E.2.0 summary), §7 phase table updated (E.2 row split into E.2.0/E.2.1/E.2.2/E.2.debug/E.2.hard-gate)
+- `backend/BLOCK_RUN.md` — this Phase 7 section
+
+### Files deleted
+None.
+
+### Config / dependency changes
+None.
+
+### Commits
+Single commit on `phase2-v0.3-E2-0-strip-plan`.
+
+### Vault-ruled modules
+Unchanged. SHA-1s verified at pre-flight:
+- `roofing_module.py`: `ae9e5b284191b45de419faacf11771da27a548f9`
+- `roofing_vocabulary.py`: `ec6c17f8955ef8e27c3ff1d552b299a6962c9d0b`
+- `glazing_module.py`: `52c014421915ec6a66b4a6860b71a0a3274920f2`
+- `glazing_vocabulary.py`: `64249c8ef5f7d9db50added3c9a40836cba356ea`
+- `debug_module.py`: `78f71d9030cde3b173389603f5f39bd6bedaac07`
+
+### Frontend touched
+None. v6.3.5 SHA-1 unchanged: `cf3765d61fd6f17de46024a3a84c62f25b19b3c5`. Read-only analysis only.
+
+### Sacred floor at session end
+- Backend: 222 passed, 19 skipped, 0 failed (no test changes — read-only phase)
+- Frontend: 138/138 passed against v6.3.5 (untouched)
+- v6.3.5 SHA-1 unchanged
+- All 5 vault-ruled module SHA-1s unchanged
+- `pyproject.toml` unchanged
+
+### §7 stops fired
+None. Read-only diagnostic — no stop conditions applicable.
+
+### Key design decisions documented
+
+1. **planSet is a rendering-only cache after E.2.1** — `paths`, `texts`, `zones` fields absent; business data comes from API (D1 §4)
+2. **7-tab layout** — Pipeline tab removed, tabs renumber 0–6 (D2 §2.4)
+3. **3-state status bar** — CHECKING/CONNECTED/UNREACHABLE with 30s polling interval (D2 §5)
+4. **Browser-native `fetch()` API client** — no axios, no npm deps, `apiCall` helper with AbortController timeout (D3 §2)
+5. **Frontend test floor drops from 138 → 25** — ~142 tests retire with stripped code; 11 survive + 14 new proposed (D4 §4)
 
 ---
