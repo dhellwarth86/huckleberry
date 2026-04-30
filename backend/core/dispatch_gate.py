@@ -1638,7 +1638,7 @@ def _resolve_storage(storage):
     return storage
 
 
-def run_dispatch(pdf_path: str | Path, storage=None) -> PlanSetContext:
+def run_dispatch(pdf_path: str | Path, storage=None, job_id: str | None = None) -> PlanSetContext:
     """
     Run the full dispatch gate on a PDF plan set.
     Returns a populated PlanSetContext.
@@ -1648,6 +1648,9 @@ def run_dispatch(pdf_path: str | Path, storage=None) -> PlanSetContext:
     stub) to ctx.architect_profile, and wires RoofingModule + GlazingModule
     into the production call path so per-page TradeModuleOutput records land
     on ctx.trade_module_outputs.
+
+    If job_id is provided (D.2), persists dispatch results and trade module
+    outputs to the jobs database after Stage 13 completes.
     """
     pdf_path = Path(pdf_path)
     engine = PDFEngine()
@@ -1707,6 +1710,16 @@ def run_dispatch(pdf_path: str | Path, storage=None) -> PlanSetContext:
                 _run_trade_modules(engine, doc, ctx)
             except Exception as e:
                 ctx.dispatch_warnings.append(f"trade module wiring failed: {e}")
+
+        # D.2: persist dispatch results + trade outputs to job database
+        if job_id is not None:
+            try:
+                from core.job_storage import persist_dispatch_result, persist_trade_outputs, mark_dispatch_complete  # D.2:
+                persist_dispatch_result(job_id, ctx)  # D.2:
+                persist_trade_outputs(job_id, ctx)  # D.2:
+                mark_dispatch_complete(job_id)  # D.2:
+            except Exception as e:  # D.2:
+                ctx.dispatch_warnings.append(f"D.2 job persistence failed: {e}")  # D.2:
 
         # Leak check
         ctx.dispatch_warnings.extend(check_for_leaks(ctx))
