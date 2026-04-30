@@ -87,7 +87,7 @@ def run_soft_gate() -> int:
     # 7. >= 18 pages with raw_tables_json
     tables_count = sum(1 for d in dr.values() if d.get("raw_tables_json") or d.get("raw_tables"))
     ok7 = tables_count >= 18
-    results.append((7, "≥ 18 pages with raw_tables_json", ok7, f"actual: {tables_count}"))
+    results.append((7, ">= 18 pages with raw_tables_json", ok7, f"actual: {tables_count}"))
 
     # 8. trade_outputs has 40 page keys
     to = load_trade_outputs(job_id)

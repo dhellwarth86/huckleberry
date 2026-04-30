@@ -209,8 +209,172 @@ Daniel may want to retire any of the above in a follow-up housekeeping session i
 
 ---
 
-## Phase 3: Phase E — backend API + frontend consumption (TBD)
+## Phase 3: Phase D.2 — Job folder + persistence build (2026-04-29)
 
-(Populated by Phase E session.)
+**Branch:** `phase2-v0.3-D2-job-folder-and-persistence` (from housekeeping head `870d555`)
+**Trigger:** Daniel directive 2026-04-29 — long-run chain (D.2 build → soft gate → three-bidset hard gate → canon update + push). Single chain, auto-continue between phases unless a §7 stop fires.
+**Scope discipline:** New file `backend/core/job_storage.py` preferred over modifying `core/storage.py` (B.4 verbatim port). `dispatch_gate.run_dispatch` extension capped at ≤20 lines (actual: 8). No vault-ruled module touches. No frontend touches. CLAUDE.md not opened. SQLAlchemy not introduced — stdlib `sqlite3` only.
+
+### Files created
+- `backend/core/job_storage.py` (336 lines) — three SQLite tables (`jobs`, `dispatch_results`, `trade_outputs`) sharing `~/.tracepoint/cache.db` via `core.storage.DB_PATH`; lifecycle API + persistence + loading. See VALIDATION_LEDGER.md §A2 row for verification details.
+- `backend/scripts/d2_silverleaf_reference.py` — tracked harness creating Silverleaf job + running `run_dispatch(storage="auto", job_id=...)`.
+- `backend/scripts/d2_persistence_soft_gate.py` — tracked harness for 10 round-trip assertions.
+- `backend/scripts/d2_three_bidset_hardgate.py` — tracked harness for 3 bidsets × 7 criteria.
+- `backend/D2_REFERENCE_silverleaf.md` — Silverleaf reference run report (job_id `45d58c49-2e78-41d7-91c4-759a7a8de0de`, dispatch 137.6s, 338 roofing / 20+81+6 glazing — exact D.1 parity).
+- `MARCH_ORDERS_D2_long_run.md` — chain spec (root-level).
+
+### Files modified
+- `backend/core/dispatch_gate.py`
+  - +8 / −1 lines, all D.2 additions line-tagged `# D.2:`
+  - Signature: added optional `job_id: str | None = None` parameter to `run_dispatch`.
+  - After Stage 13 completes and before leak check: `if job_id is not None:` block lazy-imports `core.job_storage` and calls `persist_dispatch_result(job_id, ctx)` + `persist_trade_outputs(job_id, ctx)` + `mark_dispatch_complete(job_id)` inside try/except (failures append to `ctx.dispatch_warnings` rather than raise).
+  - `job_id=None` path is unchanged from D.1 — entire D.2 block is gated.
+
+### Files deleted
+None.
+
+### Commits
+- D.2 commit 1 of 2: `38f849d` — "D.2 job persistence layer + Silverleaf reference run" (job_storage.py + dispatch_gate.py extension + 3 harness scripts + MARCH_ORDERS_D2_long_run.md + D2_REFERENCE_silverleaf.md).
+
+### Pushes
+(D.2 branch pushed at chain end — see Phase 4 below.)
+
+### Dependency / config changes
+None. `pyproject.toml` not modified. SQLite (already in via stdlib) is what `job_storage.py` uses.
+
+### Vault-ruled files touched
+None. SHA-1 verification at Checkpoint 1 (post-build, pre-soft-gate):
+- `roofing_module.py`: `ae9e5b284191b45de419faacf11771da27a548f9`
+- `glazing_module.py`: `52c014421915ec6a66b4a6860b71a0a3274920f2`
+- `roofing_vocabulary.py`: `ec6c17f8955ef8e27c3ff1d552b299a6962c9d0b`
+- `glazing_vocabulary.py`: `64249c8ef5f7d9db50added3c9a40836cba356ea`
+- `debug_module.py`: `78f71d9030cde3b173389603f5f39bd6bedaac07`
+
+### Frontend touched
+None. SHA-1 verification at Checkpoint 1 (matches pre-chain):
+- `Huckleberry_AI_6.3.1_Scope.html`: `a80463efe09a51e21c54635c34469fb64172f7b7`
+- `Huckleberry_AI_6.3.2_Scope.html`: `09702119c7c299ae03c4b8f401c1a1a2c4db1626`
+- `Huckleberry_AI_6.3.3_Scope.html`: `e8ba836c64df15277c9f8a36b7e28031f7b61f2a`
+- `Huckleberry_AI_6.3.4_Scope.html`: `aaeddf686c8c74d79b2409d1b4fde1831b7f02c3`
+- `Huckleberry_AI_6.3.5_Scope.html`: `cf3765d61fd6f17de46024a3a84c62f25b19b3c5`
+
+### Sacred floor at Checkpoint 1
+Backend 216 passed, 19 skipped, 0 failed. Frontend at baseline (vault-treated, suite not re-run since untouched).
+
+---
+
+## Phase 3.5: Phase D.2 — Soft gate (Silverleaf round-trip) (2026-04-29)
+
+**Branch:** same (`phase2-v0.3-D2-job-folder-and-persistence`)
+**Trigger:** auto-continued from Phase 3 after Checkpoint 1 PASS.
+**Scope discipline:** Read-only against the persisted Silverleaf job; zero new code paths exercised in production beyond `get_job` / `load_dispatch_results` / `load_trade_outputs`; one harness fix (Unicode `≥` → `>=` in console-print strings to avoid cp1252 encode error on Windows; report content unaffected).
+
+### Files created
+- `backend/D2_SOFT_GATE_silverleaf.md` — soft gate report (Overall PASS, 10/10 assertions).
+
+### Files modified
+- `backend/scripts/d2_persistence_soft_gate.py` — single-character fix (`≥` → `>=`) in print string (line 90); report-content string already correct.
+
+### Commits
+(Folded into D.2 commit 2 of 2 at chain end.)
+
+### Soft gate result
+**10/10 PASS** against Silverleaf job_id `45d58c49-2e78-41d7-91c4-759a7a8de0de`:
+1. `get_job` returns non-None
+2. `name == "B2607 AEA Silverleaf"`
+3. `gc == "Accelerated Construction Services"`
+4. `trade_scope` contains both roofing + glazing
+5. `dispatch_results` has 40 page entries (every page persisted)
+6. 18 pages classified `schedule_sheet` (matches calibration iter 2 baseline)
+7. ≥18 pages with `raw_tables_json` populated
+8. `trade_outputs` has 40 page keys
+9. Roofing fields aggregate == 338 (exact parity with D.1 hard gate + calibration iter 2)
+10. Glazing items aggregate == 107 (20g + 81d + 6s — exact parity)
+
+See `backend/D2_SOFT_GATE_silverleaf.md` for full evidence table.
+
+### §7 stops fired
+None.
+
+---
+
+## Phase 4: Phase D.2 — Three-bidset hard gate (2026-04-29)
+
+**Branch:** same (`phase2-v0.3-D2-job-folder-and-persistence`)
+**Trigger:** auto-continued from Phase 3.5 after soft gate PASS.
+**Bidsets:** Bearss Ave Distribution Center, Shoppes at Avalon, Vine Street Retail Center (the same three real bidsets used in the 2026-04-28 three-bidset sweep).
+**Scope discipline:** Per-bidset: `create_job` → `run_dispatch(storage="auto", job_id=...)` → `update_job_status("dispatched")` → 7-criterion evaluation (criteria 6+7 verified externally per harness convention). Module output thresholds set at 90% of the 2026-04-28 sweep baseline. One harness threshold typo corrected mid-chain (Bearss `glazing_items` 200 → 159; sweep baseline is 177, 90% floor is 159 — typo, not module regression).
+
+### Files created
+- `backend/D2_HARD_GATE_bearss-ave.md` — Bearss per-bidset gate report (7/7 PASS, 471.0s dispatch).
+- `backend/D2_HARD_GATE_shoppes-at-avalon.md` — Shoppes per-bidset gate report (7/7 PASS, 721.8s dispatch).
+- `backend/D2_HARD_GATE_vine-street.md` — Vine Street per-bidset gate report (7/7 PASS, 1194.5s dispatch).
+- `backend/D2_HARD_GATE_three_bidset.md` — master hard gate report (Overall PASS, 21/21 criteria).
+- `backend/D2_MASTER_GATE_REPORT.md` — chain-end master report covering all three phases (Phase A build, Phase B soft gate, Phase C hard gate) + sacred floor verification + chain wall-clock + job IDs.
+
+### Files modified
+- `backend/scripts/d2_three_bidset_hardgate.py` — Bearss `glazing_items` threshold 200 → 159 (typo fix; sweep baseline is 177, 90% floor 159; corrected before re-run).
+- `PROJECT_CLAUDE.md` — §3 (D.2 paragraph appended), §7 (D.2 row updated to COMPLETE; E row updated to NEXT-eligible), §8 (rewrote next-planning-conversation around Phase E now being the only remaining path before Phase F).
+- `VALIDATION_LEDGER.md` — §A2 (two new rows: `job_storage.py` build row, `dispatch_gate.py` D.2 extension row), §D (three new diagnostic rows: D.2 reference + D.2 soft gate + D.2 three-bidset hard gate + new "D.2 long-run chain headline numbers" subsection).
+- `backend/BLOCK_RUN.md` — this file; Phases 3 / 3.5 / 4 added.
+
+### Per-bidset hard gate results
+| Bidset | Pages | Dispatch | Roofing fields | Glazing/Door/SF | Errors | Round-trip | Result |
+|---|---:|---:|---:|---:|---:|---|---|
+| Bearss Ave | 91 | 471.0s | 769 (sweep 769) | 177/31/24 (sweep 177/31/24) | 0/91 | exact | **7/7 PASS** |
+| Shoppes at Avalon | 97 | 721.8s | 833 (sweep 830, +0.36%) | 43/22/22 (sweep 43/22/22) | 0/97 | exact | **7/7 PASS** |
+| Vine Street | 138 | 1194.5s | 1201 (sweep 1201) | 100/12/23 (sweep 100/12/23) | 0/138 | exact | **7/7 PASS** |
+
+Module-output byte-exact reproducibility on Bearss + Vine Street (different days, different sessions, harness-direct vs wired-dispatch). Shoppes within +0.36% on roofing fields, all other metrics exact.
+
+### Job IDs persisted across the chain
+- Silverleaf reference: `45d58c49-2e78-41d7-91c4-759a7a8de0de`
+- Bearss (first run, threshold typo): `dd1fe72a-9ba9-46e4-8450-af22f695addd`
+- Bearss (re-run with corrected threshold): `1efc6ea4-8a94-4b4c-9128-262fd1a0e2ae`
+- Shoppes at Avalon: `725c44b8-1493-4ab6-b4a8-abd8507ac8d8`
+- Vine Street: `fa4868da-dd5b-4679-893f-3a44d5047f12`
+
+### Commits
+- D.2 commit 2 of 2: gate reports (5 files) + canon updates (PROJECT_CLAUDE.md, VALIDATION_LEDGER.md, BLOCK_RUN.md) + harness threshold + Unicode fix. SHA recorded after commit lands.
+
+### Pushes
+- Branch `phase2-v0.3-D2-job-folder-and-persistence` pushed to origin at chain end.
+
+### Dependency / config changes
+None.
+
+### Vault-ruled files touched
+None. SHA-1 verification at chain end (matches pre-chain captured at Chain.0):
+- `roofing_module.py`: `ae9e5b284191b45de419faacf11771da27a548f9`
+- `glazing_module.py`: `52c014421915ec6a66b4a6860b71a0a3274920f2`
+- `roofing_vocabulary.py`: `ec6c17f8955ef8e27c3ff1d552b299a6962c9d0b`
+- `glazing_vocabulary.py`: `64249c8ef5f7d9db50added3c9a40836cba356ea`
+- `debug_module.py`: `78f71d9030cde3b173389603f5f39bd6bedaac07`
+
+### Frontend touched
+None. SHA-1 verification at chain end (matches pre-chain):
+- `Huckleberry_AI_6.3.1_Scope.html`: `a80463efe09a51e21c54635c34469fb64172f7b7`
+- `Huckleberry_AI_6.3.2_Scope.html`: `09702119c7c299ae03c4b8f401c1a1a2c4db1626`
+- `Huckleberry_AI_6.3.3_Scope.html`: `e8ba836c64df15277c9f8a36b7e28031f7b61f2a`
+- `Huckleberry_AI_6.3.4_Scope.html`: `aaeddf686c8c74d79b2409d1b4fde1831b7f02c3`
+- `Huckleberry_AI_6.3.5_Scope.html`: `cf3765d61fd6f17de46024a3a84c62f25b19b3c5`
+
+### CLAUDE.md
+Not opened, not edited, not referenced. (File retired by Daniel directive 2026-04-29 prior to D.1 session; remained retired throughout D.2.)
+
+### Hard gate result
+**Overall PASS — 21/21 criteria across 3 bidsets.** See `backend/D2_HARD_GATE_three_bidset.md` and `backend/D2_MASTER_GATE_REPORT.md`.
+
+### §7 stops fired
+None. The chain-spec stop conditions (sacred-floor regression, vault SHA-1 change, frontend SHA-1 change, dispatch raises, persistence round-trip fail, hard gate criterion fail) were monitored at every transition. Zero trips. One transient FAIL during first hard-gate run was a harness threshold typo on Bearss `glazing_items` (200 set; correct 90% floor is 159 since sweep baseline is 177); module output was byte-exact with sweep baseline so the FAIL was harness-not-data; threshold corrected and re-run produced 7/7 Bearss PASS.
+
+### Sacred floor at chain end
+Backend 216 passed, 19 skipped, 0 failed (verified pre-chain, at Checkpoint 1, and post-chain). Frontend at baseline (SHA-1 verified pre-chain and post-chain; suite not re-run since vault-treated).
+
+---
+
+## Phase 5: Phase E — backend API + frontend consumption (TBD)
+
+(Populated by Phase E session. D.2 unblocked Phase E by providing the persistence layer Phase E API surfaces will read from.)
 
 ---

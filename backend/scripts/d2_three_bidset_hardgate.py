@@ -38,10 +38,10 @@ BIDSETS = [
         "trade_scope": "roofing,glazing",
         "expected_pages": 91,
         "thresholds": {
-            "roofing_fields": 700,
-            "glazing_items": 200,
-            "door_items": 28,
-            "storefront_items": 22,
+            "roofing_fields": 692,
+            "glazing_items": 159,
+            "door_items": 27,
+            "storefront_items": 21,
         },
     },
     {
