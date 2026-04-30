@@ -373,8 +373,77 @@ Backend 216 passed, 19 skipped, 0 failed (verified pre-chain, at Checkpoint 1, a
 
 ---
 
-## Phase 5: Phase E — backend API + frontend consumption (TBD)
+## Phase 5: E.0 — API Design + Frontend Audit (2026-04-30)
 
-(Populated by Phase E session. D.2 unblocked Phase E by providing the persistence layer Phase E API surfaces will read from.)
+**Branch:** `phase2-v0.3-E0-api-design-and-frontend-audit` (from D.2 head `cd5608e`)
+**Trigger:** Daniel directive 2026-04-29 — Phase E next-eligible after D.2 chain ship; E broken into 4 sub-phases (E.0 design + audit, E.1 FastAPI scaffold, E.2 frontend strip, E.3 render + edit surface); E.0 is read-only, no code changes.
+**Scope discipline:** Single short session, audit + design + housekeeping only, no production code, vault rule active, frontend strip deferred to E.2. Three deliverables: frontend audit, API design, v6.3.x housekeeping moves.
+
+### Files created
+- `backend/E0_FRONTEND_AUDIT.md` — v6.3.5 structural audit (8,694 lines audited; ~1,320 lines of backend-shaped logic identified; ~3,800–4,100 lines projected to be stripped in E.2) + E.2 strip targets prioritized + E.3 render targets sketched
+- `backend/E0_API_DESIGN.md` — FastAPI design contract for E.1: stack decisions (FastAPI / uvicorn / Pydantic v2 / stdlib sqlite3), two E.1 endpoints (`POST /jobs` + `GET /jobs/{id}`) + free `/health` probe, request/response schemas, error shapes, project structure under `backend/api/`, three new pyproject deps E.1 will add, test strategy (test_api_jobs.py, 216 → 219–222), reserved E.2/E.3 endpoint sketches, forward-compat commitments
+- `backend/E0_GATE_REPORT.md` — final gate report
+
+### Files moved (git mv, history preserved)
+- `frontend/Huckleberry_AI_6.3.1_Scope.html` → `safe_for_removal/frontend_versions/`
+- `frontend/Huckleberry_AI_6.3.2_Scope.html` → `safe_for_removal/frontend_versions/`
+- `frontend/Huckleberry_AI_6.3.3_Scope.html` → `safe_for_removal/frontend_versions/`
+- `frontend/Huckleberry_AI_6.3.4_Scope.html` → `safe_for_removal/frontend_versions/`
+- `frontend/spotcheck_durolast.js` → `safe_for_removal/frontend_versions/` (targeted v6.3.1; hardcoded HTML_PATH)
+- `frontend/spotcheck_manufacturer.js` → `safe_for_removal/frontend_versions/` (targeted v6.3.2)
+- `frontend/spotcheck_cricket.js` → `safe_for_removal/frontend_versions/` (targeted v6.3.3)
+- `frontend/spotcheck_10b.js` → `safe_for_removal/frontend_versions/` (targeted v6.3.4)
+
+### Files modified
+- `safe_for_removal/MANIFEST.md` — appended `frontend_versions/` row to category table + 8 entry blocks (4 HTMLs + 4 spotchecks) per orders §6.3
+- `PROJECT_CLAUDE.md` — single §3 paragraph append per orders §7 (E.0 audit + design complete note)
+- `backend/BLOCK_RUN.md` — this file; Phase 5 section populated
+
+### Files deleted
+None this session.
+
+### Commits
+- E.0 single commit on `phase2-v0.3-E0-api-design-and-frontend-audit` (SHA recorded after commit)
+
+### Pushes
+- Branch pushed to origin at session end
+
+### Dependency / config changes
+**None this session.** E.0 adds zero deps. E.1 will add `fastapi>=0.115`, `uvicorn[standard]>=0.30`, `pydantic>=2.7` per the API design doc.
+
+### Vault-ruled files touched
+None. SHA-1 verification at session end (matches pre-session captured at E0.0):
+- `roofing_module.py`: `ae9e5b284191b45de419faacf11771da27a548f9`
+- `glazing_module.py`: `52c014421915ec6a66b4a6860b71a0a3274920f2`
+- `roofing_vocabulary.py`: `ec6c17f8955ef8e27c3ff1d552b299a6962c9d0b`
+- `glazing_vocabulary.py`: `64249c8ef5f7d9db50added3c9a40836cba356ea`
+- `debug_module.py`: `78f71d9030cde3b173389603f5f39bd6bedaac07`
+
+### Frontend touched
+- `frontend/Huckleberry_AI_6.3.5_Scope.html`: read-only audit; SHA-1 `cf3765d61fd6f17de46024a3a84c62f25b19b3c5` unchanged at session end (verified before commit)
+- `frontend/Huckleberry_AI_6.3.{1,2,3,4}_Scope.html`: moved (git rename); file content unchanged
+- `frontend/spotcheck_{durolast,manufacturer,cricket,10b}.js`: moved (git rename); file content unchanged
+- `frontend/run_tests.js`, `frontend/mutation_test_step11.js`, `frontend/extracted/Huckleberry_AI_6.3.0_Scope.html`, `frontend/package.json`: untouched (still in `frontend/`; `npm test` continues to pass 138/138 against v6.3.5)
+
+### Soft observation
+`frontend/package.json` still contains a `test:spotchecks` script that references the four moved spotcheck files. Running it now will fail (target files no longer at the referenced paths). The script entry was deliberately left intact — modifying production frontend config is out of scope for E.0 per orders §9 #7. The next frontend-touching session (likely E.2) will remove or repoint the entry. `npm test` (the 138/138 floor) is unaffected.
+
+### CLAUDE.md
+Not opened, not edited, not referenced. (File retired by Daniel directive 2026-04-29 prior to D.1 session; remains retired through E.0.)
+
+### Sacred floor at session end
+- Backend: 216 passed, 19 skipped, 0 failed (verified pre-session at E0.0 and post-moves at E0.4)
+- Frontend: 138/138 passed against v6.3.5 (verified pre-session at E0.0 and post-moves at E0.4)
+- v6.3.5 SHA-1 unchanged: `cf3765d61fd6f17de46024a3a84c62f25b19b3c5`
+- All 5 vault-ruled module SHA-1s unchanged
+
+### §9 stops fired
+None. Each enumerated stop verified non-firing in `backend/E0_GATE_REPORT.md`.
+
+---
+
+## Phase 6: E.1 — FastAPI scaffold + first endpoints (TBD)
+
+(Populated by E.1 session. E.0 produced the API design contract E.1 builds against.)
 
 ---

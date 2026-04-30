@@ -21,6 +21,7 @@ The folder is organized into one subdirectory per category:
 | `pre_phase_B_validation/` | Pre-Phase-B experiment infrastructure: `EXPERIMENT_*.md` reports, the v0.1 experiment runner + analyzer + helpers, the v0.2-era sweep scripts, the v0.2 validation report, the public-corpus observations, the TracePoint discovery doc. All superseded by VALIDATION_LEDGER.md and the per-phase gate reports. |
 | `superseded_scripts/` | One-shot harnesses superseded by tracked reusable harnesses: `c5_run_through.py` (replaced by sweep + calibration patterns), `sweep_three_bidsets.py` (was intentionally untracked but did get committed; superseded by `calibrate_silverleaf.py` and `d1_silverleaf_hardgate.py` patterns). |
 | `old_terminal_logs/` | Old captured terminal output: `v0.2_sweep.log` from the v0.2 ship sweep session. |
+| `frontend_versions/` | Retired frontend HTML iterations (v6.3.1, v6.3.2, v6.3.3, v6.3.4) plus their version-specific spotcheck scripts (`spotcheck_durolast.js` → 6.3.1, `spotcheck_manufacturer.js` → 6.3.2, `spotcheck_cricket.js` → 6.3.3, `spotcheck_10b.js` → 6.3.4). Retired by E.0 2026-04-30; v6.3.5 confirmed canonical. |
 
 ---
 
@@ -595,6 +596,119 @@ The folder is organized into one subdirectory per category:
 **Why retired:** v0.2 shipped; terminal log is not load-bearing.
 **What replaced it:** Nothing.
 **What to look at if related issues surface:** `backend/test_fixtures/v0.2_outputs/*.json` (the actual sweep outputs are still in workspace).
+
+---
+
+## Frontend versions retired by E.0 (2026-04-30)
+
+Per Daniel directive 2026-04-29 / executed 2026-04-30: v6.3.5 confirmed canonical going forward; v6.3.1 through v6.3.4 retired. The four version-specific spotcheck scripts that hardcode older versions in their `HTML_PATH` constants are moved alongside the HTML files they target — they are historical regression tests for behavior that landed in those specific versions.
+
+The currently-active frontend test artifacts stay in `frontend/`:
+- `frontend/Huckleberry_AI_6.3.5_Scope.html` (canonical, 138/138 tests pass)
+- `frontend/run_tests.js` (jsdom harness; defaults to v6.3.5 via `npm test` CLI argument)
+- `frontend/mutation_test_step11.js` (targets v6.3.5 explicitly; not part of the 138 floor)
+- `frontend/extracted/Huckleberry_AI_6.3.0_Scope.html` (older still; left in place — not in scope for E.0)
+
+`npm test` still passes 138/138 against v6.3.5 after these moves (verified 2026-04-30 at E0.4 post-move floor check). `npm run test:spotchecks` is now broken because the four spotcheck scripts moved with their target HTMLs; the script entry in `frontend/package.json` is left as-is so a future archaeologist sees what was there. The next frontend-touching session can clean up that `package.json` entry; doing so in E.0 would require modifying production frontend config and is out of scope per orders §9 #7.
+
+### Huckleberry_AI_6.3.1_Scope.html
+
+**Original path:** `frontend/Huckleberry_AI_6.3.1_Scope.html`
+**New path:** `safe_for_removal/frontend_versions/Huckleberry_AI_6.3.1_Scope.html`
+**Category:** retired_frontend_versions
+**When active:** before 2026-04-30 (v6.3.1 ship era, ~107 tests historically per PROJECT_CLAUDE.md reference)
+**Purpose when active:** Phase 1 frontend HTML iteration; superseded by the v6.3.2 → v6.3.5 chain.
+**Why retired:** Superseded by v6.3.5 (138 tests, more complete). E.0 audit confirmed v6.3.5 is the canonical surface going into Phase E.
+**What replaced it:** `frontend/Huckleberry_AI_6.3.5_Scope.html`
+**What to look at if related issues surface:** v6.3.5 audit at `backend/E0_FRONTEND_AUDIT.md`; sacred-files list in `VALIDATION_LEDGER.md §A2`; `frontend/package.json` test scripts.
+
+---
+
+### Huckleberry_AI_6.3.2_Scope.html
+
+**Original path:** `frontend/Huckleberry_AI_6.3.2_Scope.html`
+**New path:** `safe_for_removal/frontend_versions/Huckleberry_AI_6.3.2_Scope.html`
+**Category:** retired_frontend_versions
+**When active:** before 2026-04-30 (v6.3.2 ship era)
+**Purpose when active:** Phase 1 frontend HTML iteration; intermediate between 6.3.1 and 6.3.5.
+**Why retired:** Same as 6.3.1.
+**What replaced it:** `frontend/Huckleberry_AI_6.3.5_Scope.html`
+**What to look at if related issues surface:** Same as 6.3.1.
+
+---
+
+### Huckleberry_AI_6.3.3_Scope.html
+
+**Original path:** `frontend/Huckleberry_AI_6.3.3_Scope.html`
+**New path:** `safe_for_removal/frontend_versions/Huckleberry_AI_6.3.3_Scope.html`
+**Category:** retired_frontend_versions
+**When active:** before 2026-04-30 (v6.3.3 ship era)
+**Purpose when active:** Phase 1 frontend HTML iteration.
+**Why retired:** Same as 6.3.1.
+**What replaced it:** `frontend/Huckleberry_AI_6.3.5_Scope.html`
+**What to look at if related issues surface:** Same as 6.3.1.
+
+---
+
+### Huckleberry_AI_6.3.4_Scope.html
+
+**Original path:** `frontend/Huckleberry_AI_6.3.4_Scope.html`
+**New path:** `safe_for_removal/frontend_versions/Huckleberry_AI_6.3.4_Scope.html`
+**Category:** retired_frontend_versions
+**When active:** before 2026-04-30 (v6.3.4 ship era)
+**Purpose when active:** Phase 1 frontend HTML iteration; immediate predecessor of 6.3.5.
+**Why retired:** Same as 6.3.1.
+**What replaced it:** `frontend/Huckleberry_AI_6.3.5_Scope.html`
+**What to look at if related issues surface:** Same as 6.3.1.
+
+---
+
+### spotcheck_durolast.js
+
+**Original path:** `frontend/spotcheck_durolast.js`
+**New path:** `safe_for_removal/frontend_versions/spotcheck_durolast.js`
+**Category:** retired_frontend_versions (version-specific test)
+**When active:** before 2026-04-30
+**Purpose when active:** Exercised the Duro-Last + TPO + PVC vocab against real CLAUDE.md bidset strings at v6.3.1; targeted `Huckleberry_AI_6.3.1_Scope.html` directly via hardcoded `HTML_PATH` constant.
+**Why retired:** The HTML it targets is retired. Was reachable only via `npm run test:spotchecks` (not part of the 138/138 floor). Coverage of Duro-Last + TPO + PVC has since rolled into the 138-test suite against v6.3.5.
+**What replaced it:** SCOPE_TESTS embedded in v6.3.5 (line 5559+); backend `roofing_vocabulary.py` (vault-ruled).
+**What to look at if related issues surface:** Backend `roofing_vocabulary.py`; v6.3.5 SCOPE_TESTS; `backend/SWEEP_OBSERVATION_*.md` for real-bidset behavior.
+
+---
+
+### spotcheck_manufacturer.js
+
+**Original path:** `frontend/spotcheck_manufacturer.js`
+**New path:** `safe_for_removal/frontend_versions/spotcheck_manufacturer.js`
+**Category:** retired_frontend_versions (version-specific test)
+**When active:** before 2026-04-30
+**Purpose when active:** Exercised manufacturer-detection vocab at v6.3.2; targeted `Huckleberry_AI_6.3.2_Scope.html` directly.
+**Why retired:** Same as `spotcheck_durolast.js`.
+**What replaced it:** Same as `spotcheck_durolast.js`.
+
+---
+
+### spotcheck_cricket.js
+
+**Original path:** `frontend/spotcheck_cricket.js`
+**New path:** `safe_for_removal/frontend_versions/spotcheck_cricket.js`
+**Category:** retired_frontend_versions (version-specific test)
+**When active:** before 2026-04-30
+**Purpose when active:** Exercised cricket/saddle vocab + tool-routing logic at v6.3.3; targeted `Huckleberry_AI_6.3.3_Scope.html` directly.
+**Why retired:** Same as `spotcheck_durolast.js`.
+**What replaced it:** Same as `spotcheck_durolast.js`.
+
+---
+
+### spotcheck_10b.js
+
+**Original path:** `frontend/spotcheck_10b.js`
+**New path:** `safe_for_removal/frontend_versions/spotcheck_10b.js`
+**Category:** retired_frontend_versions (version-specific test)
+**When active:** before 2026-04-30
+**Purpose when active:** Exercised Step 10b interior-density scoring at v6.3.4; targeted `Huckleberry_AI_6.3.4_Scope.html` directly.
+**Why retired:** Same as `spotcheck_durolast.js`.
+**What replaced it:** Same as `spotcheck_durolast.js`.
 
 ---
 
