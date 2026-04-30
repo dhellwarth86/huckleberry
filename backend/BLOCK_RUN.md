@@ -505,8 +505,72 @@ None. Each enumerated stop verified non-firing in `backend/E1_GATE_REPORT.md`.
 
 ---
 
+## Phase 6.5: E.1 discipline patches — uvicorn smoke + spec corrigenda (2026-04-30)
+
+**Branch:** `phase2-v0.3-E1-discipline-patches` (from E.1 head `6eb99fe`)
+**Trigger:** Daniel directive 2026-04-30 — three small follow-ups before E.2 launches: (1) verify the production run-mode (real uvicorn over real HTTP, not just TestClient) actually works; (2) reconcile the `E0_API_DESIGN.md` 404 body with what shipped; (3) reconcile the `version=` string with what shipped. Single commit, single short session.
+**Scope discipline:** No production code modified. No test changes. No new deps. Vault rule active. Frontend untouched. Three deliverables: a tracked uvicorn-smoke harness, a smoke report, two spec corrigenda inside the existing E0_API_DESIGN.md (no new top-level files for the corrigenda).
+
+### Files created
+- `backend/scripts/e1_uvicorn_smoke.py` — tracked harness; spawns uvicorn via `subprocess.Popen` against `api.main:app`, polls `/health` until ready, hits the four assertions over real HTTP via `requests`, terminates the subprocess in a `finally` block. ~250 lines.
+- `backend/E1_UVICORN_SMOKE.md` — smoke report (4/4 PASS); per-assertion evidence + response-body excerpts + total wall-clock.
+
+### Files modified
+- `backend/E0_API_DESIGN.md` — two corrigenda landed:
+  - §5.2 error-table row + implementation sketch: `{"detail": "job not found: <job_id>"}` → `{"detail": "Job not found"}` (no echo of user input)
+  - §5.4 main.py skeleton: `version="0.1.0"` → `version="0.3.0-E.1"`
+  - new §5.12 "Corrigenda — landed during E.1" section appended before doc close, documenting both patches with reasons + the version-string convention adopted (`<phase2-version>-<phase-stage>`)
+- `backend/BLOCK_RUN.md` — this Phase 6.5 section appended; Phase 7 placeholder for E.2 retained below.
+
+### Files deleted
+None.
+
+### Commits
+- Single discipline-patches commit on `phase2-v0.3-E1-discipline-patches` (SHA recorded after commit lands).
+
+### Pushes
+- Branch pushed to origin at session end.
+
+### Dependency / config changes
+None. `requests` (used by the smoke harness) is a transitive dep already present (FastAPI's TestClient pulls in httpx; `requests` was already on PYTHONPATH from earlier setup — verified via `python -c "import requests"` returning 2.33.1). `pyproject.toml` unchanged this session.
+
+### Vault-ruled files touched
+None. SHA-1 verification at session end (matches pre-session captured before the patches):
+- `roofing_module.py`: `ae9e5b284191b45de419faacf11771da27a548f9`
+- `glazing_module.py`: `52c014421915ec6a66b4a6860b71a0a3274920f2`
+- `roofing_vocabulary.py`: `ec6c17f8955ef8e27c3ff1d552b299a6962c9d0b`
+- `glazing_vocabulary.py`: `64249c8ef5f7d9db50added3c9a40836cba356ea`
+- `debug_module.py`: `78f71d9030cde3b173389603f5f39bd6bedaac07`
+
+### Frontend touched
+None. v6.3.5 SHA-1 unchanged: `cf3765d61fd6f17de46024a3a84c62f25b19b3c5`.
+
+### CLAUDE.md
+Not opened. Retired pre-D.1.
+
+### Smoke gate result
+**4/4 PASS over real HTTP.** uvicorn boot 1.1s; total smoke 1.2s.
+1. `GET /health` → 200 + `{"status":"ok","version":"0.3.0-E.1"}`
+2. `GET /docs` → 200 (Swagger UI HTML, 1013 bytes, contains "swagger" substring)
+3. `POST /jobs` (Silverleaf payload) → 201 + 14-field JobResponse, id `98bd2e75-0458-41f8-865b-a4b8304c163b`
+4. `GET /jobs/{id}` → 200, id-match + name-match
+
+This is the production run-mode (uvicorn over a real socket) confirming what the in-process TestClient suite (E.1's 6 tests + the Silverleaf API hard gate's 8 checks) already proved at the in-process layer. Both layers now agree on the contract.
+
+### Sacred floor at session end
+- Backend: 222 passed, 19 skipped, 0 failed (no test changes this session — floor inherited from E.1 ship)
+- Frontend: 138/138 passed against v6.3.5 (vault-treated, untouched)
+- v6.3.5 SHA-1 unchanged
+- All 5 vault-ruled module SHA-1s unchanged
+- `pyproject.toml` unchanged
+
+### §7 stops fired
+None. Smoke 4/4 PASS; no other stop conditions triggered. (The single stop condition in this session's spec was "if any assertion fails, §7 stop with traceback + response body for diagnosis" — non-firing.)
+
+---
+
 ## Phase 7: E.2 — Frontend strip + connect (TBD)
 
-(Populated by E.2 session. E.1 produced the API surface E.2 will consume. Per `backend/E0_FRONTEND_AUDIT.md`, E.2 is a re-architecture: ~3,800–4,100 lines of backend-shaped JS removed from v6.3.5; ~45% of file. Probably needs sub-phasing per spec §15.)
+(Populated by E.2 session. E.1 + 6.5 discipline-patches produced the API surface E.2 will consume. Per `backend/E0_FRONTEND_AUDIT.md`, E.2 is a re-architecture: ~3,800–4,100 lines of backend-shaped JS removed from v6.3.5; ~45% of file. Probably needs sub-phasing per spec §15.)
 
 ---

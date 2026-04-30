@@ -135,7 +135,7 @@ def create_job_endpoint(req: JobCreateRequest) -> JobResponse:
 
 | Status | Trigger | Body |
 |---|---|---|
-| 404 | `get_job(job_id)` returns `None` | `{"detail": "job not found: <job_id>"}` |
+| 404 | `get_job(job_id)` returns `None` | `{"detail": "Job not found"}` |
 | 422 | `job_id` parameter is malformed (FastAPI validates path param shape; we don't strictly type it as UUID — accept any string and let `get_job` return None) | (only if we choose strict UUID typing — recommend NOT, keep it permissive) |
 | 500 | SQLite read failure | `{"detail": "Internal server error"}` |
 
@@ -146,7 +146,7 @@ def create_job_endpoint(req: JobCreateRequest) -> JobResponse:
 def get_job_endpoint(job_id: str) -> JobResponse:
     job = get_job(job_id)
     if job is None:
-        raise HTTPException(status_code=404, detail=f"job not found: {job_id}")
+        raise HTTPException(status_code=404, detail="Job not found")
     return JobResponse(**job)
 ```
 
@@ -254,7 +254,7 @@ from api.routes import jobs as jobs_routes
 
 app = FastAPI(
     title="Huckleberry API",
-    version="0.1.0",
+    version="0.3.0-E.1",
     description="Backend API for the Huckleberry takeoff platform.",
 )
 
@@ -404,6 +404,34 @@ Daniel may flag any of the following before E.1 march orders are drafted:
 6. **OpenAPI auto-docs at `/docs` and `/redoc`** — fine, or hide them in production? My read: fine; production decision later.
 
 Default position on all open questions: ship the simpler answer, defer the harder answer to its own phase.
+
+---
+
+## §5.12 — Corrigenda — landed during E.1
+
+E.1 shipped against this design contract on 2026-04-30. Two small spec updates were landed in a follow-up discipline-patches branch (`phase2-v0.3-E1-discipline-patches`) so the design doc tracks what actually shipped, not what was first drafted. Both are surface-level — the contract itself is unchanged.
+
+### Corrigendum 1 — 404 response body
+
+**Spec drafted:** `{"detail": "job not found: <job_id>"}` (echoed user-supplied id).
+**Shipped (canonical):** `{"detail": "Job not found"}` (no echo of user input).
+
+**Reason:** Tighter data-leak posture. Reflecting the user-supplied `job_id` back into the 404 body is a small but real attack surface — it lets a caller distinguish between "id format invalid" and "id format valid but not in DB" through response-body shape, and confirms reflection of user input is happening at all. The shipped form stays opaque and matches the generic error-message discipline already applied to `POST /jobs` failures ("Job creation failed", "pdf_path not found").
+
+This is the canonical form going forward; spec table and implementation sketch in §5.2 updated to match ship.
+
+### Corrigendum 2 — `version` string in `FastAPI(...)` constructor
+
+**Spec drafted:** `version="0.1.0"` (placeholder).
+**Shipped (canonical):** `version="0.3.0-E.1"` (per `<phase2-version>-<phase-stage>` pattern).
+
+**Reason:** Adopt a version-string convention that ties the API surface to the phase that shipped it. Going forward:
+
+- Each E sub-phase increments the suffix: E.2 → `0.3.0-E.2`, E.3 → `0.3.0-E.3`.
+- Each new letter-phase increments the minor: F → `0.4.0-F.0`, G → `0.5.0-G.0`.
+- The major (`0.x.x`) stays at `0` until the v1 ship; the minor tracks Phase-2 stage; the patch stays `0` for now (reserved for hotfixes within a phase).
+
+Spec updated to match ship; pattern adopted as project convention.
 
 ---
 
