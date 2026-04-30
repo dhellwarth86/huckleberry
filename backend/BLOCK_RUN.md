@@ -442,8 +442,71 @@ None. Each enumerated stop verified non-firing in `backend/E0_GATE_REPORT.md`.
 
 ---
 
-## Phase 6: E.1 — FastAPI scaffold + first endpoints (TBD)
+## Phase 6: E.1 — FastAPI Scaffold + First Endpoints (2026-04-30)
 
-(Populated by E.1 session. E.0 produced the API design contract E.1 builds against.)
+**Branch:** `phase2-v0.3-E1-fastapi-scaffold` (from E.0 head `b5c8d95`)
+**Trigger:** Daniel directive 2026-04-29 — E.1 ships FastAPI server with 2 real endpoints + 1 exempt health probe + 6 new tests; single-bidset Silverleaf hard gate (3-bidset deferred to post-Phase-G); soft gate to E.2 after Daniel review.
+**Scope discipline:** Three deps (fastapi / uvicorn[standard] / pydantic — already declared in `backend/pyproject.toml` from v0.2 era; first wired in E.1, no pyproject change needed); permissive CORS in dev with `# E.1:` deferral comment; auth deferred to Postgres/security phase; OpenAPI docs exposed in dev; data-leak guards in response schema (Pydantic `extra="forbid"`) and error messages (generic strings only); strict input validation (`JobStatus = Literal[...]`); vault rule active; frontend untouched.
+
+### Files created
+- `backend/api/__init__.py` — package marker
+- `backend/api/main.py` — FastAPI app, permissive CORS, `/health` probe, jobs router include, uvicorn entry
+- `backend/api/routes/__init__.py`
+- `backend/api/routes/jobs.py` — `POST /jobs` + `GET /jobs/{id}` calling `core.job_storage.create_job` / `get_job`
+- `backend/api/schemas/__init__.py`
+- `backend/api/schemas/jobs.py` — `JobCreateRequest` + `JobResponse` Pydantic v2 models with `Literal` status + `extra="forbid"` data-leak guard
+- `backend/tests/conftest.py` — shared fixtures; `silverleaf_path` fixture skips when PDF unavailable
+- `backend/tests/test_api_jobs.py` — 6 new tests per `MARCH_ORDERS_E_1_fastapi_scaffold.md §6`
+- `backend/scripts/e1_silverleaf_api_hardgate.py` — tracked harness; 8 hard-gate checks via TestClient
+- `backend/E1_HARD_GATE_silverleaf_api.md` — Silverleaf API hard gate report (8/8 PASS)
+- `backend/E1_GATE_REPORT.md` — final gate report
+
+### Files modified
+- `PROJECT_CLAUDE.md` — §3 single E.1 paragraph append + §7 phase table updated (E split into E.0 / E.1 / E.2 / E.3; Phase G inserted; Postgres/security phase row added)
+- `backend/BLOCK_RUN.md` — this file; Phase 6 section added (Phase 7 placeholder reserved for E.2)
+
+### Files deleted
+None.
+
+### Commits
+- E.1 single commit on `phase2-v0.3-E1-fastapi-scaffold` (SHA recorded after commit lands)
+
+### Pushes
+- Branch pushed to origin at session end
+
+### Dependency / config changes
+**No `pyproject.toml` modification** in E.1. The three deps (`fastapi>=0.115`, `uvicorn[standard]>=0.32`, `pydantic>=2.9`) were already declared in `backend/pyproject.toml` from the v0.2 era (with the comment "Web framework — included now so v0.2 doesn't need to re-add"). E.1 is the first phase to actually import + wire them. Versions in current Python environment: fastapi 0.135.3, uvicorn 0.43.0, pydantic 2.12.5 — all satisfy the spec's `>=0.115` / `>=0.30` / `>=2.7` minimums.
+
+### Vault-ruled files touched
+None. SHA-1 verification at session end (matches pre-session captured at E1.0):
+- `roofing_module.py`: `ae9e5b284191b45de419faacf11771da27a548f9`
+- `glazing_module.py`: `52c014421915ec6a66b4a6860b71a0a3274920f2`
+- `roofing_vocabulary.py`: `ec6c17f8955ef8e27c3ff1d552b299a6962c9d0b`
+- `glazing_vocabulary.py`: `64249c8ef5f7d9db50added3c9a40836cba356ea`
+- `debug_module.py`: `78f71d9030cde3b173389603f5f39bd6bedaac07`
+
+### Frontend touched
+None. v6.3.5 SHA-1 unchanged: `cf3765d61fd6f17de46024a3a84c62f25b19b3c5`.
+
+### CLAUDE.md
+Not opened, not edited, not referenced. Retired pre-D.1; remains retired through E.1.
+
+### Hard gate result
+Silverleaf single-bidset API hard gate via `backend/scripts/e1_silverleaf_api_hardgate.py`: **8/8 PASS**. TestClient init OK; POST /jobs 201 with 14-field JobResponse (33.7ms latency); GET /jobs/{id} 200 with id-match; direct `core.job_storage.get_job` round-trip confirms persistence (job id `c71dcdaa-b041-4cab-af41-337b9ce73448` written to `~/.tracepoint/cache.db`); `created_at` within 60s of now; `pdf_sha1` `76dc89072dae77c1b476b60da85870f3d799cd31` matches actual file SHA-1 exactly; invalid status returns 422 (Pydantic Literal enforced); non-existent id returns 404 with `{"detail": "Job not found"}` (data-leak guard — no SQL/path/traceback markers in error body). See `backend/E1_HARD_GATE_silverleaf_api.md`.
+
+### §10 stops fired
+None. Each enumerated stop verified non-firing in `backend/E1_GATE_REPORT.md`.
+
+### Sacred floor at session end
+- Backend: 222 passed, 19 skipped, 0 failed (verified pre-session at 216/19/0 and post-session at 222/19/0; the +6 are E.1's new tests)
+- Frontend: 138/138 passed against v6.3.5 (vault-treated, untouched)
+- v6.3.5 SHA-1 unchanged: `cf3765d61fd6f17de46024a3a84c62f25b19b3c5`
+- All 5 vault-ruled module SHA-1s unchanged
+
+---
+
+## Phase 7: E.2 — Frontend strip + connect (TBD)
+
+(Populated by E.2 session. E.1 produced the API surface E.2 will consume. Per `backend/E0_FRONTEND_AUDIT.md`, E.2 is a re-architecture: ~3,800–4,100 lines of backend-shaped JS removed from v6.3.5; ~45% of file. Probably needs sub-phasing per spec §15.)
 
 ---
