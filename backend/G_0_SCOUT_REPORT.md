@@ -641,7 +641,7 @@ All 5 vault-ruled module SHA-1s match pre-session expected values per Validation
 | 13 | PROJECT_CLAUDE.md edits | **NOT FIRING** | Zero edits to PROJECT_CLAUDE.md |
 | 14 | Report missing or incomplete | **NOT FIRING** | All 7 sections present (§1–§7) |
 | 15 | Report contains code patches or fix proposals | **NOT FIRING** | Scout names problems; does not propose fixes. §4 names the bug; §6 proposes structure without code. |
-| 16 | Push to origin fails | **TBD** | Verified at commit+push step below |
+| 16 | Push to origin fails | **NOT FIRING** | Pushed to `origin/phase2-v0.3-G0-scout-mission` at commit `52fadd5` |
 | 17 | Wall-clock exceeds 5 hours | **NOT FIRING** | Total ~2.5–3 hours (Appendix C) |
 
 ---
