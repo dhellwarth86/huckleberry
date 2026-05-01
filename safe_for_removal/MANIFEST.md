@@ -712,6 +712,19 @@ The currently-active frontend test artifacts stay in `frontend/`:
 
 ---
 
+### Huckleberry_AI_6.3.5_Scope.html
+
+**Original path:** `frontend/Huckleberry_AI_6.3.5_Scope.html`
+**New path:** `safe_for_removal/frontend_versions/Huckleberry_AI_6.3.5_Scope.html`
+**Category:** retired_frontend_versions
+**When active:** ship era through 2026-04-30 (138/138 frontend test floor; canonical surface for E.0 audit + E.2.0 strip plan)
+**Purpose when active:** Phase 1 single-file HTML viewer with the full TracePoint 12-stage geometry pipeline JS port, ROOF_VOCAB scope extractor, classifyPage classifier, PDF.js operator-list walker, and 138 jsdom-driven tests. Was the canonical frontend surface entering Phase E.
+**Why retired:** Phase E.2.1 destructive sub-phase shipped (2026-04-30). v6.3.5 was the explicit strip target — pipeline + scope + walker code stripped per `backend/E2_0_STRIP_PLAN.md`; the surviving keeper code (Viewer + tools + takeoff Excel) was rebuilt bottom-up into `frontend/src/Huckleberry_AI_phase2.v1.0.0.html`. v6.3.5's content SHA-1 (`cf3765d61fd6f17de46024a3a84c62f25b19b3c5`) is preserved through the `git mv` to the archived path — the file content is byte-identical, only the path changed.
+**What replaced it:** `frontend/src/Huckleberry_AI_phase2.v1.0.0.html` (3,672 lines; 20/20 test floor; API-connected viewer with apiClient skeleton).
+**What to look at if related issues surface:** `backend/E2_0_STRIP_PLAN.md` (line-by-line strip plan that targeted v6.3.5), `backend/E2_1_GATE_REPORT.md` (gate report for the strip sub-phase), `frontend/src/Huckleberry_AI_phase2.v1.0.0.html` (the new file), `backend/E0_FRONTEND_AUDIT.md` (the audit that catalogued v6.3.5's structure before strip). v6.3.5 stays accessible at the archived path as an offline-fallback reference until Daniel's eventual review-and-empty session for `safe_for_removal/`.
+
+---
+
 ## End of MANIFEST
 
 If you're reading this in 2027 from the wiki conversion: the `safe_for_removal/` folder is gone, but every file mentioned above existed at the path under "Original path:" before this session. Use git history (`git log --all --follow -- <original-path>`) to retrieve full content if needed.

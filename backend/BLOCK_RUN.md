@@ -624,3 +624,87 @@ None. Read-only diagnostic — no stop conditions applicable.
 5. **Frontend test floor drops from 138 → 25** — ~142 tests retire with stripped code; 11 survive + 14 new proposed (D4 §4)
 
 ---
+
+## Phase 8: E.2.1 — Frontend strip + new file + v6.3.5 archival (2026-04-30)
+
+**Branch:** `phase2-v0.3-E2-1-strip` (from `a1c804c`)
+**Trigger:** MARCH ORDERS Phase E.2.1 — destructive sub-phase executing E.2.0 strip plan + new file design.
+
+### Files created
+- `frontend/src/Huckleberry_AI_phase2.v1.0.0.html` — 3,672 lines, built bottom-up from E.2.0 specs (D1 strip plan + D2 new file design + D3 apiClient spec + D4 test floor proposal)
+- `backend/E2_1_GATE_REPORT.md` — gate report
+
+### Files modified
+- `frontend/package.json` — `test` script repointed to `src/Huckleberry_AI_phase2.v1.0.0.html`; obsolete `test:spotchecks` / `test:mutations` / `test:all-versions` entries removed (per E.2.1 §7.1); `version` bumped to `phase2.v1.0.0`; `dependencies` unchanged
+- `backend/E0_API_DESIGN.md` — §5.12 corrigendum 3 (CHECKING vs DEGRADED) appended
+- `PROJECT_CLAUDE.md` — §3 paragraph appended; §7 phase table E.2.1 row marked COMPLETE; E.2.2 row promoted to NEXT-eligible
+- `backend/BLOCK_RUN.md` — this Phase 8 section
+- `safe_for_removal/MANIFEST.md` — v6.3.5 row added
+
+### Files renamed (via `git mv`, content unchanged)
+- `frontend/Huckleberry_AI_6.3.5_Scope.html` → `safe_for_removal/frontend_versions/Huckleberry_AI_6.3.5_Scope.html` (content SHA-1 `cf3765d61fd6f17de46024a3a84c62f25b19b3c5` preserved)
+
+### Files deleted
+None. v6.3.5 moved, not deleted, per discipline rule.
+
+### Config / dependency changes
+None. `package.json` dependencies unchanged. `pyproject.toml` untouched. No new npm packages. No new Python packages.
+
+### Commits
+Single commit on `phase2-v0.3-E2-1-strip`.
+
+### Vault-ruled modules
+Unchanged. SHA-1 verification at session end (matches pre-session captured at E2.1.0):
+- `roofing_module.py`: `ae9e5b284191b45de419faacf11771da27a548f9`
+- `glazing_module.py`: `52c014421915ec6a66b4a6860b71a0a3274920f2`
+- `roofing_vocabulary.py`: `ec6c17f8955ef8e27c3ff1d552b299a6962c9d0b`
+- `glazing_vocabulary.py`: `64249c8ef5f7d9db50added3c9a40836cba356ea`
+- `debug_module.py`: `78f71d9030cde3b173389603f5f39bd6bedaac07`
+
+### E.1 production-code SHA-1s (per §3 stop #4)
+Unchanged. SHA-1 verification at session end (matches pre-session):
+- `backend/api/main.py`: `5572ebe5a41dabc6bd96a9819bb410dde7e5fc4b`
+- `backend/api/routes/jobs.py`: `bfa86e9e5b23d0634ee54ae72f89f048345b2ef9`
+- `backend/api/schemas/jobs.py`: `12ec441dc5935f06269b2e2df07eec5ec1fb7fc1`
+
+### Frontend touched
+- v6.3.5 moved (content unchanged): `cf3765d61fd6f17de46024a3a84c62f25b19b3c5` → same SHA-1 at archived path.
+- New file created: `frontend/src/Huckleberry_AI_phase2.v1.0.0.html` (3,672 lines).
+
+### CLAUDE.md
+Not opened. Retired pre-D.1 — confirmed not touched in this session.
+
+### Sacred floor at session end
+- Backend: 222 passed, 19 skipped, 0 failed (no backend code touched — verified pre and post)
+- Frontend: 20/20 passed, 0 failed against `frontend/src/Huckleberry_AI_phase2.v1.0.0.html` (138/138 floor against v6.3.5 retired permanently per §0)
+- v6.3.5 SHA-1 unchanged through `git mv`
+- All 5 vault-ruled module SHA-1s unchanged
+- All 3 E.1 production-code SHA-1s unchanged
+- `pyproject.toml` unchanged
+- `package.json` `dependencies` unchanged (only `test` script field updated)
+
+### §13 stops fired
+None. All 17 stop conditions in MARCH_ORDERS_E_2_1_strip.md §13 confirmed non-firing at gate time.
+
+### Test composition (20/20)
+- 11 surviving TOOL_TESTS (parseFeetInches × 5, polygonAreaPt × 2, polygonPerimeterPt × 1, bboxOfPoints × 1, calibrate math × 1, measure math × 1)
+- 3 status-bar tests (setHealthState DOM update, 3-state cycle, unreachable retry handler)
+- 4 takeoff tests with hardcoded scope fixtures (empty annotations, areas-produce-derived-SF, default 10% waste, override waste)
+- 2 stub correctness tests (extractScope and classifyPage return `_stub: true` markers)
+- 0 integration tests (5 API smoke tests deferred to E.2.2)
+
+### Key design decisions landed
+1. **planSet as rendering cache, not data model** — architectural reframing per D1 §4.5; `paths`/`texts`/`zones`/`expected` fields absent from new planSet shape.
+2. **Tab indices renumbered** — Pipeline tab removed; TESTS now tab 5 (was 6); ABOUT now tab 6 (was 7); all `showTab(N)` calls validated.
+3. **CHECKING replaces DEGRADED** — corrigendum 3 to E0_API_DESIGN.md §5.12; canonical 3 states are CHECKING / CONNECTED / UNREACHABLE.
+4. **healthCheck is the only real apiClient method in E.2.1** — createJob / getJob / listJobs / getResults / dispatchJob throw `not_implemented_in_e2_1` per D3 §4.
+5. **Inlined per D1 §4.4 gap resolution** — `polygonArea` (shoelace), `DEFAULT_WASTE_FACTOR = 0.10` (was `ROOFING_CONSTANTS.wasteFactor` from stripped ROOF_VOCAB region).
+6. **No `node_modules` / build step** — single-file HTML preserved; CDN imports only; vanilla `fetch()` for API client.
+
+---
+
+## Phase 9: E.2.2 — Frontend connect (RESERVED, NOT STARTED)
+
+(Populated by E.2.2 session. Will wire `apiClient.createJob` + `apiClient.getJob` to real backend endpoints, populate Scope tab from `GET /jobs/{id}/results` `trade_outputs`, populate Pages tab from `dispatch_results.page_type`, add 5 API smoke tests bringing floor 20 → 25.)
+
+---

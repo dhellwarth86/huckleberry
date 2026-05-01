@@ -433,6 +433,16 @@ This is the canonical form going forward; spec table and implementation sketch i
 
 Spec updated to match ship; pattern adopted as project convention.
 
+### Corrigendum 2026-04-30 (3) — CHECKING replaces DEGRADED in E.2.0/E.2.1 status bar spec
+
+**What changed:** E.2.0's `E2_0_NEW_FILE_DESIGN.md` §5 specifies a 3-state status bar with states CHECKING / CONNECTED / UNREACHABLE. The original E.0 planning conversation locked DEGRADED as the third state (CONNECTED / DEGRADED / UNREACHABLE). The shipped design replaces DEGRADED with CHECKING.
+
+**Reason:** With no auth and permissive CORS in E.1/E.2, no realistic DEGRADED scenario exists. The "backend reachable but unhealthy" case the DEGRADED state was meant to capture (e.g., 503 from auth-rejecting middleware) does not arise pre-security-phase. CHECKING captures the genuinely useful "first 30s before /health responds" transition state, which the original 3-state design omitted.
+
+**Forward note:** When auth + CORS lockdown ship in the Postgres/security phase, DEGRADED gets re-evaluated as part of that phase. The 503-style "reachable but rejecting" case is a real diagnostic surface once auth exists. At that point either: (a) DEGRADED is added as a 4th state, or (b) UNREACHABLE is split into UNREACHABLE/REJECTING, or (c) the security phase produces a different state machine entirely. Decision deferred to that phase's own march orders.
+
+**Canonical going forward (through E.2 + E.3):** 3 states are CHECKING / CONNECTED / UNREACHABLE per `E2_0_NEW_FILE_DESIGN.md` §5. Shipped in E.2.1 (`frontend/src/Huckleberry_AI_phase2.v1.0.0.html`).
+
 ---
 
 **End of API design. E.1 builds against this contract.**

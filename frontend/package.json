@@ -1,13 +1,10 @@
 {
   "name": "huckleberry-frontend",
-  "version": "6.3.5",
-  "description": "Huckleberry AI — Phase 1 single-file HTML viewer + manual takeoff toolchain",
+  "version": "phase2.v1.0.0",
+  "description": "Huckleberry AI — Phase 2 API-connected single-file HTML viewer + manual takeoff toolchain",
   "private": true,
   "scripts": {
-    "test": "node run_tests.js Huckleberry_AI_6.3.5_Scope.html",
-    "test:all-versions": "for f in Huckleberry_AI_*.html; do echo \"=== $f ===\"; node run_tests.js $f; done",
-    "test:spotchecks": "node spotcheck_cricket.js && node spotcheck_manufacturer.js && node spotcheck_10b.js",
-    "test:mutations": "node mutation_test_step11.js"
+    "test": "node run_tests.js src/Huckleberry_AI_phase2.v1.0.0.html"
   },
   "dependencies": {
     "jsdom": "^29.0.2"
