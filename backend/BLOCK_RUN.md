@@ -703,8 +703,36 @@ None. All 17 stop conditions in MARCH_ORDERS_E_2_1_strip.md §13 confirmed non-f
 
 ---
 
-## Phase 9: E.2.2 — Frontend connect (RESERVED, NOT STARTED)
+## Phase 9: E.2.2 — Frontend connect + hard gate (COMPLETE 2026-05-01)
 
-(Populated by E.2.2 session. Will wire `apiClient.createJob` + `apiClient.getJob` to real backend endpoints, populate Scope tab from `GET /jobs/{id}/results` `trade_outputs`, populate Pages tab from `dispatch_results.page_type`, add 5 API smoke tests bringing floor 20 → 25.)
+**Backend changes:**
+- Added `"dispatching"` to `_VALID_STATUSES` (`core/job_storage.py`) and `JobStatus` Literal (`api/schemas/jobs.py`)
+- `POST /jobs/{id}/dispatch` — synchronous dispatch endpoint: `draft→dispatching→dispatched` lifecycle, idempotent on re-call, 400 if PDF deleted, 500 with rollback on failure
+- `GET /jobs/{id}/results` — returns `JobResultsResponse` with string-keyed `dispatch_results` + `trade_outputs` dicts, 409 if not yet dispatched
+- `JobResultsResponse` model (`extra="forbid"`)
+- 8 new tests (tests 7–14): dispatch happy/404/idempotent/400-pdf-missing, results 200/404/409/string-keys
+- `small_pdf_path` fixture in `conftest.py` (minimal 1-page PDF, dispatch <5s)
+
+**Frontend changes:**
+- 4 `apiClient` methods wired: `createJob`, `getJob`, `dispatchJob` (240s timeout), `getResults`
+- `extractScope` + `classifyPage` stubs removed
+- `populateScopeFromResults` + `populatePagesFromResults` consume API data for Scope/Pages tabs
+- RUN DISPATCH button + `runDispatchFlow()` async orchestrator
+- Step 1.5 "SERVER FILE PATH" input card
+- Network-error → `probeHealth()` re-evaluation
+- 5 API smoke tests added (SKIP convention), 2 stub tests retired → floor 20 → 23
+
+**Debug verification:**
+- `scripts/e2_2_debug_silverleaf.py` — in-process dispatch (no HTTP), writes `E2_2_DEBUG_silverleaf.md`
+- Comparison vs D.2 calibration baseline: 5/5 checks PASS (page count 40==40, roofing 338 ±5%, glazing 107 ±5%, ROOF_PLAN present, no ERROR markers)
+- Dispatch wall-clock: 147.7s
+
+**Sacred floors:** backend 222 → 230/19/0; frontend 20 → 23/23; vault SHA-1s unchanged; no new deps.
+
+---
+
+## Phase 10: E.3 — Render API-fed data + edit surface (RESERVED, NOT STARTED)
+
+(Populated by E.3 session. Per-page roofing/glazing display; debug summary; job list/dashboard; status transitions; annotation save/load via new annotations table.)
 
 ---

@@ -1,17 +1,18 @@
-"""E.1: Tests for the FastAPI /jobs endpoints + /health probe.
+"""Tests for the FastAPI /jobs endpoints + /health probe — E.1 + E.2.2.
 
-Six tests total — takes the backend floor from 216 → 222.
+E.1 tests (1–6):  216 → 222.
+E.2.2 tests (7–14): 222 → 230.
 
-1. test_health_probe_returns_ok                       — /health 200
-2. test_create_job_happy_path                         — POST /jobs 201
-3. test_get_job_happy_path                            — GET /jobs/{id} 200
-4. test_get_job_404_for_nonexistent_id                — GET /jobs/{bogus} 404
-5. test_create_job_validation_error_invalid_status    — POST /jobs status=banana 422
-6. test_data_leak_response_shape_and_error_messages   — extra="forbid" + safe errors
+ 7. test_dispatch_job_returns_200                     — POST /jobs/{id}/dispatch 200
+ 8. test_dispatch_job_404_for_unknown_id              — POST /jobs/{bogus}/dispatch 404
+ 9. test_dispatch_job_idempotent_on_second_call       — dispatch twice → both 200
+10. test_dispatch_job_400_when_pdf_missing             — pdf deleted before dispatch → 400
+11. test_get_results_returns_200_after_dispatch        — GET /jobs/{id}/results 200
+12. test_get_results_404_for_unknown_id               — GET /jobs/{bogus}/results 404
+13. test_get_results_409_when_not_dispatched           — GET /jobs/{id}/results before dispatch → 409
+14. test_get_results_response_shape_keys_are_strings   — dict keys are str, not int
 
-Per MARCH_ORDERS_E_1_fastapi_scaffold.md §6. Tests use FastAPI's TestClient
-in-process (no uvicorn subprocess). They write to the real ~/.tracepoint/cache.db
-the same way d2_silverleaf_reference.py does — that's the live D.2 layer.
+Tests use FastAPI's TestClient in-process (no uvicorn subprocess).
 """
 from __future__ import annotations
 
@@ -138,3 +139,102 @@ def test_data_leak_response_shape_and_error_messages(silverleaf_path):
     # paths can't realistically have leaked. The {"detail": "Job not found"}
     # body is ~30 chars; anything significantly longer indicates extra data.
     assert len(err_str) < 100, f"Error body suspiciously verbose: {err_body}"
+
+
+# ── E.2.2 tests ────────────────────────────────────────────────────
+
+
+def test_dispatch_job_returns_200(small_pdf_path):
+    """Test 7: POST /jobs/{id}/dispatch returns 200, status=dispatched, dispatch_complete=True."""
+    payload = {"name": "dispatch test", "pdf_path": str(small_pdf_path)}
+    create_resp = client.post("/jobs", json=payload)
+    assert create_resp.status_code == 201
+    job_id = create_resp.json()["id"]
+
+    r = client.post(f"/jobs/{job_id}/dispatch")
+    assert r.status_code == 200, f"expected 200, got {r.status_code}: {r.text}"
+    body = r.json()
+    assert body["status"] == "dispatched"
+    assert body["dispatch_complete"] is True
+
+
+def test_dispatch_job_404_for_unknown_id():
+    """Test 8: POST /jobs/{bogus}/dispatch returns 404."""
+    r = client.post("/jobs/nonexistent-dispatch-id-999/dispatch")
+    assert r.status_code == 404
+    assert r.json()["detail"] == "Job not found"
+
+
+def test_dispatch_job_idempotent_on_second_call(small_pdf_path):
+    """Test 9: dispatching a second time returns 200 (idempotent, no re-dispatch)."""
+    payload = {"name": "idempotent test", "pdf_path": str(small_pdf_path)}
+    create_resp = client.post("/jobs", json=payload)
+    job_id = create_resp.json()["id"]
+
+    r1 = client.post(f"/jobs/{job_id}/dispatch")
+    assert r1.status_code == 200
+    r2 = client.post(f"/jobs/{job_id}/dispatch")
+    assert r2.status_code == 200
+    assert r2.json()["status"] == "dispatched"
+
+
+def test_dispatch_job_400_when_pdf_missing(small_pdf_path):
+    """Test 10: dispatch returns 400 when pdf_path no longer exists."""
+    payload = {"name": "missing pdf test", "pdf_path": str(small_pdf_path)}
+    create_resp = client.post("/jobs", json=payload)
+    job_id = create_resp.json()["id"]
+
+    small_pdf_path.unlink()
+
+    r = client.post(f"/jobs/{job_id}/dispatch")
+    assert r.status_code == 400
+    assert r.json()["detail"] == "pdf_path not found"
+
+
+def test_get_results_returns_200_after_dispatch(small_pdf_path):
+    """Test 11: GET /jobs/{id}/results returns 200 with dicts after dispatch."""
+    payload = {"name": "results test", "pdf_path": str(small_pdf_path)}
+    create_resp = client.post("/jobs", json=payload)
+    job_id = create_resp.json()["id"]
+    client.post(f"/jobs/{job_id}/dispatch")
+
+    r = client.get(f"/jobs/{job_id}/results")
+    assert r.status_code == 200, f"expected 200, got {r.status_code}: {r.text}"
+    body = r.json()
+    assert body["job_id"] == job_id
+    assert isinstance(body["dispatch_results"], dict)
+    assert isinstance(body["trade_outputs"], dict)
+
+
+def test_get_results_404_for_unknown_id():
+    """Test 12: GET /jobs/{bogus}/results returns 404."""
+    r = client.get("/jobs/nonexistent-results-id-999/results")
+    assert r.status_code == 404
+    assert r.json()["detail"] == "Job not found"
+
+
+def test_get_results_409_when_not_dispatched(small_pdf_path):
+    """Test 13: GET /jobs/{id}/results before dispatch returns 409."""
+    payload = {"name": "no dispatch yet", "pdf_path": str(small_pdf_path)}
+    create_resp = client.post("/jobs", json=payload)
+    job_id = create_resp.json()["id"]
+
+    r = client.get(f"/jobs/{job_id}/results")
+    assert r.status_code == 409
+    assert r.json()["detail"] == "Job not yet dispatched"
+
+
+def test_get_results_response_shape_keys_are_strings(small_pdf_path):
+    """Test 14: dispatch_results + trade_outputs keys are all strings (not ints)."""
+    payload = {"name": "string keys test", "pdf_path": str(small_pdf_path)}
+    create_resp = client.post("/jobs", json=payload)
+    job_id = create_resp.json()["id"]
+    client.post(f"/jobs/{job_id}/dispatch")
+
+    r = client.get(f"/jobs/{job_id}/results")
+    assert r.status_code == 200
+    body = r.json()
+    for k in body["dispatch_results"]:
+        assert isinstance(k, str), f"dispatch_results key {k!r} is not str"
+    for k in body["trade_outputs"]:
+        assert isinstance(k, str), f"trade_outputs key {k!r} is not str"

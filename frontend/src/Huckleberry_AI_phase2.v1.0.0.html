@@ -1104,15 +1104,23 @@
           <div id="fileInfoBox" style="display:none;"></div>
         </div>
 
+        <div class="card" id="sessionServerPath" style="display:none;">
+          <div class="card-title"><span class="ct-num">STEP 1.5</span>SERVER FILE PATH</div>
+          <div class="card-sub">Until file upload ships, paste the absolute path to the bidset on the machine running uvicorn. The drag-drop above renders pages client-side; the path tells the backend where to dispatch.</div>
+          <input type="text" id="serverPdfPath" placeholder="C:\path\to\bidset.pdf" style="width:100%;padding:8px;font-family:var(--mono);font-size:12px;background:var(--bg-card);color:var(--fg);border:1px solid var(--border);border-radius:4px;box-sizing:border-box;">
+        </div>
+
         <div class="card" id="sessionNextSteps" style="display:none;">
           <div class="card-title"><span class="ct-num">STEP 3</span>NEXT STEPS</div>
-          <div class="card-sub">Use these shortcuts or click any tab at the top.</div>
+          <div class="card-sub">Click RUN DISPATCH to process the bidset, or jump to any tab.</div>
           <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
-            <button class="btn" onclick="showTab(1)">▸ REVIEW SCOPE</button>
+            <button class="btn" id="btnRunDispatch" onclick="runDispatchFlow()">▸ RUN DISPATCH</button>
+            <button class="btn btn-ghost" onclick="showTab(1)">▸ REVIEW SCOPE</button>
             <button class="btn btn-ghost" onclick="showTab(2)">▸ PICK A PAGE</button>
             <button class="btn btn-ghost" onclick="showTab(3)">▸ OPEN VIEWER</button>
             <button class="btn btn-ghost" onclick="showTab(4)">▸ TAKEOFF</button>
           </div>
+          <div id="dispatchStatus" style="margin-top:8px;font-size:12px;color:var(--fg-dim);"></div>
         </div>
       </div>
 
@@ -1401,6 +1409,10 @@ async function apiCall(method, path, opts) {
   let resp;
   try {
     resp = await fetch(url, fetchOpts);
+  } catch (netErr) {
+    if (timeoutId !== null) clearTimeout(timeoutId);
+    if (typeof probeHealth === 'function') probeHealth();
+    throw netErr;
   } finally {
     if (timeoutId !== null) clearTimeout(timeoutId);
   }
@@ -1419,32 +1431,26 @@ async function apiCall(method, path, opts) {
 }
 
 /* ── apiClient per D3 §1 + §3 + §4.
-   E.2.1: only healthCheck is real. createJob / getJob / listJobs / getResults /
-   dispatchJob throw not_implemented_in_e2_1 until E.2.2 wires them. ── */
+   E.2.2: healthCheck + createJob + getJob + dispatchJob + getResults are real.
+   listJobs stays stubbed until GET /jobs ships. ── */
 const apiClient = {
-  // §3.1 — real
   healthCheck: function() {
     return apiCall('GET', '/health', { timeout: HEALTH_PROBE_TIMEOUT_MS });
   },
-  // §3.2 — stub in E.2.1; wired in E.2.2
-  createJob: function(_payload) {
-    return Promise.reject(new Error('not_implemented_in_e2_1: createJob ships in E.2.2'));
+  createJob: function(payload) {
+    return apiCall('POST', '/jobs', { body: payload });
   },
-  // §3.3 — stub in E.2.1; wired in E.2.2
-  getJob: function(_jobId) {
-    return Promise.reject(new Error('not_implemented_in_e2_1: getJob ships in E.2.2'));
+  getJob: function(jobId) {
+    return apiCall('GET', '/jobs/' + encodeURIComponent(jobId));
   },
-  // §4.1 — stub
   listJobs: function(_opts) {
-    return Promise.reject(new Error('not_implemented_in_e2_1: listJobs waits for GET /jobs (E.2)'));
+    return Promise.reject(new Error('not_implemented_in_e2_2: listJobs ships in a later phase'));
   },
-  // §4.2 — stub
-  getResults: function(_jobId) {
-    return Promise.reject(new Error('not_implemented_in_e2_1: getResults waits for GET /jobs/{id}/results (E.2)'));
+  getResults: function(jobId) {
+    return apiCall('GET', '/jobs/' + encodeURIComponent(jobId) + '/results');
   },
-  // §4.3 — stub
-  dispatchJob: function(_jobId) {
-    return Promise.reject(new Error('not_implemented_in_e2_1: dispatchJob waits for POST /jobs/{id}/dispatch (E.2)'));
+  dispatchJob: function(jobId) {
+    return apiCall('POST', '/jobs/' + encodeURIComponent(jobId) + '/dispatch', { timeout: 240000 });
   },
 };
 
@@ -1537,8 +1543,8 @@ const App = {
   planSet: null,
   pdfMeta: null,
   lastTests: null,
-  // Job state — populated when E.2.2 wires createJob/getJob
   currentJobId: null,
+  currentResults: null,
 
   project: {
     trade: null,
@@ -1717,27 +1723,47 @@ async function getOrRenderPageCanvas(planSet, pageIdx, opts) {
 }
 
 /* ─────────────────────────────────────────────────────────────────────
-   SECTION 7a — extractScope / classifyPage STUBS (per D1 §6.1)
-   Real impls ship in E.2.2 fetching from API. The _stub:true marker is
-   the contract the new stub-correctness tests assert against.
+   SECTION 7a — API result population (E.2.2)
+   Replaces the extractScope / classifyPage stubs from E.2.1.
+   Scope and page classifications now come from GET /jobs/{id}/results.
    ───────────────────────────────────────────────────────────────────── */
 
-function extractScope(_planSet) {
-  return {
-    systems: [],
-    rawText: '',
-    lastScanAt: Date.now(),
-    _stub: true,
-  };
+function populateScopeFromResults(results) {
+  if (!results || !results.trade_outputs) return;
+  var systems = [];
+  var seenSystemNames = {};
+  var pageKeys = Object.keys(results.trade_outputs);
+  for (var i = 0; i < pageKeys.length; i++) {
+    var trades = results.trade_outputs[pageKeys[i]];
+    if (!trades) continue;
+    var tradeNames = Object.keys(trades);
+    for (var t = 0; t < tradeNames.length; t++) {
+      var output = trades[tradeNames[t]];
+      if (!output) continue;
+      var outputSystems = output.systems || [];
+      for (var s = 0; s < outputSystems.length; s++) {
+        var sysName = outputSystems[s];
+        if (typeof sysName === 'string' && !seenSystemNames[sysName]) {
+          seenSystemNames[sysName] = true;
+          systems.push(makeScopeSystem(sysName));
+        }
+      }
+    }
+  }
+  if (systems.length > 0) {
+    App.project.scope = mergeScopeProposal(App.project.scope || { systems: [] }, { systems: systems, rawText: '', lastScanAt: Date.now() });
+  }
 }
 
-function classifyPage(_page) {
-  return {
-    kind: 'OTHER',
-    scores: {},
-    confidence: 'low',
-    _stub: true,
-  };
+function populatePagesFromResults(results) {
+  if (!results || !results.dispatch_results) return;
+  var pageKeys = Object.keys(results.dispatch_results);
+  for (var i = 0; i < pageKeys.length; i++) {
+    var dr = results.dispatch_results[pageKeys[i]];
+    if (dr && dr.page_type) {
+      App.project.pageClasses[parseInt(pageKeys[i], 10)] = { kind: dr.page_type, scores: {}, confidence: 'high' };
+    }
+  }
 }
 
 /* ─────────────────────────────────────────────────────────────────────
@@ -1920,20 +1946,18 @@ async function loadPdfFile(file) {
     App.planSet = planSet;
     App.project.bidSetName = file.name;
     App.project.numPages = planSet.pages.length;
-    // E.2.1: stubs return empty scope/classification. E.2.2 wires API.
-    const proposal = extractScope(planSet);
-    App.project.scope = mergeScopeProposal({ systems: [] }, proposal);
     App.project.pageClasses = {};
-    for (const pg of planSet.pages) App.project.pageClasses[pg.idx] = classifyPage(pg);
     fb.innerHTML =
       '<div class="alert ok">' +
       '<strong>' + escapeHTML(file.name) + '</strong> · ' + planSet.pages.length + ' page(s) loaded. ' +
-      'Scope tab will populate from backend (E.2.2). Open VIEWER to draw annotations.' +
+      'Enter server path and click RUN DISPATCH to process scope.' +
       '</div>';
     if (typeof renderScopeTab === 'function') renderScopeTab();
     if (typeof renderPagesTab === 'function') renderPagesTab();
     if (typeof ensureCurrentSystem === 'function') ensureCurrentSystem();
     if (typeof renderViewerSystemControls === 'function') renderViewerSystemControls();
+    const sp = document.getElementById('sessionServerPath');
+    if (sp) sp.style.display = 'block';
     const ns = document.getElementById('sessionNextSteps');
     if (ns) ns.style.display = 'block';
   } catch (err) {
@@ -1946,6 +1970,42 @@ function selectTrade(trade) {
   document.querySelectorAll('.trade-card').forEach(function(el) {
     el.classList.toggle('selected', el.dataset.trade === trade);
   });
+}
+
+async function runDispatchFlow() {
+  var pathEl = document.getElementById('serverPdfPath');
+  var pdfPath = pathEl ? pathEl.value.trim() : '';
+  if (!pdfPath) { alert('Enter the server file path first (Step 1.5).'); return; }
+  var btn = document.getElementById('btnRunDispatch');
+  var status = document.getElementById('dispatchStatus');
+  if (btn) { btn.disabled = true; btn.textContent = 'CREATING JOB...'; }
+  if (status) status.textContent = '';
+  try {
+    var job = await apiClient.createJob({
+      name: App.project.bidSetName || 'Untitled',
+      pdf_path: pdfPath,
+      trade_scope: App.project.trade || 'roofing',
+    });
+    App.currentJobId = job.id;
+    if (btn) btn.textContent = 'DISPATCHING — this may take several minutes...';
+    if (status) status.textContent = 'Job ' + job.id.substring(0, 8) + '... created. Dispatching...';
+    await apiClient.dispatchJob(job.id);
+    if (btn) btn.textContent = 'LOADING RESULTS...';
+    var results = await apiClient.getResults(job.id);
+    App.currentResults = results;
+    populateScopeFromResults(results);
+    populatePagesFromResults(results);
+    if (typeof renderScopeTab === 'function') renderScopeTab();
+    if (typeof renderPagesTab === 'function') renderPagesTab();
+    if (typeof ensureCurrentSystem === 'function') ensureCurrentSystem();
+    if (typeof renderViewerSystemControls === 'function') renderViewerSystemControls();
+    if (btn) { btn.textContent = 'DISPATCH COMPLETE'; btn.disabled = false; }
+    if (status) status.textContent = 'Dispatch complete. Scope and page classifications populated.';
+  } catch (err) {
+    if (btn) { btn.textContent = '▸ RUN DISPATCH'; btn.disabled = false; }
+    if (status) status.textContent = 'Dispatch failed: ' + err.message;
+    console.error('runDispatchFlow error:', err);
+  }
 }
 
 /* ─────────────────────────────────────────────────────────────────────
@@ -3164,12 +3224,16 @@ function addEdgeTypeFromInput(sysId) {
   s.edgeTypes.push(makeEdgeType(el.value.trim(), 'user'));
   renderScopeTab();
 }
-function rescanScope() {
-  if (!App.planSet) { alert('Upload a bidset first.'); return; }
-  // E.2.1: stub returns empty. E.2.2 wires apiClient.getResults.
-  const proposal = extractScope(App.planSet);
-  App.project.scope = mergeScopeProposal(App.project.scope || { systems: [] }, proposal);
-  renderScopeTab();
+async function rescanScope() {
+  if (!App.currentJobId) { alert('Run dispatch first.'); return; }
+  try {
+    var results = await apiClient.getResults(App.currentJobId);
+    App.currentResults = results;
+    populateScopeFromResults(results);
+    renderScopeTab();
+  } catch (err) {
+    alert('Failed to refresh scope: ' + err.message);
+  }
 }
 function openPageInViewer(pageIdx) {
   if (!App.planSet || !App.planSet.pages[pageIdx]) return;
@@ -3189,7 +3253,8 @@ function renderPagesTab() {
   }
   empty.style.display = 'none';
   if (!App.project.pageClasses || Object.keys(App.project.pageClasses).length === 0) {
-    for (const pg of App.planSet.pages) App.project.pageClasses[pg.idx] = classifyPage(pg);
+    App.project.pageClasses = {};
+    for (const pg of App.planSet.pages) App.project.pageClasses[pg.idx] = { kind: 'OTHER' };
   }
   const counts = { ALL: 0, ROOF_PLAN: 0, DETAIL: 0, SPEC: 0, COVER: 0, OTHER: 0 };
   for (const pg of App.planSet.pages) {
@@ -3624,28 +3689,76 @@ const TAKEOFF_TESTS = [
   }},
 ];
 
-const STUB_TESTS = [
-  { name: "stub · extractScope returns empty shape with _stub:true marker", fn: function() {
-      const result = extractScope({ pages: [] });
-      assert(result._stub === true, "_stub marker present");
-      assert(Array.isArray(result.systems) && result.systems.length === 0, "systems array empty");
-      assert(typeof result.lastScanAt === 'number', "lastScanAt is a number");
-      assert(result.rawText === '', "rawText is empty string");
+// E.2.2 floor = 11 + 3 + 4 = 18 unit + 5 integration = 23
+const UNIT_TESTS = [].concat(TOOL_TESTS, STATUS_BAR_TESTS, TAKEOFF_TESTS);
+
+// E.2.2: 5 API smoke tests. SKIP convention: throw Error('SKIP: ...') when backend unreachable.
+const INTEGRATION_TESTS = [
+  { name: "api · healthCheck returns ok", fn: async function() {
+      try {
+        var r = await apiClient.healthCheck();
+        assert(r.status === 'ok', "status is ok");
+      } catch (e) {
+        if (e instanceof TypeError || (e.message && e.message.indexOf('Failed to fetch') >= 0))
+          throw new Error('SKIP: backend unreachable');
+        throw e;
+      }
   }},
-  { name: "stub · classifyPage returns OTHER with _stub:true marker", fn: function() {
-      const result = classifyPage({ idx: 0 });
-      assert(result._stub === true, "_stub marker present");
-      assert(result.kind === 'OTHER', "kind is OTHER");
-      assert(result.confidence === 'low', "confidence is low");
-      assert(typeof result.scores === 'object', "scores is an object");
+  { name: "api · createJob returns id and status=draft", fn: async function() {
+      try {
+        var r = await apiClient.createJob({
+          name: 'FE smoke test ' + Date.now(),
+          pdf_path: 'C:\\huck stage 2\\full bid sets\\B2607 AEA Silverleaf - St Augustine - Accelerated Construction Services (6).pdf',
+          trade_scope: 'roofing'
+        });
+        assert(typeof r.id === 'string' && r.id.length > 0, "id present");
+        assert(r.status === 'draft', "status is draft");
+      } catch (e) {
+        if (e instanceof TypeError || (e.message && e.message.indexOf('Failed to fetch') >= 0))
+          throw new Error('SKIP: backend unreachable');
+        throw e;
+      }
+  }},
+  { name: "api · getJob returns matching id", fn: async function() {
+      try {
+        var created = await apiClient.createJob({
+          name: 'FE getJob test ' + Date.now(),
+          pdf_path: 'C:\\huck stage 2\\full bid sets\\B2607 AEA Silverleaf - St Augustine - Accelerated Construction Services (6).pdf',
+          trade_scope: 'roofing'
+        });
+        var fetched = await apiClient.getJob(created.id);
+        assert(fetched.id === created.id, "id matches");
+      } catch (e) {
+        if (e instanceof TypeError || (e.message && e.message.indexOf('Failed to fetch') >= 0))
+          throw new Error('SKIP: backend unreachable');
+        throw e;
+      }
+  }},
+  { name: "api · getJob 404 for unknown id", fn: async function() {
+      try {
+        await apiClient.getJob('00000000-0000-0000-0000-000000000000');
+        assert(false, "should have thrown");
+      } catch (e) {
+        if (e instanceof TypeError || (e.message && e.message.indexOf('Failed to fetch') >= 0))
+          throw new Error('SKIP: backend unreachable');
+        assert(e.status === 404, "status is 404, got " + e.status);
+      }
+  }},
+  { name: "api · createJob 422 for invalid status", fn: async function() {
+      try {
+        await apiClient.createJob({
+          name: 'FE 422 test',
+          pdf_path: 'C:\\huck stage 2\\full bid sets\\B2607 AEA Silverleaf - St Augustine - Accelerated Construction Services (6).pdf',
+          status: 'banana'
+        });
+        assert(false, "should have thrown");
+      } catch (e) {
+        if (e instanceof TypeError || (e.message && e.message.indexOf('Failed to fetch') >= 0))
+          throw new Error('SKIP: backend unreachable');
+        assert(e.status === 422, "status is 422, got " + e.status);
+      }
   }},
 ];
-
-// E.2.1 floor = 11 + 3 + 4 + 2 = 20
-const UNIT_TESTS = [].concat(TOOL_TESTS, STATUS_BAR_TESTS, TAKEOFF_TESTS, STUB_TESTS);
-
-// E.2.1 ships zero integration tests. E.2.2 adds 5 API smoke tests bringing floor 20 → 25.
-const INTEGRATION_TESTS = [];
 
 /* ─────────────────────────────────────────────────────────────────────
    BOOT

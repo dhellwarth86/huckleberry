@@ -445,4 +445,29 @@ Spec updated to match ship; pattern adopted as project convention.
 
 ---
 
+### Corrigendum 2026-05-01 (4) — E.2.2 ships `POST /jobs/{id}/dispatch` + `GET /jobs/{id}/results`
+
+**What shipped:**
+
+1. `POST /jobs/{job_id}/dispatch` — synchronous dispatch endpoint.
+   - Calls `run_dispatch(pdf_path, storage="auto", job_id=job_id)` in-process (no background task queue).
+   - Status transitions: `draft → dispatching → dispatched` (or rollback to `draft` on exception).
+   - Idempotent: if already `dispatched`, returns existing `JobResponse` with 200.
+   - Error responses: 404 (job not found), 400 (`pdf_path` not found on disk), 409 (dispatch already in progress), 500 (dispatch failed).
+   - Response model: `JobResponse` (same as POST/GET /jobs).
+   - Timeout note: frontend sends 240s timeout; Silverleaf dispatches in ~148s.
+
+2. `GET /jobs/{job_id}/results` — returns dispatch results + trade outputs.
+   - Response model: `JobResultsResponse` with `job_id: str`, `dispatch_results: dict[str, dict]`, `trade_outputs: dict[str, dict]`.
+   - Keys are string page indices ("0", "1", ...) — converted from int storage keys at the endpoint boundary.
+   - `trade_outputs` structure: `{page_key: {trade_name: output_dict_or_null}}` — null-filled for missing trades.
+   - Error responses: 404 (job not found), 409 (not yet dispatched).
+   - `extra="forbid"` on response model prevents data leaks.
+
+3. `"dispatching"` added to `JobStatus` Literal and `_VALID_STATUSES` set.
+
+**Forward note:** `listJobs` endpoint deferred beyond E.2.2. The E.2.1 stub throws `not_implemented_in_e2_2`.
+
+---
+
 **End of API design. E.1 builds against this contract.**

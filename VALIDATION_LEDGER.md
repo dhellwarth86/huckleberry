@@ -109,6 +109,13 @@ C.1 added zero tests (Protocol-only definitions). C.2 added zero tests (TracePoi
 | `node spotcheck_manufacturer.js` | 14/14 | D-8 follow-up 2026-04-28 |
 | `node mutation_test_step11.js` | 8/8 mutations caught | D-8 follow-up 2026-04-28 |
 
+### Frontend test counts (E.2.1+ — new file `frontend/src/Huckleberry_AI_phase2.v1.0.0.html`)
+
+| Phase | Count | Composition | Date |
+|---|---:|---|---|
+| E.2.1 | 20/20 | 11 tool + 3 status + 4 takeoff + 2 stub | 2026-04-30 |
+| E.2.2 | 23/23 | 11 tool + 3 status + 4 takeoff + 5 API smoke | 2026-05-01 |
+
 **Frontend version note (2026-04-28).** The file in workspace per `PROJECT_CLAUDE.md §6` is `Huckleberry_AI_6_3_1_Scope.html` (v6.3.1, 107 tests). The D-8 follow-up gate report referenced `Huckleberry_AI_6.3.0_Scope.html` (v6.3.0) — small naming discrepancy in that report; the substantive count is 107/107 either way and held throughout. Earlier conversation notes referenced "138/138 v6.3.5" — that file is NOT in the current workspace. The empirical truth is 107/107. Future Claude: do NOT try to reconcile to 138; the floor is what the runner produces.
 
 ---
@@ -266,6 +273,17 @@ These are read-only diagnostic scripts or extended-thinking sessions that were e
 - Bug 3 fix iter 2: dispatch output unchanged (plumbing-only fix); `_parse_tables_on_page` now returns `(legends, raw_tables)` tuple; raw_tables cached on `PageContext.raw_tables`; `build_trade_input` reads them into `TradeModuleInput.tables`. Module output (via direct-construction harness): 338 roofing fields, 20 glazing / 81 door / 6 storefront items.
 - Iter 3 skipped — diminishing returns (no remaining dispatch-structural problem).
 - Vault rule held throughout (5 modules SHA-1-verified unchanged); zero new tests; zero new dependencies; zero `pyproject.toml` modifications. Backend test floor 216/19/0 maintained across all iterations.
+
+### E.2.2 frontend connect + hard gate headline numbers (measured 2026-05-01)
+
+- Backend test floor transition: **222 → 230** (8 new tests in `test_api_jobs.py`, tests 7–14). 19 skipped unchanged. 0 failed.
+- Frontend test floor transition: **20 → 23** (−2 retired stub tests + 5 new API smoke tests). 0 failed.
+- Silverleaf debug verification: dispatch wall-clock 147.7s, page count 40==40, roofing fields 338 (within ±5% of 338 baseline), glazing total 107 (within ±5% of 107 baseline), ROOF_PLAN pages=1, no ERROR markers. **PASS** all 5 criteria.
+- Page type distribution (Silverleaf): CEILING_PLAN:1, COVER:1, DETAIL_SHEET:5, ELEVATION:3, FLOOR_PLAN:1, FRAMING_PLAN:1, GENERAL_NOTES:2, ROOF_PLAN:1, SCHEDULE_SHEET:18, SECTION:3, UNKNOWN:4.
+- Dispatch health: 6 filters completed (filter_1–5 + stage_13_trade_modules), 1 warning (Filter 4 quality gate: 85 of 145 legends removed), sheet_map_source=drawing_index, 10 sheets mapped to 4 pages.
+- 5 vault-ruled module SHA-1s unchanged throughout session.
+- 3 E.1 production-code SHA-1s unchanged (api/main.py, dispatch_gate.py, debug_module.py).
+- Zero new dependencies. pyproject.toml unchanged.
 
 ### Bearss Ave profile diagnostic headline numbers (measured 2026-04-29)
 

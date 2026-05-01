@@ -17,7 +17,7 @@ from typing import Literal, Optional
 from pydantic import BaseModel, ConfigDict, Field
 
 # E.1: status enum ratified at the API layer; matches core.job_storage._VALID_STATUSES
-JobStatus = Literal["draft", "dispatched", "in_review", "exported", "archived"]
+JobStatus = Literal["draft", "dispatching", "dispatched", "in_review", "exported", "archived"]
 
 
 class JobCreateRequest(BaseModel):
@@ -59,4 +59,19 @@ class JobResponse(BaseModel):
     dispatch_complete: bool
 
     # E.1: data-leak guard — extra fields rejected
+    model_config = ConfigDict(extra="forbid")
+
+
+class JobResultsResponse(BaseModel):
+    """GET /jobs/{id}/results response body — E.2.2.
+
+    String-keyed dicts: page indices are ``"0"``, ``"1"``, etc.
+    ``trade_outputs[page_key]`` maps trade names to their output dicts
+    (or ``null`` if the trade produced nothing for that page).
+    """
+
+    job_id: str
+    dispatch_results: dict[str, dict]
+    trade_outputs: dict[str, dict]
+
     model_config = ConfigDict(extra="forbid")

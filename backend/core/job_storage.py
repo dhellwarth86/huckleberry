@@ -17,7 +17,7 @@ from typing import Optional
 
 from core.storage import DB_PATH
 
-_VALID_STATUSES = {"draft", "dispatched", "in_review", "exported", "archived"}
+_VALID_STATUSES = {"draft", "dispatching", "dispatched", "in_review", "exported", "archived"}
 _SORTABLE_COLUMNS = {"created_at", "updated_at", "gc", "location_state",
                      "location_city", "trade_scope", "bid_due_date", "status", "name"}
 
