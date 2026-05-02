@@ -54,7 +54,7 @@ except ImportError:
 # ============================================================
 
 # Sheet number: A-1.3, G-0.0, S-1.0, A1.2, FP-1.0, A101, etc.
-_SHEET_NUM_RE = re.compile(r'\b([A-Z]{1,2})-?(\d+[\.\d]*[A-Za-z]?)\b')
+_SHEET_NUM_RE = re.compile(r'\b([A-Z]{1,2})-?(\d{3,}[\.\d]*[A-Za-z]?|\d+\.\d+[\.\d]*[A-Za-z]?)\b')
 
 # Detail ref: "SEE DETAIL 5/A1.3"
 _DETAIL_REF_RE = re.compile(
