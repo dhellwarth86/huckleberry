@@ -776,3 +776,47 @@ None outside `dispatch_gate.py` (which is integration-frozen + allowed in dedica
 Backend 237/19/0; frontend 23/23 (untouched).
 
 ---
+
+## Phase 12: G.3 — Single-pass-per-page extraction (2026-05-03)
+
+**Branch:** `phase2-v0.3-G3-single-pass-extraction` (from `e7a3884`, the G.2 canon-update head)
+**Trigger:** MARCH ORDERS Phase G.3 — restore TracePoint paper §2.1 architecture (Layer 1 extracts once, Layers 2-4 consume cache). Absorbs F12 (Phase G.4) scope.
+
+### Files created
+- `backend/G_3_GATE_REPORT.md` — gate report
+
+### Files modified
+- `backend/core/pdf_engine.py` — `PDFEngine._extract_cache: dict` keyed `(id(doc), page_num, method_name)`; `extract_text` and `extract_text_blocks` consult cache before extracting; `engine.close(doc)` purges entries for that doc's id before closing fitz doc
+- `backend/core/dispatch_gate.py` — `run_filter_4` opens pdfplumber once per dispatch in a `try`/`finally`; `_parse_tables_on_page` accepts an open `pdf` Document instead of a path; `_run_trade_modules` replaces `pdf_page.extract_words()` with cached `engine.extract_text_blocks(doc, page_idx)` for `TradeModuleInput.interior_text_blocks` (pdfplumber `extract_tables()` fallback for non-schedule pages preserved)
+- `backend/tests/test_pdf_engine.py` — new `TestPDFEngineCache` class: 5 cache unit tests (`test_cache_returns_same_object_on_repeat_call`, `test_cache_separates_pages`, `test_cache_separates_text_and_blocks`, `test_cache_invalidates_on_doc_close`, `test_cache_separates_documents`) + `two_page_pdf` fixture
+- `CHECKLIST.md` — F11 row signed (Developer, 2026-05-03); F12 marked absorbed; new Handoff entry
+- `ITINERARY.md` — Section 1 (Last 1-2-3 promoted: G.3 → Last-1, G.2 → Last-2, recon-cascade-map → Last-3); Section 2 (G.5 promoted to Next-1; closing hard gate to Next-2; Silverleaf Filter 1 fix to Next-3; auto-notation to Next-4; TBD slots at Next-5 / Next-6); sacred-floor reminder 237 → 242
+- `PROJECT_CLAUDE.md` — Phase G.3 session bullet added (Section 3); G.3 row added to Phases table (Section 7)
+
+### Files deleted / renamed
+None.
+
+### Commits
+- Code+tests+report: `e51c785`
+- Canon updates: (this commit)
+
+### Vault-ruled files touched
+Only `dispatch_gate.py` and `pdf_engine.py` modified (the two files this phase scopes). SHA-1 verification at session end:
+- `roofing_module.py`: ae9e5b28... (unchanged)
+- `glazing_module.py`: 52c01442... (unchanged)
+- `roofing_vocabulary.py`: ec6c17f8... (unchanged)
+- `glazing_vocabulary.py`: 64249c8e... (unchanged)
+- `debug_module.py`: 78f71d90... (unchanged)
+- `dispatch_gate.py`: 09bc0340 → 8b39fd0e (expected change)
+- `pdf_engine.py`: e872f69e → daf06dd2 (expected change)
+
+### Hard gate result
+PASS per `backend/G_3_GATE_REPORT.md`. Chipotle Tarpon dispatch completes successfully; page count 39 = 39 (pre- vs post-patch); single dispatch warning byte-identical (`Filter 4 quality gate: 21 of 53 legends removed (32 kept)`); zero new warnings, zero new errors, zero STOPs.
+
+### Wall-clock (recorded but not a gate criterion — Daniel is the wall clock)
+Chipotle Tarpon (39 pages): warm 58.72s → 50.05s (−14.8%). Cold 58.36s → 50.26s.
+
+### Sacred floor at session end
+Backend 242/19/0 (was 237 — +5 cache unit tests); frontend 23/23 (untouched).
+
+---
