@@ -302,3 +302,111 @@ class TestPDFEngineIntegration:
         assert len(metas) == 1
         assert metas[0].page_number == 0
         engine.close(doc)
+
+
+# ---------------------------------------------------------------------------
+# Phase G.3 — extract_text / extract_text_blocks per-(doc, page) cache
+# ---------------------------------------------------------------------------
+
+@pytest.fixture
+def two_page_pdf(tmp_path) -> Path:
+    """Create a 2-page synthetic PDF for cache-separation tests."""
+    doc = fitz.open()
+    p0 = doc.new_page(width=792, height=612)
+    p0.insert_text(fitz.Point(72, 72), "PAGE ZERO TEXT", fontsize=18)
+    p0.insert_text(fitz.Point(72, 120), "ROOF PLAN A", fontsize=12)
+    p1 = doc.new_page(width=792, height=612)
+    p1.insert_text(fitz.Point(72, 72), "PAGE ONE TEXT", fontsize=18)
+    p1.insert_text(fitz.Point(72, 120), "FLOOR PLAN B", fontsize=12)
+    pdf_path = tmp_path / "two_page.pdf"
+    doc.save(str(pdf_path))
+    doc.close()
+    return pdf_path
+
+
+class TestPDFEngineCache:
+    """Phase G.3: PDFEngine must cache extract_text/extract_text_blocks
+    per (doc, page) so repeat calls return the SAME object, not a re-extraction.
+    """
+
+    def test_cache_returns_same_object_on_repeat_call(self, two_page_pdf):
+        engine = PDFEngine()
+        doc = engine.open(two_page_pdf)
+        try:
+            text_a = engine.extract_text(doc, 0)
+            text_b = engine.extract_text(doc, 0)
+            blocks_a = engine.extract_text_blocks(doc, 0)
+            blocks_b = engine.extract_text_blocks(doc, 0)
+            assert text_a is text_b, "extract_text must return cached object on repeat call"
+            assert blocks_a is blocks_b, "extract_text_blocks must return cached list on repeat call"
+        finally:
+            engine.close(doc)
+
+    def test_cache_separates_pages(self, two_page_pdf):
+        engine = PDFEngine()
+        doc = engine.open(two_page_pdf)
+        try:
+            # Cache must be in effect (repeat call → same obj) AND key per page.
+            text_p0a = engine.extract_text(doc, 0)
+            text_p0b = engine.extract_text(doc, 0)
+            text_p1 = engine.extract_text(doc, 1)
+            assert text_p0a is text_p0b, "cache must hit on repeat call (page 0)"
+            assert text_p0a is not text_p1, "cache key must include page index"
+
+            blocks_p0a = engine.extract_text_blocks(doc, 0)
+            blocks_p0b = engine.extract_text_blocks(doc, 0)
+            blocks_p1 = engine.extract_text_blocks(doc, 1)
+            assert blocks_p0a is blocks_p0b, "cache must hit on repeat call (blocks page 0)"
+            assert blocks_p0a is not blocks_p1, "cache key must include page index (blocks)"
+        finally:
+            engine.close(doc)
+
+    def test_cache_separates_text_and_blocks(self, two_page_pdf):
+        engine = PDFEngine()
+        doc = engine.open(two_page_pdf)
+        try:
+            text_a = engine.extract_text(doc, 0)
+            text_b = engine.extract_text(doc, 0)
+            blocks_a = engine.extract_text_blocks(doc, 0)
+            blocks_b = engine.extract_text_blocks(doc, 0)
+            assert text_a is text_b, "cache must hit on repeat call (text)"
+            assert blocks_a is blocks_b, "cache must hit on repeat call (blocks)"
+            assert text_a is not blocks_a, "cache key must include method name"
+            assert isinstance(text_a, str)
+            assert isinstance(blocks_a, list)
+        finally:
+            engine.close(doc)
+
+    def test_cache_invalidates_on_doc_close(self, two_page_pdf):
+        engine = PDFEngine()
+        doc1 = engine.open(two_page_pdf)
+        cached_a = engine.extract_text(doc1, 0)
+        cached_b = engine.extract_text(doc1, 0)
+        # Pre-close: cache must be hot.
+        assert cached_a is cached_b, "cache must hit on repeat call before close"
+        engine.close(doc1)
+        doc2 = engine.open(two_page_pdf)
+        try:
+            fresh = engine.extract_text(doc2, 0)
+            assert fresh is not cached_a, (
+                "cache must purge entries for a closed doc; new doc must "
+                "produce a fresh extraction object"
+            )
+        finally:
+            engine.close(doc2)
+
+    def test_cache_separates_documents(self, two_page_pdf, test_pdf):
+        engine = PDFEngine()
+        doc_a = engine.open(two_page_pdf)
+        doc_b = engine.open(test_pdf)
+        try:
+            text_a1 = engine.extract_text(doc_a, 0)
+            text_a2 = engine.extract_text(doc_a, 0)
+            text_b1 = engine.extract_text(doc_b, 0)
+            text_b2 = engine.extract_text(doc_b, 0)
+            assert text_a1 is text_a2, "doc_a cache must hit on repeat call"
+            assert text_b1 is text_b2, "doc_b cache must hit on repeat call"
+            assert text_a1 is not text_b1, "two open docs must have separate cache entries"
+        finally:
+            engine.close(doc_a)
+            engine.close(doc_b)

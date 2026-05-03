@@ -112,6 +112,10 @@ class PDFEngine:
         self.render_dpi = render_dpi
         self.thumbnail_dpi = thumbnail_dpi
         self.max_dimension = max_dimension
+        # Phase G.3: per-(doc, page, method) extraction cache. RAM-only,
+        # instance-scoped. Key = (id(pdf_doc), page_num, method_name).
+        # Purged on engine.close(pdf_doc).
+        self._extract_cache: dict = {}
 
     # ------------------------------------------------------------------
     # Open / close
@@ -147,7 +151,14 @@ class PDFEngine:
         )
 
     def close(self, pdf_doc: PDFDocument):
-        """Close the PDF document and free resources."""
+        """Close the PDF document and free resources.
+
+        Phase G.3: purge any extraction-cache entries keyed on this doc.
+        """
+        doc_key = id(pdf_doc)
+        self._extract_cache = {
+            k: v for k, v in self._extract_cache.items() if k[0] != doc_key
+        }
         pdf_doc.close()
 
     # ------------------------------------------------------------------
@@ -196,10 +207,20 @@ class PDFEngine:
     # ------------------------------------------------------------------
 
     def extract_text(self, pdf_doc: PDFDocument, page_num: int) -> str:
-        """Extract all text from a page as a single string."""
+        """Extract all text from a page as a single string.
+
+        Phase G.3: result cached per (doc, page); repeat calls return the
+        same string object, no re-extraction.
+        """
         self._validate_page(pdf_doc, page_num)
+        cache_key = (id(pdf_doc), page_num, "extract_text")
+        cached = self._extract_cache.get(cache_key)
+        if cached is not None:
+            return cached
         page = pdf_doc._doc[page_num]
-        return page.get_text("text")
+        result = page.get_text("text")
+        self._extract_cache[cache_key] = result
+        return result
 
     def extract_text_blocks(self, pdf_doc: PDFDocument,
                             page_num: int) -> list[TextBlock]:
@@ -208,8 +229,15 @@ class PDFEngine:
 
         Each block has text content and its bounding box in PDF points.
         Useful for locating dimensions, labels, and notes on plans.
+
+        Phase G.3: result cached per (doc, page); repeat calls return the
+        same list object, no re-extraction.
         """
         self._validate_page(pdf_doc, page_num)
+        cache_key = (id(pdf_doc), page_num, "extract_text_blocks")
+        cached = self._extract_cache.get(cache_key)
+        if cached is not None:
+            return cached
         page = pdf_doc._doc[page_num]
         blocks = page.get_text("blocks")
         result = []
@@ -224,6 +252,7 @@ class PDFEngine:
                         x0=b[0], y0=b[1], x1=b[2], y1=b[3],
                         page=page_num,
                     ))
+        self._extract_cache[cache_key] = result
         return result
 
     def search_text(self, pdf_doc: PDFDocument, query: str,

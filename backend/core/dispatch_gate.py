@@ -739,19 +739,20 @@ def _find_legends_on_page(text_blocks, page_idx: int) -> list[Legend]:
     return legends
 
 
-def _parse_tables_on_page(pdf_path: str, page_idx: int) -> tuple[list[Legend], list]:
-    """Use pdfplumber to extract table data from a page.
-    Returns (Legend objects, raw_tables). Falls back to ([], []) on failure."""
-    if not _pdfplumber:
+def _parse_tables_on_page(pdf, page_idx: int) -> tuple[list[Legend], list]:
+    """Use an already-open pdfplumber Document to extract table data from a page.
+    Returns (Legend objects, raw_tables). Falls back to ([], []) on failure.
+
+    Phase G.3: caller hoists pdfplumber.open() to once per dispatch in
+    run_filter_4 (was: once per SCHEDULE page).
+    """
+    if not _pdfplumber or pdf is None:
         return [], []
     try:
-        pdf = _pdfplumber.open(pdf_path)
         if page_idx >= len(pdf.pages):
-            pdf.close()
             return [], []
         page = pdf.pages[page_idx]
         tables = page.extract_tables()
-        pdf.close()
 
         raw_tables = list(tables) if tables else []
 
@@ -838,22 +839,44 @@ def _quality_check_legends(legends: list[Legend]) -> list[Legend]:
 
 
 def run_filter_4(engine: PDFEngine, doc, ctx: PlanSetContext):
-    """Filter 4: Legend and Schedule Parsing."""
+    """Filter 4: Legend and Schedule Parsing.
+
+    Phase G.3: pdfplumber is opened once per dispatch (was: once per
+    SCHEDULE_SHEET page) and shared across all _parse_tables_on_page calls.
+    """
     raw_legends = []
 
-    for page_idx in range(doc.page_count):
-        blocks = engine.extract_text_blocks(doc, page_idx)
-        legends = _find_legends_on_page(blocks, page_idx)
+    pdf = None
+    if _pdfplumber is not None:
+        try:
+            pdf = _pdfplumber.open(ctx.pdf_path)
+        except Exception as exc:
+            ctx.dispatch_warnings.append(
+                f"Filter 4: pdfplumber.open failed ({type(exc).__name__}); "
+                "table extraction skipped"
+            )
+            pdf = None
 
-        # Supplement: pdfplumber table extraction on schedule pages
-        page_ctx = ctx.pages.get(page_idx)
-        if page_ctx and page_ctx.page_type == PageType.SCHEDULE_SHEET:
-            table_legends, raw_tables = _parse_tables_on_page(ctx.pdf_path, page_idx)
-            legends.extend(table_legends)
-            if raw_tables:
-                page_ctx.raw_tables = raw_tables
+    try:
+        for page_idx in range(doc.page_count):
+            blocks = engine.extract_text_blocks(doc, page_idx)
+            legends = _find_legends_on_page(blocks, page_idx)
 
-        raw_legends.extend(legends)
+            # Supplement: pdfplumber table extraction on schedule pages
+            page_ctx = ctx.pages.get(page_idx)
+            if page_ctx and page_ctx.page_type == PageType.SCHEDULE_SHEET:
+                table_legends, raw_tables = _parse_tables_on_page(pdf, page_idx)
+                legends.extend(table_legends)
+                if raw_tables:
+                    page_ctx.raw_tables = raw_tables
+
+            raw_legends.extend(legends)
+    finally:
+        if pdf is not None:
+            try:
+                pdf.close()
+            except Exception:
+                pass
 
     # Quality gate — remove noise before storing
     total_raw = len(raw_legends)
@@ -1540,41 +1563,29 @@ def _run_trade_modules(engine: PDFEngine, doc, ctx: PlanSetContext) -> None:
     try:
         for page_idx in sorted(ctx.pages.keys()):
             page_ctx = ctx.pages[page_idx]
-            text_blocks: list = []
             raw_tables = page_ctx.raw_tables  # cached by Filter 4 for SCHEDULE pages
 
-            # Pull per-page text blocks via pdfplumber (cheap; Filter 4 already
-            # paid extract_tables() for schedule pages so raw_tables is reused).
-            # Also fall back to extract_tables() for non-schedule pages so
+            # Phase G.3: reuse cached PyMuPDF blocks for trade-module input
+            # (was: pdfplumber.extract_words() per page). Cache hit because
+            # Filters 1/2/4 already extracted these blocks earlier in dispatch.
+            try:
+                text_blocks: list = list(engine.extract_text_blocks(doc, page_idx))
+            except Exception:
+                text_blocks = []
+
+            # Tables fallback: extract_tables() on non-schedule pages so
             # door/glazing schedules on non-SCHEDULE_SHEET-classified pages
-            # land on TradeModuleInput.tables — matches the calibration
+            # still land on TradeModuleInput.tables — matches the calibration
             # harness's all-pages table coverage and avoids module output
             # regression.
-            if pdf is not None and page_idx < len(pdf.pages):
+            if pdf is not None and page_idx < len(pdf.pages) and not raw_tables:
                 try:
                     pdf_page = pdf.pages[page_idx]
-                    words = pdf_page.extract_words() or []
-                    for w in words:
-                        try:
-                            text_blocks.append(TextBlock(
-                                text=str(w.get("text", "")),
-                                x0=float(w.get("x0", 0.0)),
-                                y0=float(w.get("top", 0.0)),
-                                x1=float(w.get("x1", 0.0)),
-                                y1=float(w.get("bottom", 0.0)),
-                                page=page_idx,
-                            ))
-                        except Exception:
-                            continue
-                    if not raw_tables:
-                        try:
-                            ext = pdf_page.extract_tables() or []
-                            if ext:
-                                raw_tables = [t for t in ext if t]
-                        except Exception:
-                            pass
+                    ext = pdf_page.extract_tables() or []
+                    if ext:
+                        raw_tables = [t for t in ext if t]
                 except Exception:
-                    text_blocks = []
+                    pass
 
             tinput = _build_dispatch_only_input(ctx, page_idx, text_blocks, raw_tables)
             pages_attempted += 1
