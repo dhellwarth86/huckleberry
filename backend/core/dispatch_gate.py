@@ -103,15 +103,16 @@ _DISCIPLINE_MAP = {
 
 # Page type keywords: (keywords, PageType, title_conf, page_conf)
 _PAGE_TYPE_RULES = [
-    (["SCHEDULE"], PageType.SCHEDULE_SHEET, CONFIDENCE_EXPLICIT, CONFIDENCE_STRONG),
+    (["SCHEDULE", "WINDOW TYPES", "DOOR TYPES"], PageType.SCHEDULE_SHEET, CONFIDENCE_EXPLICIT, CONFIDENCE_STRONG),
     (["ROOF PLAN"], PageType.ROOF_PLAN, CONFIDENCE_EXPLICIT, CONFIDENCE_STRONG),
-    (["FLOOR PLAN", "SLAB PLAN"], PageType.FLOOR_PLAN, CONFIDENCE_EXPLICIT, CONFIDENCE_STRONG),
-    (["FRAMING PLAN", "NOTED FRAMING"], PageType.FRAMING_PLAN, CONFIDENCE_EXPLICIT, CONFIDENCE_STRONG),
+    (["DIMENSIONED BUILDING PLAN", "BUILDING PLAN", "FLOOR PLAN", "SLAB PLAN"], PageType.FLOOR_PLAN, CONFIDENCE_EXPLICIT, CONFIDENCE_STRONG),
+    (["ROOF FRAMING PLAN", "FRAMING PLAN", "FOUNDATION PLAN", "NOTED FRAMING"], PageType.FRAMING_PLAN, CONFIDENCE_EXPLICIT, CONFIDENCE_STRONG),
     (["CEILING PLAN", "RCP", "REFLECTED"], PageType.CEILING_PLAN, CONFIDENCE_EXPLICIT, CONFIDENCE_STRONG),
+    (["FIRE SPRINKLER PLAN", "FIRE SPRINKLER", "PLUMBING SANITARY PLAN"], PageType.MEP_PLAN, CONFIDENCE_EXPLICIT, CONFIDENCE_STRONG),
+    (["ELEVATIONS AND DETAILS", "STEEL ELEVATIONS", "DETAIL"], PageType.DETAIL_SHEET, CONFIDENCE_EXPLICIT, CONFIDENCE_STRONG),
     (["ELEVATION"], PageType.ELEVATION, CONFIDENCE_EXPLICIT, CONFIDENCE_STRONG),
-    (["DETAIL"], PageType.DETAIL_SHEET, CONFIDENCE_EXPLICIT, CONFIDENCE_STRONG),
     (["SECTION"], PageType.SECTION, CONFIDENCE_STRONG, CONFIDENCE_INFERRED),
-    (["GENERAL NOTE", "INDEX", "ABBREVIAT"], PageType.GENERAL_NOTES, CONFIDENCE_EXPLICIT, CONFIDENCE_STRONG),
+    (["STRUCTURAL NOTES", "UTILITY NOTES", "FIRE PROTECTION SPECIFICATIONS", "GENERAL NOTE", "INDEX", "ABBREVIAT"], PageType.GENERAL_NOTES, CONFIDENCE_EXPLICIT, CONFIDENCE_STRONG),
     (["SITE PLAN", "SITE PLOT"], PageType.SITE_PLAN, CONFIDENCE_EXPLICIT, CONFIDENCE_STRONG),
     (["COVER"], PageType.COVER, CONFIDENCE_EXPLICIT, CONFIDENCE_EXPLICIT),
     (["LIFE SAFETY", "OCCUPANCY"], PageType.LIFE_SAFETY, CONFIDENCE_EXPLICIT, CONFIDENCE_STRONG),
@@ -418,14 +419,20 @@ def run_filter_1(engine: PDFEngine, doc, ctx: PlanSetContext):
 # FILTER 2: PAGE CLASSIFICATION
 # ============================================================
 
-def _classify_page_type(title_text: str, full_text: str) -> tuple[PageType, float]:
-    """Classify page type from title block and full page text."""
+def _classify_page_type(title_text: str, full_text: str, title: str = "") -> tuple[PageType, float]:
+    """Classify page type from title block text, full page text, and page title."""
     title_upper = title_text.upper()
     full_upper = full_text.upper()
+    pc_title_upper = title.upper()
 
     for keywords, ptype, title_conf, page_conf in _PAGE_TYPE_RULES:
         for kw in keywords:
             if kw in title_upper:
+                return (ptype, title_conf)
+
+    for keywords, ptype, title_conf, page_conf in _PAGE_TYPE_RULES:
+        for kw in keywords:
+            if kw in pc_title_upper:
                 return (ptype, title_conf)
 
     for keywords, ptype, title_conf, page_conf in _PAGE_TYPE_RULES:
@@ -445,9 +452,7 @@ def run_filter_2(engine: PDFEngine, doc, ctx: PlanSetContext):
         tb_text = _get_title_block_text(blocks, meta)
         full_text = engine.extract_text(doc, page_idx)
 
-        page_type, confidence = _classify_page_type(tb_text, full_text)
-
-        # Get sheet entry if exists
+        # Get sheet entry if exists (needed for title + discipline)
         sheet_num = ctx.page_to_sheet.get(page_idx)
         disc = Discipline.UNKNOWN
         title = ""
@@ -455,10 +460,14 @@ def run_filter_2(engine: PDFEngine, doc, ctx: PlanSetContext):
             entry = ctx.sheet_map[sheet_num]
             disc = entry.discipline
             title = entry.title
-            # Update sheet entry page type
-            entry.page_type = page_type
         else:
             disc = _discipline_from_prefix(sheet_num) if sheet_num else Discipline.UNKNOWN
+
+        page_type, confidence = _classify_page_type(tb_text, full_text, title=title)
+
+        # Update sheet entry page type
+        if sheet_num and sheet_num in ctx.sheet_map:
+            ctx.sheet_map[sheet_num].page_type = page_type
 
         # MEP fallback: if discipline is M/E/P and no specific match
         if page_type == PageType.UNKNOWN and disc in (Discipline.MECHANICAL, Discipline.ELECTRICAL, Discipline.PLUMBING):

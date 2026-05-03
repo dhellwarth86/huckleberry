@@ -26,7 +26,7 @@ from core.context import (
     CONFIDENCE_WEAK, CONFIDENCE_UNKNOWN,
     validate_llm_output, check_for_leaks,
 )
-from core.dispatch_gate import run_dispatch
+from core.dispatch_gate import run_dispatch, _classify_page_type
 
 
 # ============================================================
@@ -410,3 +410,35 @@ class TestAEA:
 
     def test_has_legends(self, ctx):
         assert len(ctx.all_legends) >= 2
+
+
+class TestClassifierUpgrade:
+    """Tests for G.2 classifier upgrade: pc.title read + new keywords."""
+
+    def test_classify_reads_pc_title_framing_plan(self):
+        page_type, _ = _classify_page_type("", "", title="ROOF FRAMING PLAN")
+        assert page_type == PageType.FRAMING_PLAN
+
+    def test_classify_reads_pc_title_general_notes(self):
+        page_type, _ = _classify_page_type("", "", title="STRUCTURAL NOTES")
+        assert page_type == PageType.GENERAL_NOTES
+
+    def test_classify_dimensioned_building_plan(self):
+        page_type, _ = _classify_page_type("", "DIMENSIONED BUILDING PLAN")
+        assert page_type == PageType.FLOOR_PLAN
+
+    def test_classify_window_types_schedule(self):
+        page_type, _ = _classify_page_type("", "WINDOW TYPES")
+        assert page_type == PageType.SCHEDULE_SHEET
+
+    def test_classify_fire_sprinkler_plan(self):
+        page_type, _ = _classify_page_type("", "FIRST FLOOR FIRE SPRINKLER PLAN")
+        assert page_type == PageType.MEP_PLAN
+
+    def test_classify_steel_elevations_details(self):
+        page_type, _ = _classify_page_type("", "", title="STEEL ELEVATIONS AND DETAILS")
+        assert page_type == PageType.DETAIL_SHEET
+
+    def test_classify_utility_notes(self):
+        page_type, _ = _classify_page_type("", "UTILITY NOTES")
+        assert page_type == PageType.GENERAL_NOTES
