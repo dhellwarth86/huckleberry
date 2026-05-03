@@ -736,3 +736,43 @@ None. All 17 stop conditions in MARCH_ORDERS_E_2_1_strip.md §13 confirmed non-f
 (Populated by E.3 session. Per-page roofing/glazing display; debug summary; job list/dashboard; status transitions; annotation save/load via new annotations table.)
 
 ---
+
+## Phase 11: G.2 — Corpus-wide classifier upgrade (2026-05-03)
+
+**Branch:** `phase2-v0.3-G2-classifier-upgrade` (from `dec0af5`)
+**Trigger:** MARCH ORDERS Phase G.2 — rescoped from discipline fallback after corpus scout invalidated the original premise.
+
+### Files created
+- `backend/scripts/g2_classifier_hardgate.py` — 4-bidset hard gate harness
+- `backend/G_2_HARD_GATE_REPORT.md` — hard gate report (PASS)
+
+### Files modified
+- `backend/core/dispatch_gate.py` — `_classify_page_type` reads `pc.title`; `_PAGE_TYPE_RULES` extended (FLOOR_PLAN, SCHEDULE_SHEET, FRAMING_PLAN, DETAIL_SHEET, GENERAL_NOTES, MEP_PLAN)
+- `backend/tests/test_dispatch.py` — 7 new classifier tests
+- `CHECKLIST.md` — Phase G.2 row + handoff
+- `ITINERARY.md` — Section 1 + 2 updated
+- `PROJECT_CLAUDE.md` — sacred floor 230→237, active phase block updated
+
+### Files deleted / renamed
+None.
+
+### Commits
+- Code change: `170fcd7`
+- Canon updates: (this commit)
+
+### Vault-ruled files touched
+None outside `dispatch_gate.py` (which is integration-frozen + allowed in dedicated tuning phases per PROJECT_CLAUDE.md vault rule). SHA-1 verification at session end:
+- `roofing_module.py`: ae9e5b28... (unchanged)
+- `glazing_module.py`: 52c01442... (unchanged)
+- `roofing_vocabulary.py`: ec6c17f8... (unchanged)
+- `glazing_vocabulary.py`: 64249c8e... (unchanged)
+- `debug_module.py`: 78f71d90... (unchanged)
+- `dispatch_gate.py`: 2a708d19 → 09bc0340 (expected change)
+
+### Hard gate result
+4/4 PASS per `backend/G_2_HARD_GATE_REPORT.md`. Bearss byte-equivalent (769/177/31/24). Hampshire 4→0. Chipotle Tarpon 3→0. Shoppes Avalon 2→0.
+
+### Sacred floor at session end
+Backend 237/19/0; frontend 23/23 (untouched).
+
+---
