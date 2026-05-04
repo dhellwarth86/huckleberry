@@ -1,0 +1,128 @@
+[2026-05-04T17:22:52.806697Z] Helper 1 (backend watcher) started
+[2026-05-04T17:22:52.807710Z] Database: C:\Users\danie\.tracepoint\cache.db
+[2026-05-04T17:22:52.808470Z] Monitoring PID: none
+[2026-05-04T17:22:52.809213Z] Poll interval: 30s
+[2026-05-04T17:22:52.823981Z] Row counts: {"jobs": 345, "dispatch_results": 711, "trade_outputs": 1422, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:22:52.824832Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:23:22.839218Z] Row counts: {"jobs": 345, "dispatch_results": 711, "trade_outputs": 1422, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:23:22.840607Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:23:52.861543Z] Row counts: {"jobs": 345, "dispatch_results": 711, "trade_outputs": 1422, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:23:52.862246Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:24:22.875683Z] Row counts: {"jobs": 345, "dispatch_results": 711, "trade_outputs": 1422, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:24:22.876721Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:24:52.886682Z] Row counts: {"jobs": 345, "dispatch_results": 711, "trade_outputs": 1422, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:24:52.887491Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:25:22.897628Z] Row counts: {"jobs": 345, "dispatch_results": 711, "trade_outputs": 1422, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:25:22.898420Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:25:52.910742Z] Row counts: {"jobs": 345, "dispatch_results": 711, "trade_outputs": 1422, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:25:52.911944Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:26:22.921874Z] Row counts: {"jobs": 345, "dispatch_results": 711, "trade_outputs": 1422, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:26:22.922664Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:26:52.932932Z] Row counts: {"jobs": 345, "dispatch_results": 711, "trade_outputs": 1422, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:26:52.933606Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:27:22.943551Z] Row counts: {"jobs": 346, "dispatch_results": 711, "trade_outputs": 1422, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:27:22.944297Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:27:52.954770Z] Row counts: {"jobs": 346, "dispatch_results": 711, "trade_outputs": 1422, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:27:52.955595Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:28:22.965946Z] Row counts: {"jobs": 346, "dispatch_results": 711, "trade_outputs": 1422, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:28:22.966864Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:28:52.977019Z] Row counts: {"jobs": 346, "dispatch_results": 711, "trade_outputs": 1422, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:28:52.978716Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:29:22.988766Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:29:22.989615Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:29:53.007764Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:29:53.010216Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:30:23.022109Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:30:23.023427Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:30:53.034334Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:30:53.035099Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:31:23.047146Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:31:23.055100Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:31:53.066788Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:31:53.068276Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:32:23.077879Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:32:23.078578Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:32:53.089242Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:32:53.090099Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:33:23.099876Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:33:23.108245Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:33:53.119079Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:33:53.120157Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:34:23.136574Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:34:23.138351Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:34:53.148303Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:34:53.149016Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:35:23.158753Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:35:23.166525Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:35:53.178085Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:35:53.178940Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:36:23.188227Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:36:23.189091Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:36:53.199813Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:36:53.200627Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:37:23.210820Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:37:23.211762Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:37:53.223694Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:37:53.224690Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:38:23.234710Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:38:23.235489Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:38:53.248960Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:38:53.250947Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:39:23.260766Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:39:23.261515Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:39:53.271602Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:39:53.272383Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:40:23.281340Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:40:23.282119Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:40:53.291932Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:40:53.292681Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:41:23.302444Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:41:23.303196Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:41:53.312848Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:41:53.315337Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:42:23.324073Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:42:23.324863Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:42:53.333827Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:42:53.334625Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:43:23.344376Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:43:23.345108Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:43:53.354303Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:43:53.355386Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:44:23.365453Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:44:23.366215Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:44:53.376119Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:44:53.377088Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:45:23.387613Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:45:23.388530Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:45:53.398703Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:45:53.399427Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:46:23.409976Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:46:23.410885Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:46:53.420141Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:46:53.421493Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:47:23.431593Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:47:23.432388Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:47:53.441413Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:47:53.442174Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:48:23.452025Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:48:23.459971Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:48:53.470636Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:48:53.471315Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:49:23.490009Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:49:23.491480Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:49:53.503020Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:49:53.503762Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:50:23.514210Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:50:23.515024Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:50:53.524342Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:50:53.525100Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:51:23.534321Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:51:23.535060Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:51:53.544166Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:51:53.552236Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:52:23.561532Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:52:23.562323Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:52:53.571596Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:52:53.572342Z] Process stats: {"note": "no PID provided"}
+[2026-05-04T17:53:23.582258Z] Row counts: {"jobs": 346, "dispatch_results": 751, "trade_outputs": 1502, "dispatch_cache": 6, "geometry_cache": 0, "architect_profiles": 9}
+[2026-05-04T17:53:23.590789Z] Process stats: {"note": "no PID provided"}

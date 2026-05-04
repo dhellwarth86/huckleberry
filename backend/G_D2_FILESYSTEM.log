@@ -1,0 +1,9 @@
+# Initial scan of 120668 pre-existing files trimmed for size; only mutations during the session are kept below.
+[2026-05-04T17:22:50.874442Z] Helper 6 (filesystem watcher) started
+[2026-05-04T17:22:50.875779Z] Watching: C:\Users\danie\.tracepoint
+[2026-05-04T17:22:50.877139Z] Poll interval: 2s
+[2026-05-04T17:23:07.861639Z] Initial file count: 120668
+[2026-05-04T17:24:36.205713Z] CREATED: cache.db-shm (32768 bytes)
+[2026-05-04T17:24:36.207021Z] CREATED: cache.db-wal (0 bytes)
+[2026-05-04T17:27:08.147180Z] MODIFIED: cache.db-wal (size 0->41232, mtime 1777915424->1777915618)
+[2026-05-04T17:29:08.591656Z] MODIFIED: cache.db-wal (size 41232->453232, mtime 1777915618->1777915733)

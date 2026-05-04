@@ -1,0 +1,330 @@
+[2026-05-04T17:24:05.399660Z] GET /health -> 200 (6.5ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:25:09.936620Z] GET /health -> 200 (2.0ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:25:39.957332Z] GET /health -> 200 (1.5ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:26:10.613943Z] GET /health -> 200 (1.4ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:26:25.790889Z] OPTIONS /jobs -> 200 (0.6ms)
+  URL: http://127.0.0.1:8000/jobs
+  Request body: (empty)
+  Response body: OK
+---
+[2026-05-04T17:26:26.011009Z] GET /health -> 200 (1.2ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:26:35.757883Z] GET /health -> 200 (2.3ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:26:39.937111Z] GET /health -> 200 (0.9ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:26:42.602377Z] GET /health -> 200 (1.5ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:26:44.951170Z] GET /health -> 200 (1.5ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:26:56.700203Z] POST /jobs -> 201 (64.1ms)
+  URL: http://127.0.0.1:8000/jobs
+  Request body: {"name":"B2607 AEA Silverleaf - St Augustine - Accelerated Construction Services (6).pdf","pdf_path":"C:\\huck stage 2\\huckleberry\\backend\\test_plans\\B2607 AEA Silverleaf - St Augustine - Accelerated Construction Services (6).pdf","trade_scope":"roofing"}
+  Response body: {"id":"5e33f43f-daad-490c-bd2f-734f9c7eaea5","name":"B2607 AEA Silverleaf - St Augustine - Accelerated Construction Services (6).pdf","gc":null,"location_city":null,"location_state":null,"trade_scope":"roofing","bid_due_date":null,"notes":null,"status":"draft","created_at":"2026-05-04T17:26:56.636987+00:00","updated_at":"2026-05-04T17:26:56.636987+00:00","pdf_path":"C:\\huck stage 2\\huckleberry\\backend\\test_plans\\B2607 AEA Silverleaf - St Augustine - Accelerated Construction Services (6).pdf","pdf_sha1":"76dc89072dae77c1b476b60da85870f3d799cd31","dispatch_complete":false}
+---
+[2026-05-04T17:27:10.264759Z] GET /health -> 200 (224.7ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:27:40.247016Z] GET /health -> 200 (238.7ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:28:10.086371Z] GET /health -> 200 (125.6ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:28:40.357305Z] GET /health -> 200 (238.7ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:28:53.401992Z] POST /jobs/5e33f43f-daad-490c-bd2f-734f9c7eaea5/dispatch -> 200 (116692.9ms)
+  URL: http://127.0.0.1:8000/jobs/5e33f43f-daad-490c-bd2f-734f9c7eaea5/dispatch
+  Request body: (empty)
+  Response body: {"id":"5e33f43f-daad-490c-bd2f-734f9c7eaea5","name":"B2607 AEA Silverleaf - St Augustine - Accelerated Construction Services (6).pdf","gc":null,"location_city":null,"location_state":null,"trade_scope":"roofing","bid_due_date":null,"notes":null,"status":"dispatched","created_at":"2026-05-04T17:26:56.636987+00:00","updated_at":"2026-05-04T17:28:53.380353+00:00","pdf_path":"C:\\huck stage 2\\huckleberry\\backend\\test_plans\\B2607 AEA Silverleaf - St Augustine - Accelerated Construction Services (6).pdf","pdf_sha1":"76dc89072dae77c1b476b60da85870f3d799cd31","dispatch_complete":true}
+---
+[2026-05-04T17:28:53.445484Z] GET /jobs/5e33f43f-daad-490c-bd2f-734f9c7eaea5/results -> 200 (31.7ms)
+  URL: http://127.0.0.1:8000/jobs/5e33f43f-daad-490c-bd2f-734f9c7eaea5/results
+  Request body: (empty)
+  Response body: {"job_id":"5e33f43f-daad-490c-bd2f-734f9c7eaea5","dispatch_results":{"0":{"id":712,"job_id":"5e33f43f-daad-490c-bd2f-734f9c7eaea5","page_idx":0,"page_type":"general_notes","sheet_num":"S001","sheet_title":"Colliers Engineering & \nDesign, Inc. Colliers Engineering\n&","legends_count":1,"has_legend":1,"has_schedule":0,"raw_tables_json":null,"raw_tables":null},"1":{"id":713,"job_id":"5e33f43f-daad-490c-bd2f-734f9c7eaea5","page_idx":1,"page_type":"general_notes","sheet_num":"S002","sheet_title":"Colliers Engineering & \nDesign, Inc. Colliers Engineering\n&","legends_count":4,"has_legend":1,"has_schedule":1,"raw_tables_json":null,"raw_tables":null},"2":{"id":714,"job_id":"5e33f43f-daad-490c-bd2f-734f9c7eaea5","page_idx":2,"page_type":"general_notes","sheet_num":"S003","sheet_title":"Colliers Engineering & \nDesign, Inc. Colliers Engineering\n&","legends_count":1,"has_legend":1,"has_schedule":1,"raw_tables_json":null,"raw_tables":null},"3":{"id":715,"job_id":"5e33f43f-daad-490c-bd2f-734f9c7eaea5","page_idx":3,"page_type":"schedule_sheet","sheet_num":"S010","sheet_title":"ZONE 2 ZONE 1 ZONE 1' EXISTING BUILDING PARAPETS EDGE ZONE (","legends_count":4,"has_legend":1,"has_schedule":1,"raw_tables_json":"[[[\"8' - 5\\\"\\nZONE 3\\n\\\"5\\n-\\n'8\\nCOMPONENT AND CLADDING WIND LOAD SCHEDULE\\nEFFECTIVE ROOF WALLS PARAPETS\\nWIND AREA\\n2 1 '1 (SQ FT) ZONE 1' (PSF) ZONE 1 (PSF) ZONE 2 (PSF) ZONE 3 (PSF) INTERIOR ZONE (PSF) EDGE ZONE (PSF) INTERIOR ZONE (PSF) EDGE ZONE (PSF)\\nENOZ ENOZ ENOZ\\n<= 10 16.0/-32.2 16.0/-56.1 16.0/-74.0 16.0/-100.8 32.2/-34.9 32.2/-43.0 32.6/-74.8 32.6/-102.0\\n20 16.0/-32.2 16.0/-52.4 16.0/-69.2 16.0/-91.3 30.8/-33.5 30.8/-40.1 31.1/-70.0 31.1/-92.3\\n50 16.0/-32.2 16.0/-47.5 16.0/-62.9 16.0/-78.7 28.9/-31.6 28.9/-36.3 29.3/-63.7 29.3/-79.7\\n100 16.0/-32.2 16.0/-43.8 16.0/-58.2 16.0/-69.2 27.5/-30.2 27.5/-33.5 27.8/-58.8 27.8/-70.0\\n200 16.0/-27.7 16.0/-40.1 16.0/-53.4 16.0/-59.7 26.1/-28.7 26.1/-30.6 26.3/-54.0 26.3/-60.4\\n>=500 16.0/-21.8 16.0/-35.2 16.0/-47.1 16.0/-47.1 24.2/-26.8 24.2/-26.8 24.4/-47.7 24.4/-47.7\\nNOTES:\\n1. SEE ASCE 7, CHAPTER 30, PART 3. BUILDINGS WITH H < 60 FT FOR DESIGN METHOD USED TO CALCULATE ULTIMATE\\nCOMPONENT AND CLADDING WIND LOADS. LOADS SHOWN IN TABLE ABOVE ARE STRENGTH LEVEL COMPONENT AND\\nCLADDING WIND LOADS, MULTIPLY BY 0.6 FOR ASD SERVICE LEVEL LOADS\\n2. PER ASCE 7, CHAPTER 30, SECTION 30.2.2, THE MINIMUM ULTIMATE COMPONENT AND CLADDING DESIGN WIND\\nPRESSURES SHALL NOT BE LESS THAN A NET PRESSURE OF 16.0 PSF ACTING IN EITHER DIRECTION NORMAL TO THE\\nSURFACE\\n3. POSITIVE PRESSURES ACT TOWARDS THE SURFACE. NEGATIVE PRESSURES ACT AWAY FROM THE SURFACE\\n4. LINEARLY INTERPOLATE PRESSURES FOR EFFECTIVE WIND AREAS BETWEEN THOSE SCHEDULED OR USE PRESSURES\\nFOR THE SMALLER EFFECTIVE WIND AREA\\n5. WALL EDGE ZONES CORRESPOND TO ROOF CORNER ZONES, AND WALL INTERIOR ZONES CORRESPOND TO ROOF\\nEDGE ZONES SHOWN IN THE DIAGRAM BELOW\\n6. SEE COMPONENT AND CLADDING DIAGRAM FOR ADDITIONAL INFORMATION\\nSLOPE 1/4:12\\nCOORDINATE HVAC\\nCOORDINATE HVAC\\nCHASE LOCATIONS W/ TRUSS -TYPICAL CHASE LOCATIONS W/\\nEXISTING BUILDING GC AND MECH DWGS 2-POINT BEARING GC AND MECH DWGS\\nNOTE: ROOF TRUSS PROFILES ARE DIAGRAMMATIC ONLY. COORDINATE FINAL TRUSS PROFILE, TRUSS DEPTH, ROOF\\nSLOPE, OVERHANGS AND OVERALL DIMENSIONS WITH ARCH DWGS\\nROOF TRUSS PROFILE COMPONENTS AND CLADDING WIND LOAD SCHEDULE\\n2 1\\nSCALE : 3/16\\\" = 1'-0\\\" SCALE : 1/16\\\" = 1'-0\\\"\", \"Colliers\\nEngineering\\n& Design\\nwww.colliersengineering.com\\nCopyright \\u00a9 2024. Colliers Engineering & Design All Rights Reserved. This drawing and all the\\ninformation contained herein is authorized for use only by the party for whom the services\\nwere contracted or to whom it is certified. This drawing may not be copied, reused, disclosed,\\ndistributed or relied upon for any other purpose without the express written consent of\\nColliers Engineering & Design.\\nFormerly Known as\\nREV DATE DESCRIPTION\\n11/17/2025 ISSUED FOR PERMIT\\nMARCELLO SPINELLI\\nAMAZING EXPLORERS\\nACADEMY\\n101 CHERRY ELM\\nDR.,\\nST AUGUSTINE, FL\\n32092\\nFL ENGINEERING\\nTAMPA\\nColliers 5471 W Waters Ave,\\nSte 100\\nTampa, FL 33634\\nPhone: 813.207.1061\\nEngineering\\nColliers Engineering &\\n& Design\\nDesign, Inc.\\nPROJECT MANAGER: DISCIPLINE LEAD:\\nJAM NC\\nDESIGNER: REVIEWER:\\nBB NC\\nDATE ISSUED: PROJECT NUMBER:\\n10/01/2025 25007085A\\nSHEET NAME:\\nLOAD DIAGRAMS\\nDRAWING NUMBER:\\nS010\"]], [[\"\"], [\"\"]], [[null, \"\", \"2 1 '1\\nENOZ ENOZ ENOZ\", \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", \"\"], [null, null, null, \"1 '1\\nENOZ ENOZ\", null, null, null, null, null, null, \"\", null, null], [null, null, null, null, null, null, null, null, null, \"'1\\nENOZ\", null, null, null], [\"\", \"\", null, null, null, null, null, null, null, null, null, null, null], [null, \"\", null, null, null, null, null, null, null, null, null, null, null], [null, null, null, null, null, null, null, null, null, \"\", null, null, null], [null, \"\", null, null, null, null, null, null, null, null, null, null, null], [null, null, null, null, \"\", null, \"\", null, \"\", null, \"\", null, null]], [[\"COMPONENT AND CLADDING WIND LOAD SCHEDULE\", null, null, null, null, null, null, null, null], [\"EFFECTIVE\\nWIND AREA\\n(SQ FT)\", \"ROOF\", null, null, null, \"WALLS\", null, \"PARAPETS\", null], [null, \"ZONE 1' (PSF)\", \"ZONE 1 (PSF)\", \"ZONE 2 (PSF)\", \"ZONE 3 (PSF)\", \"INTERIOR ZONE (PSF)\", \"EDGE ZONE (PSF)\", \"INTERIOR ZONE (PSF)\", \"EDGE ZONE (PSF)\"], [\"<= 10\", \"16.0/-32.2\", \"16.0/-56.1\", \"16.0/-74.0\", \"16.0/-100.8\", \"32.2/-34.9\", \"32.2/-43.0\", \"32.6/-74.8\", \"32.6/-102.0\"], [\"20\", \"16.0/-32.2\", \"16.0/-52.4\", \"16.0/-69.2\", \"16.0/-91.3\", \"30.8/-33.5\", \"30.8/-40.1\", \"31.1/-70.0\", \"31.1/-92.3\"], [\"50\", \"16.0/-32.2\", \"16.0/-47.5\", \"16.0/-62.9\", \"16.0/-78.7\", \"28.9/-31.6\", \"28.9/-36.3\", \"29.3/-63.7\", \"29.3/-79.7\"], [\"100\", \"16.0/-32.2\", \"16.0/-43.8\", \"16.0/-58.2\", \"16.0/-69.2\", \"27.5/-30.2\", \"27.5/-33.5\", \"27.8/-58.8\", \"27.8/-70.0\"], [\"200\", \"16.0/-27.7\", \"16.0/-40.1\", \"16.0/-53.4\", \"16.0/-59.7\", \"26.1/-28.7\", \"26.1/-30.6\", \"26.3/-54.0\", \"26.3/-60.4\"], [\">=500\", \"16.0/-21.8\", \"16.0/-35.2\", \"16.0/-47.1\", \"16.0/-47.1\", \"24.2/-26.8\", \"24.2/-26.8\", \"24.4/-47.7\", \"24.4/-47.7\"]], [[\"COORDINATE HVAC\"], [\"CHASE LOCATIONS W/\"], [\"GC AND MECH DWGS\"]], [[\"COORDINATE HVAC\"], [\"CHASE LOCATIONS W/\"], [\"GC AND MECH DWGS\"]]]","raw_tables":[[["8' - 5\"\nZONE 3\n\"5\n-\n'8\nCOMPONENT AND CLADDING WIND LOAD SCHEDULE\nEFFECTIVE ROOF WALLS PARAPETS\nWIND AREA\n2 1 '1 (SQ FT) ZONE 1' (PSF) ZONE 1 (PSF) ZONE 2 (PSF) ZONE 3 (PSF) INTERIOR ZONE (PSF) EDGE ZONE (PSF) INTERIOR ZONE (PSF) EDGE ZONE (PSF)\nENOZ ENOZ ENOZ\n<= 10 16.0/-32.2 16.0/-56.1 16.0/-74.0 16.0/-100.8 32.2/-34.9 32.2/-43.0 32.6/-74.8 32.6/-102.0\n20 16.0/-32.2 16.0/-52.4 16.0/-69.2 16.0/-91.3 30.8/-33.5 30.8/-40.1 31.1/-70.0 31.1/-92.3\n50 16.0/-32.2 16.0/-47.5 16.0/-62.9 16.0/-78.7 28.9/-31.6 28.9/-36.3 29.3/-63.7 29.3/-79.7\n100 16.0/-32.2 16.0/-43.8 16.0/-58.2 16.0/-69.2 27.5/-30.2 27.5/-33.5 27.8/-58.8 27.8/-70.0\n200 16.0/-27.7 16.0/-40.1 16.0/-53.4 16.0/-59.7 26.1/-28.7 26.1/-30.6 26.3/-54.0 26.3/-60.4\n>=500 16.0/-21.8 16.0/-35.2 16.0/-47.1 16.0/-47.1 24.2/-26.8 24.2/-26.8 24.4/-47.7 24.4/-47.7\nNOTES:\n1. SEE ASCE 7, CHAPTER 30, PART 3. BUILDINGS WITH H < 60 FT FOR DESIGN METHOD USED TO CALCULATE ULTIMATE\nCOMPONENT AND CLADDING WIND LOADS. LOADS SHOWN IN TABLE ABOVE ARE STRENGTH LEVEL COMPONENT AND\nCLADDING WIND LOADS, MULTIPLY BY 0.6 FOR ASD SERVICE LEVEL LOADS\n2. PER ASCE 7, CHAPTER 30, SECTION 30.2.2, THE MINIMUM ULTIMATE COMPONENT AND CLADDING DESIGN WIND\nPRESSURES SHALL NOT BE LESS THAN A NET PRESSURE OF 16.0 PSF ACTING IN EITHER DIRECTION NORMAL TO THE\nSURFACE\n3. POSITIVE PRESSURES ACT TOWARDS THE SURFACE. NEGATIVE PRESSURES ACT AWAY FROM THE SURFACE\n4. LINEARLY INTERPOLATE PRESSURES FOR EFFECTIVE WIND AREAS BETWEEN THOSE SCHEDULED OR USE PRESSURES\nFOR THE SMALLER EFFECTIVE WIND AREA\n5. WALL EDGE ZONES CORRESPOND TO ROOF CORNER ZONES, AND WALL INTERIOR ZONES CORRESPOND TO ROOF\nEDGE ZONES SHOWN IN THE DIAGRAM BELOW\n6. SEE COMPONENT AND CLADDING DIAGRAM FOR ADDITIONAL INFORMATION\nSLOPE 1/4:12\nCOORDINATE HVAC\nCOORDINATE HVAC\nCHASE LOCATIONS W/ TRUSS -TYPICAL CHASE LOCATIONS W/\nEXISTING BUILDING GC AND MECH DWGS 2-POINT BEARING GC AND MECH DWGS\nNOTE: ROOF TRUSS PROFILES ARE DIAGRAMMATIC ONLY. COORDINATE FINAL TRUSS PROFILE, TRUSS DEPTH, ROOF\nSLOPE, OVERHANGS AND OVERALL DIMENSIONS WITH ARCH DWGS\nROOF TRUSS PROFILE COMPONENTS AND CLADDING WIND LOAD SCHEDULE\n2 1\nSCALE : 3/16\" = 1'-0\" SCALE : 1/16\" = 1'-0\"","Colliers\nEngineering\n& Design\nwww.colliersengineering.com\nCopyright © 2024. Colliers Engineering & Design All Rights Reserved. This drawing and all the\ninformation contained herein is authorized for use only by the party for whom the services\nwere contracted or to whom it is certified. This drawing may not be copied, reused, disclosed,\ndistributed or relied upon for any other purpose without the express written consent of\nColliers Engineering & Design.\nFormerly Known as\nREV DATE DESCRIPTION\n11/17/2025 ISSUED FOR PERMIT\nMARCELLO SPINELLI\nAMAZING EXPLORERS\nACADEMY\n101 CHERRY ELM\nDR.,\nST AUGUSTINE, FL\n32092\nFL ENGINEERING\nTAMPA\nColliers 5471 W Waters Ave,\nSte 100\nTampa, FL 33634\nPhone: 813.207.1061\nEngineering\nColliers Engineering &\n& Design\nDesign, Inc.\nPROJECT MANAGER: DISCIPLINE LEAD:\nJAM NC\nDESIGNER: REVIEWER:\nBB NC\nDATE ISSUED: PROJECT NUMBER:\n10/01/2025 25007085A\nSHEET NAME:\nLOAD DIAGRAMS\nDRAWING NUMBER:\nS010"]],[[""],[""]],[[null,"","2 1 '1\nENOZ ENOZ ENOZ","",null,"",null,"",null,"","","",""],[null,null,null,"1 '1\nENOZ ENOZ",null,null,null,null,null,null,"",null,null],[null,null,null,null,null,null,null,null,null,"'1\nENOZ",null,null,null],["","",null,null,null,null,... [truncated, total 424869 bytes]
+---
+[2026-05-04T17:29:09.934195Z] GET /health -> 200 (1.1ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:29:10.434900Z] GET /jobs/5e33f43f-daad-490c-bd2f-734f9c7eaea5/results -> 200 (18.7ms)
+  URL: http://127.0.0.1:8000/jobs/5e33f43f-daad-490c-bd2f-734f9c7eaea5/results
+  Request body: (empty)
+  Response body: {"job_id":"5e33f43f-daad-490c-bd2f-734f9c7eaea5","dispatch_results":{"0":{"id":712,"job_id":"5e33f43f-daad-490c-bd2f-734f9c7eaea5","page_idx":0,"page_type":"general_notes","sheet_num":"S001","sheet_title":"Colliers Engineering & \nDesign, Inc. Colliers Engineering\n&","legends_count":1,"has_legend":1,"has_schedule":0,"raw_tables_json":null,"raw_tables":null},"1":{"id":713,"job_id":"5e33f43f-daad-490c-bd2f-734f9c7eaea5","page_idx":1,"page_type":"general_notes","sheet_num":"S002","sheet_title":"Colliers Engineering & \nDesign, Inc. Colliers Engineering\n&","legends_count":4,"has_legend":1,"has_schedule":1,"raw_tables_json":null,"raw_tables":null},"2":{"id":714,"job_id":"5e33f43f-daad-490c-bd2f-734f9c7eaea5","page_idx":2,"page_type":"general_notes","sheet_num":"S003","sheet_title":"Colliers Engineering & \nDesign, Inc. Colliers Engineering\n&","legends_count":1,"has_legend":1,"has_schedule":1,"raw_tables_json":null,"raw_tables":null},"3":{"id":715,"job_id":"5e33f43f-daad-490c-bd2f-734f9c7eaea5","page_idx":3,"page_type":"schedule_sheet","sheet_num":"S010","sheet_title":"ZONE 2 ZONE 1 ZONE 1' EXISTING BUILDING PARAPETS EDGE ZONE (","legends_count":4,"has_legend":1,"has_schedule":1,"raw_tables_json":"[[[\"8' - 5\\\"\\nZONE 3\\n\\\"5\\n-\\n'8\\nCOMPONENT AND CLADDING WIND LOAD SCHEDULE\\nEFFECTIVE ROOF WALLS PARAPETS\\nWIND AREA\\n2 1 '1 (SQ FT) ZONE 1' (PSF) ZONE 1 (PSF) ZONE 2 (PSF) ZONE 3 (PSF) INTERIOR ZONE (PSF) EDGE ZONE (PSF) INTERIOR ZONE (PSF) EDGE ZONE (PSF)\\nENOZ ENOZ ENOZ\\n<= 10 16.0/-32.2 16.0/-56.1 16.0/-74.0 16.0/-100.8 32.2/-34.9 32.2/-43.0 32.6/-74.8 32.6/-102.0\\n20 16.0/-32.2 16.0/-52.4 16.0/-69.2 16.0/-91.3 30.8/-33.5 30.8/-40.1 31.1/-70.0 31.1/-92.3\\n50 16.0/-32.2 16.0/-47.5 16.0/-62.9 16.0/-78.7 28.9/-31.6 28.9/-36.3 29.3/-63.7 29.3/-79.7\\n100 16.0/-32.2 16.0/-43.8 16.0/-58.2 16.0/-69.2 27.5/-30.2 27.5/-33.5 27.8/-58.8 27.8/-70.0\\n200 16.0/-27.7 16.0/-40.1 16.0/-53.4 16.0/-59.7 26.1/-28.7 26.1/-30.6 26.3/-54.0 26.3/-60.4\\n>=500 16.0/-21.8 16.0/-35.2 16.0/-47.1 16.0/-47.1 24.2/-26.8 24.2/-26.8 24.4/-47.7 24.4/-47.7\\nNOTES:\\n1. SEE ASCE 7, CHAPTER 30, PART 3. BUILDINGS WITH H < 60 FT FOR DESIGN METHOD USED TO CALCULATE ULTIMATE\\nCOMPONENT AND CLADDING WIND LOADS. LOADS SHOWN IN TABLE ABOVE ARE STRENGTH LEVEL COMPONENT AND\\nCLADDING WIND LOADS, MULTIPLY BY 0.6 FOR ASD SERVICE LEVEL LOADS\\n2. PER ASCE 7, CHAPTER 30, SECTION 30.2.2, THE MINIMUM ULTIMATE COMPONENT AND CLADDING DESIGN WIND\\nPRESSURES SHALL NOT BE LESS THAN A NET PRESSURE OF 16.0 PSF ACTING IN EITHER DIRECTION NORMAL TO THE\\nSURFACE\\n3. POSITIVE PRESSURES ACT TOWARDS THE SURFACE. NEGATIVE PRESSURES ACT AWAY FROM THE SURFACE\\n4. LINEARLY INTERPOLATE PRESSURES FOR EFFECTIVE WIND AREAS BETWEEN THOSE SCHEDULED OR USE PRESSURES\\nFOR THE SMALLER EFFECTIVE WIND AREA\\n5. WALL EDGE ZONES CORRESPOND TO ROOF CORNER ZONES, AND WALL INTERIOR ZONES CORRESPOND TO ROOF\\nEDGE ZONES SHOWN IN THE DIAGRAM BELOW\\n6. SEE COMPONENT AND CLADDING DIAGRAM FOR ADDITIONAL INFORMATION\\nSLOPE 1/4:12\\nCOORDINATE HVAC\\nCOORDINATE HVAC\\nCHASE LOCATIONS W/ TRUSS -TYPICAL CHASE LOCATIONS W/\\nEXISTING BUILDING GC AND MECH DWGS 2-POINT BEARING GC AND MECH DWGS\\nNOTE: ROOF TRUSS PROFILES ARE DIAGRAMMATIC ONLY. COORDINATE FINAL TRUSS PROFILE, TRUSS DEPTH, ROOF\\nSLOPE, OVERHANGS AND OVERALL DIMENSIONS WITH ARCH DWGS\\nROOF TRUSS PROFILE COMPONENTS AND CLADDING WIND LOAD SCHEDULE\\n2 1\\nSCALE : 3/16\\\" = 1'-0\\\" SCALE : 1/16\\\" = 1'-0\\\"\", \"Colliers\\nEngineering\\n& Design\\nwww.colliersengineering.com\\nCopyright \\u00a9 2024. Colliers Engineering & Design All Rights Reserved. This drawing and all the\\ninformation contained herein is authorized for use only by the party for whom the services\\nwere contracted or to whom it is certified. This drawing may not be copied, reused, disclosed,\\ndistributed or relied upon for any other purpose without the express written consent of\\nColliers Engineering & Design.\\nFormerly Known as\\nREV DATE DESCRIPTION\\n11/17/2025 ISSUED FOR PERMIT\\nMARCELLO SPINELLI\\nAMAZING EXPLORERS\\nACADEMY\\n101 CHERRY ELM\\nDR.,\\nST AUGUSTINE, FL\\n32092\\nFL ENGINEERING\\nTAMPA\\nColliers 5471 W Waters Ave,\\nSte 100\\nTampa, FL 33634\\nPhone: 813.207.1061\\nEngineering\\nColliers Engineering &\\n& Design\\nDesign, Inc.\\nPROJECT MANAGER: DISCIPLINE LEAD:\\nJAM NC\\nDESIGNER: REVIEWER:\\nBB NC\\nDATE ISSUED: PROJECT NUMBER:\\n10/01/2025 25007085A\\nSHEET NAME:\\nLOAD DIAGRAMS\\nDRAWING NUMBER:\\nS010\"]], [[\"\"], [\"\"]], [[null, \"\", \"2 1 '1\\nENOZ ENOZ ENOZ\", \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", \"\"], [null, null, null, \"1 '1\\nENOZ ENOZ\", null, null, null, null, null, null, \"\", null, null], [null, null, null, null, null, null, null, null, null, \"'1\\nENOZ\", null, null, null], [\"\", \"\", null, null, null, null, null, null, null, null, null, null, null], [null, \"\", null, null, null, null, null, null, null, null, null, null, null], [null, null, null, null, null, null, null, null, null, \"\", null, null, null], [null, \"\", null, null, null, null, null, null, null, null, null, null, null], [null, null, null, null, \"\", null, \"\", null, \"\", null, \"\", null, null]], [[\"COMPONENT AND CLADDING WIND LOAD SCHEDULE\", null, null, null, null, null, null, null, null], [\"EFFECTIVE\\nWIND AREA\\n(SQ FT)\", \"ROOF\", null, null, null, \"WALLS\", null, \"PARAPETS\", null], [null, \"ZONE 1' (PSF)\", \"ZONE 1 (PSF)\", \"ZONE 2 (PSF)\", \"ZONE 3 (PSF)\", \"INTERIOR ZONE (PSF)\", \"EDGE ZONE (PSF)\", \"INTERIOR ZONE (PSF)\", \"EDGE ZONE (PSF)\"], [\"<= 10\", \"16.0/-32.2\", \"16.0/-56.1\", \"16.0/-74.0\", \"16.0/-100.8\", \"32.2/-34.9\", \"32.2/-43.0\", \"32.6/-74.8\", \"32.6/-102.0\"], [\"20\", \"16.0/-32.2\", \"16.0/-52.4\", \"16.0/-69.2\", \"16.0/-91.3\", \"30.8/-33.5\", \"30.8/-40.1\", \"31.1/-70.0\", \"31.1/-92.3\"], [\"50\", \"16.0/-32.2\", \"16.0/-47.5\", \"16.0/-62.9\", \"16.0/-78.7\", \"28.9/-31.6\", \"28.9/-36.3\", \"29.3/-63.7\", \"29.3/-79.7\"], [\"100\", \"16.0/-32.2\", \"16.0/-43.8\", \"16.0/-58.2\", \"16.0/-69.2\", \"27.5/-30.2\", \"27.5/-33.5\", \"27.8/-58.8\", \"27.8/-70.0\"], [\"200\", \"16.0/-27.7\", \"16.0/-40.1\", \"16.0/-53.4\", \"16.0/-59.7\", \"26.1/-28.7\", \"26.1/-30.6\", \"26.3/-54.0\", \"26.3/-60.4\"], [\">=500\", \"16.0/-21.8\", \"16.0/-35.2\", \"16.0/-47.1\", \"16.0/-47.1\", \"24.2/-26.8\", \"24.2/-26.8\", \"24.4/-47.7\", \"24.4/-47.7\"]], [[\"COORDINATE HVAC\"], [\"CHASE LOCATIONS W/\"], [\"GC AND MECH DWGS\"]], [[\"COORDINATE HVAC\"], [\"CHASE LOCATIONS W/\"], [\"GC AND MECH DWGS\"]]]","raw_tables":[[["8' - 5\"\nZONE 3\n\"5\n-\n'8\nCOMPONENT AND CLADDING WIND LOAD SCHEDULE\nEFFECTIVE ROOF WALLS PARAPETS\nWIND AREA\n2 1 '1 (SQ FT) ZONE 1' (PSF) ZONE 1 (PSF) ZONE 2 (PSF) ZONE 3 (PSF) INTERIOR ZONE (PSF) EDGE ZONE (PSF) INTERIOR ZONE (PSF) EDGE ZONE (PSF)\nENOZ ENOZ ENOZ\n<= 10 16.0/-32.2 16.0/-56.1 16.0/-74.0 16.0/-100.8 32.2/-34.9 32.2/-43.0 32.6/-74.8 32.6/-102.0\n20 16.0/-32.2 16.0/-52.4 16.0/-69.2 16.0/-91.3 30.8/-33.5 30.8/-40.1 31.1/-70.0 31.1/-92.3\n50 16.0/-32.2 16.0/-47.5 16.0/-62.9 16.0/-78.7 28.9/-31.6 28.9/-36.3 29.3/-63.7 29.3/-79.7\n100 16.0/-32.2 16.0/-43.8 16.0/-58.2 16.0/-69.2 27.5/-30.2 27.5/-33.5 27.8/-58.8 27.8/-70.0\n200 16.0/-27.7 16.0/-40.1 16.0/-53.4 16.0/-59.7 26.1/-28.7 26.1/-30.6 26.3/-54.0 26.3/-60.4\n>=500 16.0/-21.8 16.0/-35.2 16.0/-47.1 16.0/-47.1 24.2/-26.8 24.2/-26.8 24.4/-47.7 24.4/-47.7\nNOTES:\n1. SEE ASCE 7, CHAPTER 30, PART 3. BUILDINGS WITH H < 60 FT FOR DESIGN METHOD USED TO CALCULATE ULTIMATE\nCOMPONENT AND CLADDING WIND LOADS. LOADS SHOWN IN TABLE ABOVE ARE STRENGTH LEVEL COMPONENT AND\nCLADDING WIND LOADS, MULTIPLY BY 0.6 FOR ASD SERVICE LEVEL LOADS\n2. PER ASCE 7, CHAPTER 30, SECTION 30.2.2, THE MINIMUM ULTIMATE COMPONENT AND CLADDING DESIGN WIND\nPRESSURES SHALL NOT BE LESS THAN A NET PRESSURE OF 16.0 PSF ACTING IN EITHER DIRECTION NORMAL TO THE\nSURFACE\n3. POSITIVE PRESSURES ACT TOWARDS THE SURFACE. NEGATIVE PRESSURES ACT AWAY FROM THE SURFACE\n4. LINEARLY INTERPOLATE PRESSURES FOR EFFECTIVE WIND AREAS BETWEEN THOSE SCHEDULED OR USE PRESSURES\nFOR THE SMALLER EFFECTIVE WIND AREA\n5. WALL EDGE ZONES CORRESPOND TO ROOF CORNER ZONES, AND WALL INTERIOR ZONES CORRESPOND TO ROOF\nEDGE ZONES SHOWN IN THE DIAGRAM BELOW\n6. SEE COMPONENT AND CLADDING DIAGRAM FOR ADDITIONAL INFORMATION\nSLOPE 1/4:12\nCOORDINATE HVAC\nCOORDINATE HVAC\nCHASE LOCATIONS W/ TRUSS -TYPICAL CHASE LOCATIONS W/\nEXISTING BUILDING GC AND MECH DWGS 2-POINT BEARING GC AND MECH DWGS\nNOTE: ROOF TRUSS PROFILES ARE DIAGRAMMATIC ONLY. COORDINATE FINAL TRUSS PROFILE, TRUSS DEPTH, ROOF\nSLOPE, OVERHANGS AND OVERALL DIMENSIONS WITH ARCH DWGS\nROOF TRUSS PROFILE COMPONENTS AND CLADDING WIND LOAD SCHEDULE\n2 1\nSCALE : 3/16\" = 1'-0\" SCALE : 1/16\" = 1'-0\"","Colliers\nEngineering\n& Design\nwww.colliersengineering.com\nCopyright © 2024. Colliers Engineering & Design All Rights Reserved. This drawing and all the\ninformation contained herein is authorized for use only by the party for whom the services\nwere contracted or to whom it is certified. This drawing may not be copied, reused, disclosed,\ndistributed or relied upon for any other purpose without the express written consent of\nColliers Engineering & Design.\nFormerly Known as\nREV DATE DESCRIPTION\n11/17/2025 ISSUED FOR PERMIT\nMARCELLO SPINELLI\nAMAZING EXPLORERS\nACADEMY\n101 CHERRY ELM\nDR.,\nST AUGUSTINE, FL\n32092\nFL ENGINEERING\nTAMPA\nColliers 5471 W Waters Ave,\nSte 100\nTampa, FL 33634\nPhone: 813.207.1061\nEngineering\nColliers Engineering &\n& Design\nDesign, Inc.\nPROJECT MANAGER: DISCIPLINE LEAD:\nJAM NC\nDESIGNER: REVIEWER:\nBB NC\nDATE ISSUED: PROJECT NUMBER:\n10/01/2025 25007085A\nSHEET NAME:\nLOAD DIAGRAMS\nDRAWING NUMBER:\nS010"]],[[""],[""]],[[null,"","2 1 '1\nENOZ ENOZ ENOZ","",null,"",null,"",null,"","","",""],[null,null,null,"1 '1\nENOZ ENOZ",null,null,null,null,null,null,"",null,null],[null,null,null,null,null,null,null,null,null,"'1\nENOZ",null,null,null],["","",null,null,null,null,... [truncated, total 424869 bytes]
+---
+[2026-05-04T17:29:36.133730Z] GET /jobs/5e33f43f-daad-490c-bd2f-734f9c7eaea5/results -> 200 (35.5ms)
+  URL: http://127.0.0.1:8000/jobs/5e33f43f-daad-490c-bd2f-734f9c7eaea5/results
+  Request body: (empty)
+  Response body: {"job_id":"5e33f43f-daad-490c-bd2f-734f9c7eaea5","dispatch_results":{"0":{"id":712,"job_id":"5e33f43f-daad-490c-bd2f-734f9c7eaea5","page_idx":0,"page_type":"general_notes","sheet_num":"S001","sheet_title":"Colliers Engineering & \nDesign, Inc. Colliers Engineering\n&","legends_count":1,"has_legend":1,"has_schedule":0,"raw_tables_json":null,"raw_tables":null},"1":{"id":713,"job_id":"5e33f43f-daad-490c-bd2f-734f9c7eaea5","page_idx":1,"page_type":"general_notes","sheet_num":"S002","sheet_title":"Colliers Engineering & \nDesign, Inc. Colliers Engineering\n&","legends_count":4,"has_legend":1,"has_schedule":1,"raw_tables_json":null,"raw_tables":null},"2":{"id":714,"job_id":"5e33f43f-daad-490c-bd2f-734f9c7eaea5","page_idx":2,"page_type":"general_notes","sheet_num":"S003","sheet_title":"Colliers Engineering & \nDesign, Inc. Colliers Engineering\n&","legends_count":1,"has_legend":1,"has_schedule":1,"raw_tables_json":null,"raw_tables":null},"3":{"id":715,"job_id":"5e33f43f-daad-490c-bd2f-734f9c7eaea5","page_idx":3,"page_type":"schedule_sheet","sheet_num":"S010","sheet_title":"ZONE 2 ZONE 1 ZONE 1' EXISTING BUILDING PARAPETS EDGE ZONE (","legends_count":4,"has_legend":1,"has_schedule":1,"raw_tables_json":"[[[\"8' - 5\\\"\\nZONE 3\\n\\\"5\\n-\\n'8\\nCOMPONENT AND CLADDING WIND LOAD SCHEDULE\\nEFFECTIVE ROOF WALLS PARAPETS\\nWIND AREA\\n2 1 '1 (SQ FT) ZONE 1' (PSF) ZONE 1 (PSF) ZONE 2 (PSF) ZONE 3 (PSF) INTERIOR ZONE (PSF) EDGE ZONE (PSF) INTERIOR ZONE (PSF) EDGE ZONE (PSF)\\nENOZ ENOZ ENOZ\\n<= 10 16.0/-32.2 16.0/-56.1 16.0/-74.0 16.0/-100.8 32.2/-34.9 32.2/-43.0 32.6/-74.8 32.6/-102.0\\n20 16.0/-32.2 16.0/-52.4 16.0/-69.2 16.0/-91.3 30.8/-33.5 30.8/-40.1 31.1/-70.0 31.1/-92.3\\n50 16.0/-32.2 16.0/-47.5 16.0/-62.9 16.0/-78.7 28.9/-31.6 28.9/-36.3 29.3/-63.7 29.3/-79.7\\n100 16.0/-32.2 16.0/-43.8 16.0/-58.2 16.0/-69.2 27.5/-30.2 27.5/-33.5 27.8/-58.8 27.8/-70.0\\n200 16.0/-27.7 16.0/-40.1 16.0/-53.4 16.0/-59.7 26.1/-28.7 26.1/-30.6 26.3/-54.0 26.3/-60.4\\n>=500 16.0/-21.8 16.0/-35.2 16.0/-47.1 16.0/-47.1 24.2/-26.8 24.2/-26.8 24.4/-47.7 24.4/-47.7\\nNOTES:\\n1. SEE ASCE 7, CHAPTER 30, PART 3. BUILDINGS WITH H < 60 FT FOR DESIGN METHOD USED TO CALCULATE ULTIMATE\\nCOMPONENT AND CLADDING WIND LOADS. LOADS SHOWN IN TABLE ABOVE ARE STRENGTH LEVEL COMPONENT AND\\nCLADDING WIND LOADS, MULTIPLY BY 0.6 FOR ASD SERVICE LEVEL LOADS\\n2. PER ASCE 7, CHAPTER 30, SECTION 30.2.2, THE MINIMUM ULTIMATE COMPONENT AND CLADDING DESIGN WIND\\nPRESSURES SHALL NOT BE LESS THAN A NET PRESSURE OF 16.0 PSF ACTING IN EITHER DIRECTION NORMAL TO THE\\nSURFACE\\n3. POSITIVE PRESSURES ACT TOWARDS THE SURFACE. NEGATIVE PRESSURES ACT AWAY FROM THE SURFACE\\n4. LINEARLY INTERPOLATE PRESSURES FOR EFFECTIVE WIND AREAS BETWEEN THOSE SCHEDULED OR USE PRESSURES\\nFOR THE SMALLER EFFECTIVE WIND AREA\\n5. WALL EDGE ZONES CORRESPOND TO ROOF CORNER ZONES, AND WALL INTERIOR ZONES CORRESPOND TO ROOF\\nEDGE ZONES SHOWN IN THE DIAGRAM BELOW\\n6. SEE COMPONENT AND CLADDING DIAGRAM FOR ADDITIONAL INFORMATION\\nSLOPE 1/4:12\\nCOORDINATE HVAC\\nCOORDINATE HVAC\\nCHASE LOCATIONS W/ TRUSS -TYPICAL CHASE LOCATIONS W/\\nEXISTING BUILDING GC AND MECH DWGS 2-POINT BEARING GC AND MECH DWGS\\nNOTE: ROOF TRUSS PROFILES ARE DIAGRAMMATIC ONLY. COORDINATE FINAL TRUSS PROFILE, TRUSS DEPTH, ROOF\\nSLOPE, OVERHANGS AND OVERALL DIMENSIONS WITH ARCH DWGS\\nROOF TRUSS PROFILE COMPONENTS AND CLADDING WIND LOAD SCHEDULE\\n2 1\\nSCALE : 3/16\\\" = 1'-0\\\" SCALE : 1/16\\\" = 1'-0\\\"\", \"Colliers\\nEngineering\\n& Design\\nwww.colliersengineering.com\\nCopyright \\u00a9 2024. Colliers Engineering & Design All Rights Reserved. This drawing and all the\\ninformation contained herein is authorized for use only by the party for whom the services\\nwere contracted or to whom it is certified. This drawing may not be copied, reused, disclosed,\\ndistributed or relied upon for any other purpose without the express written consent of\\nColliers Engineering & Design.\\nFormerly Known as\\nREV DATE DESCRIPTION\\n11/17/2025 ISSUED FOR PERMIT\\nMARCELLO SPINELLI\\nAMAZING EXPLORERS\\nACADEMY\\n101 CHERRY ELM\\nDR.,\\nST AUGUSTINE, FL\\n32092\\nFL ENGINEERING\\nTAMPA\\nColliers 5471 W Waters Ave,\\nSte 100\\nTampa, FL 33634\\nPhone: 813.207.1061\\nEngineering\\nColliers Engineering &\\n& Design\\nDesign, Inc.\\nPROJECT MANAGER: DISCIPLINE LEAD:\\nJAM NC\\nDESIGNER: REVIEWER:\\nBB NC\\nDATE ISSUED: PROJECT NUMBER:\\n10/01/2025 25007085A\\nSHEET NAME:\\nLOAD DIAGRAMS\\nDRAWING NUMBER:\\nS010\"]], [[\"\"], [\"\"]], [[null, \"\", \"2 1 '1\\nENOZ ENOZ ENOZ\", \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", \"\"], [null, null, null, \"1 '1\\nENOZ ENOZ\", null, null, null, null, null, null, \"\", null, null], [null, null, null, null, null, null, null, null, null, \"'1\\nENOZ\", null, null, null], [\"\", \"\", null, null, null, null, null, null, null, null, null, null, null], [null, \"\", null, null, null, null, null, null, null, null, null, null, null], [null, null, null, null, null, null, null, null, null, \"\", null, null, null], [null, \"\", null, null, null, null, null, null, null, null, null, null, null], [null, null, null, null, \"\", null, \"\", null, \"\", null, \"\", null, null]], [[\"COMPONENT AND CLADDING WIND LOAD SCHEDULE\", null, null, null, null, null, null, null, null], [\"EFFECTIVE\\nWIND AREA\\n(SQ FT)\", \"ROOF\", null, null, null, \"WALLS\", null, \"PARAPETS\", null], [null, \"ZONE 1' (PSF)\", \"ZONE 1 (PSF)\", \"ZONE 2 (PSF)\", \"ZONE 3 (PSF)\", \"INTERIOR ZONE (PSF)\", \"EDGE ZONE (PSF)\", \"INTERIOR ZONE (PSF)\", \"EDGE ZONE (PSF)\"], [\"<= 10\", \"16.0/-32.2\", \"16.0/-56.1\", \"16.0/-74.0\", \"16.0/-100.8\", \"32.2/-34.9\", \"32.2/-43.0\", \"32.6/-74.8\", \"32.6/-102.0\"], [\"20\", \"16.0/-32.2\", \"16.0/-52.4\", \"16.0/-69.2\", \"16.0/-91.3\", \"30.8/-33.5\", \"30.8/-40.1\", \"31.1/-70.0\", \"31.1/-92.3\"], [\"50\", \"16.0/-32.2\", \"16.0/-47.5\", \"16.0/-62.9\", \"16.0/-78.7\", \"28.9/-31.6\", \"28.9/-36.3\", \"29.3/-63.7\", \"29.3/-79.7\"], [\"100\", \"16.0/-32.2\", \"16.0/-43.8\", \"16.0/-58.2\", \"16.0/-69.2\", \"27.5/-30.2\", \"27.5/-33.5\", \"27.8/-58.8\", \"27.8/-70.0\"], [\"200\", \"16.0/-27.7\", \"16.0/-40.1\", \"16.0/-53.4\", \"16.0/-59.7\", \"26.1/-28.7\", \"26.1/-30.6\", \"26.3/-54.0\", \"26.3/-60.4\"], [\">=500\", \"16.0/-21.8\", \"16.0/-35.2\", \"16.0/-47.1\", \"16.0/-47.1\", \"24.2/-26.8\", \"24.2/-26.8\", \"24.4/-47.7\", \"24.4/-47.7\"]], [[\"COORDINATE HVAC\"], [\"CHASE LOCATIONS W/\"], [\"GC AND MECH DWGS\"]], [[\"COORDINATE HVAC\"], [\"CHASE LOCATIONS W/\"], [\"GC AND MECH DWGS\"]]]","raw_tables":[[["8' - 5\"\nZONE 3\n\"5\n-\n'8\nCOMPONENT AND CLADDING WIND LOAD SCHEDULE\nEFFECTIVE ROOF WALLS PARAPETS\nWIND AREA\n2 1 '1 (SQ FT) ZONE 1' (PSF) ZONE 1 (PSF) ZONE 2 (PSF) ZONE 3 (PSF) INTERIOR ZONE (PSF) EDGE ZONE (PSF) INTERIOR ZONE (PSF) EDGE ZONE (PSF)\nENOZ ENOZ ENOZ\n<= 10 16.0/-32.2 16.0/-56.1 16.0/-74.0 16.0/-100.8 32.2/-34.9 32.2/-43.0 32.6/-74.8 32.6/-102.0\n20 16.0/-32.2 16.0/-52.4 16.0/-69.2 16.0/-91.3 30.8/-33.5 30.8/-40.1 31.1/-70.0 31.1/-92.3\n50 16.0/-32.2 16.0/-47.5 16.0/-62.9 16.0/-78.7 28.9/-31.6 28.9/-36.3 29.3/-63.7 29.3/-79.7\n100 16.0/-32.2 16.0/-43.8 16.0/-58.2 16.0/-69.2 27.5/-30.2 27.5/-33.5 27.8/-58.8 27.8/-70.0\n200 16.0/-27.7 16.0/-40.1 16.0/-53.4 16.0/-59.7 26.1/-28.7 26.1/-30.6 26.3/-54.0 26.3/-60.4\n>=500 16.0/-21.8 16.0/-35.2 16.0/-47.1 16.0/-47.1 24.2/-26.8 24.2/-26.8 24.4/-47.7 24.4/-47.7\nNOTES:\n1. SEE ASCE 7, CHAPTER 30, PART 3. BUILDINGS WITH H < 60 FT FOR DESIGN METHOD USED TO CALCULATE ULTIMATE\nCOMPONENT AND CLADDING WIND LOADS. LOADS SHOWN IN TABLE ABOVE ARE STRENGTH LEVEL COMPONENT AND\nCLADDING WIND LOADS, MULTIPLY BY 0.6 FOR ASD SERVICE LEVEL LOADS\n2. PER ASCE 7, CHAPTER 30, SECTION 30.2.2, THE MINIMUM ULTIMATE COMPONENT AND CLADDING DESIGN WIND\nPRESSURES SHALL NOT BE LESS THAN A NET PRESSURE OF 16.0 PSF ACTING IN EITHER DIRECTION NORMAL TO THE\nSURFACE\n3. POSITIVE PRESSURES ACT TOWARDS THE SURFACE. NEGATIVE PRESSURES ACT AWAY FROM THE SURFACE\n4. LINEARLY INTERPOLATE PRESSURES FOR EFFECTIVE WIND AREAS BETWEEN THOSE SCHEDULED OR USE PRESSURES\nFOR THE SMALLER EFFECTIVE WIND AREA\n5. WALL EDGE ZONES CORRESPOND TO ROOF CORNER ZONES, AND WALL INTERIOR ZONES CORRESPOND TO ROOF\nEDGE ZONES SHOWN IN THE DIAGRAM BELOW\n6. SEE COMPONENT AND CLADDING DIAGRAM FOR ADDITIONAL INFORMATION\nSLOPE 1/4:12\nCOORDINATE HVAC\nCOORDINATE HVAC\nCHASE LOCATIONS W/ TRUSS -TYPICAL CHASE LOCATIONS W/\nEXISTING BUILDING GC AND MECH DWGS 2-POINT BEARING GC AND MECH DWGS\nNOTE: ROOF TRUSS PROFILES ARE DIAGRAMMATIC ONLY. COORDINATE FINAL TRUSS PROFILE, TRUSS DEPTH, ROOF\nSLOPE, OVERHANGS AND OVERALL DIMENSIONS WITH ARCH DWGS\nROOF TRUSS PROFILE COMPONENTS AND CLADDING WIND LOAD SCHEDULE\n2 1\nSCALE : 3/16\" = 1'-0\" SCALE : 1/16\" = 1'-0\"","Colliers\nEngineering\n& Design\nwww.colliersengineering.com\nCopyright © 2024. Colliers Engineering & Design All Rights Reserved. This drawing and all the\ninformation contained herein is authorized for use only by the party for whom the services\nwere contracted or to whom it is certified. This drawing may not be copied, reused, disclosed,\ndistributed or relied upon for any other purpose without the express written consent of\nColliers Engineering & Design.\nFormerly Known as\nREV DATE DESCRIPTION\n11/17/2025 ISSUED FOR PERMIT\nMARCELLO SPINELLI\nAMAZING EXPLORERS\nACADEMY\n101 CHERRY ELM\nDR.,\nST AUGUSTINE, FL\n32092\nFL ENGINEERING\nTAMPA\nColliers 5471 W Waters Ave,\nSte 100\nTampa, FL 33634\nPhone: 813.207.1061\nEngineering\nColliers Engineering &\n& Design\nDesign, Inc.\nPROJECT MANAGER: DISCIPLINE LEAD:\nJAM NC\nDESIGNER: REVIEWER:\nBB NC\nDATE ISSUED: PROJECT NUMBER:\n10/01/2025 25007085A\nSHEET NAME:\nLOAD DIAGRAMS\nDRAWING NUMBER:\nS010"]],[[""],[""]],[[null,"","2 1 '1\nENOZ ENOZ ENOZ","",null,"",null,"",null,"","","",""],[null,null,null,"1 '1\nENOZ ENOZ",null,null,null,null,null,null,"",null,null],[null,null,null,null,null,null,null,null,null,"'1\nENOZ",null,null,null],["","",null,null,null,null,... [truncated, total 424869 bytes]
+---
+[2026-05-04T17:29:39.946460Z] GET /health -> 200 (1.7ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:30:09.938393Z] GET /health -> 200 (0.9ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:30:39.946891Z] GET /health -> 200 (1.6ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:31:09.962705Z] GET /health -> 200 (5.6ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:31:39.945438Z] GET /health -> 200 (1.2ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:32:09.935865Z] GET /health -> 200 (1.4ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:32:39.934523Z] GET /health -> 200 (1.1ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:33:09.944336Z] GET /health -> 200 (1.5ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:33:39.943966Z] GET /health -> 200 (1.3ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:34:09.941765Z] GET /health -> 200 (1.0ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:34:39.941303Z] GET /health -> 200 (1.2ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:35:09.946660Z] GET /health -> 200 (2.1ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:35:39.940607Z] GET /health -> 200 (1.3ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:36:09.943613Z] GET /health -> 200 (1.3ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:36:52.941767Z] GET /health -> 200 (1.3ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:37:09.947216Z] GET /health -> 200 (1.5ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:37:39.936193Z] GET /health -> 200 (1.5ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:38:09.934806Z] GET /health -> 200 (1.0ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:38:39.950962Z] GET /health -> 200 (1.3ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:39:09.946746Z] GET /health -> 200 (1.9ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:39:39.935992Z] GET /health -> 200 (1.0ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:40:09.936890Z] GET /health -> 200 (1.0ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:40:39.935136Z] GET /health -> 200 (1.2ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:41:09.935422Z] GET /health -> 200 (1.3ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:41:39.936083Z] GET /health -> 200 (1.6ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:42:09.935349Z] GET /health -> 200 (1.5ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:42:39.942235Z] GET /health -> 200 (2.1ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:43:09.937221Z] GET /health -> 200 (1.4ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:43:39.948740Z] GET /health -> 200 (1.6ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:44:09.936247Z] GET /health -> 200 (1.3ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:44:39.945694Z] GET /health -> 200 (1.1ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:45:09.936548Z] GET /health -> 200 (1.3ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:45:39.947519Z] GET /health -> 200 (1.5ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:46:09.945521Z] GET /health -> 200 (1.3ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:46:39.946741Z] GET /health -> 200 (1.8ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:47:09.944046Z] GET /health -> 200 (1.8ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:47:39.934367Z] GET /health -> 200 (1.2ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:48:09.943509Z] GET /health -> 200 (1.1ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:48:39.942684Z] GET /health -> 200 (1.8ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:49:09.943455Z] GET /health -> 200 (1.2ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:49:39.940345Z] GET /health -> 200 (1.3ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:50:09.933876Z] GET /health -> 200 (1.5ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:50:40.607477Z] GET /health -> 200 (1.4ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:51:10.619570Z] GET /health -> 200 (1.6ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:51:50.611047Z] GET /health -> 200 (1.6ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
+[2026-05-04T17:52:50.619662Z] GET /health -> 200 (1.0ms)
+  URL: http://127.0.0.1:8000/health
+  Request body: (empty)
+  Response body: {"status":"ok","version":"0.3.0-E.1"}
+---
