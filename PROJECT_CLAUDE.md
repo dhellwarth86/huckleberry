@@ -1,5 +1,26 @@
 # PROJECT_CLAUDE.md
 
+## Baseline definition + architectural truth (G chain target)
+
+**Architectural truth:** Backend is the database. Viewer (frontend) is the application window to edit, review, finalize document, and export. The viewer does not own state. Every edit a user makes is a database mutation. Every save is a database commit. Every export reads from the database. Refresh the browser, everything is still there because it lives in the database.
+
+This has been the design intent since Huckleberry v5. It is the contract every G-chain phase ships against.
+
+**Baseline (the engineering target that unlocks Phase F user testing):**
+
+1. Single upload point. The user uploads a bidset file to the backend in one place. The backend stores the file. There is no separate client-side dropzone for thumbnails — thumbnails come from the backend's stored copy.
+2. Dispatch fires on the backend's stored copy at the user's discretion (RUN DISPATCH button).
+3. Scope tab populates from the database after dispatch. User can pick a system. A retry control re-fetches scope when the tab is empty.
+4. Pages tab shows classified pages from the database. User can manually re-classify; the change writes back to the database.
+5. Viewer opens a page. All tools — calibrate, measure, line, polygon, rectangle, pin, exclude — save their edits to the database. No silent discards.
+6. Takeoff tab reads from the database (scope + user edits accumulated in the viewer) and shows the in-progress takeoff.
+7. Excel export reads from the database. Output: one folder per trade, one page per trade per file.
+8. Browser refresh persists everything. The user's session resumes from the database.
+
+When all eight items work end-to-end on a real bidset, baseline is met. Phase F (user testing + trade-module tuning) unlocks. No G-phase ships against any other definition of "done" until baseline is met.
+
+---
+
 **Read this first. Every session. No exceptions.**
 
 This document exists so every Claude session — extended-thinking, Claude Code, any future model version — starts from the same page. The recurring failure mode in this project has been Claude sessions doubting work that has already been validated, asking Daniel to re-explain state he has explained many times before, and probing/re-running things that don't need to be re-run.
