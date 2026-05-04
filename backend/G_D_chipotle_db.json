@@ -1,0 +1,1038 @@
+{
+  "job": {
+    "id": "2380b180-b93d-420b-8e69-6d220782a940",
+    "name": "diagnostic_chipotle",
+    "gc": null,
+    "location_city": null,
+    "location_state": null,
+    "trade_scope": "roofing",
+    "bid_due_date": null,
+    "notes": null,
+    "status": "dispatched",
+    "created_at": "2026-05-04T13:40:38.457205+00:00",
+    "updated_at": "2026-05-04T13:43:40.169495+00:00",
+    "pdf_path": "C:/huck stage 2/huckleberry/backend/test_plans/Chipotle - Tarpon Springs (Shell) - Tarpon Springs - Strategic Construction.pdf",
+    "pdf_sha1": "3a205fefdef9fe8d5962b33e0f4d3ce2a145cdc6",
+    "dispatch_complete": 1
+  },
+  "dispatch_results": [
+    {
+      "id": 586,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 0,
+      "page_type": "general_notes",
+      "sheet_num": "G000",
+      "sheet_title": "PROJECT AND CODE INFORMATION, DRAWING INDEX",
+      "legends_count": 1,
+      "has_legend": 1,
+      "has_schedule": 0,
+      "raw_tables_json": null
+    },
+    {
+      "id": 587,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 1,
+      "page_type": "detail_sheet",
+      "sheet_num": "G010",
+      "sheet_title": "ARCHITECTURAL SPECIFICATIONS",
+      "legends_count": 1,
+      "has_legend": 1,
+      "has_schedule": 0,
+      "raw_tables_json": null
+    },
+    {
+      "id": 588,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 2,
+      "page_type": "detail_sheet",
+      "sheet_num": "P300",
+      "sheet_title": "PLUMBING RISERS AND DETAILS",
+      "legends_count": 2,
+      "has_legend": 1,
+      "has_schedule": 0,
+      "raw_tables_json": null
+    },
+    {
+      "id": 589,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 3,
+      "page_type": "section",
+      "sheet_num": "G012",
+      "sheet_title": "ARCHITECTURAL SPECIFICATIONS",
+      "legends_count": 0,
+      "has_legend": 0,
+      "has_schedule": 0,
+      "raw_tables_json": null
+    },
+    {
+      "id": 590,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 4,
+      "page_type": "section",
+      "sheet_num": "G013",
+      "sheet_title": "ARCHITECTURAL SPECIFICATIONS",
+      "legends_count": 0,
+      "has_legend": 0,
+      "has_schedule": 0,
+      "raw_tables_json": null
+    },
+    {
+      "id": 591,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 5,
+      "page_type": "schedule_sheet",
+      "sheet_num": null,
+      "sheet_title": "",
+      "legends_count": 1,
+      "has_legend": 1,
+      "has_schedule": 0,
+      "raw_tables_json": "[[[\"3336 Grand Blvd. Suite 201\\nHoliday, Florida 34690\\nPh. 727. 815. 3336\\nFABER@FWHARCHITECTS.COM\", null, null], [null, null, \"\"], [null, \"\", null], [\"140 CARILLON PARKWAY\\nST. PETERSBURG, FL 33716\\nPh. 727. 726. 1115\", null, \"\"], [null, null, \"\"], [null, \"\", null], [\"\", null, \"\"], [null, null, \"\"], [\"GUY F. FABER\\nFL License No. AR0015323\\nseal\", null, null], [null, \"\", null], [\"\", \"snoitpircsed\\nnoisiver\", \"\"], [null, null, \"\"], [\"\", \"etad\", null], [\"1\", \".on\", null], [null, \"\", null], [\"LLIRG\\n98643\\n.EVA\\nLLEHS\\nSALLENIP\\nNACIXEM\\nLF\\n,SGNIRPS\\nGNIDLIUB\\nHTUOS\\nELTOPIHC\\nNOPRAT\\n5711\", null, \"\"], [null, null, \"\"], [null, \"\", null], [\"11.24.2025\\ndate\", null, \"\"], [null, null, \"\"], [\"25020\\ncomm. no.\", null, null], [\"ARCHITECTURAL\\nSPECIFICATIONS\", null, null], [\"G014\", null, null], [null, \"\", null]]]"
+    },
+    {
+      "id": 592,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 6,
+      "page_type": "schedule_sheet",
+      "sheet_num": "G015",
+      "sheet_title": "ARCHITECTURAL SPECIFICATIONS",
+      "legends_count": 4,
+      "has_legend": 1,
+      "has_schedule": 1,
+      "raw_tables_json": "[[[\"3336 Grand Blvd. Suite 201\\nHoliday, Florida 34690\\nPh. 727. 815. 3336\\nFABER@FWHARCHITECTS.COM\", null, null], [null, null, \"\"], [null, \"\", null], [\"140 CARILLON PARKWAY\\nST. PETERSBURG, FL 33716\\nPh. 727. 726. 1115\", null, \"\"], [null, null, \"\"], [null, \"\", null], [\"\", null, \"\"], [null, null, \"\"], [\"GUY F. FABER\\nFL License No. AR0015323\\nseal\", null, null], [null, \"\", null], [\"\", \"snoitpircsed\\nnoisiver\", \"\"], [null, null, \"\"], [\"\", \"etad\", null], [\"1\", \".on\", null], [null, \"\", null], [\"LLIRG\\n98643\\n.EVA\\nLLEHS\\nSALLENIP\\nNACIXEM\\nLF\\n,SGNIRPS\\nGNIDLIUB\\nHTUOS\\nELTOPIHC\\nNOPRAT\\n5711\", null, \"\"], [null, null, \"\"], [null, \"\", null], [\"11.24.2025\\ndate\", null, \"\"], [null, null, \"\"], [\"25020\\ncomm. no.\", null, null], [\"ARCHITECTURAL\\nSPECIFICATIONS\", null, null], [\"G015\", null, null], [null, \"\", null]]]"
+    },
+    {
+      "id": 593,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 7,
+      "page_type": "schedule_sheet",
+      "sheet_num": "G016",
+      "sheet_title": "ARCHITECTURAL SPECIFICATIONS",
+      "legends_count": 2,
+      "has_legend": 1,
+      "has_schedule": 0,
+      "raw_tables_json": "[[[\"3336 Grand Blvd. Suite 201\\nHoliday, Florida 34690\\nPh. 727. 815. 3336\\nFABER@FWHARCHITECTS.COM\", null, null], [null, null, \"\"], [null, \"\", null], [\"140 CARILLON PARKWAY\\nST. PETERSBURG, FL 33716\\nPh. 727. 726. 1115\", null, \"\"], [null, null, \"\"], [null, \"\", null], [\"\", null, \"\"], [null, null, \"\"], [\"GUY F. FABER\\nFL License No. AR0015323\\nseal\", null, null], [null, \"\", null], [\"\", \"snoitpircsed\\nnoisiver\", \"\"], [null, null, \"\"], [\"\", \"etad\", null], [\"1\", \".on\", null], [null, \"\", null], [\"LLIRG\\n98643\\n.EVA\\nLLEHS\\nSALLENIP\\nNACIXEM\\nLF\\n,SGNIRPS\\nGNIDLIUB\\nHTUOS\\nELTOPIHC\\nNOPRAT\\n5711\", null, \"\"], [null, null, \"\"], [null, \"\", null], [\"11.24.2025\\ndate\", null, \"\"], [null, null, \"\"], [\"25020\\ncomm. no.\", null, null], [\"ARCHITECTURAL\\nSPECIFICATIONS\", null, null], [\"G016\", null, null], [null, \"\", null]], [[\"HAB\", \"WHAT\", \"COLOR\", \"SHEEN\"], [\"Exterior Traffic Safety Marking\", \"PPG A-2886B Type II, Low VOC Fast Dry\\nSolvent\", \"PPG White Zone Marking\", \"Satin\"], [\"Exterior Traffic Safety Marking\", \"PPG A-2886B Type II, Low VOC Fast Dry\\nSolvent\", \"PPG Yellow Zone Marking\", \"Satin\"], [\"Exterior Galvanized Metal, Flashing and\\nPrefinished Metal Wall Panels\", \"PPG Pitt-Tech Plus EP 90-1170 DTM\\nSeries\", \"PPG 1001-7 \\\"Black Magic\\\"\", \"Satin\"], [\"Exterior (Roof Mounted) Gas Piping\", \"PPG Pitt-Tech Plus EP 90-1610 DTM\\nSeries\", \"Yellow\", \"Semi-Gloss\"], [\"Exterior and Interior Gas Piping, Where\\nExposed\", \"PPG Pitt-Tech Plus EP 90-1610 DTM\\nSeries\", \"Match surrounding\\nfinishes/verify with architect\", \"Semi-Gloss\"], [\"Exterior CMU Primer\", \"PPG Speedhide Interior/Exterior\\nMasonry Hi Fill Latex Block Filler\", \"White\", \"Flat\"], [\"Exterior CMU\", \"PPG Pitt-Tech Plus EP 90-1610 DTM\\nSeries\", \"PPG 1001-7 \\\"Black Magic\\\"\", \"Semi-Gloss\"], [\"Exterior Ferrous Metals\", \"PPG Pitt-Tech Plus EP 90-1610 DTM\\nSeries\", \"PPG 1001-7 \\\"Black Magic\\\"\", \"Semi-Gloss\"], [\"Exterior Wood\", \"PPG Permanizer 749-10 Series or PPG\\nAcri-Shield PP649 Series\", \"PPG 1001-7 \\\"Black Magic\\\"\", \"Semi-Gloss\"], [\"Exterior Stucco and EIFS\", \"PPG Perma-Crete 4-22 Series High\\nBuild Acrylic Topcoat\", \"PPG 1010-1 \\\"Pegasus\\\"\", \"Flat\"], [\"Interior Doors, Door Frames, Rails and\\nRail Frames, Where Specified\", \"PPG Breakthrough V62-510\\nSeries\", \"PPG 1001-7 \\\"Black Magic\\\"\", \"Semi-Gloss\"], [\"Interior Ferrous Metals, Where Specified\", \"PPG Breakthrough V62-510\\nSeries\", \"PPG 1013-5 \\\"Victorian\\nPewter\\\"\", \"Semi-Gloss\"], [\"Dining Room and Passage Gyp. Bd.\", \"PPG Pure Performance Zero VOC 9-310\\nSeries\", \"PPG 1010-1 \\\"Pegasus\\\"\", \"Eggshell\"], [\"Dining Room and Passage Gyp. Bd. Ceiling\", \"PPG Pure Performance Zero VOC 9-100\\nSeries or PPG\\nSpeedhide 6-4110XI\", \"PPG 1010-1 \\\"Pegasus\\\"\", \"Flat\"], [\"Restroom, Cooking, Kitchen and Serving\\nArea Soffit Gyp. Bd.\", \"PPG Pure Performance Zero VOC 9-500\\nSeries\", \"PPG 1041-1 \\\"Moonlit Snow\\\"\", \"Eggshell\"], [\"Interior Metal Columns\", \"PPG Pitt-Tech Plus EP 90-1170 DTM\\nSeries\", \"PPG 1001-7 \\\"Black Magic\\\"\", \"Satin\"], [\"Interior Metal Roof Deck\", \"PPG Pitt-Tech Plus EP 90-1170 DTM\\nSeries\", \"PPG 1010-1 \\\"Pegasus\\\"\", \"Satin\"], [\"Patio Railing\", \"PPG Durethane DTM Urethane 95-3300\\nSeries\", \"PPG 1001-7 \\\"Black Magic\\\"\", \"Gloss\"]]]"
+    },
+    {
+      "id": 594,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 8,
+      "page_type": "general_notes",
+      "sheet_num": "SP102",
+      "sheet_title": "DUMPSTER ENCLOSURE PLAN AND DETAILS",
+      "legends_count": 0,
+      "has_legend": 0,
+      "has_schedule": 0,
+      "raw_tables_json": null
+    },
+    {
+      "id": 595,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 9,
+      "page_type": "schedule_sheet",
+      "sheet_num": null,
+      "sheet_title": "",
+      "legends_count": 0,
+      "has_legend": 0,
+      "has_schedule": 0,
+      "raw_tables_json": "[[[\"LLEHS\\nNACIXEM\\nGNIDLIUB\\nELTOPIHC\", \"A\\n43\\nSALLENIP\\nLF\\n,SGNIRPS\\nHTUOS\\nNOPRAT\\n5711\", \"\"]], [[null, \"\"], [\"25020\\ncomm. no.\", null], [\"DUMPSTER\\nENCLOSURE PLAN\\nAND DETAILS\", null], [\"SP102\", null]], [[\"\"], [\"\"]]]"
+    },
+    {
+      "id": 596,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 10,
+      "page_type": "elevation",
+      "sheet_num": "A300",
+      "sheet_title": "EXTERIOR ELEVATIONS",
+      "legends_count": 0,
+      "has_legend": 0,
+      "has_schedule": 0,
+      "raw_tables_json": null
+    },
+    {
+      "id": 597,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 11,
+      "page_type": "roof_plan",
+      "sheet_num": "A140",
+      "sheet_title": "ROOF PLAN AND DETAILS",
+      "legends_count": 0,
+      "has_legend": 0,
+      "has_schedule": 0,
+      "raw_tables_json": null
+    },
+    {
+      "id": 598,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 12,
+      "page_type": "section",
+      "sheet_num": "A400",
+      "sheet_title": "WALL SECTIONS",
+      "legends_count": 1,
+      "has_legend": 1,
+      "has_schedule": 1,
+      "raw_tables_json": null
+    },
+    {
+      "id": 599,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 13,
+      "page_type": "schedule_sheet",
+      "sheet_num": null,
+      "sheet_title": "",
+      "legends_count": 2,
+      "has_legend": 1,
+      "has_schedule": 1,
+      "raw_tables_json": "[[[\"3 2\\nA400 A402\\nMTL-1 PREFINISHED 24 GA. METAL DRIP LINE OF ROOF BEYOND(DASHED)\\nEDGE / GRAVEL STOP (4\\\" OR AS\\nEQUIPMENT SCREEN\\nINDICATED)\\nMTL-1\\n20'-0\\\" A.F.F.\\nT.O. STEEL FRAME\\nEQUIPMENT SCREEN 18'-8\\\" A.F.F.\\nT.O. MASONRY\\nPREFINISHED METAL WALL\\n16'-0\\\" A.F.F. COPING MTL-1\\nT.O. MASONRY\\nTENANT SIGNAGE SHOWN FOR\\nEF-2 EIFS SYSTEM, REFER TO\\nREFERENCE ONLY. COORDINATE\\nSPECIFICATIONS\\nFINAL LOCATIONS WITH TENANT.\\nPROVIDE CONDUIT FOR POWER AND\\nLIGHT FIXTURE, REFER TO\\nPLYWOOD BLOCKING AS NECESSARY 1\\nELECTRICAL DRAWINGS.\\nCOLOR: WHITE, TO MATCH\\nWALL SURFACE\\n10'-0\\\" A.F.F.\\nB.O. CANOPY\\nGAS METER, REFER PREFINISHED METAL\\nROOF ACCESS\\nTO PLUMBING CANOPY BY AMERICAN\\nLADDER WITH\\nDRAWINGS PT-1 PRODUCTS, INC (API) MTL-1\\nLOCKABLE GATE\\n0000\\nPT-2\\nERUTXIF EIFS CONTROL JOINT, TYP.\\nEF-1 EIFS SYSTEM, REFER TO\\n\\\"0-'01\\nSPECIFICATIONS\\n\\\"0-'9 THIN BRICK VENEER\\nTOOLED\\nCONTROL BRK-1\\n.O.B\\nJOINT IN EIFS,\\nTYP.\\n0'-0\\\" A.F.F.\\nFINISH FLOOR\\nCOORDINATE AND HOLLOW 17'-4\\\" ELECTRICAL\\nPROVIDE BUILDING METAL METER AND\\nADDRESSING PER FIRE DOOR AND DISCONNECT PT-1\\nMARSHAL'S DIRECTION FRAME PT-2\\nNORTH ELEVATION\\n1\\nSCALE: 1/4\\\" = 1'-0\\\"\\n2 1 3\\nA401 A401 A402\\nLINE OF ROOF LIGHT FIXTURE, REFER TO\\nBEYOND(DASHED) ELECTRICAL DRAWINGS\\nTHIN BRICK VENEER PREFINISHED METAL WALL\\nBRK-1 COPING MTL-1\\n18'-8\\\" A.F.F.\\nT.O. MASONRY\\nTENANT SIGNAGE SHOWN FOR REFERENCE\\nONLY. COORDINATE FINAL LOCATIONS WITH\\nTENANT. PROVIDE CONDUIT FOR POWER AND\\nPLYWOOD BLOCKING AS NECESSARY\\nPREFINISHED METAL\\nCANOPY BY AMERICAN\\nPRODUCTS, INC (API) MTL-1\\n10'-0\\\" A.F.F. 10'-0\\\" A.F.F.\\nB.O. CANOPY T.O. METAL PANEL\\nLIGHT FIXTURE, REFER TO ELECTRICAL\\nDRAWINGS\\nERUTXIF COLOR: BLACK, TO MATCH WALL\\nSURFACE\\nEIFS SYSTEM, REFER TO\\n\\\"0-'01 ERUTXIF\\nTHGIL SPECIFICATIONS EF-2\\nDRIVE-THRU PICK-UP WINDOW, .O.C \\\"0-'6\\nTHGIL\\nREFER TO SHEET A602 AND\\nSPECIFICATIONS SF-2\\n0'-0\\\" A.F.F.\\n.O.C\\nFINISH FLOOR\\nPREFINISHED SECONDARY ROOF DRAIN PREFINISHED SECONDARY ROOF DRAIN MASONRY MASONRY\\nALUMINUM PANEL NOZZLE AT 12\\\" A.F.F. TO C.L. ALUMINUM PANEL NOZZLE AT 12\\\" A.F.F. TO C.L. CONTROL CONTROL\\nMTL-1 MTL-1 JOINT JOINT\\n24'-4\\\" 24'-4\\\"\\nWEST ELEVATION\\n2\\nSCALE: 1/4\\\" = 1'-0\\\"\", null, null, null, null, null, null], [\"GENERAL NOTES\", \"CRITICAL NOTES\", \"EXTERIOR FINISH NOTES\", \"EXTERIOR FINISH SCHEDULE\", null, null, null], [\"TO THE FULLEST EXTENT POSSIBLE, BUILDING COMPONENTS WILL BE MARKED AS\\n'TYPICAL' (TYP.). WHERE SO, KEYED NOTES WILL NOT BE DUPLICATED FOR\\nCOMPONENTS OF LIKE KIND. SHOULD THE CONTRACTOR REQUIRE CLARIFICATION\\nOF ANY SUCH COMPONENT, A REQUEST FOR INFORMATION (RFI) SHALL BE\\nSUBMITTED TO THE ARCHITECT PRIOR TO BID\\nSIGNAGE NOTES:\\nANY BUILDING MOUNTED SIGNAGE DEPICTED IN THESE DOCUMENTS IS FOR\\nCOORDINATION PURPOSES ONLY AND IS NOT INTENDED FOR FABRICATION OR\\nINSTALLATION BY THE GENERAL CONTRACTOR. IT SHALL BE UNDERSTOOD THAT ALL\\nEXTERIOR BUILDING MOUNTED AND SITE SIGNAGE WILL BE PERMITTED SEPARATELY\\nBY THE OWNER'S SIGN VENDOR. AT THAT TIME, COMPLETE DETAILS INCLUDING, BUT\\nNOT LIMITED TO, SIGN FABRICATION, SIGN INSTALLATION, SIGN AREA AND\\nQUANTITIES, ETC. SHALL BE SUBMITTED (BY THE SIGN VENDOR) FOR PERMIT AND\\nAPPROVAL PRIOR TO COMMENCEMENT OF WORK.\\nSEE ELECTRICAL DRAWINGS FOR POWER REQUIREMENTS\\nFACILITY ADDRESS REQUIREMENTS:\\nNEW AND EXISTING BUILDINGS SHALL HAVE APPROVED ADDRESS NUMBERS\\nPLACED IN A POSITION TO BE PLAINLY LEGIBLE AND VISIBLE FROM THE STREET OR\\nROAD FRONTING THE PROPERTY\\nADDRESS NUMBERS SHALL CONTRAST WITH THEIR BACKGROUND. NUMERALS\\nSHALL BE AT LEAST 6 INCHES IN HEIGHT\\nWHERE ADDRESS IDENTIFICATION IS REQUIRED BY THE FIRE OFFICIAL ON OTHER\\nELEVATIONS OF BUILDINGS, SUCH NUMERALS SHALL NOT BE LESS THAN SIX INCHES\\nIN HEIGHT\\nADDRESS NUMBERS SHALL BE ARABIC NUMERALS OR ALPHABET LETTERS\", \"WALL FINISHES AT PARAPET RETURNS:\\nTHE DESIGN INTENT FOR PARAPET WALLS THAT RETURN ONTO THE ROOF SURFACE\\nIS THAT THEY, WHERE EXPOSED TO VIEW, ARE TO BE PROVIDED WITH WALL\\nFINISHES THAT ARE CONSISTENT WITH THE ADJACENT BUILDING ELEVATIONS. FOR\\nEXAMPLE, IF CEMENT PLASTER IS PROVIDED ALONG THE MAIN BUILDING ELEVATION,\\nTHE PARAPET RETURNS ARE TO BE PROVIDED WITH EQUAL FINISHES\\nTHE SHELL GENERAL CONTRACTOR SHALL FULLY REVIEW AND COORDINATE WALL\\nFINISHES WITH APPLICABLE TRADES PRIOR TO INSTALLATION. UNDER NO\\nCIRCUMSTANCES WILL EXPOSED ROOF MEMBRANE BE ACCEPTED AS A WALL FINISH\\nAT THE PARAPET RETURN CONDITIONS NOTED\\nWALL COUNTERFLASHING DETAILS:\\nREFER TO WALL SECTIONS AND ENLARGED DETAILS FOR THE SPECIFIED\\nCOUNTERFLASHING REQUIRED ABOVE CANOPIES, AWNINGS, PILASTER CAPS AND,\\nWHERE APPLICABLE, TRIM MOULDING. IN SUCH CASES, THE DESIGN INTENT IS TO\\nLIMIT THE VISIBILITY OF COUNTERFLASHINGS BY INCORPORATING LOW PROFILE OR\\nCONCEALED FLASHINGS\\nTHE SHELL GENERAL CONTRACTOR SHALL FULLY REVIEW AND COORDINATE ALL\\nWALL COUNTERFLASHING REQUIREMENTS WITH THE ROOFER AND APPLICABLE\\nTRADES PRIOR TO INSTALLATION. SHOULD CLARIFICATION OF ANY DETAIL BE\\nNEEDED, THE SHELL GENERAL CONTRACTOR SHALL SUBMIT AN RFI TO THE\\nARCHITECT PRIOR TO INSTALLATION\\nUNDER NO CIRCUMSTANCES WILL EXPOSED SINGLE-PLY MEMBRANE BE AN\\nACCEPTABLE MEANS OF FLASHING AT THE CONDITIONS NOTED\", \"EXTERIOR INSULATION FINISH SYSTEM (EIFS) REQUIREMENTS: ALUMINUM COPING AND DRIP EDGES:\\n1. THE STANDARD FINISH COAT OVER CEMENT PLASTER SURFACES SHALL BE AN 1. ALL COMPONENTS SHALL BE PREFINISHED WITH A FACTORY APPLIED, KYNAR 500\\nACRYLIC EIFS FINISH COAT, \\\"DRYVIT TAFTS\\\" (OPTION 1) AS MANUFACTURED BY DRYVIT FINISH OR MANUFACTURER EQUIVALENT.\\nSYSTEMS, INC. COLORS, AS SPECIFIED ON THE EXTERIOR FINISH SCHEDULE, HAVE\\nBEEN SELECTED FROM DRYVIT'S STANDARD COLORS. THIS SYSTEM CONSISTS OF A\\nTINTED PRIMER AND TEXTURED ACRYLIC FINISH WITH INTEGRAL COLOR. THE ELECTRICAL GEAR, ROOF LADDER AND DOOR AND FRAME ON THE (REAR) FACADE:\\nSPECIFIED SYSTEM HAS A 10-YEAR MANUFACTURER WARRANTY\\n1. ALL COMPONENTS SHALL BE PAINTED\\n2. WHERE A CUSTOM COLOR IS REQUIRED FOR THE FINISH COAT OVER CEMENT\\nPLASTER SURFACES, AN ACRYLIC EIFS FINISH COAT, \\\"DRYVIT TAFTS\\\" (OPTION 1) WITH\\nSTRATOTONE COLOR MATCHING SYSTEM AS MANUFACTURED BY DRYVIT SYSTEMS, GENERAL:\\nINC. SHALL BE PROVIDED. CUSTOM COLORS ARE SPECIFIED ON THE EXTERIOR FINISH\\nSCHEDULE. THIS SYSTEM CONSISTS OF A TINTED PRIMER AND TEXTURED ACRYLIC 1. WHERE PLASTER REVEALS ARE NOT PREFINISHED, REVEALS SHALL BE PAINTED TO\\nFINISH WITH INTEGRAL COLOR. THE SPECIFIED SYSTEM HAS A 5-YEAR MANUFACTURER MATCH THE ADJACENT WALL COLOR UNLESS OTHERWISE NOTED\\nWARRANTY\\n2. ALL EXPOSED, BUILDING MOUNTED UTILITIES AND CONDUITS SHALL BE PAINTED TO\\n3. ALL FINISH COAT TEXTURES SHALL BE \\\"SANDPEBBLE\\\" UNLESS OTHERWISE NOTED MATCH THE ADJACENT WALL SURFACES UNLESS OTHERWISE NOTED\\n4. WHERE FOAM TRIM, CORNICE MOLDING OR OTHER SHAPES ARE SPECIFIED,\\nCOMPONENTS SHALL BE AS MANUFACTURED BY \\\"DRYVIT SHAPES BY ACROCORE\\\" AND\\nSHALL BE COMPRISED OF A TYPE 1 CLASSIFICATION EXPANDED POLYSTYRENE\\nWRAPPED IN A FLEXIBLE IMPACT RESISTANT FIBERGLASS MESH AND COATED WITH A THE CONTRACTOR SHALL REQUEST A COLORIZED COPY OF THE ELEVATIONS FROM\\nFACTORY APPLIED POLYMER MODIFIED, FLEXIBLE CEMENT COATING THE ARCHITECT PRIOR TO ORDERING OR APPLYING EIFS, PAINT AND OTHER\\nEXTERIOR FINISHES. THE COLORIZED ELEVATIONS WILL HELP CONFIRM COLORS\\n5. ALL GENERAL CONTRACTOR BIDS SHALL INCLUDE THE ABOVE STATED SYSTEMS / AND ASSIST THE PAINTER WHERE COLOR CHANGES OCCUR\\nPRODUCTS IN THEIR BASE BIDS. SUBSTITUTIONS WILL BE CONSIDERED FOR APPROVAL\\nBUT ONLY IF FULLY QUALIFIED IN BIDS INCLUDING COMPLETE SYSTEM / PRODUCT\\nSPECIFICATIONS AND ASSOCIATED COSTS\", \"CEMENT PLASTER / EIFS FINISHES - ACRYLIC DPR EIFS FINISH\\nWITH INTEGRAL COLOR AND TEXTURE. COLOR MATCH REFERENCED PAINTS\", null, null, null], [null, null, null, \"TAG\", \"MANUFACTURER\", \"SHERWIN WILLIAMS COLOR\", \"DESCRIPTION\"], [null, null, null, \"EF-1\", \"DRYVIT\", \"PPG \\\"PEGASUS\\\"\", \"CUSTOM DRYVIT COLOR\"], [null, null, null, \"EF-2\", \"DRYVIT\", \"PPG \\\"BLACK\\\"\", \"CUSTOM DRYVIT COLOR\"], [null, null, null, \"PAINT FINISHES\", null, null, null], [null, null, null, \"PT-1\", \"PPG\", \"\\\"PEGASUS\\\"\", \"\"], [null, null, null, \"PT-2\", \"PPG\", \"\\\"BLACK\\\"\", \"\"], [null, null, null, \"BRICK\", null, null, null], [null, null, null, \"BRK-1\", \"BELDEN BRICK\", \"\\\"SIENNA IRONSPOT SMOOTH\\\"\", \"THIN BRICK\"], [null, null, null, \"METAL COPING, TRIM, PANELING, CANOPIES, EQUIPMENT SCREEN\", null, null, null], [null, null, null, \"MTL-1\", \"VARIES\", \"\\\"MATTE BLACK\\\"\", \"KYNAR 500\"], [null, null, null, \"\", \"\", \"\", \"\"], [null, null, null, \"ALUMINUM STOREFRONT / DRIVE-THRU PICK-UP WINDOW\", null, null, null], [null, null, null, \"SF-1\", \"KAWNEER\", \"\\\"BLACK\\\"\", \"\"], [null, null, null, \"SF-2\", \"QUICKSERV\", \"\\\"BRONZE\\\"\", \"\"], [null, null, null, \"\", null, null, null]], [[\"3336 Grand Blvd. Suite 201\\nHoliday, Florida 34690\\nPh. 727. 815. 3336\\nFABER@FWHARCHITECTS.COM\", null, null], [null, null, \"\"], [null, \"\", null], [\"140 CARILLON PARKWAY\\nST. PETERSBURG, FL 33716\\nPh. 727. 726. 1115\", null, \"\"]], [[null, null, null, null, null, \"\", null, null, null, null, null, null, null], [null, null, null, null, \"\", \"\", null, \"\", null, null, null, \"\", null], [\"\", null, \"\", null, \"\", \"\", null, \"\", null, null, null, \"\", null], [\"\", null, null, null, null, \"\", \"1\", \"\", null, null, null, \"\", null], [null, \"\", null, null, null, null, null, null, \"1\", null, null, \"\", null], [null, null, null, null, null, null, null, null, null, null, null, \"\", \"\"], [null, null, null, null, null, null, null, null, null, null, null, \"\", \"\"], [null, null, null, null, null, null, null, null, null, null, null, \"\", null], [null, null, null, null, null, null, null, null, null, null, null, \"\", \"\"], [null, null, null, null, null, null, null, null, null, null, null, \"\", null], [null, null, null, null, null, null, null, null, null, null, null, \"\", null], [null, null, null, null, null, null, null, null, null, null, null, \"\", null], [null, null, null, null, null, null, null, null, null, null, null, \"\", null], [null, null, null, null, null, null, null, null, null, null, null, \"\", \"\"], [null, null, null, null, null, null, null, null, null, null, null, \"\", null], [null, null, null, null, null, null, null, null, null, null, null, \"\", null], [null, null, null, null, null, null, null, null, null, null, null, \"\", null], [null, null, null, null, null, null, null, null, null, null, null, \"\", null], [null, \"0000\\nERUTXIF\\n\\\"0-'9\\n.O.B\", null, null, null, \"\", \"\", null, \"ROOF ACCESS\\nLADDER WITH\\nLOCKABLE GATE\\nPT-2\\n\\\"0-'01\\nTOOLED\\nCONTROL\\nJOINT IN EIFS,\\nTYP.\", \"GAS METER, REFER\\nTO PLUMBING\\nDRAWINGS PT-1\", null, \"\", null], [null, null, null, null, null, null, null, null, null, null, null, \"\", null], [null, null, null, null, null, null, null, null, null, null, null, \"\", null], [null, null, null, null, null, null, null, null, null, null, null, \"\", null], [null, null, null, null, null, null, null, null, null, null, null, \"\", null], [null, null, null, null, null, null, null, null, null, null, null, \"\", null], [null, null, null, null, null, null, null, null, null, null, null, \"\", \"\"], [null, null, null, null, null, null, null, null, null, null, null, \"\", \"\"], [null, null, null, null, null, null, null, null, null, null, null, \"\", null], [null, null, null, null, null, null, null, null, null, null, null, \"\", \"\"], [null, null, null, null, null, null, null, null, null, null, null, \"\", null], [null, null, null, null, null, null, null, null, null, null, null, \"\", null], [null, null, null, null, null, null, null, null, null, null, null, \"\", null], [null, null, null, null, null, null, null, null, null, null, null, \"\", null], [null, null, null, \"\", null, \"\", \"\", null, null, \"\", \"\", null, null]], [[null, \"\", null], [\"\", null, \"\"], [\"GUY F. FABER\\nFL License No. AR0015323\\nseal\", null, \"\"], [null, \"\", null], [\"SNALP\\nLIVIC\\n&\\nTNANET\\n/W\\nNOITANIDROOC\\nREP\\nDESIVER\", \"snoitpircsed\\nnoisiver\", \"\"], [\"6202.92.10\", \"etad\", null]], [[null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null], [\"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, \"\", null, null, \"\", \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, \"\", null, \"\", null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null], [\"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null], [\"\", \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", \"\", \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", \"\", \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\"], [\"\", \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", \"\", \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", \"\", \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\"], [\"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null], [\"\", \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", \"\", \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", \"\", \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\"], [\"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null], [\"\", null, null, null, \"\", null, null, null, null, \"\", \"\", \"\", null, null, null, null, null, null, null, \"\", \"\", null, null, null, null, null, null, null, null, null, null, null, \"\", null, \"\", null, null, null, null, null, \"\", null, \"\", null, null, null, null, null, \"\", null, null, null, null, null, null, null, \"\", null, null, null, null, null, \"\", \"\", null, null, \"\", \"\", null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, \"\", null, null, null, null, \"\", \"\", null, \"\", null, \"\", null, null, null, null, \"\", null, \"\", null, \"\", \"\", \"\", null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, \"\", null, null, null, null, null, null, \"\", null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, \"\", null, null, null, \"\", \"\", null, null, null, null, \"\", null, null, null, \"\", null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null], [\"\", null, null, null, \"\", null, \"\", null, null, \"\", \"\", \"\", null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, \"\", \"\", null, null, null, null, null, null, \"\", null, \"\", null, null, null, null, null, \"\", null, null, null, null, null, null, null, \"\", null, null, null, null, null, \"\", \"\", null, null, \"\", \"\", null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, \"\", \"\", null, \"\", null, \"\", null, null, null, null, \"\", null, \"\", null, \"\", \"\", \"\", null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, \"\", null, null, null, null, \"\", null, null, null, \"\", \"\", null, null, null, null, \"\", null, null, null, \"\", null, null, null, null, null, null, \"\", null, null, null, null, null, \"\", null, null, null, null, null, null, null], [\"\", \"\", null, \"\", \"\", \"\", \"\", \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", \"\", \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", \"\", \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\"], [\"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null], [\"\", \"\", null, \"\", \"\", \"\", \"\", \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", \"\", \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", \"\", \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\"], [\"\", \"\", null, \"\", \"\", \"\", \"\", \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", \"\", \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\"], [\"\", \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", \"\", \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\"], [\"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null], [\"\", \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", \"\", \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\"], [\"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null], [\"\", \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", \"\", \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\"], [\"\", \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", \"\", \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\"], [\"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null], [\"\", \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", \"\", \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\"], [\"\", \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", \"\", \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\"], [\"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null], [\"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null], [\"\", \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", \"\", \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\"], [\"\", null, null, null, \"\", null, null, null, null, \"\", \"\", \"\", null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, \"\", \"\", null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, \"\", \"\", null, \"\", null, \"\", null, null, null, null, \"\", null, \"\", null, \"\", \"\", \"\", null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null], [\"\", null, null, null, \"\", null, null, null, null, \"\", \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, \"\", \"\", null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, \"\", \"\", null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"ERUTXIF\\n\\\"0-'6\\nTHGIL\\n.O.C\", null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null], [\"\", \"\", null, \"\", \"\", \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\"], [\"\", null, \"\", null, \"\", null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null], [\"\", null, \"\", null, \"\", null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null], [\"\", \"\", null, \"\", \"\", \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\"], [\"\", null, \"\", null, \"\", null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null], [\"\", \"\", null, \"\", \"\", \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\"], [\"\", \"\", null, \"\", \"\", \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"E\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\"], [\"\", null, \"\", null, \"\", null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null], [\"\", \"\", null, \"\", \"\", \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"R\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\"], [\"\", null, \"\", null, \"\", null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null], [\"\", \"\", null, \"\", \"\", \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"U\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\"], [\"\", \"\", null, \"\", \"\", \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"T\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, null, null, \"\", null, null, null, \"\", null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\"], [\"\", null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, \"\", \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, \"\", null, null, \"\", null, \"XI\", \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null], [\"\", null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, \"\", \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, \"\", null, null, \"\\\"0\", null, \"F\", \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"ERUTXIF\\nTHGIL\\n.O.C\", null, null, null, null, \"\", null, null, null, \"\", \"\", \"\", \"\", \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null], [\"\", null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, \"\", \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, \"\", null, null, \"-'0\", null, \"TH\", \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null], [\"\", null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, \"\", \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, \"\", null, null, \"1\", null, \"GI\", \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null], [\"\", \"\", null, \"\", \"\", \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\"], [\"\", null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, \"\", \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, \"L\\n.\", \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null], [\"\", null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, \"\", \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, \"O.\", \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null], [\"\", \"\", null, \"\", \"\", \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"C\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\"], [\"\", \"\", null, \"\", \"\", \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\", null, \"\"], [\"\", null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, \"\", \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null], [\"\", null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, \"\", \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null], [\"\", null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, \"\", \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null], [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, \"\", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]], [[null, \"\", null], [\"LLIRG\\n98643\\n.EVA\\nLLEHS\\nSALLENIP\\nNACIXEM\\nLF\\n,SGNIRPS\\nGNIDLIUB\\nHTUOS\\nELTOPIHC\\nNOPRAT\\n5711\", null, \"\"], [null, null, \"\"], [null, \"\", null], [\"11.24.2025\\ndate\", null, \"\"], [null, null, \"\"], [\"25020\\ncomm. no.\", null, null], [\"EXTERIOR\\nELEVATIONS\", null, null], [\"A301\", null, null], [null, \"\", null]], [[\"WALL FINISHES AT PARAPET RETURNS:\\nTHE DESIGN INTENT FOR PARAPET WALLS THAT RETURN ONTO THE ROOF SURFACE\\nIS THAT THEY, WHERE EXPOSED TO VIEW, ARE TO BE PROVIDED WITH WALL\\nFINISHES THAT ARE CONSISTENT WITH THE ADJACENT BUILDING ELEVATIONS. FOR\\nEXAMPLE, IF CEMENT PLASTER IS PROVIDED ALONG THE MAIN BUILDING ELEVATION,\\nTHE PARAPET RETURNS ARE TO BE PROVIDED WITH EQUAL FINISHES\\nTHE SHELL GENERAL CONTRACTOR SHALL FULLY REVIEW AND COORDINATE WALL\\nFINISHES WITH APPLICABLE TRADES PRIOR TO INSTALLATION. UNDER NO\\nCIRCUMSTANCES WILL EXPOSED ROOF MEMBRANE BE ACCEPTED AS A WALL FINISH\\nAT THE PARAPET RETURN CONDITIONS NOTED\"], [\"\"]], [[\"SIGNAGE NOTES:\\nANY BUILDING MOUNTED SIGNAGE DEPICTED IN THESE DOCUMENTS IS FOR\\nCOORDINATION PURPOSES ONLY AND IS NOT INTENDED FOR FABRICATION OR\\nINSTALLATION BY THE GENERAL CONTRACTOR. IT SHALL BE UNDERSTOOD THAT ALL\\nEXTERIOR BUILDING MOUNTED AND SITE SIGNAGE WILL BE PERMITTED SEPARATELY\\nBY THE OWNER'S SIGN VENDOR. AT THAT TIME, COMPLETE DETAILS INCLUDING, BUT\\nNOT LIMITED TO, SIGN FABRICATION, SIGN INSTALLATION, SIGN AREA AND\\nQUANTITIES, ETC. SHALL BE SUBMITTED (BY THE SIGN VENDOR) FOR PERMIT AND\\nAPPROVAL PRIOR TO COMMENCEMENT OF WORK.\\nSEE ELECTRICAL DRAWINGS FOR POWER REQUIREMENTS\", null], [null, \"\"]], [[\"WALL COUNTERFLASHING DETAILS:\\nREFER TO WALL SECTIONS AND ENLARGED DETAILS FOR THE SPECIFIED\\nCOUNTERFLASHING REQUIRED ABOVE CANOPIES, AWNINGS, PILASTER CAPS AND,\\nWHERE APPLICABLE, TRIM MOULDING. IN SUCH CASES, THE DESIGN INTENT IS TO\\nLIMIT THE VISIBILITY OF COUNTERFLASHINGS BY INCORPORATING LOW PROFILE OR\\nCONCEALED FLASHINGS\\nTHE SHELL GENERAL CONTRACTOR SHALL FULLY REVIEW AND COORDINATE ALL\\nWALL COUNTERFLASHING REQUIREMENTS WITH THE ROOFER AND APPLICABLE\\nTRADES PRIOR TO INSTALLATION. SHOULD CLARIFICATION OF ANY DETAIL BE\\nNEEDED, THE SHELL GENERAL CONTRACTOR SHALL SUBMIT AN RFI TO THE\\nARCHITECT PRIOR TO INSTALLATION\\nUNDER NO CIRCUMSTANCES WILL EXPOSED SINGLE-PLY MEMBRANE BE AN\\nACCEPTABLE MEANS OF FLASHING AT THE CONDITIONS NOTED\"], [\"\"]], [[\"FACILITY ADDRESS REQUIREMENTS:\\nNEW AND EXISTING BUILDINGS SHALL HAVE APPROVED ADDRESS NUMBERS\\nPLACED IN A POSITION TO BE PLAINLY LEGIBLE AND VISIBLE FROM THE STREET OR\\nROAD FRONTING THE PROPERTY\\nADDRESS NUMBERS SHALL CONTRAST WITH THEIR BACKGROUND. NUMERALS\\nSHALL BE AT LEAST 6 INCHES IN HEIGHT\\nWHERE ADDRESS IDENTIFICATION IS REQUIRED BY THE FIRE OFFICIAL ON OTHER\\nELEVATIONS OF BUILDINGS, SUCH NUMERALS SHALL NOT BE LESS THAN SIX INCHES\\nIN HEIGHT\\nADDRESS NUMBERS SHALL BE ARABIC NUMERALS OR ALPHABET LETTERS\", null], [null, \"\"]]]"
+    },
+    {
+      "id": 600,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 14,
+      "page_type": "detail_sheet",
+      "sheet_num": "A405",
+      "sheet_title": "SECTION DETAILS",
+      "legends_count": 0,
+      "has_legend": 0,
+      "has_schedule": 0,
+      "raw_tables_json": null
+    },
+    {
+      "id": 601,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 15,
+      "page_type": "roof_plan",
+      "sheet_num": null,
+      "sheet_title": "",
+      "legends_count": 0,
+      "has_legend": 0,
+      "has_schedule": 0,
+      "raw_tables_json": null
+    },
+    {
+      "id": 602,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 16,
+      "page_type": "roof_plan",
+      "sheet_num": null,
+      "sheet_title": "",
+      "legends_count": 0,
+      "has_legend": 0,
+      "has_schedule": 0,
+      "raw_tables_json": null
+    },
+    {
+      "id": 603,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 17,
+      "page_type": "detail_sheet",
+      "sheet_num": "A602",
+      "sheet_title": "STOREFRONT DETAILS",
+      "legends_count": 0,
+      "has_legend": 0,
+      "has_schedule": 0,
+      "raw_tables_json": null
+    },
+    {
+      "id": 604,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 18,
+      "page_type": "detail_sheet",
+      "sheet_num": null,
+      "sheet_title": "",
+      "legends_count": 0,
+      "has_legend": 0,
+      "has_schedule": 0,
+      "raw_tables_json": null
+    },
+    {
+      "id": 605,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 19,
+      "page_type": "detail_sheet",
+      "sheet_num": null,
+      "sheet_title": "",
+      "legends_count": 0,
+      "has_legend": 0,
+      "has_schedule": 0,
+      "raw_tables_json": null
+    },
+    {
+      "id": 606,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 20,
+      "page_type": "schedule_sheet",
+      "sheet_num": "A601",
+      "sheet_title": "DOOR AND HARDWARE SCHEDULE",
+      "legends_count": 4,
+      "has_legend": 1,
+      "has_schedule": 1,
+      "raw_tables_json": "[[[\"DOOR SCHEDULE\", null, null, \"REMARK NOTES\", null, \"\"], [\"DOOR DOOR FRAME FIRE\\nTAG ROOM DOOR DESCRIPTION WIDTH HEIGHT THICKNESS DOOR TYPE DOOR FINISH FRAME TYPE MATERIAL STILE HARDWARE SET RATING REMARKS\", null, null, \"1. DOORS WITH REMARK #1 TO BE KEYED THE SAME\\n2. NOT USED\", null, \"\"], [\"01 ENTRY DOUBLE STOREFRONT PR 3' - 0\\\" 7' - 0\\\" 0' - 1 3/4\\\" A SEE A300 & A301 STOREFRONT ALUM WIDE (5\\\") 1 1,4,5\\n02 DINING SINGLE STOREFRONT 3' - 0\\\" 7' - 0\\\" 0' - 1 3/4\\\" A SEE A300 & A301 STOREFRONT ALUM WIDE (5\\\") 2A 1,4,5\\n03 KITCHEN HM REAR KITCHEN 3' - 6\\\" 7' - 0\\\" 0' - 1 3/4\\\" D SEE A300 & A301 2 H.M. - 3 1,4\", null, null, \"3.\\n4.\\n5.\", \"NOT USED\\nUSE NON-SHRINK STRUCTURAL GROUT BED UNDER THRESHOLD\\nBLACK DOOR SWEEP TO BE USED WITH CHARCOAL, BLACK OR BRONZE STOREFRONT.\\nLIGHT GRAY DOOR SWEEP TO BE USED WITH CLEAR ANODIZED ALUMINUM STOREFRONT\", null], [\"\", null, null, \"\", \"\", null], [\"HARDWARE SETS\", null, null, null, null, \"DOOR CLOSER\"], [\"SET 1 - MAIN ENTRY - PAIR - NON OFFSET - STANDARD HARDWARE\\n(2) HINGE HAGER, MODEL 780-224HD-84\\\"-CLR\\n(1) MORTISE CYLINDER SCHLAGE, MODEL 80-103, BRUSHED CHROME; C.O. CYLINDER AT 34\\\" MIN. FROM BOTTOM OF DOOR\\n(1) TEMP CORE SCHLAGE, MODEL 80-035 INTERCHANGEABLE CORE, (BRUSHED CHROME)\\n(2) PUSH/ PULL HAGAR, MODEL 150D US32D (36\\\" BAR LENGTH, C.O. BAR AT 38\\\" FROM BOTTOM OF DOOR) CENTER PULL ON DOOR STILE\\n(1) DEADBOLT ADAMS RITE, MODEL MS1850S-310-628\\n(1) EXIT INDICATOR ADAMS RITE, MODEL 4089-00-130\\n(1) HEADER BOLT ADAMS RITE, MODEL 4016-30-01\\n(1) THRESHOLD BOLT ADAMS RITE, MODEL 4015-18-1B\\n(2) CLOSER DORMA, MODEL 8916-AF89P (TOP JAMB), (ALUMINUM)\\n(2) DOOR STOP IVES, MODEL FS18S (ALUMINUM)\\n(2) OVERHEAD STOP GLYNN-JOHNSON, MODEL 454S-SP28 (ALUMINUM)\\n(2) CLOSER BACK PLATE DORMA, MODEL BP89, ALUMINUM\\n(1) THRESHOLD REESE, MODEL S424A-72 (SIZE 72\\\")\\n(2) SMOKE SEAL REESE, MODEL F-797B-21\\n(2) DOOR SWEEP PEMKO, MODEL SFSC-200-36 (36\\\" DOOR), TENANT FURNISHED\\nSET 2A - SINGLE - NON OFFSET - PANIC HARDWARE\\n(1) HINGE HAGER, MODEL 780-224HD-84\\\"-CLR\\n(1) PUSH HARDWARE ADAMS RITE, MODEL 8801-36-628 (ALUMINUM FINISH, 36\\\" DOOR); CENTER EXIT DEVICE AT 38\\\" FROM BOTTOM OF DOOR\\n(1) PULL HARDWARE HAGAR, MODEL 4G US32D (8\\\" CTC); CENTER ON DOOR STILE\\n(1) CLOSER DORMA, MODEL 8916-AF89P-689 (TOP JAMB), (ALUMINUM)\\n(1) CLOSER BACK PLATE DORMA, MODEL BP89, ALUMINUM\\n(1) OVERHEAD STOP GLYNN-JOHNSON, MODEL 454S-US32D (ALUMINUM)\\n(1) THRESHOLD REESE, MODEL S424A-36 (SIZE 36\\\")\\n(1) SMOKE SEAL REESE, MODEL 797B-21\\n(1) DOOR SWEEP PEMKO, MODEL SFSC-200-36 (36\\\" DOOR), TENANT FURNISHED\\n(1) DOOR STOP IVES, MODEL FS18S (ALUMINUM)\\nSET 3 - REAR EXIT - SINGLE\\n(1) HINGE HAGER, MODEL 780-224HD-84\\\"-CLR\\n(1) PUSH HARDWARE FALCON, MODEL 25-R-EO-4'-US28 (SIZE 42\\\")\\n(1) PULL HARDWARE FALCON, MODEL 510L-DANE-LHR-US26D, ALUMINUM (EXTERIOR SIDE)\\n(1) RIM CYLINDER GLS, MODEL RCIC-7-LZ-626\\n(1) TEMP CORE SCHLAGE, MODEL 80-035 INTERCHANGEABLE CORE (FINISH: BRUSHED CHROME)\\n(1) CLOSER DORMA, MODEL 8916-AF89P (TOP JAMB), ALUMINUM\\n(1) CLOSER BACK PLATE DORMA, MODEL BP89, ALUMINUM\\n(1) THRESHOLD REESE, MODEL S239A-42, (SIZE 42\\\")\\n(1) WEATHERSTRIP REESE, MODEL DS75C-4070\\n(1) DOOR SWEEP PEMKO, MODEL SFSC-200-42 (42\\\" DOOR) (BLACK) TENANT FURNISHED\\n(1) DOOR VIEWER IVES, MODEL U698B26D, C.O. VIEWER AT 60\\\" FROM BOTTOM OF DOOR\\n(1) DOOR SILENCERS IVES, MODEL SR64\\n(1) DOOR BUZZER TRINE, MODEL 66B 1\\n(1) KICKPLATE HIAWATHA, MODEL KP834-US32D\\nDOOR FRAME TYPES DOOR TYPES\\n2\\\" 2\\\"\\n\\\"2 RE: DOOR \\\"4 RE: DOOR RE: DOOR RE: DOOR\\nSCHED SCHED SCHED SCHED\\n2\\\" 2\\\"\\nELUDEHCS ELUDEHCS ELUDEHCS ELUDEHCS\\nCLEAR,\\nROOD ROOD ROOD ROOD\\nINSULATED,\\n\\\"01 TEMPERED\\n:ER :ER :ER :ER SAFETY GLASS\\nKICK PLATES WHERE\\n1 2 A D SCHEDULED\\nNOTE: GC TO VERIFY THE WALL THICKNESS NOTE: GC TO VERIFY THE WALL THICKNESS ALUMINUM DOOR W/ INSULATED HOLLOW\\nPRIOR TO ORDERING DOOR FRAMES. PRIOR TO ORDERING DOOR FRAMES. TEMPERED GLAZING METAL DOOR\", null, null, null, null, \"STOREFRONT\\nINSTALL CLOSER\\nONTO HEAD JAMB AS\\nSHOWN - INSTALL W/\\nOPTIONAL BACK\\nPLATE WHERE HEAD\\nJAMB DIMENSION IS\\nLESS THAN 3\\\"\\nDOOR CLOSER\\nDOOR - REFER TO\\nSCHEDULE\\nTOP JAMB MOUNT INSTALLATION. (NOTE THAT BACKPLATE IS MISSING IN THIS\\nINSTALLATION BECAUSE HEAD JAMB IS OF ADEQUATE HEIGHT TO RECEIVE ALL\\nMOUNTING SCREWS WITHOUT IT.) WHEN IN DOUBT ABOUT THE HEAD JAMB\\nDIMENSION OR STABILITY, ORDER THE BACKPLATE.\"], [null, \"DOOR FRAME TYPES\", \"DOOR TYPES\", null, null, \"DOOR NOTES\"], [null, \"2\\\" 2\\\"\\n\\\"2 RE: DOOR \\\"4 RE: DOOR\\nSCHED SCHED\\n2\\\" 2\\\"\\nELUDEHCS ELUDEHCS\\nROOD ROOD\\n:ER :ER\\n1 2\\nNOTE: GC TO VERIFY THE WALL THICKNESS NOTE: GC TO VERIFY THE WALL THICKNESS\\nPRIOR TO ORDERING DOOR FRAMES. PRIOR TO ORDERING DOOR FRAMES.\", \"RE: DOOR RE: DOOR\\nSCHED SCHED\\nELUDEHCS ELUDEHCS\\nCLEAR,\\nROOD ROOD\\nINSULATED,\\n\\\"01 TEMPERED\\n:ER :ER SAFETY GLASS\\nKICK PLATES WHERE\\nA D SCHEDULED\\nALUMINUM DOOR W/ INSULATED HOLLOW\\nTEMPERED GLAZING METAL DOOR\", null, null, \"1. ALL EGRESS DOORS SHALL BE READILY OPENABLE FROM THE EGRESS SIDE WITHOUT THE USE OF A KEY\\nOR SPECIAL KNOWLEDGE OR EFFORT.\"], [null, null, null, null, null, \"2. LATCHES, HANDLES, PANIC BARS AND ALL DOOR HARDWARE WILL COMPLY WITH SECTION 7.2 OF NFPA\\n101 PER THE SPECIFICATIONS.\"], [null, null, null, null, null, \"3. THE MANAGER HAS A KEY TO UNLOCK RESTROOM DOORS, FROM THE OUTSIDE IN CASE OF AN\\nEMERGENCY.\"], [null, null, null, null, null, \"4. ALL DOORS TO REMAIN UNLOCKED DURING BUSINESS HOURS.\"], [null, null, null, null, null, \"5. NOT USED\"], [null, null, null, null, null, \"6. MAXIMUM EFFORT TO OPERATE EXTERIOR OR INTERIOR DOORS WITH CLOSERS SHALL NOT EXCEED 8.5\\nPOUNDS. THIS MAY BE INCREASED TO 15 POUNDS FOR FIRE-RATED DOORS.\"], [null, null, null, null, null, \"7. ALL FRAMES, DOORS AND HARDWARE TO BE FURNISHED BY LANDLORD'S CONTRACTOR.\"], [null, null, null, null, null, \"8. THE BOTTOM 10 INCHES OF ALL DOORS SHALL HAVE A SMOOTH, UNINTERRUPTED SURFACE TO ALLOW\\nTHE DOOR TO BE OPENED BY A WHEELCHAIR FOOTREST WITHOUT CREATING A TRAP OR HAZARDOUS\\nCONDITION.\"], [null, null, null, null, null, \"9. NOT USED\"], [null, null, null, null, null, \"10. NOT USED\"], [null, null, null, null, null, \"11. ALL HARDWARE SHALL MATCH STOREFRONT, VERIFY WITH ARCHITECT PRIOR TO ORDERING\"]], [[\"3336 Grand Blvd. Suite 201\\nHoliday, Florida 34690\\nPh. 727. 815. 3336\\nFABER@FWHARCHITECTS.COM\", null, null], [null, null, \"\"], [null, \"\", null], [\"140 CARILLON PARKWAY\\nST. PETERSBURG, FL 33716\\nPh. 727. 726. 1115\", null, \"\"], [null, null, \"\"]], [[\"SET 1 - MAIN ENTRY - PAIR - NON OFFSET - STANDARD HARDWARE\\n(2) HINGE HAGER, MODEL 780-224HD-84\\\"-CLR\", null, null], [\"(1)\", \"MORTISE CYLINDER\", \"SCHLAGE, MODEL 80-103, BRUSHED CHROME; C.O. CYLINDER AT 34\\\" MIN. FROM BOTTOM OF DOOR\"], [\"(1)\", \"TEMP CORE\", \"SCHLAGE, MODEL 80-035 INTERCHANGEABLE CORE, (BRUSHED CHROME)\"], [\"(2)\", \"PUSH/ PULL\", \"HAGAR, MODEL 150D US32D (36\\\" BAR LENGTH, C.O. BAR AT 38\\\" FROM BOTTOM OF DOOR) CENTER PULL ON DOOR STILE\"], [\"(1)\", \"DEADBOLT\", \"ADAMS RITE, MODEL MS1850S-310-628\"], [\"(1)\", \"EXIT INDICATOR\", \"ADAMS RITE, MODEL 4089-00-130\"], [\"(1)\", \"HEADER BOLT\", \"ADAMS RITE, MODEL 4016-30-01\"], [\"(1)\", \"THRESHOLD BOLT\", \"ADAMS RITE, MODEL 4015-18-1B\"], [\"(2)\", \"CLOSER\", \"DORMA, MODEL 8916-AF89P (TOP JAMB), (ALUMINUM)\"], [\"(2)\\n(2)\", \"DOOR STOP\\nOVERHEAD STOP\", \"IVES, MODEL FS18S (ALUMINUM)\\nGLYNN-JOHNSON, MODEL 454S-SP28 (ALUMINUM)\"], [\"(2)\", \"CLOSER BACK PLATE\", \"DORMA, MODEL BP89, ALUMINUM\"], [\"(1)\", \"THRESHOLD\", \"REESE, MODEL S424A-72 (SIZE 72\\\")\"], [\"(2)\", \"SMOKE SEAL\", \"REESE, MODEL F-797B-21\"], [\"(2)\", \"DOOR SWEEP\", \"PEMKO, MODEL SFSC-200-36 (36\\\" DOOR), TENANT FURNISHED\"]], [[\"\", null, null], [null, null, \"\"], [\"GUY F. FABER\\nFL License No. AR0015323\\nseal\", null, null], [null, \"\", null], [\"SNALP\\nLIVIC\\n&\\nTNANET\\n/W\\nNOITANIDROOC\\nREP\\nDESIVER\", \"snoitpircsed\\nnoisiver\", \"\"], [null, null, \"\"], [\"6202.92.10\", \"etad\", null], [\"1\", \".on\", null], [null, \"\", null], [\"LLIRG\\n98643\\n.EVA\\nLLEHS\\nSALLENIP\\nNACIXEM\\nLF\\n,SGNIRPS\\nGNIDLIUB\\nHTUOS\\nELTOPIHC\\nNOPRAT\\n5711\", null, \"\"], [null, null, \"\"], [null, \"\", null], [\"11.24.2025\\ndate\", null, \"\"], [\"25020\\ncomm. no.\", null, \"\"], [\"DOOR AND\\nHARDWARE\\nSCHEDULE\", null, null], [\"A601\", null, null], [null, \"\", null]], [[\"SET 2A - SINGLE - NON OFFSET - PANIC HARDWARE\", null, null], [\"(1)\", \"HINGE\", \"HAGER, MODEL 780-224HD-84\\\"-CLR\"], [\"(1)\", \"PUSH HARDWARE\", \"ADAMS RITE, MODEL 8801-36-628 (ALUMINUM FINISH, 36\\\" DOOR); CENTER EXIT DEVICE AT 38\\\" FROM BOTTOM OF DOOR\"], [\"(1)\", \"PULL HARDWARE\", \"HAGAR, MODEL 4G US32D (8\\\" CTC); CENTER ON DOOR STILE\"], [\"(1)\", \"CLOSER\", \"DORMA, MODEL 8916-AF89P-689 (TOP JAMB), (ALUMINUM)\"], [\"(1)\", \"CLOSER BACK PLATE\", \"DORMA, MODEL BP89, ALUMINUM\"], [\"(1)\", \"OVERHEAD STOP\", \"GLYNN-JOHNSON, MODEL 454S-US32D (ALUMINUM)\"], [\"(1)\", \"THRESHOLD\", \"REESE, MODEL S424A-36 (SIZE 36\\\")\"], [\"(1)\", \"SMOKE SEAL\", \"REESE, MODEL 797B-21\"], [\"(1)\", \"DOOR SWEEP\", \"PEMKO, MODEL SFSC-200-36 (36\\\" DOOR), TENANT FURNISHED\"], [\"(1)\", \"DOOR STOP\", \"IVES, MODEL FS18S (ALUMINUM)\"]], [[\"SET 3 - REAR EXIT - SINGLE\", null, null], [\"(1)\", \"HINGE\", \"HAGER, MODEL 780-224HD-84\\\"-CLR\"], [\"(1)\", \"PUSH HARDWARE\", \"FALCON, MODEL 25-R-EO-4'-US28 (SIZE 42\\\")\"], [\"(1)\", \"PULL HARDWARE\", \"FALCON, MODEL 510L-DANE-LHR-US26D, ALUMINUM (EXTERIOR SIDE)\"], [\"(1)\", \"RIM CYLINDER\", \"GLS, MODEL RCIC-7-LZ-626\"], [\"(1)\", \"TEMP CORE\", \"SCHLAGE, MODEL 80-035 INTERCHANGEABLE CORE (FINISH: BRUSHED CHROME)\"], [\"(1)\", \"CLOSER\", \"DORMA, MODEL 8916-AF89P (TOP JAMB), ALUMINUM\"], [\"(1)\", \"CLOSER BACK PLATE\", \"DORMA, MODEL BP89, ALUMINUM\"], [\"(1)\", \"THRESHOLD\", \"REESE, MODEL S239A-42, (SIZE 42\\\")\"], [\"(1)\", \"WEATHERSTRIP\", \"REESE, MODEL DS75C-4070\"], [\"(1)\", \"DOOR SWEEP\", \"PEMKO, MODEL SFSC-200-42 (42\\\" DOOR) (BLACK) TENANT FURNISHED\"], [\"(1)\", \"DOOR VIEWER\", \"IVES, MODEL U698B26D, C.O. VIEWER AT 60\\\" FROM BOTTOM OF DOOR\"], [\"(1)\", \"DOOR SILENCERS\", \"IVES, MODEL SR64\"], [\"(1)\", \"DOOR BUZZER\", \"TRINE, MODEL 66B 1\"], [\"(1)\", \"KICKPLATE\", \"HIAWATHA, MODEL KP834-US32D\"]]]"
+    },
+    {
+      "id": 607,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 21,
+      "page_type": "general_notes",
+      "sheet_num": "A404",
+      "sheet_title": "PLAN DETAILS",
+      "legends_count": 0,
+      "has_legend": 0,
+      "has_schedule": 0,
+      "raw_tables_json": null
+    },
+    {
+      "id": 608,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 22,
+      "page_type": "general_notes",
+      "sheet_num": "S001",
+      "sheet_title": "STRUCTURAL NOTES",
+      "legends_count": 0,
+      "has_legend": 0,
+      "has_schedule": 0,
+      "raw_tables_json": null
+    },
+    {
+      "id": 609,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 23,
+      "page_type": "detail_sheet",
+      "sheet_num": "S301",
+      "sheet_title": "STEEL ELEVATIONS AND DETAILS",
+      "legends_count": 0,
+      "has_legend": 0,
+      "has_schedule": 0,
+      "raw_tables_json": null
+    },
+    {
+      "id": 610,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 24,
+      "page_type": "framing_plan",
+      "sheet_num": "S200",
+      "sheet_title": "ROOF FRAMING PLAN",
+      "legends_count": 0,
+      "has_legend": 0,
+      "has_schedule": 0,
+      "raw_tables_json": null
+    },
+    {
+      "id": 611,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 25,
+      "page_type": "detail_sheet",
+      "sheet_num": "S400",
+      "sheet_title": "SECTIONS AND DETAILS",
+      "legends_count": 0,
+      "has_legend": 0,
+      "has_schedule": 0,
+      "raw_tables_json": null
+    },
+    {
+      "id": 612,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 26,
+      "page_type": "detail_sheet",
+      "sheet_num": "S401",
+      "sheet_title": "SECTIONS AND DETAILS",
+      "legends_count": 0,
+      "has_legend": 0,
+      "has_schedule": 0,
+      "raw_tables_json": null
+    },
+    {
+      "id": 613,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 27,
+      "page_type": "detail_sheet",
+      "sheet_num": null,
+      "sheet_title": "",
+      "legends_count": 0,
+      "has_legend": 0,
+      "has_schedule": 0,
+      "raw_tables_json": null
+    },
+    {
+      "id": 614,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 28,
+      "page_type": "detail_sheet",
+      "sheet_num": null,
+      "sheet_title": "",
+      "legends_count": 0,
+      "has_legend": 0,
+      "has_schedule": 0,
+      "raw_tables_json": null
+    },
+    {
+      "id": 615,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 29,
+      "page_type": "symbol_legend",
+      "sheet_num": "P100",
+      "sheet_title": "PLUMBING SPECIFICATIONS",
+      "legends_count": 0,
+      "has_legend": 0,
+      "has_schedule": 0,
+      "raw_tables_json": null
+    },
+    {
+      "id": 616,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 30,
+      "page_type": "floor_plan",
+      "sheet_num": "P200",
+      "sheet_title": "PLUMBING FLOOR PLAN",
+      "legends_count": 0,
+      "has_legend": 0,
+      "has_schedule": 0,
+      "raw_tables_json": null
+    },
+    {
+      "id": 617,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 31,
+      "page_type": "detail_sheet",
+      "sheet_num": null,
+      "sheet_title": "",
+      "legends_count": 0,
+      "has_legend": 0,
+      "has_schedule": 0,
+      "raw_tables_json": null
+    },
+    {
+      "id": 618,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 32,
+      "page_type": "general_notes",
+      "sheet_num": "E001",
+      "sheet_title": "ELECTRICAL NOTES AND LEGEND",
+      "legends_count": 2,
+      "has_legend": 1,
+      "has_schedule": 1,
+      "raw_tables_json": null
+    },
+    {
+      "id": 619,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 33,
+      "page_type": "schedule_sheet",
+      "sheet_num": "E100",
+      "sheet_title": "ELECTRICAL SITE PLAN",
+      "legends_count": 1,
+      "has_legend": 1,
+      "has_schedule": 0,
+      "raw_tables_json": "[[[\"TO THE BEST OF THE KNOWLEDGE OF\\nTHE ARCHITECTS AND ENGINEERS, PLANS\\nAND SPECIFICATIONS COMPLY WITH THE\"], [\"APPLICABLE MINIMUM BUILDING CODES\\nAND THE APPLICABLE MINIMUM FIRE\\nSAFETY STANDARDS\\nSOUHEIL CHEHAYEB, P.E.\\nFL License No. 49521\"]], [[\"SNALP\\nLIVIC\\n&\\nTNANET\\n/W\\nNOITANIDROOC\\nREP\\nDESIVER\", \"\", \"\", \"\", \"\", \"\", \"s\\nn\\no\\ni\\nt\\np\\ni\\nr\\nc\\ns\\ne\\nd\\nn\\no\\ni\\ns\\ni\\nv\\ne\\nr\"], [\"6202.92.10\", \"\", \"\", \"\", \"\", \"\", \"e\\nt\\na\\nd\"], [\"1\", \"\", \"\", \"\", \"\", \"\", \".o\\nn\"]], [[null, \"\", null, null, null, null, null, null, null, null, null, null, null], [\"\", \"\", null, null, null, null, null, null, null, null, null, null, null], [null, null, \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"], [null, \"\", \"\", null, null, null, null, null, null, null, null, null, null], [null, \"\", \"\", null, null, null, null, null, null, null, null, null, null], [null, \"\", \"\", null, null, null, null, null, null, null, null, null, null], [null, \"\", \"\", null, null, null, null, null, null, null, null, null, null], [null, \"\", null, null, null, null, null, null, null, null, null, null, null]], [[null, null, \"\", null, \"X\"], [null, null, \"X\\nX\\nX\\nX\\nX\\nX\\nX\\nX\\nX\", null, \"\"], [null, null, \"X\", \"\", \"\"], [null, \"\", null, null, null], [\"\", null, null, null, null]], [[null, \"MANUFACTURER\", \"CATALOG NO.\", \"VOLT LAMPS\", \"LOAD\\n(W)\"], [\"SA\", \"COOPER\", \"EMM2-HTN-SA3B-\\n740-U-5MQ\", \"208 LED\", \"268\"], [\"SB\", \"COOPER\", \"EMM2-HTN-SA2C-\\n740-U-T4W-HSS\", \"208 LED\", \"101\"], [\"WD\", \"LITHONIA\", \"DSXW1-P3-40K-T4M-\\n70CRI-MVOLT-PIRIFC3V\", \"208 LED\", \"26\"]]]"
+    },
+    {
+      "id": 620,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 34,
+      "page_type": "site_plan",
+      "sheet_num": "E101",
+      "sheet_title": "PHOTOMETRIC SITE PLAN",
+      "legends_count": 1,
+      "has_legend": 1,
+      "has_schedule": 1,
+      "raw_tables_json": null
+    },
+    {
+      "id": 621,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 35,
+      "page_type": "schedule_sheet",
+      "sheet_num": "E102",
+      "sheet_title": "FIXTURE INFORMATION",
+      "legends_count": 1,
+      "has_legend": 1,
+      "has_schedule": 0,
+      "raw_tables_json": "[[[\"\", \"\", \"\", \"\", \"\"], [\"\", \"\", \"\", \"\", \"\"], [\"TYPICAL FOR ALL POLES\", \"TYPICAL FOR ALL POLES\", \"TYPICAL FOR ALL POLES\\nSIMILAR, EXCEPT\\nCLAM SHELL BASE COVER\", null, null]], [[\"TO THE BEST OF THE KNOWLEDGE OF\\nTHE ARCHITECTS AND ENGINEERS, PLANS\\nAND SPECIFICATIONS COMPLY WITH THE\\nAPPLICABLE MINIMUM BUILDING CODES\\nAND THE APPLICABLE MINIMUM FIRE\\nSAFETY STANDARDS\"], [\"SOUHEIL CHEHAYEB, P.E.\\nFL License No. 49521\"]], [[\"\", \"\", \"\", \"\", \"\", \"\", \"s\\nn\\no\\ni\\nt\\np\\ni\\nr\\nc\\ns\\ne\\nd\\nn\\no\\ni\\ns\\ni\\nv\\ne\\nr\"], [\"\", \"\", \"\", \"\", \"\", \"\", \"e\\nt\\na\\nd\"], [\"\", \"\", \"\", \"\", \"\", \"\", \".o\\nn\"]], [[\"\"], [\"\"]]]"
+    },
+    {
+      "id": 622,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 36,
+      "page_type": "schedule_sheet",
+      "sheet_num": "E200",
+      "sheet_title": "ELECTRICAL PLAN",
+      "legends_count": 3,
+      "has_legend": 1,
+      "has_schedule": 0,
+      "raw_tables_json": "[[[\"CATEGORY\", \"APPLICATION\", \"ALLOWABLE\\nMATERIAL\"], [\"CONDUCTORS\", \"#10 AWG AND SMALLER\", \"SOLID CU, TYPE\\nTHHN/THWN OR\\nXHHW\"], [null, \"#8 AWG AND LARGER\", \"STRANDED CU,\\nTYPE THHN/THWN\\nOR XHHW\"], [\"CONDUITS\", \"INDOOR, EXPOSED\", \"ELECTRICAL\\nMETALLIC TUBING\\nU.N.O.\"], [null, \"INDOOR, WITHIN\\n1-1/2\\\" OF ROOF\\nDECK\", \"INTERMEDIATE\\nMETAL CONDUIT\"], [null, \"INDOOR, CONCEALED\\nABOVE GRADE\", \"ELECTRICAL METALLIC\\nTUBING, FLEXIBLE\\nMETAL CONDUIT, OR\\nMETAL CLAD CABLE\"], [null, \"CONNECTION TO\\nVIBRATING EQUIPMENT\\n(EXPOSED WET OR\\nDAMP LOCATIONS)\", \"LIQUIDTIGHT\\nFLEXIBLE METAL\\nCONDUIT\"], [null, \"CONNECTION TO\\nVIBRATING EQUIPMENT\\n(EXPOSED INDOOR\\nDRY LOCATIONS)\", \"FLEXIBLE METAL\\nCONDUIT\"], [null, \"OUTDOOR, ABOVE\\nGRADE, EXPOSED\\nOR CONCEALED\", \"INTERMEDIATE\\nMETAL CONDUIT\"], [null, \"LOW VOLTAGE,\\nINDOOR, ABOVE\\nGRADE\", \"ELECTRICAL\\nMETALLIC TUBING\"], [null, \"LOW OR LINE\\nVOLTAGE, BELOW\\nGRADE\", \"RIGID\\nNONMETALLIC\\nCONDUIT\\n(SCHEDULE 40 PVC)\"]], [[\"\"], [\"\"]], [[\"TO THE BEST OF THE KNOWLEDGE OF\\nTHE ARCHITECTS AND ENGINEERS, PLANS\\nAND SPECIFICATIONS COMPLY WITH THE\\nAPPLICABLE MINIMUM BUILDING CODES\\nAND THE APPLICABLE MINIMUM FIRE\\nSAFETY STANDARDS\"], [\"SOUHEIL CHEHAYEB, P.E.\\nFL License No. 49521\"]], [[\"SNALP\\nLIVIC\\n&\\nTNANET\\n/W\\nNOITANIDROOC\\nREP\\nDESIVER\", \"\", \"\", \"\", \"\", \"\", \"s\\nn\\no\\ni\\nt\\np\\ni\\nr\\nc\\ns\\ne\\nd\\nn\\no\\ni\\ns\\ni\\nv\\ne\\nr\"], [\"6202.92.10\", \"\", \"\", \"\", \"\", \"\", \"e\\nt\\na\\nd\"], [\"1\", \"\", \"\", \"\", \"\", \"\", \".o\\nn\"]], [[\"\"], [\"\"]], [[\"\", null, null, \"\"], [null, \"\", \"\", null]], [[null, \"MANUFACT.\", \"CATALOG NO.\", \"VOLT\", \"LAMPS\", \"MOUNTING\", \"WATTS\", \"REMARKS\"], [\"X9\", \"PARADIGM\\nLED\", \"PL-PS-M200/M100/M40-\\nDIM-24 (LED DRIVER)\\nFLEXSR-45-30-67C-24-XX\\n(LED LINEAR RIBBON, OUT DOOR RATED)\\nAMC-2410-S-XX-EC/ECL-0\\n(LED LINEAR STRIP CHANNEL WITH OPAL LENS)\\n(COORDINATE ALL CAT. NO. WITH\\nMANUFACTURER, PARADIGM LED AT\\n303-399-0386 AND PROVIDE ALL\\nACCESSORIES AS REQUIRED FOR A COMPLETE\\nPROJECT)\\nXX= FIELD VERIFY EXACT LENGTH PRIOR TO\\nORDERING.\", \"120\", \"INCLUDED\\nIN LED\\nRIBBON\", \"SURFACE\", \"4.5\\nW/LF\", \"REFER TO ARCH.\\nELEVATIONS FOR MOUNTING\\nINFORMATION FURNISHED\\nW/REMOTE-MTD NEMA 3R\\nDIMMABLE LED DRIVER SEE\\nPLANS FOR LENGTHS\"], [\"WA\", \"LITHONIA\", \"DSXW1-P3-30K-70CRI-T4M-\\nMVOLT-(CBA)\", \"120\", \"LED\", \"EXTERIOR WALL\", \"22\", \"SEE ARCHITECTURAL EXTERIOR\\nELEVATION FOR LOCATION\"], [\"WB\", \"LITHONIA\", \"WDGE1-LED-P0-30K-80CRI-VW\\nDBLXD (BLACK)\", \"120\", \"LED\", \"EXTERIOR WALL\", \"7\", \"SEE ARCHITECTURAL EXTERIOR\\nELEVATION FOR LOCATION\"], [\"WCE\", \"LITHONIA\", \"DSXW1-P3-30K-70CRI-T3M-\\nMVOLT-DBLXD (BLACK)-E20WC\", \"120\", \"LED\", \"EXTERIOR WALL WITH\\nBACKUP BATTERY\", \"22\", \"SEE ARCHITECTURAL EXTERIOR\\nELEVATION FOR LOCATION\"], [\"WE\", \"BEGA\", \"24718 K3\", \"120\", \"LED\", \"EXTERIOR WALL\\nSCONCE\", \"10\", \"SEE ARCHITECTURAL EXTERIOR\\nELEVATION FOR LOCATION\"], [\"CBA = COLOR SELECTED BY ARCHITECT.\\nNOTES:\\n1. WHERE USED. ALL FLUORESCENT LIGHTING FIXTURES SHALL HAVE ENERGY 11. WHERE USED. LAMPS SHALL BE BY SYLVANIA, G.E., OR PHILIPS, EXCEPT WHEN\\nSAVING T5, T5HO, OR T8 LAMPS WITH ELECTRONIC BALLASTS. SUCH LAMPS ARE NOT AVAILABLE FROM THESE MANUFACTURERS, OR SPECIFIED\\nOTHERWISE IN SCHEDULE.\\n2. PROVIDE NECESSARY MOUNTING HARDWARE AND ACCESSORIES FIXTURES.\\nACCESSORIES SHALL INCLUDE ALL HARDWARE TO MOUNT FIXTURES AS SHOWN 12. SHOP DRAWINGS SHALL INCLUDE:\\nON SCHEDULES AND/OR DESCRIBED IN THE NOTES.\\nA. COMPLETE FIXTURE CUT SHEETS INCLUDING PHOTOMETRICS.\\n3. ALL FIXTURE SUBSTITUTIONS MUST BE SUBMITTED FOR APPROVAL (EQUALS B. BALLAST CUT SHEETS.\\nONLY). C. LAMP CUT SHEETS.\\n4. ALL EMERGENCY, EXIT, AND NIGHT LIGHT FIXTURES SHALL BE CONNECTED AHEAD 13. UNLESS OTHERWISE NOTED, (NL) DENOTES A 'NIGHT LIGHT' FIXTURE. NIGHT LIGHT\\nOF LOCAL SWITCHES, RELAYS, OR CONTACTORS UNLESS OTHERWISE NOTED. FIXTURES SHALL BE UNSWITCHED. EMERGENCY BALLAST SHALL BE TIED TO A\\nCONSTANT HOT AHEAD OF LOCAL SWITCHING AND/OR CONTROL PANEL.\\n5. ALL PRE SUBMITTALS SHALL BE ACCOMPANIED WITH PHOTOMETRIC DATA.\\n14. BATTERY BALLAST IN THE FLUORESCENT FIXTURES SHALL BE UL 924 LISTED AND\\n6. ALL FIXTURES SHALL BE SUPPORTED FROM STRUCTURE AND NOT FROM COMPLY WITH NFPA 101 LIFE SAFETY CODE SECTION 7.9. THE SYSTEM SHALL BE\\nSUSPENDED CEILING SYSTEM. PERIODICALLY TESTED PER NFPA 101 SECTION 7.9.3.1.1.\\n7. EQUAL ACCEPTED MANUFACTURERS ARE: DAY-BRITE, LITHONIA, COLUMBIA. EVEN 15. COORDINATE TRACK LENGTH WITH PLAN AND CUT ACCORDINGLY, IF NOT A\\nTHOUGH THESE MANUFACTURERS ARE ACCEPTED, A TEN DAY PRIOR APPROVAL STANDARD TRACK LENGTH.\\nMUST BE SUBMITTED FOR EVALUATION.\\n16. PROVIDE ALL REQUIRED 0-10V WIRING TO 0-10V DIMMABLE FIXTURES AND\\n8. CATALOG NUMBER ON FIXTURE SCHEDULE MAY NOT REFERENCE EVERY CONTROLS AS REQUIRED. THIS 0-10V LOW VOLTAGE WIRING IS NOT SHOWN ON\\nHARDWARE COMPONENT REQUIRED TO MOUNT FIXTURE AS INTENDED, VERIFY WITH PLANS FOR DRAWING CLARITY. 0-10V WIRING SHALL BE TYPE COMPATIBLE WITH\\nMANUFACTURER FOR PROPER MOUNTING HARDWARE AND ANY ADDITIONAL THE FIXTURE DIMMING DRIVER TYPE (CLASS 1 OR 2). CONTRACTOR SHALL\\nCOMPONENTS REQUIRED TO MOUNT FIXTURE AS INTENDED OR SHOWN. COORDINATE WITH MANUFACTURER FOR CABLE TYPE, SIZE, AND INSTALLATION\\nREQUIREMENT AND COMPLY ACCORDINGLY. ALL WIRING SHALL BE IN\\n9. WHERE USED. ALL LINEAR TYPE FLUORESCENT LUMINAIRES SHALL COMPLY WITH COMPLIANCE WITH N.E.C. ARTICLE 725.\\nN.E.C. 410.130(G) FOR BALLAST DISCONNECT.\\n17. PROVIDE WIRING AS REQUIRED FOR STEP DIMMING FIXTURES. CONTROL WIRING\\n10. WHERE USED. LAMPS SHALL BE ENERGY SAVING WITH COLOR TEMPERATURE AS NOT SHOWN ON THESE DOCUMENTS FOR DRAWING CLARITY.\\nSHOWN ON SCHEDULE WITH MINIMUM CRI OF 82.\", null, null, null, null, null, null, null]], [[\"11.24.2025\\ndate\"], [\"25020\\ncomm. no.\"], [\"ELECTRICAL PLAN\"], [\"E200\"]]]"
+    },
+    {
+      "id": 623,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 37,
+      "page_type": "detail_sheet",
+      "sheet_num": "E300",
+      "sheet_title": "POWER RISER DIAGRAM",
+      "legends_count": 0,
+      "has_legend": 0,
+      "has_schedule": 0,
+      "raw_tables_json": null
+    },
+    {
+      "id": 624,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 38,
+      "page_type": "schedule_sheet",
+      "sheet_num": "E400",
+      "sheet_title": "ELECTRICAL SPECIFICATIONS",
+      "legends_count": 6,
+      "has_legend": 1,
+      "has_schedule": 1,
+      "raw_tables_json": "[[[\"TO THE BEST OF THE KNOWLEDGE OF\\nTHE ARCHITECTS AND ENGINEERS, PLANS\\nAND SPECIFICATIONS COMPLY WITH THE\\nAPPLICABLE MINIMUM BUILDING CODES\\nAND THE APPLICABLE MINIMUM FIRE\\nSAFETY STANDARDS\"], [\"SOUHEIL CHEHAYEB, P.E.\\nFL License No. 49521\"]], [[\"\", \"\", \"\", \"\", \"\", \"\", \"s\\nn\\no\\ni\\nt\\np\\ni\\nr\\nc\\ns\\ne\\nd\\nn\\no\\ni\\ns\\ni\\nv\\ne\\nr\"], [\"\", \"\", \"\", \"\", \"\", \"\", \"e\\nt\\na\\nd\"], [\"\", \"\", \"\", \"\", \"\", \"\", \".o\\nn\"]], [[\"\"], [\"\"]]]"
+    }
+  ],
+  "trade_outputs_summary": [
+    {
+      "id": 1172,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 0,
+      "trade_name": "glazing",
+      "json_size": 767
+    },
+    {
+      "id": 1171,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 0,
+      "trade_name": "roofing",
+      "json_size": 1921
+    },
+    {
+      "id": 1174,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 1,
+      "trade_name": "glazing",
+      "json_size": 554
+    },
+    {
+      "id": 1173,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 1,
+      "trade_name": "roofing",
+      "json_size": 1921
+    },
+    {
+      "id": 1176,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 2,
+      "trade_name": "glazing",
+      "json_size": 554
+    },
+    {
+      "id": 1175,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 2,
+      "trade_name": "roofing",
+      "json_size": 2275
+    },
+    {
+      "id": 1178,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 3,
+      "trade_name": "glazing",
+      "json_size": 554
+    },
+    {
+      "id": 1177,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 3,
+      "trade_name": "roofing",
+      "json_size": 2302
+    },
+    {
+      "id": 1180,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 4,
+      "trade_name": "glazing",
+      "json_size": 554
+    },
+    {
+      "id": 1179,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 4,
+      "trade_name": "roofing",
+      "json_size": 2312
+    },
+    {
+      "id": 1182,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 5,
+      "trade_name": "glazing",
+      "json_size": 554
+    },
+    {
+      "id": 1181,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 5,
+      "trade_name": "roofing",
+      "json_size": 2493
+    },
+    {
+      "id": 1184,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 6,
+      "trade_name": "glazing",
+      "json_size": 554
+    },
+    {
+      "id": 1183,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 6,
+      "trade_name": "roofing",
+      "json_size": 1290
+    },
+    {
+      "id": 1186,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 7,
+      "trade_name": "glazing",
+      "json_size": 767
+    },
+    {
+      "id": 1185,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 7,
+      "trade_name": "roofing",
+      "json_size": 1826
+    },
+    {
+      "id": 1188,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 8,
+      "trade_name": "glazing",
+      "json_size": 769
+    },
+    {
+      "id": 1187,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 8,
+      "trade_name": "roofing",
+      "json_size": 1921
+    },
+    {
+      "id": 1190,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 9,
+      "trade_name": "glazing",
+      "json_size": 554
+    },
+    {
+      "id": 1189,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 9,
+      "trade_name": "roofing",
+      "json_size": 1921
+    },
+    {
+      "id": 1192,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 10,
+      "trade_name": "glazing",
+      "json_size": 796
+    },
+    {
+      "id": 1191,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 10,
+      "trade_name": "roofing",
+      "json_size": 2102
+    },
+    {
+      "id": 1194,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 11,
+      "trade_name": "glazing",
+      "json_size": 1014
+    },
+    {
+      "id": 1193,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 11,
+      "trade_name": "roofing",
+      "json_size": 2139
+    },
+    {
+      "id": 1196,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 12,
+      "trade_name": "glazing",
+      "json_size": 1784
+    },
+    {
+      "id": 1195,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 12,
+      "trade_name": "roofing",
+      "json_size": 1821
+    },
+    {
+      "id": 1198,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 13,
+      "trade_name": "glazing",
+      "json_size": 1737
+    },
+    {
+      "id": 1197,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 13,
+      "trade_name": "roofing",
+      "json_size": 1821
+    },
+    {
+      "id": 1200,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 14,
+      "trade_name": "glazing",
+      "json_size": 555
+    },
+    {
+      "id": 1199,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 14,
+      "trade_name": "roofing",
+      "json_size": 2131
+    },
+    {
+      "id": 1202,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 15,
+      "trade_name": "glazing",
+      "json_size": 555
+    },
+    {
+      "id": 1201,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 15,
+      "trade_name": "roofing",
+      "json_size": 2319
+    },
+    {
+      "id": 1204,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 16,
+      "trade_name": "glazing",
+      "json_size": 555
+    },
+    {
+      "id": 1203,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 16,
+      "trade_name": "roofing",
+      "json_size": 2309
+    },
+    {
+      "id": 1206,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 17,
+      "trade_name": "glazing",
+      "json_size": 555
+    },
+    {
+      "id": 1205,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 17,
+      "trade_name": "roofing",
+      "json_size": 2275
+    },
+    {
+      "id": 1208,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 18,
+      "trade_name": "glazing",
+      "json_size": 555
+    },
+    {
+      "id": 1207,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 18,
+      "trade_name": "roofing",
+      "json_size": 2094
+    },
+    {
+      "id": 1210,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 19,
+      "trade_name": "glazing",
+      "json_size": 555
+    },
+    {
+      "id": 1209,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 19,
+      "trade_name": "roofing",
+      "json_size": 2310
+    },
+    {
+      "id": 1212,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 20,
+      "trade_name": "glazing",
+      "json_size": 3648
+    },
+    {
+      "id": 1211,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 20,
+      "trade_name": "roofing",
+      "json_size": 1921
+    },
+    {
+      "id": 1214,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 21,
+      "trade_name": "glazing",
+      "json_size": 605
+    },
+    {
+      "id": 1213,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 21,
+      "trade_name": "roofing",
+      "json_size": 2283
+    },
+    {
+      "id": 1216,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 22,
+      "trade_name": "glazing",
+      "json_size": 347
+    },
+    {
+      "id": 1215,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 22,
+      "trade_name": "roofing",
+      "json_size": 1921
+    },
+    {
+      "id": 1218,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 23,
+      "trade_name": "glazing",
+      "json_size": 555
+    },
+    {
+      "id": 1217,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 23,
+      "trade_name": "roofing",
+      "json_size": 1921
+    },
+    {
+      "id": 1220,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 24,
+      "trade_name": "glazing",
+      "json_size": 347
+    },
+    {
+      "id": 1219,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 24,
+      "trade_name": "roofing",
+      "json_size": 1921
+    },
+    {
+      "id": 1222,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 25,
+      "trade_name": "glazing",
+      "json_size": 347
+    },
+    {
+      "id": 1221,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 25,
+      "trade_name": "roofing",
+      "json_size": 1921
+    },
+    {
+      "id": 1224,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 26,
+      "trade_name": "glazing",
+      "json_size": 347
+    },
+    {
+      "id": 1223,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 26,
+      "trade_name": "roofing",
+      "json_size": 1921
+    },
+    {
+      "id": 1226,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 27,
+      "trade_name": "glazing",
+      "json_size": 347
+    },
+    {
+      "id": 1225,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 27,
+      "trade_name": "roofing",
+      "json_size": 1921
+    },
+    {
+      "id": 1228,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 28,
+      "trade_name": "glazing",
+      "json_size": 347
+    },
+    {
+      "id": 1227,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 28,
+      "trade_name": "roofing",
+      "json_size": 1921
+    },
+    {
+      "id": 1230,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 29,
+      "trade_name": "glazing",
+      "json_size": 347
+    },
+    {
+      "id": 1229,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 29,
+      "trade_name": "roofing",
+      "json_size": 1921
+    },
+    {
+      "id": 1232,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 30,
+      "trade_name": "glazing",
+      "json_size": 555
+    },
+    {
+      "id": 1231,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 30,
+      "trade_name": "roofing",
+      "json_size": 1921
+    },
+    {
+      "id": 1234,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 31,
+      "trade_name": "glazing",
+      "json_size": 347
+    },
+    {
+      "id": 1233,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 31,
+      "trade_name": "roofing",
+      "json_size": 1921
+    },
+    {
+      "id": 1236,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 32,
+      "trade_name": "glazing",
+      "json_size": 347
+    },
+    {
+      "id": 1235,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 32,
+      "trade_name": "roofing",
+      "json_size": 1948
+    },
+    {
+      "id": 1238,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 33,
+      "trade_name": "glazing",
+      "json_size": 555
+    },
+    {
+      "id": 1237,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 33,
+      "trade_name": "roofing",
+      "json_size": 1948
+    },
+    {
+      "id": 1240,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 34,
+      "trade_name": "glazing",
+      "json_size": 2053
+    },
+    {
+      "id": 1239,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 34,
+      "trade_name": "roofing",
+      "json_size": 1921
+    },
+    {
+      "id": 1242,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 35,
+      "trade_name": "glazing",
+      "json_size": 347
+    },
+    {
+      "id": 1241,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 35,
+      "trade_name": "roofing",
+      "json_size": 1921
+    },
+    {
+      "id": 1244,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 36,
+      "trade_name": "glazing",
+      "json_size": 1767
+    },
+    {
+      "id": 1243,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 36,
+      "trade_name": "roofing",
+      "json_size": 1944
+    },
+    {
+      "id": 1246,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 37,
+      "trade_name": "glazing",
+      "json_size": 347
+    },
+    {
+      "id": 1245,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 37,
+      "trade_name": "roofing",
+      "json_size": 1948
+    },
+    {
+      "id": 1248,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 38,
+      "trade_name": "glazing",
+      "json_size": 347
+    },
+    {
+      "id": 1247,
+      "job_id": "2380b180-b93d-420b-8e69-6d220782a940",
+      "page_idx": 38,
+      "trade_name": "roofing",
+      "json_size": 1944
+    }
+  ],
+  "trade_outputs_count": 78,
+  "dispatch_results_count": 39
+}

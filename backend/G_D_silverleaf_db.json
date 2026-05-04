@@ -1,0 +1,803 @@
+{
+  "job": {
+    "id": "8b2020a2-5bab-4ad1-a4f0-406082d86a7f",
+    "name": "B2607 AEA Silverleaf - St Augustine - Accelerated Construction Services (6).pdf",
+    "gc": null,
+    "location_city": null,
+    "location_state": null,
+    "trade_scope": "roofing",
+    "bid_due_date": null,
+    "notes": null,
+    "status": "dispatched",
+    "created_at": "2026-05-04T14:12:46.372931+00:00",
+    "updated_at": "2026-05-04T14:14:46.915363+00:00",
+    "pdf_path": "C:\\huck stage 2\\huckleberry\\backend\\test_plans\\B2607 AEA Silverleaf - St Augustine - Accelerated Construction Services (6).pdf",
+    "pdf_sha1": "76dc89072dae77c1b476b60da85870f3d799cd31",
+    "dispatch_complete": 1
+  },
+  "dispatch_results": [
+    {
+      "page_idx": 0,
+      "page_type": "general_notes",
+      "sheet_num": "S001",
+      "sheet_title": "Colliers Engineering & \nDesign, Inc. Colliers Engineering\n&",
+      "has_legend": 1,
+      "has_schedule": 0,
+      "legends_count": 1
+    },
+    {
+      "page_idx": 1,
+      "page_type": "general_notes",
+      "sheet_num": "S002",
+      "sheet_title": "Colliers Engineering & \nDesign, Inc. Colliers Engineering\n&",
+      "has_legend": 1,
+      "has_schedule": 1,
+      "legends_count": 4
+    },
+    {
+      "page_idx": 2,
+      "page_type": "general_notes",
+      "sheet_num": "S003",
+      "sheet_title": "Colliers Engineering & \nDesign, Inc. Colliers Engineering\n&",
+      "has_legend": 1,
+      "has_schedule": 1,
+      "legends_count": 1
+    },
+    {
+      "page_idx": 3,
+      "page_type": "schedule_sheet",
+      "sheet_num": "S010",
+      "sheet_title": "ZONE 2 ZONE 1 ZONE 1' EXISTING BUILDING PARAPETS EDGE ZONE (",
+      "has_legend": 1,
+      "has_schedule": 1,
+      "legends_count": 4
+    },
+    {
+      "page_idx": 4,
+      "page_type": "framing_plan",
+      "sheet_num": "S100",
+      "sheet_title": "1 Colliers Engineering & \nDesign, Inc. Colliers Engineering",
+      "has_legend": 1,
+      "has_schedule": 0,
+      "legends_count": 2
+    },
+    {
+      "page_idx": 5,
+      "page_type": "framing_plan",
+      "sheet_num": "S101",
+      "sheet_title": "1 Colliers Engineering & \nDesign, Inc. Colliers Engineering",
+      "has_legend": 1,
+      "has_schedule": 0,
+      "legends_count": 2
+    },
+    {
+      "page_idx": 6,
+      "page_type": "detail_sheet",
+      "sheet_num": "S501",
+      "sheet_title": "DETAIL KEYNOTES:\n1. REINF CLEAR COVER FROM  \nSLAB TOP:\n\u2022 \n1",
+      "has_legend": 1,
+      "has_schedule": 1,
+      "legends_count": 2
+    },
+    {
+      "page_idx": 7,
+      "page_type": "schedule_sheet",
+      "sheet_num": "S502",
+      "sheet_title": "STANDARD 9 GA GALV LADDER \nTYPE HORIZONTAL JOINT \nREINFORCIN",
+      "has_legend": 1,
+      "has_schedule": 1,
+      "legends_count": 6
+    },
+    {
+      "page_idx": 8,
+      "page_type": "detail_sheet",
+      "sheet_num": "S503",
+      "sheet_title": "SPLICE \nLOCATION 12-10d NAILS AT (2 ROWS \n4\" OC STAGGERED)\nT",
+      "has_legend": 1,
+      "has_schedule": 1,
+      "legends_count": 4
+    },
+    {
+      "page_idx": 9,
+      "page_type": "schedule_sheet",
+      "sheet_num": "S601",
+      "sheet_title": "Colliers Engineering & \nDesign, Inc. Colliers Engineering\n&",
+      "has_legend": 1,
+      "has_schedule": 1,
+      "legends_count": 7
+    },
+    {
+      "page_idx": 10,
+      "page_type": "general_notes",
+      "sheet_num": null,
+      "sheet_title": "",
+      "has_legend": 0,
+      "has_schedule": 0,
+      "legends_count": 0
+    },
+    {
+      "page_idx": 11,
+      "page_type": "schedule_sheet",
+      "sheet_num": null,
+      "sheet_title": "",
+      "has_legend": 1,
+      "has_schedule": 0,
+      "legends_count": 1
+    },
+    {
+      "page_idx": 12,
+      "page_type": "unknown",
+      "sheet_num": null,
+      "sheet_title": "",
+      "has_legend": 0,
+      "has_schedule": 0,
+      "legends_count": 0
+    },
+    {
+      "page_idx": 13,
+      "page_type": "unknown",
+      "sheet_num": null,
+      "sheet_title": "",
+      "has_legend": 0,
+      "has_schedule": 0,
+      "legends_count": 0
+    },
+    {
+      "page_idx": 14,
+      "page_type": "cover",
+      "sheet_num": "G001",
+      "sheet_title": "CED Architecture, Inc. Colliers Engineering\n& Design TAMPA\n5",
+      "has_legend": 0,
+      "has_schedule": 0,
+      "legends_count": 0
+    },
+    {
+      "page_idx": 15,
+      "page_type": "schedule_sheet",
+      "sheet_num": "G002",
+      "sheet_title": "CED Architecture, Inc. Colliers Engineering\n& Design TAMPA\n5",
+      "has_legend": 1,
+      "has_schedule": 0,
+      "legends_count": 3
+    },
+    {
+      "page_idx": 16,
+      "page_type": "detail_sheet",
+      "sheet_num": "G003",
+      "sheet_title": "CLEAR AREA\n30\" MIN. 17\" - 25\" 25\" MAX. 8\" MIN. 27\" MIN. 9\" M",
+      "has_legend": 0,
+      "has_schedule": 0,
+      "legends_count": 0
+    },
+    {
+      "page_idx": 17,
+      "page_type": "detail_sheet",
+      "sheet_num": "G004",
+      "sheet_title": "RADIUS \n1/2\" \nMAX. CURVED 1 1/2\" MAX. BEVELED 1 1/2\" MAX. 30",
+      "has_legend": 0,
+      "has_schedule": 0,
+      "legends_count": 0
+    },
+    {
+      "page_idx": 18,
+      "page_type": "schedule_sheet",
+      "sheet_num": "G101",
+      "sheet_title": "**MAXIMUM NUMBER OF CHILDREN SHALL BE BASED ON 92 ON PLUMBIN",
+      "has_legend": 1,
+      "has_schedule": 1,
+      "legends_count": 2
+    },
+    {
+      "page_idx": 19,
+      "page_type": "section",
+      "sheet_num": "G101.1",
+      "sheet_title": "CED Architecture, Inc. Colliers Engineering\n& Design TAMPA\n5",
+      "has_legend": 1,
+      "has_schedule": 0,
+      "legends_count": 1
+    },
+    {
+      "page_idx": 20,
+      "page_type": "schedule_sheet",
+      "sheet_num": "G102",
+      "sheet_title": "AREA BOUNDARY LINE\nLEGEND ROOM LICENSING TAG ROOM NAME\n101\nA",
+      "has_legend": 1,
+      "has_schedule": 0,
+      "legends_count": 1
+    },
+    {
+      "page_idx": 21,
+      "page_type": "schedule_sheet",
+      "sheet_num": "A001",
+      "sheet_title": "CED Architecture, Inc. Colliers Engineering\n& Design TAMPA\n5",
+      "has_legend": 0,
+      "has_schedule": 0,
+      "legends_count": 0
+    },
+    {
+      "page_idx": 22,
+      "page_type": "floor_plan",
+      "sheet_num": "A101",
+      "sheet_title": "FLOOR PLAN LEGEND FEC FD FIRE EXTINGUISHER \nCABINET - INSTAL",
+      "has_legend": 0,
+      "has_schedule": 0,
+      "legends_count": 0
+    },
+    {
+      "page_idx": 23,
+      "page_type": "schedule_sheet",
+      "sheet_num": "A102",
+      "sheet_title": "ONE LAYER 5/8\" GYP. BD. \nEA. SIDE SOUND ATTENUATION BATT \nIN",
+      "has_legend": 1,
+      "has_schedule": 1,
+      "legends_count": 2
+    },
+    {
+      "page_idx": 24,
+      "page_type": "ceiling_plan",
+      "sheet_num": "A103",
+      "sheet_title": "SUSPENDED CEILING TILE & GRID \nTO BE REMOVED EXISTING SUSPEN",
+      "has_legend": 0,
+      "has_schedule": 0,
+      "legends_count": 0
+    },
+    {
+      "page_idx": 25,
+      "page_type": "schedule_sheet",
+      "sheet_num": "A104",
+      "sheet_title": "LVT-1 PROVIDE METAL TRANSITION AT \nCHANGE IN FLOOR MATERIAL.",
+      "has_legend": 1,
+      "has_schedule": 0,
+      "legends_count": 3
+    },
+    {
+      "page_idx": 26,
+      "page_type": "schedule_sheet",
+      "sheet_num": "A105",
+      "sheet_title": "LEGEND 005\nSPECIALTY EQUIPMENT MARK 005\nFURNITURE MARK\nEXIST",
+      "has_legend": 1,
+      "has_schedule": 0,
+      "legends_count": 1
+    },
+    {
+      "page_idx": 27,
+      "page_type": "roof_plan",
+      "sheet_num": "A106",
+      "sheet_title": "CED Architecture, Inc. Colliers Engineering\n& Design TAMPA\n5",
+      "has_legend": 1,
+      "has_schedule": 0,
+      "legends_count": 3
+    },
+    {
+      "page_idx": 28,
+      "page_type": "elevation",
+      "sheet_num": "A201",
+      "sheet_title": "FIRST FLOOR\n0' - 0\" T.O.M.\n16' - 0\" E.MT2 B STUCCO REVEAL TO",
+      "has_legend": 0,
+      "has_schedule": 0,
+      "legends_count": 0
+    },
+    {
+      "page_idx": 29,
+      "page_type": "elevation",
+      "sheet_num": "A202",
+      "sheet_title": "CED Architecture, Inc. Colliers Engineering\n& Design TAMPA\n5",
+      "has_legend": 0,
+      "has_schedule": 0,
+      "legends_count": 0
+    },
+    {
+      "page_idx": 30,
+      "page_type": "section",
+      "sheet_num": "A301",
+      "sheet_title": "CED Architecture, Inc. Colliers Engineering\n& Design TAMPA\n5",
+      "has_legend": 0,
+      "has_schedule": 0,
+      "legends_count": 0
+    },
+    {
+      "page_idx": 31,
+      "page_type": "schedule_sheet",
+      "sheet_num": "A401",
+      "sheet_title": "4' - 0\" CED Architecture, Inc. Colliers Engineering\n& Design",
+      "has_legend": 1,
+      "has_schedule": 0,
+      "legends_count": 1
+    },
+    {
+      "page_idx": 32,
+      "page_type": "detail_sheet",
+      "sheet_num": "A501",
+      "sheet_title": "PLASTIC OVERHEAD \nCABINETS, INTERIOR TO \nMATCH CABINETRY FIN",
+      "has_legend": 0,
+      "has_schedule": 0,
+      "legends_count": 0
+    },
+    {
+      "page_idx": 33,
+      "page_type": "schedule_sheet",
+      "sheet_num": "A601",
+      "sheet_title": "A601 CED Architecture, Inc. Colliers Engineering\n& Design TA",
+      "has_legend": 1,
+      "has_schedule": 1,
+      "legends_count": 3
+    },
+    {
+      "page_idx": 34,
+      "page_type": "schedule_sheet",
+      "sheet_num": "A601",
+      "sheet_title": "A601 CED Architecture, Inc. Colliers Engineering\n& Design TA",
+      "has_legend": 1,
+      "has_schedule": 0,
+      "legends_count": 1
+    },
+    {
+      "page_idx": 35,
+      "page_type": "section",
+      "sheet_num": "A603",
+      "sheet_title": "SET #115 - INT - SGL - MULTI-PURPOSE - ALUM - S DOORS: 1 CON",
+      "has_legend": 1,
+      "has_schedule": 1,
+      "legends_count": 2
+    },
+    {
+      "page_idx": 36,
+      "page_type": "general_notes",
+      "sheet_num": null,
+      "sheet_title": "",
+      "has_legend": 0,
+      "has_schedule": 0,
+      "legends_count": 0
+    },
+    {
+      "page_idx": 37,
+      "page_type": "detail_sheet",
+      "sheet_num": null,
+      "sheet_title": "",
+      "has_legend": 0,
+      "has_schedule": 0,
+      "legends_count": 0
+    },
+    {
+      "page_idx": 38,
+      "page_type": "unknown",
+      "sheet_num": null,
+      "sheet_title": "",
+      "has_legend": 0,
+      "has_schedule": 0,
+      "legends_count": 0
+    },
+    {
+      "page_idx": 39,
+      "page_type": "unknown",
+      "sheet_num": null,
+      "sheet_title": "",
+      "has_legend": 0,
+      "has_schedule": 0,
+      "legends_count": 0
+    }
+  ],
+  "dispatch_results_count": 40,
+  "trade_outputs_summary": [
+    {
+      "page_idx": 0,
+      "trade_name": "glazing",
+      "size": 844
+    },
+    {
+      "page_idx": 0,
+      "trade_name": "roofing",
+      "size": 1921
+    },
+    {
+      "page_idx": 1,
+      "trade_name": "glazing",
+      "size": 865
+    },
+    {
+      "page_idx": 1,
+      "trade_name": "roofing",
+      "size": 1948
+    },
+    {
+      "page_idx": 2,
+      "trade_name": "glazing",
+      "size": 788
+    },
+    {
+      "page_idx": 2,
+      "trade_name": "roofing",
+      "size": 2100
+    },
+    {
+      "page_idx": 3,
+      "trade_name": "glazing",
+      "size": 767
+    },
+    {
+      "page_idx": 3,
+      "trade_name": "roofing",
+      "size": 1921
+    },
+    {
+      "page_idx": 4,
+      "trade_name": "glazing",
+      "size": 347
+    },
+    {
+      "page_idx": 4,
+      "trade_name": "roofing",
+      "size": 1921
+    },
+    {
+      "page_idx": 5,
+      "trade_name": "glazing",
+      "size": 347
+    },
+    {
+      "page_idx": 5,
+      "trade_name": "roofing",
+      "size": 1921
+    },
+    {
+      "page_idx": 6,
+      "trade_name": "glazing",
+      "size": 347
+    },
+    {
+      "page_idx": 6,
+      "trade_name": "roofing",
+      "size": 1921
+    },
+    {
+      "page_idx": 7,
+      "trade_name": "glazing",
+      "size": 347
+    },
+    {
+      "page_idx": 7,
+      "trade_name": "roofing",
+      "size": 1921
+    },
+    {
+      "page_idx": 8,
+      "trade_name": "glazing",
+      "size": 554
+    },
+    {
+      "page_idx": 8,
+      "trade_name": "roofing",
+      "size": 2102
+    },
+    {
+      "page_idx": 9,
+      "trade_name": "glazing",
+      "size": 2489
+    },
+    {
+      "page_idx": 9,
+      "trade_name": "roofing",
+      "size": 1744
+    },
+    {
+      "page_idx": 10,
+      "trade_name": "glazing",
+      "size": 347
+    },
+    {
+      "page_idx": 10,
+      "trade_name": "roofing",
+      "size": 1921
+    },
+    {
+      "page_idx": 11,
+      "trade_name": "glazing",
+      "size": 347
+    },
+    {
+      "page_idx": 11,
+      "trade_name": "roofing",
+      "size": 1921
+    },
+    {
+      "page_idx": 12,
+      "trade_name": "glazing",
+      "size": 770
+    },
+    {
+      "page_idx": 12,
+      "trade_name": "roofing",
+      "size": 1921
+    },
+    {
+      "page_idx": 13,
+      "trade_name": "glazing",
+      "size": 347
+    },
+    {
+      "page_idx": 13,
+      "trade_name": "roofing",
+      "size": 1921
+    },
+    {
+      "page_idx": 14,
+      "trade_name": "glazing",
+      "size": 1139
+    },
+    {
+      "page_idx": 14,
+      "trade_name": "roofing",
+      "size": 2121
+    },
+    {
+      "page_idx": 15,
+      "trade_name": "glazing",
+      "size": 347
+    },
+    {
+      "page_idx": 15,
+      "trade_name": "roofing",
+      "size": 1921
+    },
+    {
+      "page_idx": 16,
+      "trade_name": "glazing",
+      "size": 347
+    },
+    {
+      "page_idx": 16,
+      "trade_name": "roofing",
+      "size": 1921
+    },
+    {
+      "page_idx": 17,
+      "trade_name": "glazing",
+      "size": 347
+    },
+    {
+      "page_idx": 17,
+      "trade_name": "roofing",
+      "size": 1921
+    },
+    {
+      "page_idx": 18,
+      "trade_name": "glazing",
+      "size": 2470
+    },
+    {
+      "page_idx": 18,
+      "trade_name": "roofing",
+      "size": 1921
+    },
+    {
+      "page_idx": 19,
+      "trade_name": "glazing",
+      "size": 608
+    },
+    {
+      "page_idx": 19,
+      "trade_name": "roofing",
+      "size": 1921
+    },
+    {
+      "page_idx": 20,
+      "trade_name": "glazing",
+      "size": 2097
+    },
+    {
+      "page_idx": 20,
+      "trade_name": "roofing",
+      "size": 1921
+    },
+    {
+      "page_idx": 21,
+      "trade_name": "glazing",
+      "size": 347
+    },
+    {
+      "page_idx": 21,
+      "trade_name": "roofing",
+      "size": 1921
+    },
+    {
+      "page_idx": 22,
+      "trade_name": "glazing",
+      "size": 605
+    },
+    {
+      "page_idx": 22,
+      "trade_name": "roofing",
+      "size": 2094
+    },
+    {
+      "page_idx": 23,
+      "trade_name": "glazing",
+      "size": 3006
+    },
+    {
+      "page_idx": 23,
+      "trade_name": "roofing",
+      "size": 1921
+    },
+    {
+      "page_idx": 24,
+      "trade_name": "glazing",
+      "size": 4036
+    },
+    {
+      "page_idx": 24,
+      "trade_name": "roofing",
+      "size": 2094
+    },
+    {
+      "page_idx": 25,
+      "trade_name": "glazing",
+      "size": 3787
+    },
+    {
+      "page_idx": 25,
+      "trade_name": "roofing",
+      "size": 2094
+    },
+    {
+      "page_idx": 26,
+      "trade_name": "glazing",
+      "size": 347
+    },
+    {
+      "page_idx": 26,
+      "trade_name": "roofing",
+      "size": 1921
+    },
+    {
+      "page_idx": 27,
+      "trade_name": "glazing",
+      "size": 347
+    },
+    {
+      "page_idx": 27,
+      "trade_name": "roofing",
+      "size": 2129
+    },
+    {
+      "page_idx": 28,
+      "trade_name": "glazing",
+      "size": 347
+    },
+    {
+      "page_idx": 28,
+      "trade_name": "roofing",
+      "size": 1921
+    },
+    {
+      "page_idx": 29,
+      "trade_name": "glazing",
+      "size": 347
+    },
+    {
+      "page_idx": 29,
+      "trade_name": "roofing",
+      "size": 1921
+    },
+    {
+      "page_idx": 30,
+      "trade_name": "glazing",
+      "size": 347
+    },
+    {
+      "page_idx": 30,
+      "trade_name": "roofing",
+      "size": 2102
+    },
+    {
+      "page_idx": 31,
+      "trade_name": "glazing",
+      "size": 347
+    },
+    {
+      "page_idx": 31,
+      "trade_name": "roofing",
+      "size": 1921
+    },
+    {
+      "page_idx": 32,
+      "trade_name": "glazing",
+      "size": 347
+    },
+    {
+      "page_idx": 32,
+      "trade_name": "roofing",
+      "size": 2129
+    },
+    {
+      "page_idx": 33,
+      "trade_name": "glazing",
+      "size": 7830
+    },
+    {
+      "page_idx": 33,
+      "trade_name": "roofing",
+      "size": 2102
+    },
+    {
+      "page_idx": 34,
+      "trade_name": "glazing",
+      "size": 347
+    },
+    {
+      "page_idx": 34,
+      "trade_name": "roofing",
+      "size": 2275
+    },
+    {
+      "page_idx": 35,
+      "trade_name": "glazing",
+      "size": 660
+    },
+    {
+      "page_idx": 35,
+      "trade_name": "roofing",
+      "size": 2094
+    },
+    {
+      "page_idx": 36,
+      "trade_name": "glazing",
+      "size": 347
+    },
+    {
+      "page_idx": 36,
+      "trade_name": "roofing",
+      "size": 1921
+    },
+    {
+      "page_idx": 37,
+      "trade_name": "glazing",
+      "size": 347
+    },
+    {
+      "page_idx": 37,
+      "trade_name": "roofing",
+      "size": 1921
+    },
+    {
+      "page_idx": 38,
+      "trade_name": "glazing",
+      "size": 347
+    },
+    {
+      "page_idx": 38,
+      "trade_name": "roofing",
+      "size": 1921
+    },
+    {
+      "page_idx": 39,
+      "trade_name": "glazing",
+      "size": 347
+    },
+    {
+      "page_idx": 39,
+      "trade_name": "roofing",
+      "size": 1921
+    }
+  ],
+  "trade_outputs_count": 80,
+  "aggregate": {
+    "roofing_fields": 338,
+    "glazing_items": 20,
+    "door_items": 81,
+    "storefront_items": 7
+  },
+  "page_type_distribution": {
+    "general_notes": 5,
+    "schedule_sheet": 14,
+    "framing_plan": 2,
+    "detail_sheet": 6,
+    "unknown": 4,
+    "cover": 1,
+    "section": 3,
+    "floor_plan": 1,
+    "ceiling_plan": 1,
+    "roof_plan": 1,
+    "elevation": 2
+  }
+}
