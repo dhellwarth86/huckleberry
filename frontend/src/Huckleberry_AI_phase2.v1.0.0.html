@@ -1136,7 +1136,7 @@
             <button class="btn btn-ghost" onclick="addEmptySystem()">+ ADD SYSTEM</button>
           </div>
         </div>
-        <div id="scopeEmpty" class="alert info">Upload a bidset on the NEW SESSION tab to populate scope. Scope data comes from the backend API (wired in E.2.2). Until then, empty.</div>
+        <div id="scopeEmpty" class="alert info">No bidset dispatched yet. Go to the NEW SESSION tab to upload a bidset and run dispatch.</div>
         <div id="scopeContent"></div>
       </div>
 
@@ -1452,7 +1452,10 @@ const apiClient = {
     return apiCall('GET', '/jobs/' + encodeURIComponent(jobId) + '/results');
   },
   dispatchJob: function(jobId) {
-    return apiCall('POST', '/jobs/' + encodeURIComponent(jobId) + '/dispatch', { timeout: 240000 });
+    // G.4: no client-side timeout — polling pattern in runDispatchFlow owns
+    // visibility. Request stays in flight as long as the browser allows;
+    // backend handler runs to completion regardless.
+    return apiCall('POST', '/jobs/' + encodeURIComponent(jobId) + '/dispatch');
   },
   // G.4: scope-tab CRUD. Backend owns scope_systems; frontend renders + relays.
   getScope: function(jobId, trade) {
@@ -1762,6 +1765,7 @@ async function loadScopeFromApi(jobId, trade) {
   if (!jobId) {
     App.project.scope = { systems: [], rawText: '', lastScanAt: 0 };
     if (typeof renderScopeTab === 'function') renderScopeTab();
+    if (typeof renderJobIndicator === 'function') renderJobIndicator();
     return;
   }
   try {
@@ -1772,9 +1776,24 @@ async function loadScopeFromApi(jobId, trade) {
       lastScanAt: Date.now(),
     };
     if (typeof renderScopeTab === 'function') renderScopeTab();
+    if (typeof renderJobIndicator === 'function') renderJobIndicator();
   } catch (e) {
     // Backend unreachable — keep prior render cache, surface in console.
     if (typeof console !== 'undefined') console.warn('loadScopeFromApi failed:', e && e.message);
+  }
+}
+
+/* G.4: sidebar Job indicator. Reads App.currentJobId. Idempotent — call
+   on dispatch success, on boot rehydrate, after every loadScopeFromApi. */
+function renderJobIndicator() {
+  var el = (typeof document !== 'undefined') ? document.getElementById('sbCurrentJob') : null;
+  if (!el) return;
+  if (App.currentJobId) {
+    el.textContent = String(App.currentJobId).substring(0, 8) + '…';
+    el.title = String(App.currentJobId);
+  } else {
+    el.textContent = 'none';
+    el.removeAttribute('title');
   }
 }
 
@@ -1933,6 +1952,45 @@ function selectTrade(trade) {
   }
 }
 
+/* G.4: poll GET /jobs/{id} until status reaches a terminal state.
+   Backend transitions: draft -> dispatching -> dispatched (success)
+                        draft -> dispatching -> draft (rollback on error)
+   Polling is the source of truth for dispatch visibility — we don't rely
+   on the long-blocking POST /dispatch response. Mirrors TracePoint's
+   pattern (frontend = relay; backend owns long-running work).
+   Returns the final job row. Throws on ceiling exceeded.
+*/
+async function pollJobStatus(jobId, opts) {
+  opts = opts || {};
+  var POLL_INTERVAL_MS = opts.intervalMs || 3000;
+  var CEILING_MS = opts.ceilingMs || (30 * 60 * 1000);  // 30 min default
+  var onTick = opts.onTick || function() {};
+  var start = Date.now();
+  while (true) {
+    if (Date.now() - start > CEILING_MS) {
+      throw new Error('dispatch polling exceeded ' + Math.floor(CEILING_MS/60000) + ' minute ceiling');
+    }
+    var elapsed = Math.floor((Date.now() - start) / 1000);
+    var lastStatus = 'unknown';
+    try {
+      var job = await apiClient.getJob(jobId);
+      lastStatus = job.status;
+      onTick(elapsed, lastStatus, job);
+      // Terminal states: dispatched (success) OR draft after dispatching (rollback).
+      if (job.status === 'dispatched') return job;
+      if (job.status === 'draft' && elapsed > 5) {
+        // 5s grace window: if status is still 'draft' more than 5s in, the
+        // backend rolled back from a dispatching-state failure.
+        return job;
+      }
+    } catch (e) {
+      // Network blip / backend hiccup — keep polling, surface in tick.
+      onTick(elapsed, 'unreachable', null);
+    }
+    await new Promise(function(resolve) { setTimeout(resolve, POLL_INTERVAL_MS); });
+  }
+}
+
 async function runDispatchFlow() {
   var pathEl = document.getElementById('serverPdfPath');
   var pdfPath = pathEl ? pathEl.value.trim() : '';
@@ -1948,17 +2006,48 @@ async function runDispatchFlow() {
       trade_scope: App.project.trade || 'roofing',
     });
     App.currentJobId = job.id;
+    if (typeof renderJobIndicator === 'function') renderJobIndicator();
     // G.4: persist current job id so a browser refresh rehydrates the
     // scope tab from the database. Full session resume (pages tab,
     // viewer state, annotations) is deferred to G.5/c.2.
     try { if (typeof localStorage !== 'undefined') localStorage.setItem('huck.currentJobId', job.id); } catch (_) {}
     if (btn) btn.textContent = 'DISPATCHING — this may take several minutes...';
     if (status) status.textContent = 'Job ' + job.id.substring(0, 8) + '... created. Dispatching...';
-    await apiClient.dispatchJob(job.id);
+
+    // G.4: fire dispatch + poll in parallel. Polling owns visibility;
+    // the POST stays in flight in the background. If the POST resolves
+    // first (fast bidset) the polling loop also catches the dispatched
+    // state on its next tick. If the POST throws (network reset, abort,
+    // 4xx/5xx) we surface its error message via dispatchPromiseErr.
+    var dispatchPromiseErr = null;
+    var dispatchPromise = apiClient.dispatchJob(job.id).catch(function(e) {
+      dispatchPromiseErr = e;
+      return null;
+    });
+
+    var finalJob = await pollJobStatus(job.id, {
+      onTick: function(elapsed, currentStatus) {
+        if (status) {
+          var label = currentStatus.toUpperCase();
+          status.textContent = 'Dispatching — ' + elapsed + 's elapsed (status: ' + label + ')...';
+        }
+      },
+    });
+
+    if (finalJob.status !== 'dispatched') {
+      // Backend rolled status back to draft -> a real failure.
+      var detail = dispatchPromiseErr && dispatchPromiseErr.message
+        ? dispatchPromiseErr.message
+        : 'backend reverted status to draft';
+      throw new Error('Dispatch did not complete: ' + detail);
+    }
+    // Drain the in-flight dispatch promise so it doesn't dangle.
+    await dispatchPromise;
+
     if (btn) btn.textContent = 'LOADING RESULTS...';
     var results = await apiClient.getResults(job.id);
     App.currentResults = results;
-    // G.4: scope tab is now backend-DB-driven; pull from API instead of
+    // G.4: scope tab is backend-DB-driven; pull from API instead of
     // deriving from per-page _scope noise. Pages tab still uses the bulk
     // results endpoint until baseline item 4 (page reclassify) ships.
     await loadScopeFromApi(job.id, App.project.trade || 'roofing');
@@ -3105,6 +3194,24 @@ function renderScopeTab() {
   if (!empty || !content) return;
   const systems = App.project.scope.systems || [];
   if (systems.length === 0) {
+    // G.4: honest, trade-aware empty-state copy. Three cases:
+    //   1. No job  -> nudge to NEW SESSION tab
+    //   2. Job set, dispatch not yet complete -> dispatching message
+    //   3. Job dispatched, but auto-detection found no high-confidence match
+    //      -> manual entry / re-scan path
+    var trade = App.project.trade || 'roofing';
+    var tradeLabel = trade.charAt(0).toUpperCase() + trade.slice(1);
+    var msg;
+    if (!App.currentJobId) {
+      msg = 'No bidset dispatched yet. Go to the NEW SESSION tab to upload a bidset and run dispatch.';
+    } else {
+      msg = 'Scope detection found no high-confidence ' + tradeLabel + ' system for this bidset. ' +
+            'Click <strong>+ ADD SYSTEM</strong> to enter one manually, or <strong>↻ RE-SCAN</strong> to retry. ' +
+            '<span style="color:var(--muted);">(This is the spec’d fallback when the backend’s scope-scanner ' +
+            'can’t reach 0.7 confidence — common on STACK-style and Florida bidsets where the cover sheet ' +
+            'doesn’t name a Division 07 spec section.)</span>';
+    }
+    empty.innerHTML = msg;
     empty.style.display = 'block';
     content.innerHTML = '';
     return;
@@ -3928,6 +4035,7 @@ const INTEGRATION_TESTS = [
         if (saved) App.currentJobId = saved;
       }
     } catch (_) {}
+    if (typeof renderJobIndicator === 'function') renderJobIndicator();
     selectTrade('roofing');
     if (typeof renderViewerSystemControls === 'function') {
       try { renderViewerSystemControls(); } catch(_){}
