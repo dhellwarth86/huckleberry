@@ -2,17 +2,21 @@
 
 Endpoints:
 
-- POST   /jobs                              create a job (JSON path-string) (E.1)
-- POST   /jobs/upload                       create a job (multipart upload) (G.4 CP2)
+- POST   /jobs/upload                       create a job (multipart upload)  (G.4 CP2)
 - GET    /jobs/{id}                         load a job    (E.1)
-- GET    /jobs/{id}/pdf                     download the stored PDF bytes  (G.4 CP2)
-- POST   /jobs/{id}/dispatch                trigger dispatch  (E.2.2)
-- GET    /jobs/{id}/results                 load results      (E.2.2)
-- GET    /jobs/{id}/scope                   list scope systems (G.4)
-- POST   /jobs/{id}/scope/systems           create manual scope system (G.4)
-- PATCH  /jobs/{id}/scope/systems/{sys_id}  edit scope system (G.4)
-- DELETE /jobs/{id}/scope/systems/{sys_id}  delete scope system (G.4)
+- GET    /jobs/{id}/pdf                     download the stored PDF bytes    (G.4 CP2)
+- POST   /jobs/{id}/dispatch                trigger dispatch                 (E.2.2)
+- GET    /jobs/{id}/results                 load results                     (E.2.2)
+- GET    /jobs/{id}/scope                   list scope systems               (G.4)
+- POST   /jobs/{id}/scope/systems           create manual scope system       (G.4)
+- PATCH  /jobs/{id}/scope/systems/{sys_id}  edit scope system                (G.4)
+- DELETE /jobs/{id}/scope/systems/{sys_id}  delete scope system              (G.4)
 - POST   /jobs/{id}/scope/rescan            reset auto rows from project_scope (G.4)
+
+G.4 CP3 retired the JSON path-string POST /jobs endpoint. Multipart
+upload is the single upload point. Dev scripts that need direct dispatch
+on a local PDF path call core.dispatch_gate.run_dispatch directly
+without going through the API (see backend/scripts/d2_*.py).
 
 Error messages are generic to avoid leaking SQL fragments, file paths,
 or tracebacks.  See backend/E0_API_DESIGN.md §5.2 + §5.13.
@@ -28,7 +32,6 @@ from fastapi import APIRouter, File, Form, HTTPException, Query, Response, Uploa
 from fastapi.responses import FileResponse
 
 from api.schemas.jobs import (  # E.1 + E.2.2 + G.4
-    JobCreateRequest,
     JobResponse,
     JobResultsResponse,
     ScopeSystem,
@@ -56,40 +59,8 @@ logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/jobs", tags=["jobs"])  # E.1
 
-
-@router.post("", response_model=JobResponse, status_code=201)  # E.1
-def create_job_endpoint(payload: JobCreateRequest) -> JobResponse:
-    """Create a job row. Returns 201 + JobResponse with computed pdf_sha1.
-
-    Validation:
-    - 422 if Pydantic rejects the input (missing name, invalid status, etc.)
-    - 400 if pdf_path doesn't exist on disk (FileNotFoundError from _pdf_sha1)
-    - 500 if SQLite write fails after a successful create (defensive)
-    """
-    try:
-        job_id = create_job(  # E.1
-            name=payload.name,
-            pdf_path=payload.pdf_path,
-            gc=payload.gc,
-            location_city=payload.location_city,
-            location_state=payload.location_state,
-            trade_scope=payload.trade_scope,
-            bid_due_date=payload.bid_due_date,
-            notes=payload.notes,
-            status=payload.status,
-        )
-    except FileNotFoundError:
-        # E.1: data-leak guard — generic message, no full file path echoed back
-        raise HTTPException(status_code=400, detail="pdf_path not found")
-    except ValueError:
-        # E.1: defensive — covers _VALID_STATUSES rejection inside create_job
-        raise HTTPException(status_code=400, detail="Invalid job input")
-
-    job = get_job(job_id)  # E.1
-    if job is None:
-        # E.1: data-leak guard — generic message, no SQL details
-        raise HTTPException(status_code=500, detail="Job creation failed")
-    return JobResponse(**job)
+# G.4 CP3: POST /jobs (JSON path-string) endpoint retired. Multipart upload
+# at POST /jobs/upload is the single upload point. See module docstring.
 
 
 @router.get("/{job_id}", response_model=JobResponse)  # E.1

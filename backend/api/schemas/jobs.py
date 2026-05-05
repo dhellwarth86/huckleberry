@@ -1,12 +1,17 @@
-"""Pydantic v2 schemas for the /jobs endpoints — E.1.
+"""Pydantic v2 schemas for the /jobs endpoints — E.1 + G.4.
 
-Two shapes:
+Shapes:
 
-- `JobCreateRequest`: POST /jobs request body. Strict input validation —
-  `status` is a `Literal[...]` enforced by Pydantic, name + pdf_path required.
-- `JobResponse`: GET /jobs/{id} and POST /jobs response. `extra="forbid"`
-  is the data-leak guardrail: only the documented fields are emitted, and
+- `JobResponse`: GET /jobs/{id} and POST /jobs/upload response. `extra="forbid"`
+  is the data-leak guardrail — only the documented fields are emitted, and
   `JobResponse(**job)` rejects any unexpected fields surfaced by `get_job`.
+- `JobResultsResponse`: GET /jobs/{id}/results.
+- `ScopeSystem` + family: G.4 scope-tab CRUD shapes.
+
+G.4 CP3 retired `JobCreateRequest` — the JSON path-string POST /jobs
+endpoint is gone. The multipart POST /jobs/upload endpoint takes its
+input as `File` + `Form` parameters, not a Pydantic body, so no schema
+is needed for the request side.
 
 See backend/E0_API_DESIGN.md §5.2 for the full contract.
 """
@@ -18,20 +23,6 @@ from pydantic import BaseModel, ConfigDict, Field
 
 # E.1: status enum ratified at the API layer; matches core.job_storage._VALID_STATUSES
 JobStatus = Literal["draft", "dispatching", "dispatched", "in_review", "exported", "archived"]
-
-
-class JobCreateRequest(BaseModel):
-    """POST /jobs request body."""
-
-    name: str = Field(..., min_length=1, max_length=200)  # E.1: required, non-empty
-    pdf_path: str = Field(..., min_length=1)  # E.1: string path; upload comes at Postgres migration
-    gc: Optional[str] = None
-    location_city: Optional[str] = None
-    location_state: Optional[str] = None
-    trade_scope: str = "roofing"
-    bid_due_date: Optional[str] = None  # E.1: ISO 8601 date string
-    notes: Optional[str] = None
-    status: JobStatus = "draft"  # E.1: strict Literal — Pydantic rejects "banana" etc.
 
 
 class JobResponse(BaseModel):

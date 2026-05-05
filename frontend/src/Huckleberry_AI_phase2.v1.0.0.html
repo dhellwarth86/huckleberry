@@ -1088,7 +1088,7 @@
 
         <div class="card">
           <div class="card-title"><span class="ct-num">STEP 2</span>UPLOAD BIDSET</div>
-          <div class="card-sub">Drop a PDF bidset. Pages render client-side. Backend will process scope (E.2.2 wires the API call).</div>
+          <div class="card-sub">Drop a PDF bidset (or click to browse). The bytes upload to the backend and a job is created. Pages then render from the backend's stored copy.</div>
 
           <div class="upload-zone" id="uploadZone"
                onclick="document.getElementById('fileInput').click()"
@@ -1099,15 +1099,9 @@
             <h3>DROP PDF BIDSET HERE</h3>
             <p>or click to browse · multi-page PDFs supported</p>
           </div>
-          <input type="file" id="fileInput" accept=".pdf" onchange="handleFileSelect(event)">
+          <input type="file" id="fileInput" accept="application/pdf,.pdf" onchange="handleFileSelect(event)">
 
           <div id="fileInfoBox" style="display:none;"></div>
-        </div>
-
-        <div class="card" id="sessionServerPath" style="display:none;">
-          <div class="card-title"><span class="ct-num">STEP 1.5</span>SERVER FILE PATH</div>
-          <div class="card-sub">Until file upload ships, paste the absolute path to the bidset on the machine running uvicorn. The drag-drop above renders pages client-side; the path tells the backend where to dispatch.</div>
-          <input type="text" id="serverPdfPath" placeholder="C:\path\to\bidset.pdf" style="width:100%;padding:8px;font-family:var(--mono);font-size:12px;background:var(--bg-card);color:var(--fg);border:1px solid var(--border);border-radius:4px;box-sizing:border-box;">
         </div>
 
         <div class="card" id="sessionNextSteps" style="display:none;">
@@ -1397,6 +1391,10 @@ async function apiCall(method, path, opts) {
   if (opts.body !== undefined) {
     fetchOpts.headers['Content-Type'] = 'application/json';
     fetchOpts.body = JSON.stringify(opts.body);
+  } else if (opts.rawBody !== undefined) {
+    // G.4 CP3: FormData / Blob / Uint8Array passthrough. The browser sets
+    // Content-Type (incl. multipart boundary) automatically — don't preset it.
+    fetchOpts.body = opts.rawBody;
   }
 
   let timeoutId = null;
@@ -1429,6 +1427,9 @@ async function apiCall(method, path, opts) {
 
   // G.4: 204 No Content has no body to parse (DELETE responses).
   if (resp.status === 204) return null;
+  // G.4 CP2: opts.rawResponse='blob' returns the body bytes directly
+  // (used by getPdf to feed PDF.js).
+  if (opts.rawResponse === 'blob') return resp.blob();
   return resp.json();
 }
 
@@ -1439,8 +1440,25 @@ const apiClient = {
   healthCheck: function() {
     return apiCall('GET', '/health', { timeout: HEALTH_PROBE_TIMEOUT_MS });
   },
+  // G.4 CP3: createJob is multipart-only. Pass { file: File|Blob, name, trade_scope, ... }.
   createJob: function(payload) {
-    return apiCall('POST', '/jobs', { body: payload });
+    if (!(payload && (payload.file instanceof Blob))) {
+      return Promise.reject(new Error('createJob requires a File or Blob in payload.file (CP3: JSON path-string retired)'));
+    }
+    var fd = new FormData();
+    fd.append('file', payload.file, payload.file.name || 'upload.pdf');
+    fd.append('name', payload.name || 'Untitled');
+    if (payload.trade_scope) fd.append('trade_scope', payload.trade_scope);
+    if (payload.gc) fd.append('gc', payload.gc);
+    if (payload.location_city) fd.append('location_city', payload.location_city);
+    if (payload.location_state) fd.append('location_state', payload.location_state);
+    if (payload.bid_due_date) fd.append('bid_due_date', payload.bid_due_date);
+    if (payload.notes) fd.append('notes', payload.notes);
+    return apiCall('POST', '/jobs/upload', { rawBody: fd });
+  },
+  // G.4 CP2: fetch the backend's stored copy of the bidset PDF as a Blob.
+  getPdf: function(jobId) {
+    return apiCall('GET', '/jobs/' + encodeURIComponent(jobId) + '/pdf', { rawResponse: 'blob' });
   },
   getJob: function(jobId) {
     return apiCall('GET', '/jobs/' + encodeURIComponent(jobId));
@@ -1948,32 +1966,63 @@ async function handleDrop(e) {
   await loadPdfFile(f);
 }
 
+/* G.4 CP3: single upload point. File picked locally -> POST multipart to
+   backend -> backend stores bytes at ~/.tracepoint/uploads/{job_id}/source.pdf
+   and returns a job row -> frontend GETs /jobs/{id}/pdf for the bytes ->
+   PDF.js renders from the backend's stored copy. The dropzone-only client
+   render path and the Step 1.5 server-path-string flow are both retired. */
 async function loadPdfFile(file) {
   const fb = document.getElementById('fileInfoBox');
   fb.style.display = 'block';
-  fb.innerHTML = '<div class="alert info">Loading <strong>' + escapeHTML(file.name) + '</strong> (' + (file.size/1024).toFixed(0) + ' KB)…</div>';
+  fb.innerHTML = '<div class="alert info">Uploading <strong>' + escapeHTML(file.name) + '</strong> (' + (file.size/1024).toFixed(0) + ' KB) to backend…</div>';
   try {
-    const ab = await file.arrayBuffer();
-    const planSet = await extractPlanSetFromPdf(ab);
+    // 1. Upload bytes to backend; backend stores them and creates the job row.
+    var job = await apiClient.createJob({
+      file: file,
+      name: file.name,
+      trade_scope: App.project.trade || 'roofing',
+    });
+    App.currentJobId = job.id;
+    if (typeof renderJobIndicator === 'function') renderJobIndicator();
+    try { if (typeof localStorage !== 'undefined') localStorage.setItem('huck.currentJobId', job.id); } catch (_) {}
+
+    fb.innerHTML = '<div class="alert info">Uploaded · job ' + escapeHTML(job.id.substring(0, 8)) + '… created. Fetching pages from backend store…</div>';
+
+    // 2. Fetch the bytes back from the backend's stored copy. This is the
+    //    architecturally-correct path: frontend renders from the database,
+    //    not from the upload stream. Future refresh-resume reuses the same
+    //    code path (no re-upload needed).
+    var blob = await apiClient.getPdf(job.id);
+    var ab = await blob.arrayBuffer();
+
+    // 3. Render pages via PDF.js — same code as before; recon confirmed the
+    //    PDF.js getDocument({ data: ArrayBuffer }) path works as-is.
+    var planSet = await extractPlanSetFromPdf(ab);
     App.planSet = planSet;
     App.project.bidSetName = file.name;
     App.project.numPages = planSet.pages.length;
     App.project.pageClasses = {};
+
     fb.innerHTML =
       '<div class="alert ok">' +
-      '<strong>' + escapeHTML(file.name) + '</strong> · ' + planSet.pages.length + ' page(s) loaded. ' +
-      'Enter server path and click RUN DISPATCH to process scope.' +
+      '<strong>' + escapeHTML(file.name) + '</strong> · ' + planSet.pages.length + ' page(s) loaded from backend store · job ' + escapeHTML(job.id.substring(0, 8)) + '…<br>' +
+      'Click RUN DISPATCH to process scope.' +
       '</div>';
-    if (typeof renderScopeTab === 'function') renderScopeTab();
+
+    // 4. Pull any pre-existing scope rows for this job (none on a fresh
+    //    upload, but harmless and consistent with the API-driven flow).
+    if (typeof loadScopeFromApi === 'function') {
+      await loadScopeFromApi(job.id, App.project.trade || 'roofing');
+    }
     if (typeof renderPagesTab === 'function') renderPagesTab();
     if (typeof ensureCurrentSystem === 'function') ensureCurrentSystem();
     if (typeof renderViewerSystemControls === 'function') renderViewerSystemControls();
-    const sp = document.getElementById('sessionServerPath');
-    if (sp) sp.style.display = 'block';
-    const ns = document.getElementById('sessionNextSteps');
+
+    var ns = document.getElementById('sessionNextSteps');
     if (ns) ns.style.display = 'block';
   } catch (err) {
-    fb.innerHTML = '<div class="alert err">Failed to parse PDF: ' + escapeHTML(err.message) + '</div>';
+    fb.innerHTML = '<div class="alert err">Upload failed: ' + escapeHTML(err.message || String(err)) + '</div>';
+    if (typeof console !== 'undefined') console.error('loadPdfFile error:', err);
   }
 }
 
@@ -2027,66 +2076,52 @@ async function pollJobStatus(jobId, opts) {
   }
 }
 
+/* G.4 CP3: dispatch flow simplified. Upload (loadPdfFile) already created
+   the job and stored the PDF backend-side; this function just kicks the
+   dispatch pipeline on the existing job_id. No path lookup, no createJob. */
 async function runDispatchFlow() {
-  var pathEl = document.getElementById('serverPdfPath');
-  var pdfPath = pathEl ? pathEl.value.trim() : '';
-  if (!pdfPath) { alert('Enter the server file path first (Step 1.5).'); return; }
+  if (!App.currentJobId) {
+    alert('Upload a bidset first (Step 2).');
+    return;
+  }
+  var jobId = App.currentJobId;
   var btn = document.getElementById('btnRunDispatch');
   var status = document.getElementById('dispatchStatus');
-  if (btn) { btn.disabled = true; btn.textContent = 'CREATING JOB...'; }
-  if (status) status.textContent = '';
+  if (btn) { btn.disabled = true; btn.textContent = 'DISPATCHING — this may take several minutes...'; }
+  if (status) status.textContent = 'Job ' + jobId.substring(0, 8) + '… dispatching…';
   try {
-    var job = await apiClient.createJob({
-      name: App.project.bidSetName || 'Untitled',
-      pdf_path: pdfPath,
-      trade_scope: App.project.trade || 'roofing',
-    });
-    App.currentJobId = job.id;
-    if (typeof renderJobIndicator === 'function') renderJobIndicator();
-    // G.4: persist current job id so a browser refresh rehydrates the
-    // scope tab from the database. Full session resume (pages tab,
-    // viewer state, annotations) is deferred to G.5/c.2.
-    try { if (typeof localStorage !== 'undefined') localStorage.setItem('huck.currentJobId', job.id); } catch (_) {}
-    if (btn) btn.textContent = 'DISPATCHING — this may take several minutes...';
-    if (status) status.textContent = 'Job ' + job.id.substring(0, 8) + '... created. Dispatching...';
-
     // G.4: fire dispatch + poll in parallel. Polling owns visibility;
-    // the POST stays in flight in the background. If the POST resolves
-    // first (fast bidset) the polling loop also catches the dispatched
-    // state on its next tick. If the POST throws (network reset, abort,
-    // 4xx/5xx) we surface its error message via dispatchPromiseErr.
+    // the POST stays in flight in the background. If the POST throws
+    // (network reset, abort, 4xx/5xx) we surface its error message via
+    // dispatchPromiseErr. If the polling loop sees status 'dispatched'
+    // before the POST resolves, we proceed and drain the POST.
     var dispatchPromiseErr = null;
-    var dispatchPromise = apiClient.dispatchJob(job.id).catch(function(e) {
+    var dispatchPromise = apiClient.dispatchJob(jobId).catch(function(e) {
       dispatchPromiseErr = e;
       return null;
     });
 
-    var finalJob = await pollJobStatus(job.id, {
+    var finalJob = await pollJobStatus(jobId, {
       onTick: function(elapsed, currentStatus) {
         if (status) {
           var label = currentStatus.toUpperCase();
-          status.textContent = 'Dispatching — ' + elapsed + 's elapsed (status: ' + label + ')...';
+          status.textContent = 'Dispatching — ' + elapsed + 's elapsed (status: ' + label + ')…';
         }
       },
     });
 
     if (finalJob.status !== 'dispatched') {
-      // Backend rolled status back to draft -> a real failure.
       var detail = dispatchPromiseErr && dispatchPromiseErr.message
         ? dispatchPromiseErr.message
         : 'backend reverted status to draft';
       throw new Error('Dispatch did not complete: ' + detail);
     }
-    // Drain the in-flight dispatch promise so it doesn't dangle.
-    await dispatchPromise;
+    await dispatchPromise;  // drain in-flight POST
 
     if (btn) btn.textContent = 'LOADING RESULTS...';
-    var results = await apiClient.getResults(job.id);
+    var results = await apiClient.getResults(jobId);
     App.currentResults = results;
-    // G.4: scope tab is backend-DB-driven; pull from API instead of
-    // deriving from per-page _scope noise. Pages tab still uses the bulk
-    // results endpoint until baseline item 4 (page reclassify) ships.
-    await loadScopeFromApi(job.id, App.project.trade || 'roofing');
+    await loadScopeFromApi(jobId, App.project.trade || 'roofing');
     populatePagesFromResults(results);
     if (typeof renderPagesTab === 'function') renderPagesTab();
     if (typeof ensureCurrentSystem === 'function') ensureCurrentSystem();
@@ -3889,10 +3924,47 @@ const TAKEOFF_TESTS = [
   }},
 ];
 
-// G.4 CP1 floor = 11 + 3 + 4 = 18 unit + 5 + 5 scope = 28 (was 23 at E.2.2)
+// G.4 CP3 floor = 11 + 3 + 4 = 18 unit + 5 (E.2.2/G.4 CP3 migrated) + 5 scope = 28
+// (CP2 added getPdf round-trip; CP3 retired createJob 422 + dropped legacy
+//  JSON-only pre-upload createJob; net 5 in INTEGRATION_TESTS unchanged.)
 const UNIT_TESTS = [].concat(TOOL_TESTS, STATUS_BAR_TESTS, TAKEOFF_TESTS);
 
-// E.2.2: 5 API smoke tests. SKIP convention: throw Error('SKIP: ...') when backend unreachable.
+// G.4 CP3: post-multipart-cutover integration tests. The JSON path-string
+// POST /jobs endpoint is gone; tests that need a job upload bytes via
+// multipart instead (mirrors the backend test_api_jobs._upload_test_job).
+
+// Minimal valid PDF (1 blank page, ~190 bytes). Same shape as the
+// backend's conftest._MINIMAL_PDF fixture so frontend smoke tests can
+// create real-but-tiny jobs without touching the filesystem.
+function _testFixturePdfBlob() {
+  var pdf =
+    '%PDF-1.0\n' +
+    '1 0 obj<</Type/Catalog/Pages 2 0 R>>endobj\n' +
+    '2 0 obj<</Type/Pages/Kids[3 0 R]/Count 1>>endobj\n' +
+    '3 0 obj<</Type/Page/MediaBox[0 0 612 792]/Parent 2 0 R/Resources<<>>>>endobj\n' +
+    'xref\n0 4\n' +
+    '0000000000 65535 f \n' +
+    '0000000009 00000 n \n' +
+    '0000000058 00000 n \n' +
+    '0000000115 00000 n \n' +
+    'trailer<</Size 4/Root 1 0 R>>\n' +
+    'startxref\n190\n%%EOF\n';
+  var bytes = new Uint8Array(pdf.length);
+  for (var i = 0; i < pdf.length; i++) bytes[i] = pdf.charCodeAt(i);
+  return new Blob([bytes], { type: 'application/pdf' });
+}
+
+async function _testUploadJob(name) {
+  var blob = _testFixturePdfBlob();
+  blob.name = 'fe-test.pdf';  // give the Blob a .name so apiClient.createJob picks it up
+  return apiClient.createJob({
+    file: blob,
+    name: name || ('FE test ' + Date.now()),
+    trade_scope: 'roofing',
+  });
+}
+
+// E.2.2 / G.4 API smoke tests. SKIP convention: throw Error('SKIP: ...') when backend unreachable.
 const INTEGRATION_TESTS = [
   { name: "api · healthCheck returns ok", fn: async function() {
       try {
@@ -3904,15 +3976,12 @@ const INTEGRATION_TESTS = [
         throw e;
       }
   }},
-  { name: "api · createJob returns id and status=draft", fn: async function() {
+  { name: "api · upload creates job with status=draft", fn: async function() {
       try {
-        var r = await apiClient.createJob({
-          name: 'FE smoke test ' + Date.now(),
-          pdf_path: 'C:\\huck stage 2\\full bid sets\\B2607 AEA Silverleaf - St Augustine - Accelerated Construction Services (6).pdf',
-          trade_scope: 'roofing'
-        });
+        var r = await _testUploadJob('FE upload smoke ' + Date.now());
         assert(typeof r.id === 'string' && r.id.length > 0, "id present");
         assert(r.status === 'draft', "status is draft");
+        assert(typeof r.pdf_sha1 === 'string' && r.pdf_sha1.length === 40, "pdf_sha1 is 40-char hex");
       } catch (e) {
         if (e instanceof TypeError || (e.message && e.message.indexOf('Failed to fetch') >= 0))
           throw new Error('SKIP: backend unreachable');
@@ -3921,11 +3990,7 @@ const INTEGRATION_TESTS = [
   }},
   { name: "api · getJob returns matching id", fn: async function() {
       try {
-        var created = await apiClient.createJob({
-          name: 'FE getJob test ' + Date.now(),
-          pdf_path: 'C:\\huck stage 2\\full bid sets\\B2607 AEA Silverleaf - St Augustine - Accelerated Construction Services (6).pdf',
-          trade_scope: 'roofing'
-        });
+        var created = await _testUploadJob('FE getJob test ' + Date.now());
         var fetched = await apiClient.getJob(created.id);
         assert(fetched.id === created.id, "id matches");
       } catch (e) {
@@ -3944,24 +4009,21 @@ const INTEGRATION_TESTS = [
         assert(e.status === 404, "status is 404, got " + e.status);
       }
   }},
-  { name: "api · createJob 422 for invalid status", fn: async function() {
+  { name: "api · getPdf round-trips uploaded bytes", fn: async function() {
       try {
-        await apiClient.createJob({
-          name: 'FE 422 test',
-          pdf_path: 'C:\\huck stage 2\\full bid sets\\B2607 AEA Silverleaf - St Augustine - Accelerated Construction Services (6).pdf',
-          status: 'banana'
-        });
-        assert(false, "should have thrown");
+        var created = await _testUploadJob('FE getPdf test ' + Date.now());
+        var blob = await apiClient.getPdf(created.id);
+        assert(blob instanceof Blob, "getPdf returns a Blob");
+        assert(blob.type === 'application/pdf', "content-type is application/pdf, got " + blob.type);
+        assert(blob.size > 0, "blob is non-empty");
       } catch (e) {
         if (e instanceof TypeError || (e.message && e.message.indexOf('Failed to fetch') >= 0))
           throw new Error('SKIP: backend unreachable');
-        assert(e.status === 422, "status is 422, got " + e.status);
+        throw e;
       }
   }},
 
-  // ── G.4 scope-tab smoke tests ──
-  // Each creates its own throwaway job (POST /jobs), exercises one scope
-  // endpoint, then leaves the row behind. SKIPs if backend unreachable.
+  // ── G.4 scope-tab smoke tests (post-CP3 multipart) ──
   { name: "api · scope · GET returns 404 for unknown job", fn: async function() {
       try {
         await apiClient.getScope('00000000-0000-0000-0000-000000000000');
@@ -3974,11 +4036,7 @@ const INTEGRATION_TESTS = [
   }},
   { name: "api · scope · POST creates manual roofing system", fn: async function() {
       try {
-        var job = await apiClient.createJob({
-          name: 'FE scope POST test ' + Date.now(),
-          pdf_path: 'C:\\huck stage 2\\full bid sets\\B2607 AEA Silverleaf - St Augustine - Accelerated Construction Services (6).pdf',
-          trade_scope: 'roofing'
-        });
+        var job = await _testUploadJob('FE scope POST test ' + Date.now());
         var sys = await apiClient.createScopeSystem(job.id, {
           trade: 'roofing',
           label: 'TPO 60-mil',
@@ -3995,11 +4053,7 @@ const INTEGRATION_TESTS = [
   }},
   { name: "api · scope · PATCH updates user_fields", fn: async function() {
       try {
-        var job = await apiClient.createJob({
-          name: 'FE scope PATCH test ' + Date.now(),
-          pdf_path: 'C:\\huck stage 2\\full bid sets\\B2607 AEA Silverleaf - St Augustine - Accelerated Construction Services (6).pdf',
-          trade_scope: 'roofing'
-        });
+        var job = await _testUploadJob('FE scope PATCH test ' + Date.now());
         var sys = await apiClient.createScopeSystem(job.id, {
           trade: 'roofing', label: 'patchee'
         });
@@ -4017,11 +4071,7 @@ const INTEGRATION_TESTS = [
   }},
   { name: "api · scope · DELETE removes the row", fn: async function() {
       try {
-        var job = await apiClient.createJob({
-          name: 'FE scope DELETE test ' + Date.now(),
-          pdf_path: 'C:\\huck stage 2\\full bid sets\\B2607 AEA Silverleaf - St Augustine - Accelerated Construction Services (6).pdf',
-          trade_scope: 'roofing'
-        });
+        var job = await _testUploadJob('FE scope DELETE test ' + Date.now());
         var sys = await apiClient.createScopeSystem(job.id, {
           trade: 'roofing', label: 'deletee'
         });
@@ -4038,11 +4088,7 @@ const INTEGRATION_TESTS = [
   }},
   { name: "api · scope · GET filters by trade query param", fn: async function() {
       try {
-        var job = await apiClient.createJob({
-          name: 'FE scope filter test ' + Date.now(),
-          pdf_path: 'C:\\huck stage 2\\full bid sets\\B2607 AEA Silverleaf - St Augustine - Accelerated Construction Services (6).pdf',
-          trade_scope: 'roofing'
-        });
+        var job = await _testUploadJob('FE scope filter test ' + Date.now());
         await apiClient.createScopeSystem(job.id, { trade: 'roofing', label: 'r1' });
         await apiClient.createScopeSystem(job.id, { trade: 'glazing', label: 'g1' });
         var roofing = await apiClient.getScope(job.id, 'roofing');

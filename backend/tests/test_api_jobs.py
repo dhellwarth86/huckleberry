@@ -1,20 +1,19 @@
-"""Tests for the FastAPI /jobs endpoints + /health probe — E.1 + E.2.2.
+"""Tests for the FastAPI /jobs endpoints + /health probe — E.1 + E.2.2 + G.4.
 
 E.1 tests (1–6):  216 → 222.
 E.2.2 tests (7–14): 222 → 230.
-
- 7. test_dispatch_job_returns_200                     — POST /jobs/{id}/dispatch 200
- 8. test_dispatch_job_404_for_unknown_id              — POST /jobs/{bogus}/dispatch 404
- 9. test_dispatch_job_idempotent_on_second_call       — dispatch twice → both 200
-10. test_dispatch_job_400_when_pdf_missing             — pdf deleted before dispatch → 400
-11. test_get_results_returns_200_after_dispatch        — GET /jobs/{id}/results 200
-12. test_get_results_404_for_unknown_id               — GET /jobs/{bogus}/results 404
-13. test_get_results_409_when_not_dispatched           — GET /jobs/{id}/results before dispatch → 409
-14. test_get_results_response_shape_keys_are_strings   — dict keys are str, not int
+G.4 CP1 scope tests: 230 → 251.
+G.4 CP2 multipart upload + file serving: 251 → 258.
+G.4 CP3 retired the JSON path-string POST /jobs endpoint. Several E.1 /
+E.2.2 tests that depended on the JSON path were retired; the rest were
+migrated to use the multipart POST /jobs/upload endpoint via the
+_upload_test_job helper below.
 
 Tests use FastAPI's TestClient in-process (no uvicorn subprocess).
 """
 from __future__ import annotations
+
+from pathlib import Path
 
 from fastapi.testclient import TestClient
 
@@ -23,8 +22,40 @@ from api.main import app
 client = TestClient(app)
 
 
+# ── Helpers ─────────────────────────────────────────────────────────
+
+
+def _upload_test_job(pdf_path: Path, *, name: str = "upload test",
+                     trade_scope: str = "roofing") -> str:
+    """G.4 CP3: create a job by uploading the PDF bytes via multipart.
+    Returns job_id. Replaces the legacy JSON path-string POST /jobs flow."""
+    pdf_bytes = pdf_path.read_bytes()
+    r = client.post(
+        "/jobs/upload",
+        files={"file": (pdf_path.name, pdf_bytes, "application/pdf")},
+        data={"name": name, "trade_scope": trade_scope},
+    )
+    assert r.status_code == 201, f"upload helper failed: {r.status_code} {r.text}"
+    return r.json()["id"]
+
+
+def _create_test_job(small_pdf_path) -> str:
+    """G.4 CP3: thin wrapper for tests that just need a job to exist.
+    Uses the small fixture PDF (~200 bytes) so tests stay fast."""
+    return _upload_test_job(small_pdf_path, name="scope test")
+
+
+def _uploaded_pdf_path_for(job_id: str) -> Path:
+    """Helper for cleanup / file-deletion simulation in tests."""
+    from core.job_storage import get_uploaded_pdf_path
+    return get_uploaded_pdf_path(job_id)
+
+
+# ── E.1 tests (post-CP3 migration) ──────────────────────────────────
+
+
 def test_health_probe_returns_ok():
-    """Test 1: /health returns 200 and status=ok."""
+    """/health returns 200 and status=ok."""
     r = client.get("/health")
     assert r.status_code == 200
     body = r.json()
@@ -32,74 +63,34 @@ def test_health_probe_returns_ok():
     assert "version" in body
 
 
-def test_create_job_happy_path(silverleaf_path):
-    """Test 2: POST /jobs with valid payload returns 201 and JobResponse shape."""
-    payload = {
-        "name": "Silverleaf E.1 test",
-        "pdf_path": str(silverleaf_path),
-        "gc": "Test GC",
-        "location_city": "Tampa",
-        "location_state": "FL",
-        "trade_scope": "roofing",
-    }
-    r = client.post("/jobs", json=payload)
-    assert r.status_code == 201, f"expected 201, got {r.status_code}: {r.text}"
-    body = r.json()
-    assert body["name"] == "Silverleaf E.1 test"
-    assert body["status"] == "draft"
-    assert "id" in body and len(body["id"]) > 0
-    assert "pdf_sha1" in body and len(body["pdf_sha1"]) == 40  # SHA-1 hex length
-    assert body["dispatch_complete"] is False
-
-
-def test_get_job_happy_path(silverleaf_path):
-    """Test 3: GET /jobs/{job_id} returns 200 and full JobResponse round-trip."""
-    payload = {
-        "name": "Silverleaf get test",
-        "pdf_path": str(silverleaf_path),
-    }
-    create_resp = client.post("/jobs", json=payload)
-    assert create_resp.status_code == 201
-    job_id = create_resp.json()["id"]
+def test_get_job_happy_path(small_pdf_path):
+    """GET /jobs/{job_id} returns 200 and full JobResponse round-trip."""
+    job_id = _upload_test_job(small_pdf_path, name="get job test")
 
     r = client.get(f"/jobs/{job_id}")
     assert r.status_code == 200
     body = r.json()
     assert body["id"] == job_id
-    assert body["name"] == "Silverleaf get test"
+    assert body["name"] == "get job test"
     assert body["trade_scope"] == "roofing"  # default applied
     assert body["status"] == "draft"
 
 
 def test_get_job_404_for_nonexistent_id():
-    """Test 4: GET /jobs/{nonexistent} returns 404 with safe error message."""
+    """GET /jobs/{nonexistent} returns 404 with safe error message."""
     r = client.get("/jobs/nonexistent-job-id-12345")
     assert r.status_code == 404
     body = r.json()
     assert body["detail"] == "Job not found"
 
 
-def test_create_job_validation_error_invalid_status(silverleaf_path):
-    """Test 5: POST /jobs with invalid status returns 422 (Pydantic Literal enforced)."""
-    payload = {
-        "name": "Test",
-        "pdf_path": str(silverleaf_path),
-        "status": "banana",  # not in JobStatus Literal — Pydantic must reject
-    }
-    r = client.post("/jobs", json=payload)
-    assert r.status_code == 422
-
-
-def test_data_leak_response_shape_and_error_messages(silverleaf_path):
-    """Test 6: Combined data-leak detection.
+def test_data_leak_response_shape_and_error_messages(small_pdf_path):
+    """Combined data-leak detection.
 
     Asserts:
       Part 1 — JobResponse contains exactly the documented fields, no extras.
-               extra="forbid" on the response model is the canonical guard;
-               this test also verifies the wire-format keys match the contract.
       Part 2 — Error responses contain only generic detail messages — no SQL
-               fragments, no path separators (/, \\), no traceback markers,
-               no DB engine names (sqlite), no execute(...) signatures.
+               fragments, no traceback markers, no DB engine names.
     """
     EXPECTED_FIELDS = {
         "id", "name", "gc", "location_city", "location_state", "trade_scope",
@@ -108,8 +99,12 @@ def test_data_leak_response_shape_and_error_messages(silverleaf_path):
     }
 
     # ── Part 1: response shape ──
-    payload = {"name": "Leak test", "pdf_path": str(silverleaf_path)}
-    r = client.post("/jobs", json=payload)
+    pdf_bytes = small_pdf_path.read_bytes()
+    r = client.post(
+        "/jobs/upload",
+        files={"file": ("leak.pdf", pdf_bytes, "application/pdf")},
+        data={"name": "Leak test"},
+    )
     assert r.status_code == 201
     body_keys = set(r.json().keys())
     assert body_keys == EXPECTED_FIELDS, (
@@ -136,20 +131,16 @@ def test_data_leak_response_shape_and_error_messages(silverleaf_path):
             f"Error response leaked '{forbidden}' in: {err_body}"
         )
     # Path-separator heuristic — assert the error body is short enough that
-    # paths can't realistically have leaked. The {"detail": "Job not found"}
-    # body is ~30 chars; anything significantly longer indicates extra data.
+    # paths can't realistically have leaked.
     assert len(err_str) < 100, f"Error body suspiciously verbose: {err_body}"
 
 
-# ── E.2.2 tests ────────────────────────────────────────────────────
+# ── E.2.2 dispatch + results tests (post-CP3 migration) ─────────────
 
 
 def test_dispatch_job_returns_200(small_pdf_path):
-    """Test 7: POST /jobs/{id}/dispatch returns 200, status=dispatched, dispatch_complete=True."""
-    payload = {"name": "dispatch test", "pdf_path": str(small_pdf_path)}
-    create_resp = client.post("/jobs", json=payload)
-    assert create_resp.status_code == 201
-    job_id = create_resp.json()["id"]
+    """POST /jobs/{id}/dispatch returns 200, status=dispatched, dispatch_complete=True."""
+    job_id = _upload_test_job(small_pdf_path, name="dispatch test")
 
     r = client.post(f"/jobs/{job_id}/dispatch")
     assert r.status_code == 200, f"expected 200, got {r.status_code}: {r.text}"
@@ -159,17 +150,15 @@ def test_dispatch_job_returns_200(small_pdf_path):
 
 
 def test_dispatch_job_404_for_unknown_id():
-    """Test 8: POST /jobs/{bogus}/dispatch returns 404."""
+    """POST /jobs/{bogus}/dispatch returns 404."""
     r = client.post("/jobs/nonexistent-dispatch-id-999/dispatch")
     assert r.status_code == 404
     assert r.json()["detail"] == "Job not found"
 
 
 def test_dispatch_job_idempotent_on_second_call(small_pdf_path):
-    """Test 9: dispatching a second time returns 200 (idempotent, no re-dispatch)."""
-    payload = {"name": "idempotent test", "pdf_path": str(small_pdf_path)}
-    create_resp = client.post("/jobs", json=payload)
-    job_id = create_resp.json()["id"]
+    """Dispatching a second time returns 200 (idempotent, no re-dispatch)."""
+    job_id = _upload_test_job(small_pdf_path, name="idempotent test")
 
     r1 = client.post(f"/jobs/{job_id}/dispatch")
     assert r1.status_code == 200
@@ -179,12 +168,10 @@ def test_dispatch_job_idempotent_on_second_call(small_pdf_path):
 
 
 def test_dispatch_job_400_when_pdf_missing(small_pdf_path):
-    """Test 10: dispatch returns 400 when pdf_path no longer exists."""
-    payload = {"name": "missing pdf test", "pdf_path": str(small_pdf_path)}
-    create_resp = client.post("/jobs", json=payload)
-    job_id = create_resp.json()["id"]
-
-    small_pdf_path.unlink()
+    """Dispatch returns 400 when the uploaded PDF was removed from disk."""
+    job_id = _upload_test_job(small_pdf_path, name="missing pdf test")
+    # Simulate disk failure: remove the uploaded source.pdf
+    _uploaded_pdf_path_for(job_id).unlink()
 
     r = client.post(f"/jobs/{job_id}/dispatch")
     assert r.status_code == 400
@@ -192,10 +179,8 @@ def test_dispatch_job_400_when_pdf_missing(small_pdf_path):
 
 
 def test_get_results_returns_200_after_dispatch(small_pdf_path):
-    """Test 11: GET /jobs/{id}/results returns 200 with dicts after dispatch."""
-    payload = {"name": "results test", "pdf_path": str(small_pdf_path)}
-    create_resp = client.post("/jobs", json=payload)
-    job_id = create_resp.json()["id"]
+    """GET /jobs/{id}/results returns 200 with dicts after dispatch."""
+    job_id = _upload_test_job(small_pdf_path, name="results test")
     client.post(f"/jobs/{job_id}/dispatch")
 
     r = client.get(f"/jobs/{job_id}/results")
@@ -207,17 +192,15 @@ def test_get_results_returns_200_after_dispatch(small_pdf_path):
 
 
 def test_get_results_404_for_unknown_id():
-    """Test 12: GET /jobs/{bogus}/results returns 404."""
+    """GET /jobs/{bogus}/results returns 404."""
     r = client.get("/jobs/nonexistent-results-id-999/results")
     assert r.status_code == 404
     assert r.json()["detail"] == "Job not found"
 
 
 def test_get_results_409_when_not_dispatched(small_pdf_path):
-    """Test 13: GET /jobs/{id}/results before dispatch returns 409."""
-    payload = {"name": "no dispatch yet", "pdf_path": str(small_pdf_path)}
-    create_resp = client.post("/jobs", json=payload)
-    job_id = create_resp.json()["id"]
+    """GET /jobs/{id}/results before dispatch returns 409."""
+    job_id = _upload_test_job(small_pdf_path, name="no dispatch yet")
 
     r = client.get(f"/jobs/{job_id}/results")
     assert r.status_code == 409
@@ -225,10 +208,8 @@ def test_get_results_409_when_not_dispatched(small_pdf_path):
 
 
 def test_get_results_response_shape_keys_are_strings(small_pdf_path):
-    """Test 14: dispatch_results + trade_outputs keys are all strings (not ints)."""
-    payload = {"name": "string keys test", "pdf_path": str(small_pdf_path)}
-    create_resp = client.post("/jobs", json=payload)
-    job_id = create_resp.json()["id"]
+    """dispatch_results + trade_outputs keys are all strings (not ints)."""
+    job_id = _upload_test_job(small_pdf_path, name="string keys test")
     client.post(f"/jobs/{job_id}/dispatch")
 
     r = client.get(f"/jobs/{job_id}/results")
@@ -243,17 +224,9 @@ def test_get_results_response_shape_keys_are_strings(small_pdf_path):
 # ── G.4 scope tab tests ─────────────────────────────────────────────
 
 
-def _create_test_job(silverleaf_path) -> str:
-    """Helper: create a job via API; return job_id. Used by G.4 scope tests
-    that don't require a dispatched job."""
-    r = client.post("/jobs", json={"name": "scope test", "pdf_path": str(silverleaf_path)})
-    assert r.status_code == 201, r.text
-    return r.json()["id"]
-
-
-def test_scope_get_empty_for_undispatched_job(silverleaf_path):
+def test_scope_get_empty_for_undispatched_job(small_pdf_path):
     """G.4: GET /jobs/{id}/scope on a fresh job returns 200 with empty systems."""
-    job_id = _create_test_job(silverleaf_path)
+    job_id = _create_test_job(small_pdf_path)
     r = client.get(f"/jobs/{job_id}/scope")
     assert r.status_code == 200, r.text
     body = r.json()
@@ -262,9 +235,9 @@ def test_scope_get_empty_for_undispatched_job(silverleaf_path):
     assert body["systems"] == []
 
 
-def test_scope_post_creates_manual_row(silverleaf_path):
+def test_scope_post_creates_manual_row(small_pdf_path):
     """G.4: POST /jobs/{id}/scope/systems creates a manual row, GET sees it."""
-    job_id = _create_test_job(silverleaf_path)
+    job_id = _create_test_job(small_pdf_path)
     payload = {"trade": "roofing", "label": "TPO Single Ply",
                "system_code": "tpo", "user_fields": {"manufacturer": "Carlisle"}}
     r = client.post(f"/jobs/{job_id}/scope/systems", json=payload)
@@ -285,9 +258,9 @@ def test_scope_post_creates_manual_row(silverleaf_path):
     assert systems[0]["id"] == created["id"]
 
 
-def test_scope_patch_updates_fields(silverleaf_path):
+def test_scope_patch_updates_fields(small_pdf_path):
     """G.4: PATCH /jobs/{id}/scope/systems/{sys_id} updates only the provided fields."""
-    job_id = _create_test_job(silverleaf_path)
+    job_id = _create_test_job(small_pdf_path)
     create_r = client.post(
         f"/jobs/{job_id}/scope/systems",
         json={"trade": "roofing", "label": "TPO Single Ply"},
@@ -305,9 +278,9 @@ def test_scope_patch_updates_fields(silverleaf_path):
     assert patched["system_code"] is None
 
 
-def test_scope_delete_removes_row(silverleaf_path):
+def test_scope_delete_removes_row(small_pdf_path):
     """G.4: DELETE /jobs/{id}/scope/systems/{sys_id} returns 204 and row is gone."""
-    job_id = _create_test_job(silverleaf_path)
+    job_id = _create_test_job(small_pdf_path)
     sys_id = client.post(
         f"/jobs/{job_id}/scope/systems",
         json={"trade": "roofing", "label": "Goes Away"},
@@ -318,9 +291,9 @@ def test_scope_delete_removes_row(silverleaf_path):
     assert list_r.json()["systems"] == []
 
 
-def test_scope_get_filters_by_trade(silverleaf_path):
+def test_scope_get_filters_by_trade(small_pdf_path):
     """G.4: GET /jobs/{id}/scope?trade=roofing returns only roofing rows."""
-    job_id = _create_test_job(silverleaf_path)
+    job_id = _create_test_job(small_pdf_path)
     client.post(f"/jobs/{job_id}/scope/systems",
                 json={"trade": "roofing", "label": "TPO"})
     client.post(f"/jobs/{job_id}/scope/systems",
@@ -350,9 +323,9 @@ def test_scope_post_404_for_unknown_job():
     assert r.status_code == 404
 
 
-def test_scope_patch_404_for_unknown_sys_id(silverleaf_path):
+def test_scope_patch_404_for_unknown_sys_id(small_pdf_path):
     """G.4: PATCH on nonexistent sys_id returns 404."""
-    job_id = _create_test_job(silverleaf_path)
+    job_id = _create_test_job(small_pdf_path)
     r = client.patch(
         f"/jobs/{job_id}/scope/systems/nonexistent-id-12345",
         json={"label": "x"},
@@ -360,7 +333,7 @@ def test_scope_patch_404_for_unknown_sys_id(silverleaf_path):
     assert r.status_code == 404
 
 
-def test_scope_rescan_resets_auto_keeps_manual(silverleaf_path):
+def test_scope_rescan_resets_auto_keeps_manual(small_pdf_path):
     """G.4: POST /scope/rescan resets auto rows but preserves manual rows.
 
     Setup: directly seed an auto roofing row + a manual roofing row via
@@ -373,7 +346,7 @@ def test_scope_rescan_resets_auto_keeps_manual(silverleaf_path):
     import uuid as _uuid
     from datetime import datetime, timezone
 
-    job_id = _create_test_job(silverleaf_path)
+    job_id = _create_test_job(small_pdf_path)
 
     # Seed auto row directly via SQL (simulates persist_dispatch_result).
     auto_id = str(_uuid.uuid4())
@@ -413,14 +386,14 @@ def test_scope_rescan_resets_auto_keeps_manual(silverleaf_path):
     assert auto_id not in after_ids
 
 
-def test_scope_data_leak_response_shape(silverleaf_path):
+def test_scope_data_leak_response_shape(small_pdf_path):
     """G.4: ScopeSystem response uses extra='forbid'; no leaked fields."""
     EXPECTED = {
         "id", "job_id", "trade", "label", "system_code",
         "confidence", "source", "evidence", "user_fields",
         "created_at", "updated_at",
     }
-    job_id = _create_test_job(silverleaf_path)
+    job_id = _create_test_job(small_pdf_path)
     r = client.post(
         f"/jobs/{job_id}/scope/systems",
         json={"trade": "roofing", "label": "shape test"},
@@ -523,32 +496,17 @@ def test_get_pdf_404_for_unknown_job():
     assert r.json()["detail"] == "Job not found"
 
 
-def test_get_pdf_404_when_file_missing(silverleaf_path, tmp_path):
-    """CP2: GET /jobs/{id}/pdf returns 404 when the on-disk file is gone."""
-    # Create a job pointing at a temp PDF, then delete the temp PDF
-    temp_pdf = tmp_path / "will-be-deleted.pdf"
-    temp_pdf.write_bytes(silverleaf_path.read_bytes()[:512])  # arbitrary tiny pdf-ish bytes
-    create_resp = client.post(
-        "/jobs",
-        json={"name": "missing pdf test", "pdf_path": str(temp_pdf)},
-    )
-    assert create_resp.status_code == 201
-    job_id = create_resp.json()["id"]
-    temp_pdf.unlink()
+def test_get_pdf_404_when_file_missing(small_pdf_path):
+    """CP2 (post-CP3): GET /jobs/{id}/pdf returns 404 when the uploaded
+    on-disk file is gone."""
+    job_id = _upload_test_job(small_pdf_path, name="missing pdf get test")
+    _uploaded_pdf_path_for(job_id).unlink()
 
     r = client.get(f"/jobs/{job_id}/pdf")
     assert r.status_code == 404
     assert r.json()["detail"] == "PDF not found"
 
 
-def test_create_job_json_path_still_works(silverleaf_path):
-    """CP2: backwards compat — JSON path-string POST /jobs still creates a job.
-    (CP3 retires this endpoint variant; this test goes away with CP3.)"""
-    r = client.post(
-        "/jobs",
-        json={"name": "CP2 JSON compat test", "pdf_path": str(silverleaf_path)},
-    )
-    assert r.status_code == 201
-    body = r.json()
-    assert body["name"] == "CP2 JSON compat test"
-    assert body["status"] == "draft"
+# CP3 retired test_create_job_json_path_still_works — there's no JSON path
+# anymore; the multipart upload path is the only way to create a job, and
+# test_upload_creates_job_writes_file_to_uploads_dir already covers it.
