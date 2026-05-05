@@ -75,3 +75,61 @@ class JobResultsResponse(BaseModel):
     trade_outputs: dict[str, dict]
 
     model_config = ConfigDict(extra="forbid")
+
+
+# G.4: Scope tab schemas. Backend owns scope source-of-truth; the frontend
+# is a render+relay layer per the architectural rule.
+
+ScopeTrade = Literal["roofing", "glazing", "siding", "mechanical",
+                     "plumbing", "electrical", "structural"]
+ScopeSource = Literal["auto", "manual"]
+ScopeConfidence = Literal["high", "medium", "low", "manual"]
+
+
+class ScopeSystem(BaseModel):
+    """One scope_systems row — auto or manual, owned by a job + trade."""
+
+    id: str
+    job_id: str
+    trade: ScopeTrade
+    label: str
+    system_code: Optional[str]
+    confidence: ScopeConfidence
+    source: ScopeSource
+    evidence: Optional[dict]
+    user_fields: Optional[dict]
+    created_at: str
+    updated_at: str
+
+    model_config = ConfigDict(extra="forbid")
+
+
+class ScopeSystemsResponse(BaseModel):
+    """GET /jobs/{id}/scope response body."""
+
+    job_id: str
+    trade: Optional[ScopeTrade]   # None means "all trades"
+    systems: list[ScopeSystem]
+
+    model_config = ConfigDict(extra="forbid")
+
+
+class ScopeSystemCreate(BaseModel):
+    """POST /jobs/{id}/scope/systems request body."""
+
+    trade: ScopeTrade
+    label: str = Field(..., min_length=1, max_length=200)
+    system_code: Optional[str] = None
+    user_fields: Optional[dict] = None
+
+    model_config = ConfigDict(extra="forbid")
+
+
+class ScopeSystemPatch(BaseModel):
+    """PATCH /jobs/{id}/scope/systems/{sys_id} request body. All fields optional."""
+
+    label: Optional[str] = Field(None, min_length=1, max_length=200)
+    system_code: Optional[str] = None
+    user_fields: Optional[dict] = None
+
+    model_config = ConfigDict(extra="forbid")

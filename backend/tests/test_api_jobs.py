@@ -238,3 +238,196 @@ def test_get_results_response_shape_keys_are_strings(small_pdf_path):
         assert isinstance(k, str), f"dispatch_results key {k!r} is not str"
     for k in body["trade_outputs"]:
         assert isinstance(k, str), f"trade_outputs key {k!r} is not str"
+
+
+# ── G.4 scope tab tests ─────────────────────────────────────────────
+
+
+def _create_test_job(silverleaf_path) -> str:
+    """Helper: create a job via API; return job_id. Used by G.4 scope tests
+    that don't require a dispatched job."""
+    r = client.post("/jobs", json={"name": "scope test", "pdf_path": str(silverleaf_path)})
+    assert r.status_code == 201, r.text
+    return r.json()["id"]
+
+
+def test_scope_get_empty_for_undispatched_job(silverleaf_path):
+    """G.4: GET /jobs/{id}/scope on a fresh job returns 200 with empty systems."""
+    job_id = _create_test_job(silverleaf_path)
+    r = client.get(f"/jobs/{job_id}/scope")
+    assert r.status_code == 200, r.text
+    body = r.json()
+    assert body["job_id"] == job_id
+    assert body["trade"] is None
+    assert body["systems"] == []
+
+
+def test_scope_post_creates_manual_row(silverleaf_path):
+    """G.4: POST /jobs/{id}/scope/systems creates a manual row, GET sees it."""
+    job_id = _create_test_job(silverleaf_path)
+    payload = {"trade": "roofing", "label": "TPO Single Ply",
+               "system_code": "tpo", "user_fields": {"manufacturer": "Carlisle"}}
+    r = client.post(f"/jobs/{job_id}/scope/systems", json=payload)
+    assert r.status_code == 201, r.text
+    created = r.json()
+    assert created["trade"] == "roofing"
+    assert created["label"] == "TPO Single Ply"
+    assert created["system_code"] == "tpo"
+    assert created["source"] == "manual"
+    assert created["confidence"] == "manual"
+    assert created["user_fields"] == {"manufacturer": "Carlisle"}
+    assert "id" in created and len(created["id"]) > 0
+
+    list_r = client.get(f"/jobs/{job_id}/scope")
+    assert list_r.status_code == 200
+    systems = list_r.json()["systems"]
+    assert len(systems) == 1
+    assert systems[0]["id"] == created["id"]
+
+
+def test_scope_patch_updates_fields(silverleaf_path):
+    """G.4: PATCH /jobs/{id}/scope/systems/{sys_id} updates only the provided fields."""
+    job_id = _create_test_job(silverleaf_path)
+    create_r = client.post(
+        f"/jobs/{job_id}/scope/systems",
+        json={"trade": "roofing", "label": "TPO Single Ply"},
+    )
+    sys_id = create_r.json()["id"]
+    patch_r = client.patch(
+        f"/jobs/{job_id}/scope/systems/{sys_id}",
+        json={"label": "TPO 60-mil", "user_fields": {"thickness": "60 mil"}},
+    )
+    assert patch_r.status_code == 200, patch_r.text
+    patched = patch_r.json()
+    assert patched["label"] == "TPO 60-mil"
+    assert patched["user_fields"] == {"thickness": "60 mil"}
+    # system_code untouched (was None on create, still None)
+    assert patched["system_code"] is None
+
+
+def test_scope_delete_removes_row(silverleaf_path):
+    """G.4: DELETE /jobs/{id}/scope/systems/{sys_id} returns 204 and row is gone."""
+    job_id = _create_test_job(silverleaf_path)
+    sys_id = client.post(
+        f"/jobs/{job_id}/scope/systems",
+        json={"trade": "roofing", "label": "Goes Away"},
+    ).json()["id"]
+    r = client.delete(f"/jobs/{job_id}/scope/systems/{sys_id}")
+    assert r.status_code == 204
+    list_r = client.get(f"/jobs/{job_id}/scope")
+    assert list_r.json()["systems"] == []
+
+
+def test_scope_get_filters_by_trade(silverleaf_path):
+    """G.4: GET /jobs/{id}/scope?trade=roofing returns only roofing rows."""
+    job_id = _create_test_job(silverleaf_path)
+    client.post(f"/jobs/{job_id}/scope/systems",
+                json={"trade": "roofing", "label": "TPO"})
+    client.post(f"/jobs/{job_id}/scope/systems",
+                json={"trade": "glazing", "label": "Storefront"})
+    r = client.get(f"/jobs/{job_id}/scope", params={"trade": "roofing"})
+    assert r.status_code == 200
+    body = r.json()
+    assert body["trade"] == "roofing"
+    assert len(body["systems"]) == 1
+    assert body["systems"][0]["trade"] == "roofing"
+
+    r2 = client.get(f"/jobs/{job_id}/scope", params={"trade": "glazing"})
+    assert len(r2.json()["systems"]) == 1
+    assert r2.json()["systems"][0]["label"] == "Storefront"
+
+    # Unfiltered: both rows returned.
+    r3 = client.get(f"/jobs/{job_id}/scope")
+    assert len(r3.json()["systems"]) == 2
+
+
+def test_scope_post_404_for_unknown_job():
+    """G.4: POST against nonexistent job returns 404."""
+    r = client.post(
+        "/jobs/nonexistent-scope-job/scope/systems",
+        json={"trade": "roofing", "label": "x"},
+    )
+    assert r.status_code == 404
+
+
+def test_scope_patch_404_for_unknown_sys_id(silverleaf_path):
+    """G.4: PATCH on nonexistent sys_id returns 404."""
+    job_id = _create_test_job(silverleaf_path)
+    r = client.patch(
+        f"/jobs/{job_id}/scope/systems/nonexistent-id-12345",
+        json={"label": "x"},
+    )
+    assert r.status_code == 404
+
+
+def test_scope_rescan_resets_auto_keeps_manual(silverleaf_path):
+    """G.4: POST /scope/rescan resets auto rows but preserves manual rows.
+
+    Setup: directly seed an auto roofing row + a manual roofing row via
+    job_storage helpers (avoid running real dispatch — too slow).
+    Rescan should delete the auto row, then re-derive nothing (no
+    persisted project_scope yet), and leave the manual row untouched.
+    """
+    from core.job_storage import _connect, create_scope_system
+    import json
+    import uuid as _uuid
+    from datetime import datetime, timezone
+
+    job_id = _create_test_job(silverleaf_path)
+
+    # Seed auto row directly via SQL (simulates persist_dispatch_result).
+    auto_id = str(_uuid.uuid4())
+    now = datetime.now(timezone.utc).isoformat()
+    conn = _connect()
+    try:
+        conn.execute(
+            "INSERT INTO scope_systems (id, job_id, trade, label, system_code, "
+            "confidence, source, evidence_json, user_fields_json, "
+            "created_at, updated_at) "
+            "VALUES (?, ?, 'roofing', 'TPO Single Ply', 'tpo', 'high', 'auto', ?, NULL, ?, ?)",
+            (auto_id, job_id, json.dumps({"system_evidence": "spec 07 54"}), now, now),
+        )
+        conn.commit()
+    finally:
+        conn.close()
+
+    # Create a manual row via the public CRUD function.
+    manual = create_scope_system(
+        job_id, trade="roofing", label="Custom Manual System",
+    )
+    manual_id = manual["id"]
+
+    # Confirm both exist.
+    listing = client.get(f"/jobs/{job_id}/scope", params={"trade": "roofing"}).json()
+    ids = {s["id"] for s in listing["systems"]}
+    assert auto_id in ids and manual_id in ids
+
+    # Rescan with no persisted project_scope — auto row deleted, no replacement.
+    r = client.post(f"/jobs/{job_id}/scope/rescan", params={"trade": "roofing"})
+    assert r.status_code == 200, r.text
+    after = r.json()
+    after_ids = {s["id"] for s in after["systems"]}
+    # Manual preserved.
+    assert manual_id in after_ids
+    # Old auto gone (no project_scope persisted to re-derive from).
+    assert auto_id not in after_ids
+
+
+def test_scope_data_leak_response_shape(silverleaf_path):
+    """G.4: ScopeSystem response uses extra='forbid'; no leaked fields."""
+    EXPECTED = {
+        "id", "job_id", "trade", "label", "system_code",
+        "confidence", "source", "evidence", "user_fields",
+        "created_at", "updated_at",
+    }
+    job_id = _create_test_job(silverleaf_path)
+    r = client.post(
+        f"/jobs/{job_id}/scope/systems",
+        json={"trade": "roofing", "label": "shape test"},
+    )
+    assert r.status_code == 201
+    keys = set(r.json().keys())
+    assert keys == EXPECTED, (
+        f"Unexpected fields in ScopeSystem response. "
+        f"Missing: {EXPECTED - keys}; Extra: {keys - EXPECTED}"
+    )

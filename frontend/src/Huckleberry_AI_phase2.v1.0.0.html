@@ -1427,6 +1427,8 @@ async function apiCall(method, path, opts) {
     throw err;
   }
 
+  // G.4: 204 No Content has no body to parse (DELETE responses).
+  if (resp.status === 204) return null;
   return resp.json();
 }
 
@@ -1451,6 +1453,29 @@ const apiClient = {
   },
   dispatchJob: function(jobId) {
     return apiCall('POST', '/jobs/' + encodeURIComponent(jobId) + '/dispatch', { timeout: 240000 });
+  },
+  // G.4: scope-tab CRUD. Backend owns scope_systems; frontend renders + relays.
+  getScope: function(jobId, trade) {
+    var path = '/jobs/' + encodeURIComponent(jobId) + '/scope';
+    if (trade) path += '?trade=' + encodeURIComponent(trade);
+    return apiCall('GET', path);
+  },
+  createScopeSystem: function(jobId, payload) {
+    return apiCall('POST', '/jobs/' + encodeURIComponent(jobId) + '/scope/systems',
+      { body: payload });
+  },
+  patchScopeSystem: function(jobId, sysId, payload) {
+    return apiCall('PATCH',
+      '/jobs/' + encodeURIComponent(jobId) + '/scope/systems/' + encodeURIComponent(sysId),
+      { body: payload });
+  },
+  deleteScopeSystem: function(jobId, sysId) {
+    return apiCall('DELETE',
+      '/jobs/' + encodeURIComponent(jobId) + '/scope/systems/' + encodeURIComponent(sysId));
+  },
+  rescanScope: function(jobId, trade) {
+    return apiCall('POST',
+      '/jobs/' + encodeURIComponent(jobId) + '/scope/rescan?trade=' + encodeURIComponent(trade));
   },
 };
 
@@ -1728,30 +1753,28 @@ async function getOrRenderPageCanvas(planSet, pageIdx, opts) {
    Scope and page classifications now come from GET /jobs/{id}/results.
    ───────────────────────────────────────────────────────────────────── */
 
-function populateScopeFromResults(results) {
-  if (!results || !results.trade_outputs) return;
-  var systems = [];
-  var seenSystemNames = {};
-  var pageKeys = Object.keys(results.trade_outputs);
-  for (var i = 0; i < pageKeys.length; i++) {
-    var trades = results.trade_outputs[pageKeys[i]];
-    if (!trades) continue;
-    var tradeNames = Object.keys(trades);
-    for (var t = 0; t < tradeNames.length; t++) {
-      var output = trades[tradeNames[t]];
-      if (!output) continue;
-      var outputSystems = output.systems || [];
-      for (var s = 0; s < outputSystems.length; s++) {
-        var sysName = outputSystems[s];
-        if (typeof sysName === 'string' && !seenSystemNames[sysName]) {
-          seenSystemNames[sysName] = true;
-          systems.push(makeScopeSystem(sysName));
-        }
-      }
-    }
+/* G.4 — Scope tab is a backend-DB-frontend cycle.
+   Frontend is a render+relay layer only. App.project.scope is a transient
+   render cache that's wiped and replaced wholesale by every API fetch.
+   No mutations live in memory — every user edit is an API call. */
+
+async function loadScopeFromApi(jobId, trade) {
+  if (!jobId) {
+    App.project.scope = { systems: [], rawText: '', lastScanAt: 0 };
+    if (typeof renderScopeTab === 'function') renderScopeTab();
+    return;
   }
-  if (systems.length > 0) {
-    App.project.scope = mergeScopeProposal(App.project.scope || { systems: [] }, { systems: systems, rawText: '', lastScanAt: Date.now() });
+  try {
+    var resp = await apiClient.getScope(jobId, trade);
+    App.project.scope = {
+      systems: (resp && resp.systems) ? resp.systems.slice() : [],
+      rawText: '',
+      lastScanAt: Date.now(),
+    };
+    if (typeof renderScopeTab === 'function') renderScopeTab();
+  } catch (e) {
+    // Backend unreachable — keep prior render cache, surface in console.
+    if (typeof console !== 'undefined') console.warn('loadScopeFromApi failed:', e && e.message);
   }
 }
 
@@ -1845,77 +1868,11 @@ function seedSystem(sys) {
   return sys;
 }
 
-function mergeScopeProposal(existingScope, proposal) {
-  const existingById = new Map();
-  for (const s of (existingScope.systems || [])) existingById.set(s.id, s);
-
-  const merged = { systems: [], rawText: proposal.rawText, lastScanAt: proposal.lastScanAt };
-
-  const propIds = new Set();
-  for (const propSys of (proposal.systems || [])) {
-    propIds.add(propSys.id);
-    const existing = existingById.get(propSys.id);
-    if (!existing) {
-      const fresh = seedSystem(makeScopeSystem(propSys.label || 'Parsed', ''));
-      fresh.id = propSys.id;
-      _absorbProposalFields(fresh, propSys);
-      _mergePinsEdges(fresh, propSys);
-      merged.systems.push(fresh);
-    } else {
-      _absorbProposalFields(existing, propSys);
-      _mergePinsEdges(existing, propSys);
-      merged.systems.push(existing);
-    }
-  }
-
-  for (const [id, sys] of existingById) {
-    if (!propIds.has(id)) merged.systems.push(sys);
-  }
-
-  return merged;
-}
-
-function _absorbProposalFields(existing, proposal) {
-  if (!existing.systemType && proposal.systemType) existing.systemType = proposal.systemType;
-  if (!existing.manufacturer && proposal.manufacturer) existing.manufacturer = proposal.manufacturer;
-  if (!existing.attachment && proposal.attachment) existing.attachment = proposal.attachment;
-  if (proposal.membrane) {
-    if (!existing.membrane) existing.membrane = { thickness: null, color: null };
-    if (!existing.membrane.thickness && proposal.membrane.thickness) existing.membrane.thickness = proposal.membrane.thickness;
-    if (!existing.membrane.color     && proposal.membrane.color)     existing.membrane.color     = proposal.membrane.color;
-  }
-  if ((!existing.insulation || existing.insulation.length === 0) && proposal.insulation && proposal.insulation.length > 0) {
-    existing.insulation = proposal.insulation.slice();
-  }
-  if (!existing.coverBoard && proposal.coverBoard) existing.coverBoard = proposal.coverBoard;
-  const pages = new Set([...(existing.sourcePages || []), ...(proposal.sourcePages || [])]);
-  existing.sourcePages = Array.from(pages);
-  const order = { low: 0, medium: 1, high: 2 };
-  if (proposal.confidence && (order[proposal.confidence] || 0) > (order[existing.confidence] || 0)) {
-    existing.confidence = proposal.confidence;
-  }
-}
-
-function _mergePinsEdges(existing, proposal) {
-  for (const pp of (proposal.pinPalette || [])) {
-    const seedId = pp.seedId || _seedIdForName(pp.name, 'pin');
-    const collision = (existing.pinPalette || []).find(function(ep) {
-      if (seedId && ep.seedId === seedId) return true;
-      return String(ep.name).toLowerCase().trim() === String(pp.name).toLowerCase().trim();
-    });
-    if (collision) continue;
-    existing.pinPalette.push(makePinType(pp.name, pp.color || null, 'parsed', seedId));
-  }
-  for (const pe of (proposal.edgeTypes || [])) {
-    const seedId = pe.seedId || _seedIdForName(pe.name, 'line');
-    const collision = (existing.edgeTypes || []).find(function(ee) {
-      if (seedId && ee.seedId === seedId) return true;
-      return String(ee.name).toLowerCase().trim() === String(pe.name).toLowerCase().trim();
-    });
-    if (collision) continue;
-    existing.edgeTypes.push(makeEdgeType(pe.name, 'parsed', seedId));
-  }
-}
+/* G.4: mergeScopeProposal + _absorbProposalFields + _mergePinsEdges retired.
+   Scope is no longer merged in-memory — backend owns scope_systems and
+   the frontend wholesale-replaces App.project.scope on every API fetch.
+   Any future "merge"-style behavior (e.g., reconciling user edits with
+   re-detected auto rows) belongs server-side, in rescan_scope_systems. */
 
 /* ─────────────────────────────────────────────────────────────────────
    SECTION 5b — File handling
@@ -1970,6 +1927,10 @@ function selectTrade(trade) {
   document.querySelectorAll('.trade-card').forEach(function(el) {
     el.classList.toggle('selected', el.dataset.trade === trade);
   });
+  // G.4: backend filters scope by trade; refetch when trade changes.
+  if (App.currentJobId) {
+    loadScopeFromApi(App.currentJobId, trade);
+  }
 }
 
 async function runDispatchFlow() {
@@ -1987,15 +1948,21 @@ async function runDispatchFlow() {
       trade_scope: App.project.trade || 'roofing',
     });
     App.currentJobId = job.id;
+    // G.4: persist current job id so a browser refresh rehydrates the
+    // scope tab from the database. Full session resume (pages tab,
+    // viewer state, annotations) is deferred to G.5/c.2.
+    try { if (typeof localStorage !== 'undefined') localStorage.setItem('huck.currentJobId', job.id); } catch (_) {}
     if (btn) btn.textContent = 'DISPATCHING — this may take several minutes...';
     if (status) status.textContent = 'Job ' + job.id.substring(0, 8) + '... created. Dispatching...';
     await apiClient.dispatchJob(job.id);
     if (btn) btn.textContent = 'LOADING RESULTS...';
     var results = await apiClient.getResults(job.id);
     App.currentResults = results;
-    populateScopeFromResults(results);
+    // G.4: scope tab is now backend-DB-driven; pull from API instead of
+    // deriving from per-page _scope noise. Pages tab still uses the bulk
+    // results endpoint until baseline item 4 (page reclassify) ships.
+    await loadScopeFromApi(job.id, App.project.trade || 'roofing');
     populatePagesFromResults(results);
-    if (typeof renderScopeTab === 'function') renderScopeTab();
     if (typeof renderPagesTab === 'function') renderPagesTab();
     if (typeof ensureCurrentSystem === 'function') ensureCurrentSystem();
     if (typeof renderViewerSystemControls === 'function') renderViewerSystemControls();
@@ -3146,41 +3113,66 @@ function renderScopeTab() {
   content.innerHTML = systems.map(function(s, i) { return renderSystemCard(s, i); }).join('');
 }
 
+/* G.4: render a ScopeSystem row from the API.
+   Shape: { id, job_id, trade, label, system_code, confidence, source,
+            evidence: { system_evidence?, manufacturers?, spec_sections?, scope_pages? },
+            user_fields: { systemType?, manufacturer?, attachment?, membrane?,
+                           insulation?, coverBoard?, slopePitch?, wastePct?,
+                           pinPalette?, edgeTypes? } } */
 function renderSystemCard(s, idx) {
-  const pinTags = s.pinPalette.map(function(p) {
-    return '<span class="ssc-tag"><span class="tag-dot" style="background:' + p.color + '"></span>' +
+  const uf = s.user_fields || {};
+  const ev = s.evidence || {};
+  const membrane = uf.membrane || {};
+  const insulation = uf.insulation || [];
+  const pinPalette = uf.pinPalette || [];
+  const edgeTypes = uf.edgeTypes || [];
+  const wastePct = (typeof uf.wastePct === 'number') ? uf.wastePct : 10;
+  const sourceLabel = (s.source === 'auto') ? 'AUTO' : 'MANUAL';
+  const sourceTone = (s.source === 'auto') ? 'parser' : '';
+
+  const pinTags = pinPalette.map(function(p) {
+    return '<span class="ssc-tag"><span class="tag-dot" style="background:' + (p.color || '#999') + '"></span>' +
            esc(p.name) +
            '<button class="tag-x" onclick="removePinType(\'' + s.id + "','" + p.id + '\')" title="Remove">×</button></span>';
   }).join('');
-  const edgeTags = s.edgeTypes.map(function(e) {
+  const edgeTags = edgeTypes.map(function(e) {
     return '<span class="ssc-tag">' + esc(e.name) +
            '<button class="tag-x" onclick="removeEdgeType(\'' + s.id + "','" + e.id + '\')" title="Remove">×</button></span>';
   }).join('');
-  const insulationSummary = s.insulation.length === 0 ? '—' :
-    s.insulation.map(function(i) { return i.material + (i.thickness ? ' ' + i.thickness : '') + (i.tapered ? ' (tapered)' : ''); }).join(' + ');
-  const sourcePages = s.sourcePages.length
-    ? '<span class="ssc-source parser">seen on ' + s.sourcePages.map(function(p) { return '<a onclick="openPageInViewer(' + p + ')" style="color:inherit;text-decoration:underline;cursor:pointer;">PAGE ' + (p + 1) + '</a>'; }).join(', ') + '</span>'
-    : '<span class="ssc-source" style="color:var(--muted)">no source pages</span>';
+  const insulationSummary = insulation.length === 0 ? '—' :
+    insulation.map(function(i) { return i.material + (i.thickness ? ' ' + i.thickness : '') + (i.tapered ? ' (tapered)' : ''); }).join(' + ');
+
+  const scopePages = ev.scope_pages || [];
+  const sourcePagesEl = scopePages.length
+    ? '<span class="ssc-source ' + sourceTone + '">' + sourceLabel + ' · seen on ' +
+      scopePages.map(function(p) {
+        return '<a onclick="openPageInViewer(' + p + ')" style="color:inherit;text-decoration:underline;cursor:pointer;">PAGE ' + (p + 1) + '</a>';
+      }).join(', ') + '</span>'
+    : '<span class="ssc-source" style="color:var(--muted)">' + sourceLabel + ' · no source pages</span>';
+
+  const evidenceText = ev.system_evidence ? '<div style="font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:4px;">evidence: ' + esc(ev.system_evidence) + '</div>' : '';
+
   return '' +
     '<div class="scope-system-card" data-sysid="' + s.id + '">' +
       '<div class="ssc-header">' +
         '<div>' +
           '<div class="ssc-title">' + esc(s.label || ('System ' + (idx + 1))) + '</div>' +
-          sourcePages +
+          sourcePagesEl +
+          evidenceText +
         '</div>' +
         '<div style="display:flex;gap:8px;align-items:center;">' +
-          '<span class="ssc-conf ' + s.confidence + '">' + s.confidence.toUpperCase() + ' CONF</span>' +
+          '<span class="ssc-conf ' + (s.confidence || 'manual') + '">' + (s.confidence || 'manual').toUpperCase() + ' CONF</span>' +
           '<button class="btn btn-ghost" style="padding:6px 12px;font-size:11px;" onclick="removeSystem(\'' + s.id + '\')">× REMOVE</button>' +
         '</div>' +
       '</div>' +
       '<div class="ssc-field-grid">' +
-        '<div class="ssc-field"><label>System Type</label><input type="text" value="' + esc(s.systemType || '') + '" onchange="updateSystemField(\'' + s.id + "','systemType',this.value)\" placeholder=\"TPO / PVC / EPDM / ...\"/></div>" +
-        '<div class="ssc-field"><label>Manufacturer</label><input type="text" value="' + esc(s.manufacturer || '') + '" onchange="updateSystemField(\'' + s.id + "','manufacturer',this.value)\" placeholder=\"Duro-Last / Sika / GAF / ...\"/></div>" +
-        '<div class="ssc-field"><label>Attachment</label><input type="text" value="' + esc(s.attachment || '') + '" onchange="updateSystemField(\'' + s.id + "','attachment',this.value)\" placeholder=\"Fully Adhered / Mech / ...\"/></div>" +
-        '<div class="ssc-field"><label>Membrane Thickness</label><input type="text" value="' + esc(s.membrane.thickness || '') + '" onchange="updateMembraneField(\'' + s.id + "','thickness',this.value)\" placeholder=\"60 mil\"/></div>" +
-        '<div class="ssc-field"><label>Cover Board</label><input type="text" value="' + esc(s.coverBoard || '') + '" onchange="updateSystemField(\'' + s.id + "','coverBoard',this.value)\" placeholder=\"Dens-Deck / Gypsum / ...\"/></div>" +
-        '<div class="ssc-field"><label>Slope Pitch</label><input type="text" value="' + esc(s.slopePitch || '') + '" onchange="updateSystemField(\'' + s.id + "','slopePitch',this.value)\" placeholder=\"1/4 : 12\"/></div>" +
-        '<div class="ssc-field"><label>Waste %</label><input type="number" value="' + s.wastePct + '" onchange="updateSystemField(\'' + s.id + "','wastePct',parseFloat(this.value)||0)\" step=\"0.5\"/></div>" +
+        '<div class="ssc-field"><label>System Type</label><input type="text" value="' + esc(uf.systemType || '') + '" onchange="updateSystemField(\'' + s.id + "','systemType',this.value)\" placeholder=\"TPO / PVC / EPDM / ...\"/></div>" +
+        '<div class="ssc-field"><label>Manufacturer</label><input type="text" value="' + esc(uf.manufacturer || '') + '" onchange="updateSystemField(\'' + s.id + "','manufacturer',this.value)\" placeholder=\"Duro-Last / Sika / GAF / ...\"/></div>" +
+        '<div class="ssc-field"><label>Attachment</label><input type="text" value="' + esc(uf.attachment || '') + '" onchange="updateSystemField(\'' + s.id + "','attachment',this.value)\" placeholder=\"Fully Adhered / Mech / ...\"/></div>" +
+        '<div class="ssc-field"><label>Membrane Thickness</label><input type="text" value="' + esc(membrane.thickness || '') + '" onchange="updateMembraneField(\'' + s.id + "','thickness',this.value)\" placeholder=\"60 mil\"/></div>" +
+        '<div class="ssc-field"><label>Cover Board</label><input type="text" value="' + esc(uf.coverBoard || '') + '" onchange="updateSystemField(\'' + s.id + "','coverBoard',this.value)\" placeholder=\"Dens-Deck / Gypsum / ...\"/></div>" +
+        '<div class="ssc-field"><label>Slope Pitch</label><input type="text" value="' + esc(uf.slopePitch || '') + '" onchange="updateSystemField(\'' + s.id + "','slopePitch',this.value)\" placeholder=\"1/4 : 12\"/></div>" +
+        '<div class="ssc-field"><label>Waste %</label><input type="number" value="' + wastePct + '" onchange="updateSystemField(\'' + s.id + "','wastePct',parseFloat(this.value)||0)\" step=\"0.5\"/></div>" +
       '</div>' +
       '<div class="ssc-section-title">Insulation Stack</div>' +
       '<div style="font-family:var(--mono);font-size:12px;color:var(--text);">' + esc(insulationSummary) + '</div>' +
@@ -3200,36 +3192,98 @@ function renderSystemCard(s, idx) {
 }
 
 function findSystem(id) { return App.project.scope.systems.find(function(s) { return s.id === id; }); }
-function updateSystemField(sysId, field, val) { const s = findSystem(sysId); if (!s) return; s[field] = val; renderScopeTab(); }
-function updateMembraneField(sysId, field, val) { const s = findSystem(sysId); if (!s) return; s.membrane[field] = val; renderScopeTab(); }
-function removeSystem(sysId) { App.project.scope.systems = App.project.scope.systems.filter(function(s) { return s.id !== sysId; }); renderScopeTab(); }
-function addEmptySystem() {
-  const sys = seedSystem(makeScopeSystem('New System', ''));
-  App.project.scope.systems.push(sys);
-  renderScopeTab();
+
+/* G.4: every mutation is an API relay.
+   PATCH the entire user_fields blob (backend stores it as JSON; granularity
+   doesn't matter). Then refetch to update the render cache. */
+async function _patchScopeUserFields(sysId, mutator) {
+  if (!App.currentJobId) return;
+  const s = findSystem(sysId);
+  if (!s) return;
+  const next = Object.assign({}, s.user_fields || {});
+  mutator(next);
+  try {
+    await apiClient.patchScopeSystem(App.currentJobId, sysId, { user_fields: next });
+    await loadScopeFromApi(App.currentJobId, App.project.trade);
+  } catch (e) {
+    alert('Failed to save: ' + (e.message || 'unknown error'));
+  }
 }
-function removePinType(sysId, pinId) { const s = findSystem(sysId); if (!s) return; s.pinPalette = s.pinPalette.filter(function(p) { return p.id !== pinId; }); renderScopeTab(); }
+
+function updateSystemField(sysId, field, val) {
+  _patchScopeUserFields(sysId, function(uf) { uf[field] = val; });
+}
+function updateMembraneField(sysId, field, val) {
+  _patchScopeUserFields(sysId, function(uf) {
+    uf.membrane = uf.membrane || {};
+    uf.membrane[field] = val;
+  });
+}
+async function removeSystem(sysId) {
+  if (!App.currentJobId) return;
+  if (!confirm('Remove this system?')) return;
+  try {
+    await apiClient.deleteScopeSystem(App.currentJobId, sysId);
+    await loadScopeFromApi(App.currentJobId, App.project.trade);
+  } catch (e) {
+    alert('Failed to remove: ' + (e.message || 'unknown error'));
+  }
+}
+async function addEmptySystem() {
+  if (!App.currentJobId) {
+    alert('Run dispatch first to attach scope to a job.');
+    return;
+  }
+  const trade = App.project.trade || 'roofing';
+  try {
+    await apiClient.createScopeSystem(App.currentJobId, {
+      trade: trade,
+      label: 'New System',
+    });
+    await loadScopeFromApi(App.currentJobId, App.project.trade);
+  } catch (e) {
+    alert('Failed to create system: ' + (e.message || 'unknown error'));
+  }
+}
+function removePinType(sysId, pinId) {
+  _patchScopeUserFields(sysId, function(uf) {
+    uf.pinPalette = (uf.pinPalette || []).filter(function(p) { return p.id !== pinId; });
+  });
+}
 function addPinTypeFromInput(sysId) {
   const el = document.getElementById('addPin_' + sysId);
   if (!el || !el.value.trim()) return;
-  const s = findSystem(sysId); if (!s) return;
-  s.pinPalette.push(makePinType(el.value.trim(), null, 'user'));
-  renderScopeTab();
+  const newPin = makePinType(el.value.trim(), null, 'user');
+  _patchScopeUserFields(sysId, function(uf) {
+    uf.pinPalette = (uf.pinPalette || []).concat([newPin]);
+  });
 }
-function removeEdgeType(sysId, edgeId) { const s = findSystem(sysId); if (!s) return; s.edgeTypes = s.edgeTypes.filter(function(e) { return e.id !== edgeId; }); renderScopeTab(); }
+function removeEdgeType(sysId, edgeId) {
+  _patchScopeUserFields(sysId, function(uf) {
+    uf.edgeTypes = (uf.edgeTypes || []).filter(function(e) { return e.id !== edgeId; });
+  });
+}
 function addEdgeTypeFromInput(sysId) {
   const el = document.getElementById('addEdge_' + sysId);
   if (!el || !el.value.trim()) return;
-  const s = findSystem(sysId); if (!s) return;
-  s.edgeTypes.push(makeEdgeType(el.value.trim(), 'user'));
-  renderScopeTab();
+  const newEdge = makeEdgeType(el.value.trim(), 'user');
+  _patchScopeUserFields(sysId, function(uf) {
+    uf.edgeTypes = (uf.edgeTypes || []).concat([newEdge]);
+  });
 }
+
+/* G.4: RE-SCAN button — backend resets auto rows from persisted project_scope.
+   Manual rows preserved server-side. */
 async function rescanScope() {
   if (!App.currentJobId) { alert('Run dispatch first.'); return; }
+  const trade = App.project.trade || 'roofing';
   try {
-    var results = await apiClient.getResults(App.currentJobId);
-    App.currentResults = results;
-    populateScopeFromResults(results);
+    var resp = await apiClient.rescanScope(App.currentJobId, trade);
+    App.project.scope = {
+      systems: (resp && resp.systems) ? resp.systems.slice() : [],
+      rawText: '',
+      lastScanAt: Date.now(),
+    };
     renderScopeTab();
   } catch (err) {
     alert('Failed to refresh scope: ' + err.message);
@@ -3689,7 +3743,7 @@ const TAKEOFF_TESTS = [
   }},
 ];
 
-// E.2.2 floor = 11 + 3 + 4 = 18 unit + 5 integration = 23
+// G.4 CP1 floor = 11 + 3 + 4 = 18 unit + 5 + 5 scope = 28 (was 23 at E.2.2)
 const UNIT_TESTS = [].concat(TOOL_TESTS, STATUS_BAR_TESTS, TAKEOFF_TESTS);
 
 // E.2.2: 5 API smoke tests. SKIP convention: throw Error('SKIP: ...') when backend unreachable.
@@ -3758,6 +3812,105 @@ const INTEGRATION_TESTS = [
         assert(e.status === 422, "status is 422, got " + e.status);
       }
   }},
+
+  // ── G.4 scope-tab smoke tests ──
+  // Each creates its own throwaway job (POST /jobs), exercises one scope
+  // endpoint, then leaves the row behind. SKIPs if backend unreachable.
+  { name: "api · scope · GET returns 404 for unknown job", fn: async function() {
+      try {
+        await apiClient.getScope('00000000-0000-0000-0000-000000000000');
+        assert(false, "should have thrown");
+      } catch (e) {
+        if (e instanceof TypeError || (e.message && e.message.indexOf('Failed to fetch') >= 0))
+          throw new Error('SKIP: backend unreachable');
+        assert(e.status === 404, "status is 404, got " + e.status);
+      }
+  }},
+  { name: "api · scope · POST creates manual roofing system", fn: async function() {
+      try {
+        var job = await apiClient.createJob({
+          name: 'FE scope POST test ' + Date.now(),
+          pdf_path: 'C:\\huck stage 2\\full bid sets\\B2607 AEA Silverleaf - St Augustine - Accelerated Construction Services (6).pdf',
+          trade_scope: 'roofing'
+        });
+        var sys = await apiClient.createScopeSystem(job.id, {
+          trade: 'roofing',
+          label: 'TPO 60-mil',
+          system_code: 'tpo'
+        });
+        assert(sys.source === 'manual', "source is manual, got " + sys.source);
+        assert(sys.label === 'TPO 60-mil', "label round-trips");
+        assert(sys.confidence === 'manual', "confidence is manual");
+      } catch (e) {
+        if (e instanceof TypeError || (e.message && e.message.indexOf('Failed to fetch') >= 0))
+          throw new Error('SKIP: backend unreachable');
+        throw e;
+      }
+  }},
+  { name: "api · scope · PATCH updates user_fields", fn: async function() {
+      try {
+        var job = await apiClient.createJob({
+          name: 'FE scope PATCH test ' + Date.now(),
+          pdf_path: 'C:\\huck stage 2\\full bid sets\\B2607 AEA Silverleaf - St Augustine - Accelerated Construction Services (6).pdf',
+          trade_scope: 'roofing'
+        });
+        var sys = await apiClient.createScopeSystem(job.id, {
+          trade: 'roofing', label: 'patchee'
+        });
+        var patched = await apiClient.patchScopeSystem(job.id, sys.id, {
+          user_fields: { manufacturer: 'Carlisle', wastePct: 12 }
+        });
+        assert(patched.user_fields && patched.user_fields.manufacturer === 'Carlisle',
+          "manufacturer round-trips");
+        assert(patched.user_fields.wastePct === 12, "wastePct round-trips");
+      } catch (e) {
+        if (e instanceof TypeError || (e.message && e.message.indexOf('Failed to fetch') >= 0))
+          throw new Error('SKIP: backend unreachable');
+        throw e;
+      }
+  }},
+  { name: "api · scope · DELETE removes the row", fn: async function() {
+      try {
+        var job = await apiClient.createJob({
+          name: 'FE scope DELETE test ' + Date.now(),
+          pdf_path: 'C:\\huck stage 2\\full bid sets\\B2607 AEA Silverleaf - St Augustine - Accelerated Construction Services (6).pdf',
+          trade_scope: 'roofing'
+        });
+        var sys = await apiClient.createScopeSystem(job.id, {
+          trade: 'roofing', label: 'deletee'
+        });
+        var del = await apiClient.deleteScopeSystem(job.id, sys.id);
+        assert(del === null, "DELETE returns null (204)");
+        var listing = await apiClient.getScope(job.id, 'roofing');
+        var ids = listing.systems.map(function(x) { return x.id; });
+        assert(ids.indexOf(sys.id) === -1, "deleted id is gone");
+      } catch (e) {
+        if (e instanceof TypeError || (e.message && e.message.indexOf('Failed to fetch') >= 0))
+          throw new Error('SKIP: backend unreachable');
+        throw e;
+      }
+  }},
+  { name: "api · scope · GET filters by trade query param", fn: async function() {
+      try {
+        var job = await apiClient.createJob({
+          name: 'FE scope filter test ' + Date.now(),
+          pdf_path: 'C:\\huck stage 2\\full bid sets\\B2607 AEA Silverleaf - St Augustine - Accelerated Construction Services (6).pdf',
+          trade_scope: 'roofing'
+        });
+        await apiClient.createScopeSystem(job.id, { trade: 'roofing', label: 'r1' });
+        await apiClient.createScopeSystem(job.id, { trade: 'glazing', label: 'g1' });
+        var roofing = await apiClient.getScope(job.id, 'roofing');
+        var glazing = await apiClient.getScope(job.id, 'glazing');
+        assert(roofing.systems.length === 1 && roofing.systems[0].trade === 'roofing',
+          "roofing filter returns only roofing rows");
+        assert(glazing.systems.length === 1 && glazing.systems[0].trade === 'glazing',
+          "glazing filter returns only glazing rows");
+      } catch (e) {
+        if (e instanceof TypeError || (e.message && e.message.indexOf('Failed to fetch') >= 0))
+          throw new Error('SKIP: backend unreachable');
+        throw e;
+      }
+  }},
 ];
 
 /* ─────────────────────────────────────────────────────────────────────
@@ -3766,6 +3919,15 @@ const INTEGRATION_TESTS = [
 
 (function() {
   const pb = function() {
+    // G.4: rehydrate currentJobId from localStorage so the Scope tab
+    // re-fetches from the DB on browser refresh. Full session resume
+    // (pages, viewer, annotations) is deferred to G.5/c.2.
+    try {
+      if (typeof localStorage !== 'undefined') {
+        var saved = localStorage.getItem('huck.currentJobId');
+        if (saved) App.currentJobId = saved;
+      }
+    } catch (_) {}
     selectTrade('roofing');
     if (typeof renderViewerSystemControls === 'function') {
       try { renderViewerSystemControls(); } catch(_){}
@@ -3773,6 +3935,13 @@ const INTEGRATION_TESTS = [
     // E.2.1: start status-bar polling.
     if (typeof startHealthPolling === 'function') {
       try { startHealthPolling(); } catch(_){}
+    }
+    // G.4: if a prior job was active, fetch its scope so refresh persists.
+    // selectTrade already triggered loadScopeFromApi above when currentJobId
+    // is set, but call directly here too in case selectTrade ran before
+    // the localStorage read above (defense-in-depth).
+    if (App.currentJobId && typeof loadScopeFromApi === 'function') {
+      loadScopeFromApi(App.currentJobId, App.project.trade || 'roofing');
     }
   };
   if (typeof document !== 'undefined') {
