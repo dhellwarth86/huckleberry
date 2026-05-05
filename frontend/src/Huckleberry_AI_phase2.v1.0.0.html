@@ -1761,21 +1761,57 @@ async function getOrRenderPageCanvas(planSet, pageIdx, opts) {
    render cache that's wiped and replaced wholesale by every API fetch.
    No mutations live in memory — every user edit is an API call. */
 
+/* G.4: flatten the API ScopeSystem shape for legacy render-side consumers
+   (viewer right-panel pin/edge/polygon palettes, takeoff workbook, Excel
+   export). Source of truth stays in user_fields (and in evidence for
+   auto-detected metadata); flat fields are READ-ONLY convenience copies
+   that get wiped and replaced wholesale on every API refetch. PATCHes
+   always rebuild user_fields end-to-end — never mutate flat fields. */
+function _flattenScopeRow(row) {
+  var uf = (row && row.user_fields) || {};
+  var ev = (row && row.evidence) || {};
+  // Build a new object so we don't mutate the API response in place.
+  var flat = {};
+  for (var k in row) { if (Object.prototype.hasOwnProperty.call(row, k)) flat[k] = row[k]; }
+  // Per-system fields the legacy viewer + takeoff code expects.
+  flat.systemType   = uf.systemType   || null;
+  flat.manufacturer = uf.manufacturer || null;
+  flat.attachment   = uf.attachment   || null;
+  flat.coverBoard   = uf.coverBoard   || null;
+  flat.slopePitch   = uf.slopePitch   || null;
+  flat.wastePct     = (typeof uf.wastePct === 'number') ? uf.wastePct : 10;
+  flat.membrane     = uf.membrane     || { thickness: null, color: null };
+  flat.insulation   = uf.insulation   || [];
+  flat.pinPalette   = uf.pinPalette   || [];
+  flat.edgeTypes    = uf.edgeTypes    || [];
+  flat.polygonTypes = uf.polygonTypes || [];
+  flat.takeoffOverrides = uf.takeoffOverrides || {};
+  flat.areaRefs     = uf.areaRefs     || [];
+  // sourcePages comes from auto-detection evidence, not user_fields.
+  flat.sourcePages  = (ev && ev.scope_pages) || [];
+  return flat;
+}
+
 async function loadScopeFromApi(jobId, trade) {
   if (!jobId) {
     App.project.scope = { systems: [], rawText: '', lastScanAt: 0 };
     if (typeof renderScopeTab === 'function') renderScopeTab();
+    if (typeof renderTakeoffTab === 'function') renderTakeoffTab();
+    if (typeof renderViewerSystemControls === 'function') renderViewerSystemControls();
     if (typeof renderJobIndicator === 'function') renderJobIndicator();
     return;
   }
   try {
     var resp = await apiClient.getScope(jobId, trade);
+    var rows = (resp && resp.systems) ? resp.systems.map(_flattenScopeRow) : [];
     App.project.scope = {
-      systems: (resp && resp.systems) ? resp.systems.slice() : [],
+      systems: rows,
       rawText: '',
       lastScanAt: Date.now(),
     };
     if (typeof renderScopeTab === 'function') renderScopeTab();
+    if (typeof renderTakeoffTab === 'function') renderTakeoffTab();
+    if (typeof renderViewerSystemControls === 'function') renderViewerSystemControls();
     if (typeof renderJobIndicator === 'function') renderJobIndicator();
   } catch (e) {
     // Backend unreachable — keep prior render cache, surface in console.
@@ -3386,12 +3422,15 @@ async function rescanScope() {
   const trade = App.project.trade || 'roofing';
   try {
     var resp = await apiClient.rescanScope(App.currentJobId, trade);
+    var rows = (resp && resp.systems) ? resp.systems.map(_flattenScopeRow) : [];
     App.project.scope = {
-      systems: (resp && resp.systems) ? resp.systems.slice() : [],
+      systems: rows,
       rawText: '',
       lastScanAt: Date.now(),
     };
     renderScopeTab();
+    if (typeof renderTakeoffTab === 'function') renderTakeoffTab();
+    if (typeof renderViewerSystemControls === 'function') renderViewerSystemControls();
   } catch (err) {
     alert('Failed to refresh scope: ' + err.message);
   }
