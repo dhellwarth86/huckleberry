@@ -14,6 +14,10 @@ dependencies = [
     # Pydantic — the wrapper schema lives in shared/, imported here
     "pydantic>=2.9",
     "pydantic-settings>=2.6",
+    # G.4 CP2: multipart/form-data parsing for POST /jobs/upload.
+    # Already pulled in transitively by FastAPI's optional features but
+    # declared explicitly here for reproducibility.
+    "python-multipart>=0.0.20",
     # Object storage (S3-compatible)
     "boto3>=1.35",
     # PDF — pdfplumber is the experiment's starting library; others may be added based on findings

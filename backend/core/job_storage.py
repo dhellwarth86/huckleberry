@@ -51,6 +51,35 @@ _DISPLAY_NAME_MAP = {
 }
 
 
+# G.4: filesystem location for uploaded PDF bytes. Mirrors the
+# ~/.tracepoint/cache.db convention used by storage.py.
+_UPLOADS_DIR = Path.home() / ".tracepoint" / "uploads"
+
+
+def get_upload_dir(job_id: str) -> Path:  # G.4 (CP2):
+    """Return the directory where a job's uploaded files live."""
+    return _UPLOADS_DIR / job_id
+
+
+def get_uploaded_pdf_path(job_id: str) -> Path:  # G.4 (CP2):
+    """Return the absolute path of a job's uploaded source.pdf."""
+    return get_upload_dir(job_id) / "source.pdf"
+
+
+def store_uploaded_pdf(job_id: str, content: bytes) -> Path:  # G.4 (CP2):
+    """Write uploaded PDF bytes to ~/.tracepoint/uploads/{job_id}/source.pdf.
+
+    Creates the parent directory if needed. Returns the absolute path.
+    Cleanup of orphaned upload directories on job delete is deferred —
+    the jobs table delete cascade is handled by SQLite, but no lifecycle
+    hook removes the on-disk files yet (future phase).
+    """
+    target = get_uploaded_pdf_path(job_id)
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_bytes(content)
+    return target
+
+
 def _display_label(system_code: Optional[str]) -> str:
     """Map a canonical system code to a display label, fallback to title-case."""
     if not system_code:
@@ -190,10 +219,11 @@ def _connect() -> sqlite3.Connection:  # D.2:
 # Job lifecycle API
 # ----------------------------------------------------------------
 
-def create_job(  # D.2:
+def create_job(  # D.2 (G.4: optional job_id):
     name: str,
     pdf_path: str,
     *,
+    job_id: str | None = None,
     gc: str | None = None,
     location_city: str | None = None,
     location_state: str | None = None,
@@ -202,10 +232,16 @@ def create_job(  # D.2:
     notes: str | None = None,
     status: str = "draft",
 ) -> str:
-    """Create a job row. Returns job_id (UUID4). Computes pdf_sha1."""
+    """Create a job row. Returns job_id (UUID4). Computes pdf_sha1.
+
+    G.4: optional job_id parameter lets the multipart upload endpoint
+    pre-generate the UUID, write the file at ~/.tracepoint/uploads/{job_id}/
+    source.pdf, then create the row pointing at that path. Old callers
+    (JSON path) leave it None and get a fresh UUID."""
     if status not in _VALID_STATUSES:
         raise ValueError(f"Invalid status: {status}")
-    job_id = str(uuid.uuid4())
+    if job_id is None:
+        job_id = str(uuid.uuid4())
     now = datetime.now(timezone.utc).isoformat()
     sha1 = _pdf_sha1(pdf_path)
     conn = _connect()

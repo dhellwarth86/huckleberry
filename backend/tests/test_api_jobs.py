@@ -431,3 +431,124 @@ def test_scope_data_leak_response_shape(silverleaf_path):
         f"Unexpected fields in ScopeSystem response. "
         f"Missing: {EXPECTED - keys}; Extra: {keys - EXPECTED}"
     )
+
+
+# ── G.4 CP2 multipart upload + file serving tests ───────────────────
+
+
+def test_upload_creates_job_writes_file_to_uploads_dir(small_pdf_path):
+    """CP2: POST /jobs/upload accepts multipart, writes bytes, returns 201."""
+    from core.job_storage import get_uploaded_pdf_path
+
+    pdf_bytes = small_pdf_path.read_bytes()
+    r = client.post(
+        "/jobs/upload",
+        files={"file": ("upload.pdf", pdf_bytes, "application/pdf")},
+        data={"name": "CP2 upload test", "trade_scope": "roofing"},
+    )
+    assert r.status_code == 201, f"expected 201, got {r.status_code}: {r.text}"
+    body = r.json()
+    job_id = body["id"]
+    assert body["name"] == "CP2 upload test"
+    assert body["trade_scope"] == "roofing"
+    assert body["status"] == "draft"
+    # pdf_sha1 computed from the actual bytes
+    import hashlib
+    assert body["pdf_sha1"] == hashlib.sha1(pdf_bytes).hexdigest()
+    # File landed at ~/.tracepoint/uploads/{job_id}/source.pdf
+    stored = get_uploaded_pdf_path(job_id)
+    assert stored.exists(), f"upload file missing: {stored}"
+    assert stored.read_bytes() == pdf_bytes, "stored bytes do not match upload"
+    # Cleanup the upload directory
+    try:
+        stored.unlink()
+        stored.parent.rmdir()
+    except OSError:
+        pass
+
+
+def test_upload_rejects_empty_file():
+    """CP2: empty multipart upload returns 400."""
+    r = client.post(
+        "/jobs/upload",
+        files={"file": ("empty.pdf", b"", "application/pdf")},
+        data={"name": "empty test"},
+    )
+    assert r.status_code == 400
+    assert r.json()["detail"] == "empty upload"
+
+
+def test_upload_rejects_non_pdf_content_type():
+    """CP2: non-PDF content type returns 415."""
+    r = client.post(
+        "/jobs/upload",
+        files={"file": ("not.txt", b"hello world", "text/plain")},
+        data={"name": "wrong type test"},
+    )
+    assert r.status_code == 415
+    assert r.json()["detail"] == "PDF required"
+
+
+def test_get_pdf_returns_uploaded_bytes(small_pdf_path):
+    """CP2: GET /jobs/{id}/pdf streams the bytes that were uploaded."""
+    from core.job_storage import get_uploaded_pdf_path
+
+    pdf_bytes = small_pdf_path.read_bytes()
+    create_resp = client.post(
+        "/jobs/upload",
+        files={"file": ("upload.pdf", pdf_bytes, "application/pdf")},
+        data={"name": "CP2 get pdf test"},
+    )
+    assert create_resp.status_code == 201
+    job_id = create_resp.json()["id"]
+
+    r = client.get(f"/jobs/{job_id}/pdf")
+    assert r.status_code == 200, f"expected 200, got {r.status_code}: {r.text}"
+    assert r.headers["content-type"] == "application/pdf"
+    assert r.content == pdf_bytes, "served bytes do not match uploaded bytes"
+
+    # Cleanup
+    stored = get_uploaded_pdf_path(job_id)
+    try:
+        stored.unlink()
+        stored.parent.rmdir()
+    except OSError:
+        pass
+
+
+def test_get_pdf_404_for_unknown_job():
+    """CP2: GET /jobs/{bogus}/pdf returns 404."""
+    r = client.get("/jobs/nonexistent-pdf-job-id/pdf")
+    assert r.status_code == 404
+    assert r.json()["detail"] == "Job not found"
+
+
+def test_get_pdf_404_when_file_missing(silverleaf_path, tmp_path):
+    """CP2: GET /jobs/{id}/pdf returns 404 when the on-disk file is gone."""
+    # Create a job pointing at a temp PDF, then delete the temp PDF
+    temp_pdf = tmp_path / "will-be-deleted.pdf"
+    temp_pdf.write_bytes(silverleaf_path.read_bytes()[:512])  # arbitrary tiny pdf-ish bytes
+    create_resp = client.post(
+        "/jobs",
+        json={"name": "missing pdf test", "pdf_path": str(temp_pdf)},
+    )
+    assert create_resp.status_code == 201
+    job_id = create_resp.json()["id"]
+    temp_pdf.unlink()
+
+    r = client.get(f"/jobs/{job_id}/pdf")
+    assert r.status_code == 404
+    assert r.json()["detail"] == "PDF not found"
+
+
+def test_create_job_json_path_still_works(silverleaf_path):
+    """CP2: backwards compat — JSON path-string POST /jobs still creates a job.
+    (CP3 retires this endpoint variant; this test goes away with CP3.)"""
+    r = client.post(
+        "/jobs",
+        json={"name": "CP2 JSON compat test", "pdf_path": str(silverleaf_path)},
+    )
+    assert r.status_code == 201
+    body = r.json()
+    assert body["name"] == "CP2 JSON compat test"
+    assert body["status"] == "draft"

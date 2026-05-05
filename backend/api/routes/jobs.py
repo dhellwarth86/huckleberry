@@ -2,8 +2,10 @@
 
 Endpoints:
 
-- POST   /jobs                              create a job  (E.1)
+- POST   /jobs                              create a job (JSON path-string) (E.1)
+- POST   /jobs/upload                       create a job (multipart upload) (G.4 CP2)
 - GET    /jobs/{id}                         load a job    (E.1)
+- GET    /jobs/{id}/pdf                     download the stored PDF bytes  (G.4 CP2)
 - POST   /jobs/{id}/dispatch                trigger dispatch  (E.2.2)
 - GET    /jobs/{id}/results                 load results      (E.2.2)
 - GET    /jobs/{id}/scope                   list scope systems (G.4)
@@ -18,10 +20,12 @@ or tracebacks.  See backend/E0_API_DESIGN.md §5.2 + §5.13.
 from __future__ import annotations
 
 import logging
+import uuid
 from pathlib import Path
 from typing import Optional
 
-from fastapi import APIRouter, HTTPException, Query, Response
+from fastapi import APIRouter, File, Form, HTTPException, Query, Response, UploadFile
+from fastapi.responses import FileResponse
 
 from api.schemas.jobs import (  # E.1 + E.2.2 + G.4
     JobCreateRequest,
@@ -43,6 +47,7 @@ from core.job_storage import (  # E.1 + E.2.2 + G.4
     load_dispatch_results,
     load_trade_outputs,
     rescan_scope_systems,
+    store_uploaded_pdf,
     update_job_status,
     update_scope_system,
 )
@@ -95,6 +100,87 @@ def get_job_endpoint(job_id: str) -> JobResponse:
         # E.1: data-leak guard — generic 404 message, no query details
         raise HTTPException(status_code=404, detail="Job not found")
     return JobResponse(**job)
+
+
+# ── G.4 CP2 — multipart upload + file serving ────────────────────────
+
+
+@router.post("/upload", response_model=JobResponse, status_code=201)  # G.4 CP2
+async def create_job_via_upload(
+    file: UploadFile = File(...),
+    name: str = Form(..., min_length=1, max_length=200),
+    trade_scope: str = Form("roofing"),
+    gc: Optional[str] = Form(None),
+    location_city: Optional[str] = Form(None),
+    location_state: Optional[str] = Form(None),
+    bid_due_date: Optional[str] = Form(None),
+    notes: Optional[str] = Form(None),
+) -> JobResponse:
+    """Multipart upload variant of POST /jobs.
+
+    Receives a PDF as multipart/form-data, writes the bytes to
+    ~/.tracepoint/uploads/{job_id}/source.pdf, then creates the
+    job row pointing at that path. Status defaults to draft.
+
+    The JSON-path-string variant (POST /jobs) is kept for backwards
+    compatibility through CP2 and retired in CP3.
+    """
+    # Reject non-PDF content types (defensive — frontend's <input accept>
+    # already filters, but the API shouldn't trust the client).
+    if file.content_type and file.content_type not in ("application/pdf", "application/octet-stream"):
+        raise HTTPException(status_code=415, detail="PDF required")
+    content = await file.read()
+    if not content:
+        raise HTTPException(status_code=400, detail="empty upload")
+
+    # Pre-generate the job id so the file lands at the keyed path before
+    # we create the DB row that references it.
+    new_job_id = str(uuid.uuid4())
+
+    try:
+        stored_path = store_uploaded_pdf(new_job_id, content)
+    except OSError:
+        # G.4: data-leak guard — don't echo paths or filesystem errors.
+        raise HTTPException(status_code=500, detail="upload storage failed")
+
+    try:
+        job_id = create_job(
+            name=name,
+            pdf_path=str(stored_path),
+            job_id=new_job_id,
+            gc=gc,
+            location_city=location_city,
+            location_state=location_state,
+            trade_scope=trade_scope,
+            bid_due_date=bid_due_date,
+            notes=notes,
+        )
+    except FileNotFoundError:
+        # Defensive — shouldn't happen since we just wrote it.
+        raise HTTPException(status_code=500, detail="upload missing after write")
+    except ValueError:
+        raise HTTPException(status_code=400, detail="Invalid job input")
+
+    job = get_job(job_id)
+    if job is None:
+        raise HTTPException(status_code=500, detail="Job creation failed")
+    return JobResponse(**job)
+
+
+@router.get("/{job_id}/pdf")  # G.4 CP2
+def get_job_pdf_endpoint(job_id: str) -> FileResponse:
+    """Stream the stored PDF bytes for a job. 404 if job or file missing."""
+    job = get_job(job_id)
+    if job is None:
+        raise HTTPException(status_code=404, detail="Job not found")
+    pdf_path = job["pdf_path"]
+    if not pdf_path or not Path(pdf_path).exists():
+        raise HTTPException(status_code=404, detail="PDF not found")
+    return FileResponse(
+        pdf_path,
+        media_type="application/pdf",
+        filename=Path(pdf_path).name,
+    )
 
 
 # ── E.2.2 endpoints ────────────────────────────────────────────────
