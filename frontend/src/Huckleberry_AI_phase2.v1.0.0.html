@@ -2670,25 +2670,41 @@ const Viewer = {
 
   drawAnnotation(a, isTemp) {
     // Pin (kept inline — was a separate override in v6.3.5)
+    // G.5a CP3: auto-extracted pins (a._source === 'auto') render with a
+    // distinct visual — semi-transparent fill + dotted ring — so users can
+    // tell them apart from manually-placed pins at a glance.
     if (a.kind === 'pin') {
       const screen = this.ptToScreen(a.pointsPt[0].x, a.pointsPt[0].y);
       if (!screen) return;
       const color = a.color || '#4FC3F7';
+      const isAuto = (a._source === 'auto');
       const dot = new Konva.Circle({
         x: screen.x, y: screen.y, radius: 9,
-        fill: color, stroke: '#000', strokeWidth: 1.5, opacity: 0.9,
+        fill: color,
+        stroke: '#000', strokeWidth: 1.5,
+        opacity: isAuto ? 0.45 : 0.9,
       });
       this.konvaLayer.add(dot);
+      if (isAuto) {
+        // Outer dotted ring marking it as auto-detected (not user-placed).
+        const ring = new Konva.Circle({
+          x: screen.x, y: screen.y, radius: 13,
+          stroke: color, strokeWidth: 1.5,
+          dash: [3, 3], opacity: 0.8,
+        });
+        this.konvaLayer.add(ring);
+      }
       if (a.label) {
+        const labelText = isAuto ? ('🤖 ' + a.label) : a.label;
         const label = new Konva.Text({
           x: screen.x + 12, y: screen.y - 7,
-          text: a.label,
+          text: labelText,
           fontFamily: 'JetBrains Mono, monospace', fontSize: 10,
           fill: color, padding: 3,
         });
         const bg = new Konva.Rect({
           x: screen.x + 10, y: screen.y - 9,
-          width: (a.label.length * 6.5) + 6, height: 14,
+          width: (labelText.length * 6.5) + 6, height: 14,
           fill: 'rgba(6,9,13,0.85)',
         });
         this.konvaLayer.add(bg);
@@ -3676,7 +3692,58 @@ function renderSystemCard(s, idx) {
         '<input id="addEdge_' + s.id + '" type="text" placeholder="Add edge type"/>' +
         '<button class="btn btn-ghost" style="padding:6px 12px;font-size:11px;" onclick="addEdgeTypeFromInput(\'' + s.id + '\')">+ ADD</button>' +
       '</div>' +
+      _renderAutoDetectedSection(s) +
     '</div>';
+}
+
+/* G.5a CP3: per-system "AUTO-DETECTED FROM <TRADE> MODULE" section.
+   Reads App.project.annotations.pins filtered to _source='auto' AND
+   systemId === s.id, groups by _equipmentType, shows count + source pages.
+   Pure function — no I/O. Single responsibility. Returns HTML string
+   (empty string when no auto pins exist for this system). */
+function _renderAutoDetectedSection(s) {
+  var allPins = (App.project.annotations && App.project.annotations.pins) || [];
+  var autoPins = allPins.filter(function(p) {
+    return p._source === 'auto' && p.systemId === s.id;
+  });
+  if (autoPins.length === 0) return '';
+
+  // Group by equipment_type. Track source pages per type as a Set.
+  var groups = {};
+  for (var i = 0; i < autoPins.length; i++) {
+    var p = autoPins[i];
+    var t = p._equipmentType || 'unknown';
+    if (!groups[t]) groups[t] = { count: 0, pages: {} };
+    groups[t].count += 1;
+    if (typeof p.page === 'number') groups[t].pages[p.page] = true;
+  }
+
+  var tradeLabel = (s.trade || 'roofing');
+  tradeLabel = tradeLabel.charAt(0).toUpperCase() + tradeLabel.slice(1);
+
+  var keys = Object.keys(groups).sort();
+  var rows = keys.map(function(t) {
+    var g = groups[t];
+    var pageList = Object.keys(g.pages).map(function(p) { return parseInt(p, 10); }).sort(function(a, b) { return a - b; });
+    var pagesHtml = pageList.length === 0 ? '' :
+      '<span style="color:var(--muted);font-size:11px;margin-left:8px;">pages ' +
+      pageList.map(function(p) {
+        return '<a onclick="openPageInViewer(' + p + ')" style="color:inherit;text-decoration:underline;cursor:pointer;">' + (p + 1) + '</a>';
+      }).join(', ') + '</span>';
+    return '<div style="display:flex;align-items:center;gap:8px;padding:4px 0;font-family:var(--mono);font-size:12px;">' +
+           '<span class="ssc-tag" style="background:rgba(120,200,255,0.08);border-color:rgba(120,200,255,0.3);">' +
+           esc(t) + '</span>' +
+           '<span style="color:var(--text);font-weight:600;">' + g.count + '</span>' +
+           pagesHtml +
+           '</div>';
+  }).join('');
+
+  return '<div class="ssc-section-title" style="display:flex;align-items:center;gap:6px;">' +
+         'AUTO-DETECTED FROM ' + esc(tradeLabel.toUpperCase()) + ' MODULE' +
+         '<span class="ssc-conf high" style="font-size:9px;padding:2px 6px;">' + autoPins.length + ' pins</span>' +
+         '</div>' +
+         '<div style="font-size:11px;color:var(--muted);margin-bottom:6px;">Pins extracted by the trade module from equipment callouts. Visible on the viewer with a dotted ring.</div>' +
+         rows;
 }
 
 function findSystem(id) { return App.project.scope.systems.find(function(s) { return s.id === id; }); }
@@ -3865,17 +3932,36 @@ function buildTakeoffModel(system, annotations) {
       withWaste: base * (1 + wastePct / 100),
       source: opts.source,
       color: opts.color,
+      // G.5a CP3: source pages contributing to this row, sorted ascending.
+      // Empty array when nothing has been placed yet.
+      pages: (opts.pages || []).slice().sort(function(a, b) { return a - b; }),
     };
+  }
+
+  // G.5a CP3 helper: collect unique source pages from a list of annotations
+  // (pin/area/line). De-duplicates and returns ascending int array.
+  function _pagesOf(items) {
+    const set = {};
+    for (const it of items) {
+      if (typeof it.page === 'number') set[it.page] = true;
+    }
+    return Object.keys(set).map(function(p) { return parseInt(p, 10); });
   }
 
   const count = [];
   for (const pt of (system.pinPalette || [])) {
-    const base = sysPins.filter(function(p) { return p.pinTypeId === pt.id; }).length;
-    count.push(row(pt.name, 'count', base, { seedId: pt.seedId || undefined, source: pt.source, color: pt.color }));
+    const matchingPins = sysPins.filter(function(p) { return p.pinTypeId === pt.id; });
+    count.push(row(pt.name, 'count', matchingPins.length, {
+      seedId: pt.seedId || undefined,
+      source: pt.source,
+      color: pt.color,
+      pages: _pagesOf(matchingPins),
+    }));
   }
 
   const lf = [];
   const ftBySeed = {};
+  const segsBySeed = {};
   const edgeById = new Map();
   for (const e of (system.edgeTypes || [])) edgeById.set(e.id, e);
   for (const seg of sysSegs) {
@@ -3883,17 +3969,22 @@ function buildTakeoffModel(system, annotations) {
     const sid = edge && edge.seedId;
     if (!sid) continue;
     ftBySeed[sid] = (ftBySeed[sid] || 0) + (seg.ft || 0);
+    (segsBySeed[sid] = segsBySeed[sid] || []).push(seg);
   }
   for (const item of ROOFING_SEED_ITEMS) {
     if (item.unit !== 'lf' || item.tool === 'derived') continue;
     const onSystemAsEdge = (system.edgeTypes || []).some(function(e) { return e.seedId === item.id; });
     if (!onSystemAsEdge && item.priority !== 'always') continue;
     const base = ftBySeed[item.id] || 0;
-    lf.push(row(item.label, 'lf', base, { seedId: item.id }));
+    lf.push(row(item.label, 'lf', base, {
+      seedId: item.id,
+      pages: _pagesOf(segsBySeed[item.id] || []),
+    }));
   }
 
   const sf = [];
   const sfBySeed = {};
+  const areasBySeed = {};
   const polyById = new Map();
   for (const p of (system.polygonTypes || [])) polyById.set(p.id, p);
   for (const a of sysAreas) {
@@ -3902,20 +3993,30 @@ function buildTakeoffModel(system, annotations) {
     const sid = poly && poly.seedId;
     if (!sid) continue;
     sfBySeed[sid] = (sfBySeed[sid] || 0) + (a.sqft || 0);
+    (areasBySeed[sid] = areasBySeed[sid] || []).push(a);
   }
   for (const item of ROOFING_SEED_ITEMS) {
     if (item.unit !== 'sf' || item.tool === 'derived') continue;
     const onSystemAsPoly = (system.polygonTypes || []).some(function(p) { return p.seedId === item.id; });
     if (!onSystemAsPoly && item.priority !== 'always') continue;
     const base = sfBySeed[item.id] || 0;
-    sf.push(row(item.label, 'sf', base, { seedId: item.id }));
+    sf.push(row(item.label, 'sf', base, {
+      seedId: item.id,
+      pages: _pagesOf(areasBySeed[item.id] || []),
+    }));
   }
 
   const derived = [];
+  // Building-area pages (used for derived membrane / insulation / cover-board rows
+  // that all share the same source set).
+  const buildingPages = _pagesOf(buildingAreas);
   for (const item of ROOFING_SEED_ITEMS) {
     if (item.tool !== 'derived') continue;
     const base = (item.derivedFrom === 'mainPolygonArea') ? totalSF : 0;
-    derived.push(row(item.label, 'sf', base, { seedId: item.id }));
+    derived.push(row(item.label, 'sf', base, {
+      seedId: item.id,
+      pages: (item.derivedFrom === 'mainPolygonArea') ? buildingPages : [],
+    }));
   }
 
   return { count: count, lf: lf, sf: sf, derived: derived };
@@ -4056,13 +4157,22 @@ function renderTakeoffSection(system, title, rows, unit) {
   const qtyFmt = function(v, u) { return u === 'count' ? v.toFixed(0) : v.toFixed(1); };
   const withWasteFmt = function(v, u) { return u === 'count' ? Math.ceil(v).toFixed(0) : v.toFixed(1); };
   let out = '<div style="font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:14px;margin-bottom:4px;">' + title + '</div>';
-  out += '<table class="data"><thead><tr><th>ITEM</th><th class="num">BASE (' + unit + ')</th><th class="num">WASTE %</th><th class="num">W/ WASTE</th></tr></thead><tbody>';
+  // G.5a CP3: SOURCES column shows clickable page numbers contributing to each row.
+  out += '<table class="data"><thead><tr><th>ITEM</th><th class="num">BASE (' + unit + ')</th><th class="num">WASTE %</th><th class="num">W/ WASTE</th><th>SOURCES</th></tr></thead><tbody>';
   for (const r of rows) {
     const dotColor = r.color ? '<span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:' + r.color + ';margin-right:6px;vertical-align:middle;"></span>' : '';
     const wasteInput = r.seedId
       ? '<input type="number" min="0" step="0.5" value="' + r.wastePct + '" style="width:60px;text-align:right;padding:2px 4px;font-family:var(--mono);font-size:11px;" onchange="setTakeoffWaste(\'' + system.id + "','" + r.seedId + '\', this.value)">'
       : '<span style="color:var(--muted);">' + r.wastePct.toFixed(1) + '</span>';
-    out += '<tr><td>' + dotColor + esc(r.label) + '</td><td class="num">' + qtyFmt(r.base, r.unit) + '</td><td class="num">' + wasteInput + '</td><td class="num">' + withWasteFmt(r.withWaste, r.unit) + '</td></tr>';
+    // G.5a CP3: clickable page-number labels per row. Pages are 0-indexed
+    // internally; display as 1-indexed PAGE n. Empty when no source pages
+    // (e.g., row with base=0).
+    const sourcesCell = (r.pages && r.pages.length > 0)
+      ? r.pages.map(function(p) {
+          return '<a onclick="openPageInViewer(' + p + ')" style="color:var(--accent);text-decoration:underline;cursor:pointer;font-family:var(--mono);font-size:11px;margin-right:6px;">PAGE ' + (p + 1) + '</a>';
+        }).join('')
+      : '<span style="color:var(--muted);font-size:11px;">—</span>';
+    out += '<tr><td>' + dotColor + esc(r.label) + '</td><td class="num">' + qtyFmt(r.base, r.unit) + '</td><td class="num">' + wasteInput + '</td><td class="num">' + withWasteFmt(r.withWaste, r.unit) + '</td><td>' + sourcesCell + '</td></tr>';
   }
   out += '</tbody></table>';
   return out;
@@ -4232,11 +4342,43 @@ const TAKEOFF_TESTS = [
       approx(membrane.wastePct, 25.0, 0.01, "override applied");
       approx(membrane.withWaste, 1250.0, 0.01, "1000 × 1.25 = 1250");
   }},
+  // G.5a CP3: takeoff rows expose contributing pages.
+  { name: "takeoff · derived rows carry contributing page list (CP3)", fn: function() {
+      const sys = _testFixtureSystem();
+      const fakeAreas = [
+        { systemId: sys.id, page: 0,  sqft: 1000, perimeter_ft: 130, polygonTypeId: null },
+        { systemId: sys.id, page: 5,  sqft:  500, perimeter_ft:  90, polygonTypeId: null },
+        { systemId: sys.id, page: 12, sqft:  250, perimeter_ft:  60, polygonTypeId: null },
+      ];
+      const model = buildTakeoffModel(sys, { areas: fakeAreas, pins: [], lineSegments: [] });
+      const membrane = model.derived.find(function(r) { return r.seedId === 'membrane'; });
+      assert(Array.isArray(membrane.pages), "membrane row has pages array");
+      assert(membrane.pages.length === 3, "3 unique contributing pages, got " + membrane.pages.length);
+      assert(membrane.pages[0] === 0 && membrane.pages[1] === 5 && membrane.pages[2] === 12,
+        "pages sorted ascending: " + membrane.pages.join(','));
+  }},
+  { name: "takeoff · count rows expose pin contributing pages (CP3)", fn: function() {
+      const sys = _testFixtureSystem();
+      const drainPin = sys.pinPalette.find(function(p) { return p.seedId === 'drain'; });
+      assert(drainPin, "fixture has a drain pin type");
+      const fakePins = [
+        { systemId: sys.id, page: 18, pinTypeId: drainPin.id, pt: { x: 1, y: 1 } },
+        { systemId: sys.id, page: 18, pinTypeId: drainPin.id, pt: { x: 2, y: 2 } },
+        { systemId: sys.id, page: 19, pinTypeId: drainPin.id, pt: { x: 3, y: 3 } },
+      ];
+      const model = buildTakeoffModel(sys, { areas: [], pins: fakePins, lineSegments: [] });
+      const drainRow = model.count.find(function(r) { return r.seedId === 'drain'; });
+      assert(drainRow.base === 3, "drain row counts 3 pins");
+      assert(drainRow.pages.length === 2, "2 unique contributing pages");
+      assert(drainRow.pages[0] === 18 && drainRow.pages[1] === 19,
+        "pages sorted ascending: " + drainRow.pages.join(','));
+  }},
 ];
 
-// G.5a CP2 floor = 11 + 3 + 4 = 18 unit + 5 (E.2.2/G.4 CP3 migrated) + 5 scope + 5 annotations = 33
+// G.5a CP3 floor = 11 + 3 + 6 = 20 unit + 5 (E.2.2/G.4 CP3 migrated) + 5 scope + 5 annotations = 35
 // (G.4 CP2 added getPdf round-trip; G.4 CP3 retired createJob 422 + dropped
-//  legacy JSON pre-upload createJob; G.5a CP2 added annotations CRUD smoke tests.)
+//  legacy JSON pre-upload createJob; G.5a CP2 added annotations CRUD smoke tests;
+//  G.5a CP3 added 2 takeoff page-list tests.)
 const UNIT_TESTS = [].concat(TOOL_TESTS, STATUS_BAR_TESTS, TAKEOFF_TESTS);
 
 // G.4 CP3: post-multipart-cutover integration tests. The JSON path-string
