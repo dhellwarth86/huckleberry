@@ -1498,6 +1498,34 @@ const apiClient = {
     return apiCall('POST',
       '/jobs/' + encodeURIComponent(jobId) + '/scope/rescan?trade=' + encodeURIComponent(trade));
   },
+  // G.5a: annotations CRUD. Single-table backend (type discriminator + JSON
+  // data blob). Frontend renders + relays; never owns annotation state.
+  listAnnotations: function(jobId, opts) {
+    opts = opts || {};
+    var path = '/jobs/' + encodeURIComponent(jobId) + '/annotations';
+    var qp = [];
+    if (opts.page_idx !== undefined && opts.page_idx !== null)
+      qp.push('page_idx=' + encodeURIComponent(opts.page_idx));
+    if (opts.system_id) qp.push('system_id=' + encodeURIComponent(opts.system_id));
+    if (opts.type) qp.push('type=' + encodeURIComponent(opts.type));
+    if (opts.source) qp.push('source=' + encodeURIComponent(opts.source));
+    if (qp.length) path += '?' + qp.join('&');
+    return apiCall('GET', path);
+  },
+  createAnnotation: function(jobId, payload) {
+    return apiCall('POST',
+      '/jobs/' + encodeURIComponent(jobId) + '/annotations',
+      { body: payload });
+  },
+  patchAnnotation: function(jobId, annId, payload) {
+    return apiCall('PATCH',
+      '/jobs/' + encodeURIComponent(jobId) + '/annotations/' + encodeURIComponent(annId),
+      { body: payload });
+  },
+  deleteAnnotation: function(jobId, annId) {
+    return apiCall('DELETE',
+      '/jobs/' + encodeURIComponent(jobId) + '/annotations/' + encodeURIComponent(annId));
+  },
 };
 
 /* ── Status bar polling per D2 §5 ── */
@@ -1837,6 +1865,117 @@ async function loadScopeFromApi(jobId, trade) {
   }
 }
 
+/* G.5a: annotations are now a backend-DB-frontend cycle.
+   App.project.annotations is a transient render cache only — wiped and
+   replaced wholesale by every loadAnnotationsFromApi call. Every viewer
+   tool mutation goes through apiClient.createAnnotation /
+   patchAnnotation / deleteAnnotation, then refetches.
+
+   Single responsibility: this function only fetches + flattens. Mutations
+   live in the per-tool handlers below. */
+
+function _flattenAnnotationRow(row) {
+  /* Map an API Annotation row to the legacy in-memory shape that
+     buildTakeoffModel + renderViewerSystemControls + canvas overlay
+     read. Returns {kind, ...legacy fields} keyed by row.type:
+       type='pin'  -> { id, systemId, pinTypeId, page, pt, color, note,
+                        _source, _annId, _equipmentType }
+       type='area' -> { id, systemId, polygonTypeId, name, page, pointsPt,
+                        sqft, perimeter_ft, scaleUsed, kind, _source, _annId }
+       type='line' -> { id, systemId, lineTypeId, page, pointsPt, ft,
+                        scaleUsed, color, _source, _annId }
+     The `_annId` field is the API row id (used for PATCH / DELETE).
+     `_source` is 'auto' | 'manual'. Legacy `id` field stays as the
+     in-memory client id (or matches _annId for round-tripped rows).
+     Defensive: missing data fields use sensible defaults. */
+  var d = (row && row.data) || {};
+  var common = {
+    id: row.id,            // mirror API id as the legacy id too
+    _annId: row.id,        // explicit handle for PATCH/DELETE
+    _source: row.source,   // 'auto' | 'manual'
+    systemId: row.system_id || null,
+    page: row.page_idx,
+  };
+  if (row.type === 'pin') {
+    var pt = d.pt || (typeof d.x === 'number' && typeof d.y === 'number' ? { x: d.x, y: d.y } : null);
+    return Object.assign({}, common, {
+      pinTypeId: d.pinTypeId || null,
+      pt: pt,
+      color: d.color || null,
+      note: d.note || null,
+      _equipmentType: d.equipment_type || null,
+      _confidence: d.confidence,
+    });
+  }
+  if (row.type === 'area') {
+    return Object.assign({}, common, {
+      polygonTypeId: d.polygonTypeId || null,
+      name: d.name || '',
+      pointsPt: d.points || d.pointsPt || [],
+      sqft: d.sqft || 0,
+      perimeter_ft: d.perimeter_ft || 0,
+      scaleUsed: d.scaleUsed,
+      kind: d.kind,
+      edges: d.edges || [],
+    });
+  }
+  if (row.type === 'line') {
+    return Object.assign({}, common, {
+      lineTypeId: d.lineTypeId || null,
+      pointsPt: d.pointsPt || (d.ptStart && d.ptEnd ? [d.ptStart, d.ptEnd] : []),
+      ft: d.ft || 0,
+      scaleUsed: d.scaleUsed,
+      color: d.color || '#4FC3F7',
+    });
+  }
+  return common;
+}
+
+/* G.5a: bucket flattened rows into the legacy annotations shape that
+   read consumers expect: { byPage, areas, pins, lineSegments }.
+   Pure function — no side effects. */
+function _bucketAnnotationsByType(flatRows) {
+  var bucket = { byPage: {}, areas: [], pins: [], lineSegments: [] };
+  for (var i = 0; i < flatRows.length; i++) {
+    var f = flatRows[i];
+    var t = f._type || (f.pt ? 'pin' : (f.pointsPt && f.pointsPt.length === 2 ? 'line' : 'area'));
+    if (t === 'pin') bucket.pins.push(f);
+    else if (t === 'line') bucket.lineSegments.push(f);
+    else bucket.areas.push(f);
+  }
+  return bucket;
+}
+
+async function loadAnnotationsFromApi(jobId, opts) {
+  /* Wholesale-replace App.project.annotations from the API. Mirrors
+     loadScopeFromApi pattern exactly. Also rebuilds Viewer.annotations
+     for the current page so the canvas overlay stays in sync. */
+  if (!jobId) {
+    App.project.annotations = { byPage: {}, areas: [], pins: [], lineSegments: [] };
+    if (typeof renderViewerSystemControls === 'function') renderViewerSystemControls();
+    if (typeof renderTakeoffTab === 'function') renderTakeoffTab();
+    return;
+  }
+  try {
+    var resp = await apiClient.listAnnotations(jobId, opts || {});
+    var rows = (resp && resp.annotations) ? resp.annotations : [];
+    // Tag each row with its original API type for the bucketer.
+    var flat = rows.map(function(r) {
+      var f = _flattenAnnotationRow(r);
+      f._type = r.type;
+      return f;
+    });
+    App.project.annotations = _bucketAnnotationsByType(flat);
+    if (typeof renderViewerSystemControls === 'function') renderViewerSystemControls();
+    if (typeof renderTakeoffTab === 'function') renderTakeoffTab();
+    if (Viewer && Viewer.ready && typeof Viewer.rebuildOverlayFromState === 'function') {
+      Viewer.rebuildOverlayFromState();
+    }
+  } catch (e) {
+    if (typeof console !== 'undefined') console.warn('loadAnnotationsFromApi failed:', e && e.message);
+  }
+}
+
 /* G.4: sidebar Job indicator. Reads App.currentJobId. Idempotent — call
    on dispatch success, on boot rehydrate, after every loadScopeFromApi. */
 function renderJobIndicator() {
@@ -2122,12 +2261,16 @@ async function runDispatchFlow() {
     var results = await apiClient.getResults(jobId);
     App.currentResults = results;
     await loadScopeFromApi(jobId, App.project.trade || 'roofing');
+    // G.5a: also fetch annotations so auto-pins from RoofingModule's
+    // equipment_pins output (now persisted by _pre_populate_auto_annotations
+    // at dispatch time) appear immediately on the viewer + takeoff.
+    await loadAnnotationsFromApi(jobId);
     populatePagesFromResults(results);
     if (typeof renderPagesTab === 'function') renderPagesTab();
     if (typeof ensureCurrentSystem === 'function') ensureCurrentSystem();
     if (typeof renderViewerSystemControls === 'function') renderViewerSystemControls();
     if (btn) { btn.textContent = 'DISPATCH COMPLETE'; btn.disabled = false; }
-    if (status) status.textContent = 'Dispatch complete. Scope and page classifications populated.';
+    if (status) status.textContent = 'Dispatch complete. Scope, classifications, and auto-detected pins populated.';
   } catch (err) {
     if (btn) { btn.textContent = '▸ RUN DISPATCH'; btn.disabled = false; }
     if (status) status.textContent = 'Dispatch failed: ' + err.message;
@@ -2458,6 +2601,73 @@ const Viewer = {
     this.updateSidebar();
   },
 
+  /* G.5a: rebuild Viewer.annotations (the canvas-overlay shape) from
+     App.project.annotations for the current page. Called by
+     loadAnnotationsFromApi after every wholesale-replace, so refresh
+     restores both the pin/area/line state AND the visible overlay.
+     Single responsibility: only converts state -> overlay shape; no
+     mutation of App.project.annotations. */
+  rebuildOverlayFromState() {
+    if (!this.ready) return;
+    var page = this.currentPage;
+    var sa = (App && App.project && App.project.annotations) || {};
+    var newOverlay = [];
+    var pinsForPage = (sa.pins || []).filter(function(p) { return p.page === page; });
+    for (var i = 0; i < pinsForPage.length; i++) {
+      var p = pinsForPage[i];
+      // Resolve label + color: prefer pin-type lookup on the pin's system,
+      // fall back to equipment_type / generic. Auto pins render with a
+      // distinct dotted style (handled in drawAnnotation via _source).
+      var sys = (App.project.scope.systems || []).find(function(s) { return s.id === p.systemId; });
+      var pt = sys && sys.pinPalette ? sys.pinPalette.find(function(x) { return x.id === p.pinTypeId; }) : null;
+      var label = (pt && pt.name) || p._equipmentType || 'pin';
+      var color = p.color || (pt && pt.color) || '#4FC3F7';
+      newOverlay.push({
+        kind: 'pin',
+        _pinId: p.id,
+        _annId: p._annId,
+        _source: p._source,
+        pointsPt: [{ x: p.pt.x, y: p.pt.y }],
+        label: label,
+        color: color,
+      });
+    }
+    var areasForPage = (sa.areas || []).filter(function(a) { return a.page === page; });
+    for (var j = 0; j < areasForPage.length; j++) {
+      var a = areasForPage[j];
+      var sysA = (App.project.scope.systems || []).find(function(s) { return s.id === a.systemId; });
+      var ptA = sysA && sysA.polygonTypes ? (sysA.polygonTypes || []).find(function(x) { return x.id === a.polygonTypeId; }) : null;
+      var sfx = (a.scaleUsed && a.scaleUsed > 0) ? '  ·  ' + (a.sqft || 0).toFixed(0) + ' sf' : '';
+      newOverlay.push({
+        kind: a.kind || 'polygon',
+        _areaId: a.id,
+        _annId: a._annId,
+        _source: a._source,
+        pointsPt: a.pointsPt || [],
+        label: (a.name || '') + sfx,
+        color: ptA ? ptA.color : undefined,
+      });
+    }
+    var segsForPage = (sa.lineSegments || []).filter(function(l) { return l.page === page; });
+    for (var k = 0; k < segsForPage.length; k++) {
+      var l = segsForPage[k];
+      var sysL = (App.project.scope.systems || []).find(function(s) { return s.id === l.systemId; });
+      var et = sysL && sysL.edgeTypes ? sysL.edgeTypes.find(function(x) { return x.id === l.lineTypeId; }) : null;
+      var lbl = (et && et.name ? et.name + ' · ' : '') + (l.ft || 0).toFixed(1) + ' ft';
+      newOverlay.push({
+        kind: 'line',
+        _segId: l.id,
+        _annId: l._annId,
+        _source: l._source,
+        pointsPt: l.pointsPt || [],
+        label: lbl,
+        color: l.color || (et && et.color) || '#4FC3F7',
+      });
+    }
+    this.annotations = newOverlay;
+    this.redrawAnnotations();
+  },
+
   drawAnnotation(a, isTemp) {
     // Pin (kept inline — was a separate override in v6.3.5)
     if (a.kind === 'pin') {
@@ -2751,8 +2961,9 @@ const TOOL_HANDLERS = {
         scaleUsed: scale,
         color: lineType.color || '#4FC3F7',
       };
-      App.project.annotations.lineSegments = App.project.annotations.lineSegments || [];
-      App.project.annotations.lineSegments.push(seg);
+      // G.5a: relay through API. Local-optimistic overlay so the line
+      // appears on the canvas immediately; loadAnnotationsFromApi
+      // wholesale-replaces App.project.annotations on success.
       Viewer.annotations.push({
         kind: 'line',
         _segId: seg.id,
@@ -2761,6 +2972,27 @@ const TOOL_HANDLERS = {
         color: seg.color,
       });
       Viewer.tempState = null;
+      Viewer.redrawAnnotations();
+      if (App.currentJobId) {
+        apiClient.createAnnotation(App.currentJobId, {
+          type: 'line',
+          page_idx: seg.page,
+          system_id: seg.systemId,
+          data: {
+            lineTypeId: seg.lineTypeId,
+            pointsPt: seg.pointsPt,
+            ptStart: seg.pointsPt[0],
+            ptEnd: seg.pointsPt[1],
+            ft: seg.ft,
+            scaleUsed: seg.scaleUsed,
+            color: seg.color,
+          },
+        }).then(function() {
+          return loadAnnotationsFromApi(App.currentJobId);
+        }).catch(function(err) {
+          if (typeof console !== 'undefined') console.warn('createAnnotation(line) failed:', err && err.message);
+        });
+      }
       if (typeof renderViewerSystemControls === 'function') renderViewerSystemControls();
       if (typeof updateTakeoffIfVisible === 'function') updateTakeoffIfVisible();
     },
@@ -2885,8 +3117,9 @@ const TOOL_HANDLERS = {
         color: pinType.color,
         note: '',
       };
-      App.project.annotations.pins.push(pin);
-
+      // G.5a: relay through API. Local-optimistic overlay so the pin
+      // appears on the canvas immediately; loadAnnotationsFromApi
+      // wholesale-replaces App.project.annotations on success.
       Viewer.annotations.push({
         kind: 'pin',
         _pinId: pin.id,
@@ -2894,8 +3127,24 @@ const TOOL_HANDLERS = {
         label: pinType.name,
         color: pinType.color,
       });
-
       Viewer.redrawAnnotations();
+      if (App.currentJobId) {
+        apiClient.createAnnotation(App.currentJobId, {
+          type: 'pin',
+          page_idx: pin.page,
+          system_id: pin.systemId,
+          data: {
+            pinTypeId: pin.pinTypeId,
+            pt: pin.pt,
+            color: pin.color,
+            note: pin.note,
+          },
+        }).then(function() {
+          return loadAnnotationsFromApi(App.currentJobId);
+        }).catch(function(err) {
+          if (typeof console !== 'undefined') console.warn('createAnnotation(pin) failed:', err && err.message);
+        });
+      }
       if (typeof renderViewerSystemControls === 'function') renderViewerSystemControls();
       if (typeof updateTakeoffIfVisible === 'function') updateTakeoffIfVisible();
     },
@@ -2917,23 +3166,57 @@ function viewerZoom(factor) {
 function viewerReset() {
   if (Viewer.osd && Viewer.osd.viewport) Viewer.osd.viewport.goHome();
 }
-function viewerClearAnnotations() {
+/* G.5a: clear-page now relays each deletion through the API. Collects
+   _annId from in-memory rows on the active page, fires DELETE per row,
+   then refetches. Optimistic overlay clear so the user sees instant
+   feedback. Manual annotations only — auto-extracted pins survive
+   clear-page (they re-appear on next dispatch); use rescan for those. */
+async function viewerClearAnnotations() {
   const page = Viewer.currentPage;
-  App.project.annotations.areas = App.project.annotations.areas.filter(function(a) { return a.page !== page; });
-  App.project.annotations.pins  = App.project.annotations.pins.filter(function(p) { return p.page !== page; });
+  // Collect ann_ids to delete: only manual annotations on the current page.
+  // (Auto rows belong to the dispatch-derived state; clearing them would be
+  // erased on next dispatch anyway. Future: add an "also clear auto" toggle.)
+  const ids = [];
+  const sa = App.project.annotations || {};
+  for (const a of (sa.areas || []))   if (a.page === page && a._source !== 'auto' && a._annId) ids.push(a._annId);
+  for (const p of (sa.pins || []))    if (p.page === page && p._source !== 'auto' && p._annId) ids.push(p._annId);
+  for (const l of (sa.lineSegments || [])) if (l.page === page && l._source !== 'auto' && l._annId) ids.push(l._annId);
+
+  // Optimistic clear of overlay
   Viewer.annotations = [];
   Viewer.tempState = null;
   Viewer.redrawAnnotations();
+
+  if (App.currentJobId && ids.length > 0) {
+    try {
+      await Promise.all(ids.map(function(id) {
+        return apiClient.deleteAnnotation(App.currentJobId, id);
+      }));
+      await loadAnnotationsFromApi(App.currentJobId);
+    } catch (err) {
+      if (typeof console !== 'undefined') console.warn('clear-page DELETE failed:', err && err.message);
+    }
+  }
   if (typeof renderViewerSystemControls === 'function') renderViewerSystemControls();
   if (typeof updateTakeoffIfVisible === 'function') updateTakeoffIfVisible();
-  Viewer.showHud('Cleared annotations on this page');
+  Viewer.showHud('Cleared manual annotations on this page');
 }
-function viewerDeleteSelected() {
+
+/* G.5a: undo-most-recent now relays the deletion through the API.
+   Pops the most recent overlay entry, looks up its _annId, fires DELETE,
+   refetches. */
+async function viewerDeleteSelected() {
   if (Viewer.annotations.length === 0) return;
   const last = Viewer.annotations.pop();
-  if (last._pinId) App.project.annotations.pins = App.project.annotations.pins.filter(function(p) { return p.id !== last._pinId; });
-  if (last._areaId) App.project.annotations.areas = App.project.annotations.areas.filter(function(a) { return a.id !== last._areaId; });
   Viewer.redrawAnnotations();
+  if (App.currentJobId && last && last._annId) {
+    try {
+      await apiClient.deleteAnnotation(App.currentJobId, last._annId);
+      await loadAnnotationsFromApi(App.currentJobId);
+    } catch (err) {
+      if (typeof console !== 'undefined') console.warn('undo DELETE failed:', err && err.message);
+    }
+  }
   if (typeof renderViewerSystemControls === 'function') renderViewerSystemControls();
   if (typeof updateTakeoffIfVisible === 'function') updateTakeoffIfVisible();
 }
@@ -2941,6 +3224,12 @@ async function viewerGotoPage(idx) {
   if (!App.planSet) return;
   Viewer.tempState = null;
   await Viewer.init(App.planSet, idx);
+  // G.5a: after the new page renders, rebuild canvas overlay from
+  // App.project.annotations so persisted pins/areas/lines for THIS page
+  // appear (not the prior page's). Idempotent on empty state.
+  if (typeof Viewer.rebuildOverlayFromState === 'function') {
+    Viewer.rebuildOverlayFromState();
+  }
 }
 function setManualScale(ftPerInch) {
   App.manualScale = ftPerInch;
@@ -3146,8 +3435,9 @@ function persistAreaFromPoints(kind, pts) {
     scaleUsed: scale,
     kind: kind,
   };
-  App.project.annotations.areas.push(area);
-
+  // G.5a: relay through API. Local-optimistic overlay so the area
+  // appears on the canvas immediately; loadAnnotationsFromApi wholesale-
+  // replaces App.project.annotations on success.
   const labelSuffix = scale > 0 ? '  ·  ' + sqft.toFixed(0) + ' sf' : '';
   Viewer.annotations.push({
     kind: kind,
@@ -3156,8 +3446,28 @@ function persistAreaFromPoints(kind, pts) {
     label: name + labelSuffix,
     color: polyType ? polyType.color : undefined,
   });
-
   if (Viewer.redrawAnnotations) Viewer.redrawAnnotations();
+  if (App.currentJobId) {
+    apiClient.createAnnotation(App.currentJobId, {
+      type: 'area',
+      page_idx: area.page,
+      system_id: area.systemId,
+      data: {
+        polygonTypeId: area.polygonTypeId,
+        name: area.name,
+        points: area.pointsPt,
+        sqft: area.sqft,
+        perimeter_ft: area.perimeter_ft,
+        scaleUsed: area.scaleUsed,
+        kind: area.kind,
+        edges: area.edges,
+      },
+    }).then(function() {
+      return loadAnnotationsFromApi(App.currentJobId);
+    }).catch(function(err) {
+      if (typeof console !== 'undefined') console.warn('createAnnotation(area) failed:', err && err.message);
+    });
+  }
   if (typeof renderViewerSystemControls === 'function') renderViewerSystemControls();
   if (typeof updateTakeoffIfVisible === 'function') updateTakeoffIfVisible();
   if (Viewer.showHud) Viewer.showHud(
@@ -3924,9 +4234,9 @@ const TAKEOFF_TESTS = [
   }},
 ];
 
-// G.4 CP3 floor = 11 + 3 + 4 = 18 unit + 5 (E.2.2/G.4 CP3 migrated) + 5 scope = 28
-// (CP2 added getPdf round-trip; CP3 retired createJob 422 + dropped legacy
-//  JSON-only pre-upload createJob; net 5 in INTEGRATION_TESTS unchanged.)
+// G.5a CP2 floor = 11 + 3 + 4 = 18 unit + 5 (E.2.2/G.4 CP3 migrated) + 5 scope + 5 annotations = 33
+// (G.4 CP2 added getPdf round-trip; G.4 CP3 retired createJob 422 + dropped
+//  legacy JSON pre-upload createJob; G.5a CP2 added annotations CRUD smoke tests.)
 const UNIT_TESTS = [].concat(TOOL_TESTS, STATUS_BAR_TESTS, TAKEOFF_TESTS);
 
 // G.4 CP3: post-multipart-cutover integration tests. The JSON path-string
@@ -4103,6 +4413,87 @@ const INTEGRATION_TESTS = [
         throw e;
       }
   }},
+
+  // ── G.5a annotations smoke tests ──
+  { name: "api · annotations · GET 404 for unknown job", fn: async function() {
+      try {
+        await apiClient.listAnnotations('00000000-0000-0000-0000-000000000000');
+        assert(false, "should have thrown");
+      } catch (e) {
+        if (e instanceof TypeError || (e.message && e.message.indexOf('Failed to fetch') >= 0))
+          throw new Error('SKIP: backend unreachable');
+        assert(e.status === 404, "status is 404, got " + e.status);
+      }
+  }},
+  { name: "api · annotations · POST creates manual pin", fn: async function() {
+      try {
+        var job = await _testUploadJob('FE ann POST test ' + Date.now());
+        var ann = await apiClient.createAnnotation(job.id, {
+          type: 'pin',
+          page_idx: 2,
+          data: { pt: { x: 100, y: 200 }, note: 'fe smoke' },
+        });
+        assert(ann.type === 'pin', "type round-trips");
+        assert(ann.source === 'manual', "source is manual");
+        assert(ann.page_idx === 2, "page_idx round-trips");
+        assert(ann.data && ann.data.pt && ann.data.pt.x === 100, "data.pt.x round-trips");
+      } catch (e) {
+        if (e instanceof TypeError || (e.message && e.message.indexOf('Failed to fetch') >= 0))
+          throw new Error('SKIP: backend unreachable');
+        throw e;
+      }
+  }},
+  { name: "api · annotations · PATCH replaces data (full-row)", fn: async function() {
+      try {
+        var job = await _testUploadJob('FE ann PATCH test ' + Date.now());
+        var ann = await apiClient.createAnnotation(job.id, {
+          type: 'pin', page_idx: 0, data: { pt: { x: 1, y: 1 } },
+        });
+        var patched = await apiClient.patchAnnotation(job.id, ann.id, {
+          data: { pt: { x: 9, y: 9 }, note: 'moved' },
+          page_idx: 5,
+        });
+        assert(patched.page_idx === 5, "page_idx updated");
+        assert(patched.data.pt.x === 9 && patched.data.note === 'moved', "data full-row replaced");
+      } catch (e) {
+        if (e instanceof TypeError || (e.message && e.message.indexOf('Failed to fetch') >= 0))
+          throw new Error('SKIP: backend unreachable');
+        throw e;
+      }
+  }},
+  { name: "api · annotations · DELETE removes the row", fn: async function() {
+      try {
+        var job = await _testUploadJob('FE ann DEL test ' + Date.now());
+        var ann = await apiClient.createAnnotation(job.id, {
+          type: 'pin', page_idx: 0, data: { pt: { x: 1, y: 1 } },
+        });
+        var del = await apiClient.deleteAnnotation(job.id, ann.id);
+        assert(del === null, "DELETE returns null (204)");
+        var listing = await apiClient.listAnnotations(job.id);
+        var ids = listing.annotations.map(function(x) { return x.id; });
+        assert(ids.indexOf(ann.id) === -1, "deleted id is gone");
+      } catch (e) {
+        if (e instanceof TypeError || (e.message && e.message.indexOf('Failed to fetch') >= 0))
+          throw new Error('SKIP: backend unreachable');
+        throw e;
+      }
+  }},
+  { name: "api · annotations · GET filters by page_idx", fn: async function() {
+      try {
+        var job = await _testUploadJob('FE ann filter page test ' + Date.now());
+        await apiClient.createAnnotation(job.id, { type: 'pin', page_idx: 0, data: { x: 1, y: 1 } });
+        await apiClient.createAnnotation(job.id, { type: 'pin', page_idx: 0, data: { x: 2, y: 2 } });
+        await apiClient.createAnnotation(job.id, { type: 'pin', page_idx: 5, data: { x: 3, y: 3 } });
+        var p0 = await apiClient.listAnnotations(job.id, { page_idx: 0 });
+        var p5 = await apiClient.listAnnotations(job.id, { page_idx: 5 });
+        assert(p0.annotations.length === 2, "page 0 has 2");
+        assert(p5.annotations.length === 1, "page 5 has 1");
+      } catch (e) {
+        if (e instanceof TypeError || (e.message && e.message.indexOf('Failed to fetch') >= 0))
+          throw new Error('SKIP: backend unreachable');
+        throw e;
+      }
+  }},
 ];
 
 /* ─────────────────────────────────────────────────────────────────────
@@ -4133,8 +4524,15 @@ const INTEGRATION_TESTS = [
     // selectTrade already triggered loadScopeFromApi above when currentJobId
     // is set, but call directly here too in case selectTrade ran before
     // the localStorage read above (defense-in-depth).
-    if (App.currentJobId && typeof loadScopeFromApi === 'function') {
-      loadScopeFromApi(App.currentJobId, App.project.trade || 'roofing');
+    // G.5a: also load annotations so viewer pins/areas/lines + takeoff
+    // numbers survive the refresh.
+    if (App.currentJobId) {
+      if (typeof loadScopeFromApi === 'function') {
+        loadScopeFromApi(App.currentJobId, App.project.trade || 'roofing');
+      }
+      if (typeof loadAnnotationsFromApi === 'function') {
+        loadAnnotationsFromApi(App.currentJobId);
+      }
     }
   };
   if (typeof document !== 'undefined') {
