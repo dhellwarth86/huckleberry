@@ -124,3 +124,63 @@ class ScopeSystemPatch(BaseModel):
     user_fields: Optional[dict] = None
 
     model_config = ConfigDict(extra="forbid")
+
+
+# G.5a: Annotation schemas. Single-table design with type discriminator
+# ('area' | 'pin' | 'line') and free-form data dict that varies per type.
+# Mirrors ScopeSystem CRUD shape; full-row replace PATCH semantics (Q4).
+
+AnnotationType = Literal["area", "pin", "line"]
+AnnotationSource = Literal["auto", "manual"]
+
+
+class Annotation(BaseModel):
+    """One annotation row — auto-extracted from a trade module or manually
+    placed by the user via a viewer tool. data is type-specific:
+    - area:  { name?, points: [{x,y}, ...], sqft?, perimeter_ft?, scaleUsed?, polygonTypeId?, kind? }
+    - pin:   { equipment_type? | pinTypeId?, x?, y? | pt:{x,y}, note?, source_module?, confidence?, origin_keyword?, bbox? }
+    - line:  { lineTypeId?, ptStart:{x,y}, ptEnd:{x,y}, ft?, scaleUsed? }
+    """
+
+    id: str
+    job_id: str
+    system_id: Optional[str]
+    type: AnnotationType
+    page_idx: int
+    source: AnnotationSource
+    data: dict
+    created_at: str
+    updated_at: str
+
+    model_config = ConfigDict(extra="forbid")
+
+
+class AnnotationsResponse(BaseModel):
+    """GET /jobs/{id}/annotations response body."""
+
+    job_id: str
+    annotations: list[Annotation]
+
+    model_config = ConfigDict(extra="forbid")
+
+
+class AnnotationCreate(BaseModel):
+    """POST /jobs/{id}/annotations request body."""
+
+    type: AnnotationType
+    page_idx: int = Field(..., ge=0)
+    system_id: Optional[str] = None
+    data: dict = Field(default_factory=dict)
+
+    model_config = ConfigDict(extra="forbid")
+
+
+class AnnotationPatch(BaseModel):
+    """PATCH /jobs/{id}/annotations/{ann_id} request body — full-row replace
+    semantics per Q4 (callers send the whole `data` dict; backend overwrites)."""
+
+    page_idx: Optional[int] = Field(None, ge=0)
+    system_id: Optional[str] = None  # empty string detaches (stored as NULL)
+    data: Optional[dict] = None
+
+    model_config = ConfigDict(extra="forbid")

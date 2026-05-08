@@ -510,3 +510,276 @@ def test_get_pdf_404_when_file_missing(small_pdf_path):
 # CP3 retired test_create_job_json_path_still_works — there's no JSON path
 # anymore; the multipart upload path is the only way to create a job, and
 # test_upload_creates_job_writes_file_to_uploads_dir already covers it.
+
+
+# ── G.5a annotations CRUD + auto-pin tests ──────────────────────────
+
+
+def test_annotations_get_empty_for_undispatched_job(small_pdf_path):
+    """G.5a: GET /jobs/{id}/annotations on a fresh upload returns 200 + empty list."""
+    job_id = _upload_test_job(small_pdf_path, name="annotations empty test")
+    r = client.get(f"/jobs/{job_id}/annotations")
+    assert r.status_code == 200, r.text
+    body = r.json()
+    assert body["job_id"] == job_id
+    assert body["annotations"] == []
+
+
+def test_annotations_post_creates_manual_pin(small_pdf_path):
+    """G.5a: POST /jobs/{id}/annotations creates a pin row, GET sees it."""
+    job_id = _upload_test_job(small_pdf_path, name="ann post pin")
+    payload = {
+        "type": "pin",
+        "page_idx": 3,
+        "data": {"pinTypeId": "pt-abc", "pt": {"x": 100, "y": 200}, "note": "RTU 5"},
+    }
+    r = client.post(f"/jobs/{job_id}/annotations", json=payload)
+    assert r.status_code == 201, r.text
+    created = r.json()
+    assert created["type"] == "pin"
+    assert created["page_idx"] == 3
+    assert created["source"] == "manual"
+    assert created["data"]["pt"] == {"x": 100, "y": 200}
+    assert created["data"]["note"] == "RTU 5"
+
+    listing = client.get(f"/jobs/{job_id}/annotations").json()
+    assert len(listing["annotations"]) == 1
+    assert listing["annotations"][0]["id"] == created["id"]
+
+
+def test_annotations_post_creates_manual_polygon(small_pdf_path):
+    """G.5a: POST /jobs/{id}/annotations creates an area row with polygon data."""
+    job_id = _upload_test_job(small_pdf_path, name="ann post poly")
+    payload = {
+        "type": "area",
+        "page_idx": 0,
+        "data": {
+            "name": "Main roof",
+            "points": [{"x": 0, "y": 0}, {"x": 100, "y": 0}, {"x": 100, "y": 50}, {"x": 0, "y": 50}],
+            "sqft": 5000.0,
+            "perimeter_ft": 300.0,
+        },
+    }
+    r = client.post(f"/jobs/{job_id}/annotations", json=payload)
+    assert r.status_code == 201
+    body = r.json()
+    assert body["type"] == "area"
+    assert body["data"]["sqft"] == 5000.0
+    assert len(body["data"]["points"]) == 4
+
+
+def test_annotations_patch_replaces_data(small_pdf_path):
+    """G.5a: PATCH /jobs/{id}/annotations/{ann_id} full-row replace on data (Q4)."""
+    job_id = _upload_test_job(small_pdf_path, name="ann patch")
+    create_r = client.post(
+        f"/jobs/{job_id}/annotations",
+        json={"type": "pin", "page_idx": 1, "data": {"x": 10, "y": 20}},
+    )
+    ann_id = create_r.json()["id"]
+
+    patch_r = client.patch(
+        f"/jobs/{job_id}/annotations/{ann_id}",
+        json={"data": {"x": 99, "y": 88, "note": "moved"}, "page_idx": 5},
+    )
+    assert patch_r.status_code == 200, patch_r.text
+    patched = patch_r.json()
+    assert patched["page_idx"] == 5
+    assert patched["data"] == {"x": 99, "y": 88, "note": "moved"}
+
+
+def test_annotations_delete_removes_row(small_pdf_path):
+    """G.5a: DELETE /jobs/{id}/annotations/{ann_id} returns 204 and row is gone."""
+    job_id = _upload_test_job(small_pdf_path, name="ann del")
+    ann_id = client.post(
+        f"/jobs/{job_id}/annotations",
+        json={"type": "pin", "page_idx": 0, "data": {"x": 1, "y": 1}},
+    ).json()["id"]
+    r = client.delete(f"/jobs/{job_id}/annotations/{ann_id}")
+    assert r.status_code == 204
+    listing = client.get(f"/jobs/{job_id}/annotations").json()
+    assert listing["annotations"] == []
+
+
+def test_annotations_get_filters_by_page_idx(small_pdf_path):
+    """G.5a: GET /jobs/{id}/annotations?page_idx=N returns only that page's rows."""
+    job_id = _upload_test_job(small_pdf_path, name="ann filter page")
+    for p in (0, 0, 5, 5, 5, 10):
+        client.post(f"/jobs/{job_id}/annotations",
+                    json={"type": "pin", "page_idx": p, "data": {"x": p, "y": p}})
+    p0 = client.get(f"/jobs/{job_id}/annotations", params={"page_idx": 0}).json()
+    p5 = client.get(f"/jobs/{job_id}/annotations", params={"page_idx": 5}).json()
+    p10 = client.get(f"/jobs/{job_id}/annotations", params={"page_idx": 10}).json()
+    assert len(p0["annotations"]) == 2
+    assert len(p5["annotations"]) == 3
+    assert len(p10["annotations"]) == 1
+
+
+def test_annotations_get_filters_by_source(small_pdf_path):
+    """G.5a: GET /jobs/{id}/annotations?source=manual returns only manual rows."""
+    from core.job_storage import _connect
+    import json as _json
+    import uuid as _uuid
+    from datetime import datetime as _dt, timezone as _tz
+
+    job_id = _upload_test_job(small_pdf_path, name="ann filter source")
+    # Manual via API
+    client.post(f"/jobs/{job_id}/annotations",
+                json={"type": "pin", "page_idx": 0, "data": {"x": 1, "y": 1}})
+    # Auto via direct insert (simulating dispatch pre-populate)
+    conn = _connect()
+    try:
+        now = _dt.now(_tz.utc).isoformat()
+        conn.execute(
+            "INSERT INTO annotations (id, job_id, system_id, type, page_idx, source, "
+            "data_json, created_at, updated_at) "
+            "VALUES (?, ?, NULL, 'pin', 0, 'auto', ?, ?, ?)",
+            (str(_uuid.uuid4()), job_id, _json.dumps({"x": 50, "y": 50}), now, now),
+        )
+        conn.commit()
+    finally:
+        conn.close()
+
+    manual = client.get(f"/jobs/{job_id}/annotations", params={"source": "manual"}).json()
+    auto = client.get(f"/jobs/{job_id}/annotations", params={"source": "auto"}).json()
+    assert len(manual["annotations"]) == 1
+    assert manual["annotations"][0]["source"] == "manual"
+    assert len(auto["annotations"]) == 1
+    assert auto["annotations"][0]["source"] == "auto"
+
+
+def test_annotations_get_filters_by_system_id(small_pdf_path):
+    """G.5a: GET /jobs/{id}/annotations?system_id=X returns only annotations attached to X."""
+    job_id = _upload_test_job(small_pdf_path, name="ann filter sys")
+    # Make a system to attach to
+    sys_r = client.post(f"/jobs/{job_id}/scope/systems",
+                        json={"trade": "roofing", "label": "S1"})
+    sys_id = sys_r.json()["id"]
+    client.post(f"/jobs/{job_id}/annotations",
+                json={"type": "pin", "page_idx": 0, "system_id": sys_id, "data": {"x": 1, "y": 1}})
+    client.post(f"/jobs/{job_id}/annotations",
+                json={"type": "pin", "page_idx": 1, "data": {"x": 2, "y": 2}})  # no system
+
+    attached = client.get(f"/jobs/{job_id}/annotations", params={"system_id": sys_id}).json()
+    assert len(attached["annotations"]) == 1
+    assert attached["annotations"][0]["system_id"] == sys_id
+
+
+def test_annotations_404_for_unknown_job_and_ann(small_pdf_path):
+    """G.5a: 404 paths covered for POST/PATCH/DELETE on bad job_id and bad ann_id."""
+    # Bad job
+    r = client.post("/jobs/no-such-job/annotations",
+                    json={"type": "pin", "page_idx": 0, "data": {}})
+    assert r.status_code == 404
+    r = client.get("/jobs/no-such-job/annotations")
+    assert r.status_code == 404
+    # Good job, bad ann
+    job_id = _upload_test_job(small_pdf_path, name="ann 404")
+    r = client.patch(f"/jobs/{job_id}/annotations/no-such-ann", json={"data": {}})
+    assert r.status_code == 404
+    r = client.delete(f"/jobs/{job_id}/annotations/no-such-ann")
+    assert r.status_code == 404
+
+
+def test_delete_scope_system_cascade_deletes_attached_annotations(small_pdf_path):
+    """G.5a: deleting a scope_systems row also deletes its attached annotations
+    (Q2 explicit cleanup helper). Annotations with NULL system_id are untouched."""
+    job_id = _upload_test_job(small_pdf_path, name="ann cascade")
+    sys_id = client.post(f"/jobs/{job_id}/scope/systems",
+                         json={"trade": "roofing", "label": "doomed"}).json()["id"]
+    # 2 attached, 1 floating
+    client.post(f"/jobs/{job_id}/annotations",
+                json={"type": "pin", "page_idx": 0, "system_id": sys_id, "data": {"x": 1, "y": 1}})
+    client.post(f"/jobs/{job_id}/annotations",
+                json={"type": "area", "page_idx": 1, "system_id": sys_id, "data": {"name": "A1"}})
+    client.post(f"/jobs/{job_id}/annotations",
+                json={"type": "pin", "page_idx": 2, "data": {"x": 9, "y": 9}})
+    before = client.get(f"/jobs/{job_id}/annotations").json()
+    assert len(before["annotations"]) == 3
+
+    del_r = client.delete(f"/jobs/{job_id}/scope/systems/{sys_id}")
+    assert del_r.status_code == 204
+    after = client.get(f"/jobs/{job_id}/annotations").json()
+    assert len(after["annotations"]) == 1, f"expected only the floating ann to remain, got {after}"
+    assert after["annotations"][0]["system_id"] is None
+
+
+def test_dispatch_pre_populates_auto_pins_when_equipment_pins_present():
+    """G.5a: _pre_populate_auto_annotations extracts equipment_pins from
+    ctx.trade_module_outputs and writes source='auto' annotation rows. Tested
+    directly against the storage helpers (without running real dispatch) since
+    the small_pdf_path fixture won't trigger RoofingModule output."""
+    from core.job_storage import (
+        _connect, _pre_populate_auto_annotations, create_job,
+        create_scope_system, list_annotations,
+    )
+    from dataclasses import dataclass, field
+    import shutil
+    from pathlib import Path
+
+    # Need a real existing PDF for create_job's _pdf_sha1 — reuse Silverleaf if present,
+    # else the small minimal PDF written to tmp.
+    silverleaf = Path(r"C:\huck stage 2\full bid sets\B2607 AEA Silverleaf - St Augustine - Accelerated Construction Services (6).pdf")
+    if not silverleaf.exists():
+        import pytest
+        pytest.skip("Silverleaf bidset not found; this test needs an existing PDF for create_job's sha1 step")
+
+    job_id = create_job(name="auto-pin extract test", pdf_path=str(silverleaf))
+    # Pre-create a roofing scope_systems row so the auto-pin attaches to it.
+    sys = create_scope_system(job_id, trade="roofing", label="Roofing target")
+
+    # Build a fake ctx with trade_module_outputs containing equipment_pins.
+    @dataclass
+    class FakeCtx:
+        trade_module_outputs: dict = field(default_factory=dict)
+
+    ctx = FakeCtx()
+    ctx.trade_module_outputs = {
+        12: {
+            "roofing": {
+                "fields": {},
+                "warnings": [],
+                "equipment_pins": [
+                    {"x": 100, "y": 200, "equipment_type": "drain", "confidence": 0.9},
+                    {"x": 150, "y": 250, "equipment_type": "scupper", "confidence": 0.7},
+                ],
+            },
+        },
+        18: {
+            "roofing": {
+                "equipment_pins": [
+                    {"x": 50, "y": 75, "equipment_type": "rtu", "confidence": 0.85},
+                ],
+            },
+        },
+        20: {
+            "glazing": {
+                "equipment_pins": [],  # empty — skip
+            },
+        },
+    }
+
+    _pre_populate_auto_annotations(job_id, ctx)
+
+    rows = list_annotations(job_id, source="auto")
+    assert len(rows) == 3, f"expected 3 auto-pin rows, got {len(rows)}"
+
+    # All rows attached to the roofing system we created
+    assert all(r["system_id"] == sys["id"] for r in rows), \
+        "all auto roofing pins should attach to the roofing scope_systems row"
+    assert all(r["type"] == "pin" for r in rows)
+    assert all(r["source"] == "auto" for r in rows)
+
+    # Idempotency: running again should clear & re-insert (3 rows, not 6)
+    _pre_populate_auto_annotations(job_id, ctx)
+    rows2 = list_annotations(job_id, source="auto")
+    assert len(rows2) == 3, "auto pre-populate must be idempotent"
+
+    # Cleanup
+    conn = _connect()
+    try:
+        conn.execute("DELETE FROM annotations WHERE job_id = ?", (job_id,))
+        conn.execute("DELETE FROM scope_systems WHERE job_id = ?", (job_id,))
+        conn.execute("DELETE FROM jobs WHERE id = ?", (job_id,))
+        conn.commit()
+    finally:
+        conn.close()

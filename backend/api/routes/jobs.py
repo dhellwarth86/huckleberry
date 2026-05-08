@@ -1,4 +1,4 @@
-"""/jobs endpoints — E.1 + E.2.2 + G.4.
+"""/jobs endpoints — E.1 + E.2.2 + G.4 + G.5a.
 
 Endpoints:
 
@@ -12,6 +12,10 @@ Endpoints:
 - PATCH  /jobs/{id}/scope/systems/{sys_id}  edit scope system                (G.4)
 - DELETE /jobs/{id}/scope/systems/{sys_id}  delete scope system              (G.4)
 - POST   /jobs/{id}/scope/rescan            reset auto rows from project_scope (G.4)
+- GET    /jobs/{id}/annotations             list annotations (filters: page/system/type/source) (G.5a)
+- POST   /jobs/{id}/annotations             create manual annotation         (G.5a)
+- PATCH  /jobs/{id}/annotations/{ann_id}    edit annotation (full-row replace) (G.5a)
+- DELETE /jobs/{id}/annotations/{ann_id}    delete annotation                (G.5a)
 
 G.4 CP3 retired the JSON path-string POST /jobs endpoint. Multipart
 upload is the single upload point. Dev scripts that need direct dispatch
@@ -31,7 +35,13 @@ from typing import Optional
 from fastapi import APIRouter, File, Form, HTTPException, Query, Response, UploadFile
 from fastapi.responses import FileResponse
 
-from api.schemas.jobs import (  # E.1 + E.2.2 + G.4
+from api.schemas.jobs import (  # E.1 + E.2.2 + G.4 + G.5a
+    Annotation,
+    AnnotationCreate,
+    AnnotationPatch,
+    AnnotationsResponse,
+    AnnotationType,
+    AnnotationSource,
     JobResponse,
     JobResultsResponse,
     ScopeSystem,
@@ -40,17 +50,22 @@ from api.schemas.jobs import (  # E.1 + E.2.2 + G.4
     ScopeSystemsResponse,
     ScopeTrade,
 )
-from core.job_storage import (  # E.1 + E.2.2 + G.4
+from core.job_storage import (  # E.1 + E.2.2 + G.4 + G.5a
+    create_annotation,
     create_job,
     create_scope_system,
+    delete_annotation,
     delete_scope_system,
+    get_annotation,
     get_job,
     get_scope_system,
+    list_annotations,
     list_scope_systems,
     load_dispatch_results,
     load_trade_outputs,
     rescan_scope_systems,
     store_uploaded_pdf,
+    update_annotation,
     update_job_status,
     update_scope_system,
 )
@@ -329,3 +344,96 @@ def rescan_scope_endpoint(
         trade=trade,
         systems=[ScopeSystem(**r) for r in rows],
     )
+
+
+# ── G.5a endpoints — annotations CRUD ────────────────────────────────
+
+
+@router.get("/{job_id}/annotations", response_model=AnnotationsResponse)  # G.5a
+def list_job_annotations_endpoint(
+    job_id: str,
+    page_idx: Optional[int] = Query(None, ge=0),
+    system_id: Optional[str] = Query(None),
+    type: Optional[AnnotationType] = Query(None),
+    source: Optional[AnnotationSource] = Query(None),
+) -> AnnotationsResponse:
+    """List annotation rows for a job, optionally filtered by page_idx,
+    system_id, type, or source. Always 200 (empty list if nothing yet)."""
+    job = get_job(job_id)
+    if job is None:
+        raise HTTPException(status_code=404, detail="Job not found")
+    rows = list_annotations(
+        job_id, page_idx=page_idx, system_id=system_id, type=type, source=source,
+    )
+    return AnnotationsResponse(
+        job_id=job_id,
+        annotations=[Annotation(**r) for r in rows],
+    )
+
+
+@router.post(
+    "/{job_id}/annotations",
+    response_model=Annotation,
+    status_code=201,
+)  # G.5a
+def create_annotation_endpoint(
+    job_id: str,
+    payload: AnnotationCreate,
+) -> Annotation:
+    """Create a manual annotation row. Returns 201 + the new row."""
+    job = get_job(job_id)
+    if job is None:
+        raise HTTPException(status_code=404, detail="Job not found")
+    try:
+        row = create_annotation(
+            job_id,
+            type=payload.type,
+            page_idx=payload.page_idx,
+            system_id=payload.system_id,
+            source="manual",
+            data=payload.data,
+        )
+    except ValueError:
+        raise HTTPException(status_code=400, detail="Invalid annotation input")
+    return Annotation(**row)
+
+
+@router.patch(
+    "/{job_id}/annotations/{ann_id}",
+    response_model=Annotation,
+)  # G.5a
+def patch_annotation_endpoint(
+    job_id: str,
+    ann_id: str,
+    payload: AnnotationPatch,
+) -> Annotation:
+    """Patch an annotation row. Full-row replace semantics on `data` per Q4."""
+    existing = get_annotation(ann_id)
+    if existing is None or existing["job_id"] != job_id:
+        raise HTTPException(status_code=404, detail="Annotation not found")
+    try:
+        updated = update_annotation(
+            ann_id,
+            page_idx=payload.page_idx,
+            system_id=payload.system_id,
+            data=payload.data,
+        )
+    except ValueError:
+        raise HTTPException(status_code=400, detail="Invalid annotation input")
+    if updated is None:
+        raise HTTPException(status_code=404, detail="Annotation not found")
+    return Annotation(**updated)
+
+
+@router.delete(
+    "/{job_id}/annotations/{ann_id}",
+    status_code=204,
+)  # G.5a
+def delete_annotation_endpoint(job_id: str, ann_id: str) -> Response:
+    """Delete an annotation row. 204 on success, 404 if not found."""
+    existing = get_annotation(ann_id)
+    if existing is None or existing["job_id"] != job_id:
+        raise HTTPException(status_code=404, detail="Annotation not found")
+    if not delete_annotation(ann_id):
+        raise HTTPException(status_code=404, detail="Annotation not found")
+    return Response(status_code=204)

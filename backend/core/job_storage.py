@@ -4,7 +4,8 @@ Job persistence layer — D.2 job folder + multi-tenant identity.
 SQLite-backed. No SQLAlchemy. stdlib sqlite3 only.
 Postgres migration deferred to post-user-testing per Daniel directive.
 
-Tables: jobs, dispatch_results, trade_outputs, job_project_scope (G.4), scope_systems (G.4).
+Tables: jobs, dispatch_results, trade_outputs, job_project_scope (G.4),
+scope_systems (G.4), annotations (G.5a).
 """
 
 import hashlib
@@ -29,6 +30,13 @@ _VALID_SCOPE_SOURCES = {"auto", "manual"}
 
 # G.4: confidence buckets stored on scope_systems rows.
 _VALID_SCOPE_CONFIDENCE = {"high", "medium", "low", "manual"}
+
+# G.5a: annotation type discriminator. data_json shape varies by type.
+_VALID_ANNOTATION_TYPES = {"area", "pin", "line"}
+
+# G.5a: annotation provenance — auto rows come from trade-module
+# pre-populate; manual rows come from user viewer-tool actions.
+_VALID_ANNOTATION_SOURCES = {"auto", "manual"}
 
 # G.4: minimum project_scope.system_confidence to pre-populate an auto row.
 # Mirrors TracePoint's _resolve_scope_system threshold; below this we leave
@@ -186,6 +194,29 @@ def _init_job_tables(conn: sqlite3.Connection) -> None:  # D.2:
     """)
     conn.execute("CREATE INDEX IF NOT EXISTS idx_scope_systems_job ON scope_systems(job_id)")
     conn.execute("CREATE INDEX IF NOT EXISTS idx_scope_systems_job_trade ON scope_systems(job_id, trade)")
+
+    # G.5a: viewer-tool annotations + auto-extracted equipment_pins from
+    # trade-module output. Single-table design with type discriminator
+    # ('area' | 'pin' | 'line') and JSON data_json blob — mirrors the
+    # scope_systems pattern. system_id is nullable (auto-pins from a trade
+    # module attach to the matching scope_systems row whose trade equals
+    # the producing trade; unattached if no system found).
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS annotations (
+            id TEXT PRIMARY KEY,
+            job_id TEXT NOT NULL REFERENCES jobs(id),
+            system_id TEXT,
+            type TEXT NOT NULL,
+            page_idx INTEGER NOT NULL,
+            source TEXT NOT NULL,
+            data_json TEXT NOT NULL,
+            created_at TEXT NOT NULL,
+            updated_at TEXT NOT NULL
+        )
+    """)
+    conn.execute("CREATE INDEX IF NOT EXISTS idx_annotations_job ON annotations(job_id)")
+    conn.execute("CREATE INDEX IF NOT EXISTS idx_annotations_sys ON annotations(system_id)")
+    conn.execute("CREATE INDEX IF NOT EXISTS idx_annotations_page ON annotations(job_id, page_idx)")
 
 
 def _ensure_tables(conn: sqlite3.Connection) -> None:  # D.2:
@@ -414,6 +445,13 @@ def persist_trade_outputs(job_id: str, ctx) -> None:  # D.2:
                     (job_id, page_idx, trade_name, json.dumps(out_dict, default=str)),
                 )
         conn.commit()
+        # G.5a: pre-populate auto annotations from trade-module equipment_pins.
+        # Runs AFTER trade_outputs commit so the rows we extract from are durable.
+        # Best-effort — annotation failures don't roll back trade_outputs.
+        try:
+            _pre_populate_auto_annotations(job_id, ctx)
+        except Exception:
+            pass
     finally:
         conn.close()
 
@@ -731,10 +769,17 @@ def update_scope_system(  # G.4:
     return get_scope_system(sys_id)
 
 
-def delete_scope_system(sys_id: str) -> bool:  # G.4:
-    """Delete a scope_systems row by id. Returns True if deleted, False if not found."""
+def delete_scope_system(sys_id: str) -> bool:  # G.4 (G.5a: + annotations cleanup):
+    """Delete a scope_systems row by id. Returns True if deleted, False if not found.
+
+    G.5a: also deletes any annotations attached to this system (Q2 explicit
+    cleanup pattern — no SQLite ON DELETE CASCADE). Annotations with
+    system_id IS NULL are not affected.
+    """
     conn = _connect()
     try:
+        # G.5a: cascade-delete attached annotations first (Q2 cleanup helper).
+        conn.execute("DELETE FROM annotations WHERE system_id = ?", (sys_id,))
         cur = conn.execute("DELETE FROM scope_systems WHERE id = ?", (sys_id,))
         conn.commit()
         return cur.rowcount > 0
@@ -787,3 +832,319 @@ def rescan_scope_systems(job_id: str, trade: str) -> list[dict]:  # G.4:
                 finally:
                     conn.close()
     return list_scope_systems(job_id, trade=trade)
+
+
+# ----------------------------------------------------------------
+# G.5a: annotations CRUD + auto-pin extraction
+# ----------------------------------------------------------------
+
+def _row_to_annotation(row) -> dict:
+    """Convert a sqlite3.Row to a JSON-safe dict, parsing the data_json column.
+    Mirrors _row_to_scope_system's shape (single responsibility: row -> dict)."""
+    d = dict(row)
+    if d.get("data_json"):
+        d["data"] = json.loads(d["data_json"])
+    else:
+        d["data"] = None
+    d.pop("data_json", None)
+    return d
+
+
+def list_annotations(  # G.5a:
+    job_id: str,
+    *,
+    page_idx: Optional[int] = None,
+    system_id: Optional[str] = None,
+    type: Optional[str] = None,
+    source: Optional[str] = None,
+) -> list[dict]:
+    """Return annotation rows for a job, optionally filtered by page/system/type/source."""
+    clauses = ["job_id = ?"]
+    params: list = [job_id]
+    if page_idx is not None:
+        clauses.append("page_idx = ?")
+        params.append(page_idx)
+    if system_id is not None:
+        clauses.append("system_id = ?")
+        params.append(system_id)
+    if type is not None:
+        clauses.append("type = ?")
+        params.append(type)
+    if source is not None:
+        clauses.append("source = ?")
+        params.append(source)
+    where = " AND ".join(clauses)
+    sql = f"SELECT * FROM annotations WHERE {where} ORDER BY page_idx, type, created_at"
+    conn = _connect()
+    try:
+        rows = conn.execute(sql, params).fetchall()
+        return [_row_to_annotation(r) for r in rows]
+    finally:
+        conn.close()
+
+
+def get_annotation(ann_id: str) -> Optional[dict]:  # G.5a:
+    """Return a single annotation row by id, or None."""
+    conn = _connect()
+    try:
+        row = conn.execute(
+            "SELECT * FROM annotations WHERE id = ?", (ann_id,)
+        ).fetchone()
+        return _row_to_annotation(row) if row else None
+    finally:
+        conn.close()
+
+
+def create_annotation(  # G.5a:
+    job_id: str,
+    *,
+    type: str,
+    page_idx: int,
+    system_id: Optional[str] = None,
+    source: str = "manual",
+    data: Optional[dict] = None,
+) -> dict:
+    """Insert a new annotation row. Returns the inserted row."""
+    if type not in _VALID_ANNOTATION_TYPES:
+        raise ValueError(f"Invalid annotation type: {type}")
+    if source not in _VALID_ANNOTATION_SOURCES:
+        raise ValueError(f"Invalid annotation source: {source}")
+    if not isinstance(page_idx, int) or page_idx < 0:
+        raise ValueError(f"Invalid page_idx: {page_idx}")
+    ann_id = str(uuid.uuid4())
+    now = datetime.now(timezone.utc).isoformat()
+    data_json = json.dumps(data if data is not None else {}, default=str)
+    conn = _connect()
+    try:
+        conn.execute(
+            "INSERT INTO annotations (id, job_id, system_id, type, page_idx, source, "
+            "data_json, created_at, updated_at) "
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            (ann_id, job_id, system_id, type, page_idx, source, data_json, now, now),
+        )
+        conn.commit()
+    finally:
+        conn.close()
+    row = get_annotation(ann_id)
+    if row is None:
+        raise RuntimeError("annotation creation failed")
+    return row
+
+
+def update_annotation(  # G.5a:
+    ann_id: str,
+    *,
+    page_idx: Optional[int] = None,
+    system_id: Optional[str] = None,
+    data: Optional[dict] = None,
+) -> Optional[dict]:
+    """Patch an annotation row. Only provided fields are updated. Full-row
+    replace pattern (Q4): callers send the whole `data` dict; we overwrite.
+    Returns updated row, or None if not found. Type + source are immutable
+    after creation — promoting an auto row to manual is a separate concern."""
+    existing = get_annotation(ann_id)
+    if existing is None:
+        return None
+    sets: list[str] = []
+    params: list = []
+    if page_idx is not None:
+        if not isinstance(page_idx, int) or page_idx < 0:
+            raise ValueError(f"Invalid page_idx: {page_idx}")
+        sets.append("page_idx = ?")
+        params.append(page_idx)
+    if system_id is not None:
+        # Allow explicit system_id="" to detach (stored as NULL).
+        sets.append("system_id = ?")
+        params.append(system_id if system_id else None)
+    if data is not None:
+        sets.append("data_json = ?")
+        params.append(json.dumps(data, default=str))
+    if not sets:
+        return existing
+    sets.append("updated_at = ?")
+    params.append(datetime.now(timezone.utc).isoformat())
+    params.append(ann_id)
+    conn = _connect()
+    try:
+        conn.execute(
+            f"UPDATE annotations SET {', '.join(sets)} WHERE id = ?",
+            params,
+        )
+        conn.commit()
+    finally:
+        conn.close()
+    return get_annotation(ann_id)
+
+
+def delete_annotation(ann_id: str) -> bool:  # G.5a:
+    """Delete an annotation row by id. Returns True if deleted, False if not found."""
+    conn = _connect()
+    try:
+        cur = conn.execute("DELETE FROM annotations WHERE id = ?", (ann_id,))
+        conn.commit()
+        return cur.rowcount > 0
+    finally:
+        conn.close()
+
+
+# ----------------------------------------------------------------
+# G.5a: auto-pin extraction from trade-module output
+# ----------------------------------------------------------------
+
+def _extract_auto_pins_from_trade_output(  # G.5a:
+    trade_name: str,
+    page_idx: int,
+    output_dict: dict,
+) -> list[dict]:
+    """Convert a trade module's `equipment_pins` output (per-page) into a list
+    of annotation-payloads (no DB write — pure transform). Returns one dict per
+    pin in the shape that create_annotation expects via its `data` parameter,
+    plus enough envelope fields to insert as a row.
+
+    Each returned dict has: { 'type': 'pin', 'page_idx': int, 'data': {
+        'equipment_type': str, 'x': float, 'y': float, 'confidence': float,
+        'source_module': trade_name, 'origin_keyword': ... } }.
+
+    Only emits rows when `output_dict.equipment_pins` is a non-empty list.
+    Defensive against missing/malformed entries — skips rather than raises.
+    Single-responsibility (S in SOLID): pure conversion, no I/O.
+    """
+    if not isinstance(output_dict, dict):
+        return []
+    eqps = output_dict.get("equipment_pins") or []
+    if not isinstance(eqps, list) or not eqps:
+        return []
+    out: list[dict] = []
+    for eqp in eqps:
+        if not isinstance(eqp, dict):
+            continue
+        # Tolerate either {x,y} or {pt:{x,y}} shape — TradeModule contract is
+        # documented as {x, y, equipment_type, ...} but be defensive.
+        x = eqp.get("x")
+        y = eqp.get("y")
+        if x is None or y is None:
+            pt = eqp.get("pt") or {}
+            x = pt.get("x")
+            y = pt.get("y")
+        if x is None or y is None:
+            continue
+        out.append({
+            "type": "pin",
+            "page_idx": page_idx,
+            "data": {
+                "equipment_type": eqp.get("equipment_type") or eqp.get("type") or "unknown",
+                "x": x,
+                "y": y,
+                "confidence": eqp.get("confidence"),
+                "source_module": trade_name,
+                "origin_keyword": eqp.get("keyword") or eqp.get("origin_keyword"),
+                "bbox": eqp.get("bbox"),
+            },
+        })
+    return out
+
+
+def _resolve_system_id_for_trade(job_id: str, trade_name: str) -> Optional[str]:
+    """G.5a: pick the scope_systems row to attach an auto-pin to.
+
+    Strategy: prefer the auto-source row for the trade (G.4 pre-populated when
+    confidence ≥ 0.7). If multiple, pick the first by created_at. If none,
+    return None — the annotation lands with system_id=NULL and the user can
+    assign it manually in the UI later.
+
+    Single-responsibility: only resolves the system_id; doesn't insert anything.
+    """
+    conn = _connect()
+    try:
+        row = conn.execute(
+            "SELECT id FROM scope_systems "
+            "WHERE job_id = ? AND trade = ? AND source = 'auto' "
+            "ORDER BY created_at LIMIT 1",
+            (job_id, trade_name),
+        ).fetchone()
+        if row:
+            return row["id"]
+        # Fallback: any row for the trade (manual rows OK if no auto present).
+        row2 = conn.execute(
+            "SELECT id FROM scope_systems WHERE job_id = ? AND trade = ? "
+            "ORDER BY created_at LIMIT 1",
+            (job_id, trade_name),
+        ).fetchone()
+        return row2["id"] if row2 else None
+    finally:
+        conn.close()
+
+
+def _pre_populate_auto_annotations(job_id: str, ctx) -> None:  # G.5a:
+    """Walk ctx.trade_module_outputs and write one annotation row per
+    equipment_pin found, with source='auto' and system_id resolved by trade.
+
+    Idempotent: deletes any prior source='auto' annotation rows for the job
+    before inserting, so re-dispatch yields a clean auto state. Manual rows
+    (source='manual') are never touched — promoting/editing user work is
+    explicitly preserved across re-dispatches.
+
+    Open-closed (O in SOLID): extending dispatch persistence without
+    modifying persist_trade_outputs's existing trade_outputs row writes.
+    Dependency inversion (D): consumes ctx.trade_module_outputs (an in-memory
+    structure already produced by dispatch_gate) without depending on any
+    specific trade module's class shape.
+    """
+    trade_outputs = getattr(ctx, "trade_module_outputs", None) or {}
+    if not trade_outputs:
+        return
+
+    conn = _connect()
+    try:
+        # Wipe prior auto rows so re-dispatch is deterministic.
+        conn.execute(
+            "DELETE FROM annotations WHERE job_id = ? AND source = 'auto'",
+            (job_id,),
+        )
+        conn.commit()
+    finally:
+        conn.close()
+
+    # Resolve system_id once per trade (cached lookup).
+    system_id_cache: dict[str, Optional[str]] = {}
+
+    now = datetime.now(timezone.utc).isoformat()
+    conn = _connect()
+    try:
+        for page_idx, per_page in sorted(trade_outputs.items()):
+            for trade_name, output in per_page.items():
+                # Coerce dataclass -> dict for the extractor.
+                if hasattr(output, "__dataclass_fields__"):
+                    from dataclasses import asdict
+                    out_dict = asdict(output)
+                elif isinstance(output, dict):
+                    out_dict = output
+                else:
+                    continue
+
+                payloads = _extract_auto_pins_from_trade_output(
+                    trade_name, page_idx, out_dict
+                )
+                if not payloads:
+                    continue
+
+                if trade_name not in system_id_cache:
+                    system_id_cache[trade_name] = _resolve_system_id_for_trade(
+                        job_id, trade_name
+                    )
+                sys_id = system_id_cache[trade_name]
+
+                for p in payloads:
+                    ann_id = str(uuid.uuid4())
+                    conn.execute(
+                        "INSERT INTO annotations (id, job_id, system_id, type, "
+                        "page_idx, source, data_json, created_at, updated_at) "
+                        "VALUES (?, ?, ?, ?, ?, 'auto', ?, ?, ?)",
+                        (
+                            ann_id, job_id, sys_id, p["type"], p["page_idx"],
+                            json.dumps(p["data"], default=str), now, now,
+                        ),
+                    )
+        conn.commit()
+    finally:
+        conn.close()
