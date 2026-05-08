@@ -516,8 +516,10 @@ def test_get_pdf_404_when_file_missing(small_pdf_path):
 
 
 def test_roofing_get_palette_seed_tpo():
-    """CP4: RoofingModule.get_palette_seed('tpo') returns palette payload
-    keyed to TPO's typical_items."""
+    """CP4 + CP4.1: RoofingModule.get_palette_seed('tpo') returns palette
+    payload keyed to TPO's typical_items, routed by item.unit:
+      EA -> pinPalette, LF -> edgeTypes, SF -> polygonTypes, SQ -> skipped.
+    """
     from core.roofing_module import RoofingModule
     seed = RoofingModule.get_palette_seed("tpo")
     assert isinstance(seed, dict)
@@ -525,15 +527,19 @@ def test_roofing_get_palette_seed_tpo():
     pin_names = [p["name"] for p in seed["pinPalette"]]
     edge_names = [e["name"] for e in seed["edgeTypes"]]
     poly_names = [p["name"] for p in seed["polygonTypes"]]
-    # TPO typical_items contains drains, scuppers, RTUs, hatches, etc.
+    # EA-unit items in pinPalette
     assert "Roof Drains" in pin_names
     assert "Scuppers" in pin_names
     assert "Rooftop Units / RTUs" in pin_names
-    # Edge types include coping + edge metal
+    # LF-unit items in edgeTypes — including walkway_pads (manual derive)
     assert "Coping" in edge_names
     assert "Edge Metal" in edge_names
-    # Polygon types include membrane area / insulation / cover board
+    assert "Walkway Pads" in edge_names, "walkway_pads (LF/manual) should land in edgeTypes per CP4.1 unit-based routing"
+    # SF-unit items in polygonTypes — including cricket and curbs (both manual)
     assert any("Membrane" in n for n in poly_names)
+    assert "Crickets" in poly_names, "cricket (SF/manual) should land in polygonTypes per CP4.1 unit-based routing"
+    assert "Equipment Curbs" in poly_names, "Equipment Curbs (SF/manual after CP4.1) should land in polygonTypes"
+    assert "Equipment Curbs" not in pin_names, "Equipment Curbs is no longer EA after CP4.1"
     # Each entry has the canonical shape
     for entry in seed["pinPalette"]:
         assert set(entry.keys()) >= {"id", "name", "color", "source", "seedId"}

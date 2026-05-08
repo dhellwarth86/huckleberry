@@ -482,12 +482,22 @@ class RoofingModule:
     def get_palette_seed(cls, system_code: Optional[str]) -> dict:
         """G.5a CP4 — return scope-system palette seed payload.
 
-        Routes ITEMS by `derive_from`:
-          - callout_count       -> pinPalette
-          - polygon_perimeter   -> edgeTypes
-          - polygon_area        -> polygonTypes
-          - polygon_area_div_100 / manual / other -> skipped (derived rows
-            are auto-computed; manual-only items don't belong in palettes)
+        G.5a CP4.1: route by **unit** (not derive_from). The unit field
+        declares what KIND of placement tool the item needs; derive_from
+        declares HOW the takeoff value gets calculated (auto-from-geometry,
+        from-callout-count, or from-manual-tracing). They're orthogonal:
+        cricket has unit='SF' + derive_from='manual' because the user
+        manually traces a cricket polygon and the SF comes from that
+        polygon's area — it's still a polygon-tool item and belongs in
+        polygonTypes.
+
+        Routing:
+          - unit='EA' -> pinPalette
+          - unit='LF' -> edgeTypes
+          - unit='SF' -> polygonTypes
+          - unit='SQ' -> skipped (derived row, e.g. shingle_squares
+            computed from polygon_area / 100; no separate placement)
+          - other / empty -> skipped
 
         Each entry: {id, name, color, source: 'auto', seedId}. The frontend
         consumes the same shape it would get from user-added entries.
@@ -500,7 +510,7 @@ class RoofingModule:
             item = ITEMS.get(item_name)
             if not item:
                 continue
-            derive = item.get("derive_from")
+            unit = (item.get("unit") or "").upper()
             entry = {
                 "id": "pt-" + item_name,
                 "name": item.get("display_name", item_name),
@@ -508,16 +518,17 @@ class RoofingModule:
                 "source": "auto",
                 "seedId": item_name,
             }
-            if derive == "callout_count":
+            if unit == "EA":
                 pin_palette.append(entry)
-            elif derive == "polygon_perimeter":
+            elif unit == "LF":
                 edge_types.append(entry)
-            elif derive == "polygon_area":
-                # membrane / insulation / cover_board are visually placed as
-                # area polygons; insulation/cover_board are also auto-derived
-                # rows in the takeoff (frontend handles dedup).
+            elif unit == "SF":
+                # Includes both auto-from-polygon-area items (membrane,
+                # insulation, cover_board) AND manual-tracing items
+                # (cricket) — both need a polygon-tool placement to
+                # exist or to override the derived value.
                 polygon_types.append(entry)
-            # polygon_area_div_100 / manual / other -> skip
+            # SQ / empty / other -> skip (derived rows have no palette)
         return {
             "pinPalette": pin_palette,
             "edgeTypes": edge_types,

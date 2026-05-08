@@ -53,7 +53,7 @@ SYSTEMS: dict[str, dict] = {
         "typical_items": [
             "membrane_area", "edge_metal", "coping", "drains", "scuppers",
             "insulation", "cover_board", "walkway_pads", "curbs", "hatches",
-            "pipe_boots", "exhaust_fans", "rtus",
+            "pipe_boots", "exhaust_fans", "rtus", "cricket",
         ],
     },
     "pvc": {
@@ -71,7 +71,7 @@ SYSTEMS: dict[str, dict] = {
         "typical_items": [
             "membrane_area", "edge_metal", "coping", "drains", "scuppers",
             "insulation", "cover_board", "walkway_pads", "curbs", "hatches",
-            "pipe_boots", "exhaust_fans", "rtus",
+            "pipe_boots", "exhaust_fans", "rtus", "cricket",
         ],
     },
     "epdm": {
@@ -85,7 +85,7 @@ SYSTEMS: dict[str, dict] = {
         ],
         "typical_items": [
             "membrane_area", "edge_metal", "drains", "insulation",
-            "cover_board", "curbs", "hatches", "pipe_boots",
+            "cover_board", "curbs", "hatches", "pipe_boots", "cricket",
         ],
     },
     "modified_bitumen": {
@@ -109,7 +109,7 @@ SYSTEMS: dict[str, dict] = {
         "typical_items": [
             "base_sheet_area", "cap_sheet_area", "flashing", "cant_strip",
             "drains", "scuppers", "pitch_pans", "insulation", "curbs",
-            "hatches", "pipe_boots",
+            "hatches", "pipe_boots", "cricket",
         ],
     },
     "built_up": {
@@ -121,7 +121,7 @@ SYSTEMS: dict[str, dict] = {
         "typical_items": [
             "base_sheet_area", "cap_sheet_area", "flashing", "cant_strip",
             "drains", "scuppers", "pitch_pans", "insulation", "curbs",
-            "hatches", "pipe_boots",
+            "hatches", "pipe_boots", "cricket",
         ],
     },
     "metal_panel": {
@@ -251,9 +251,15 @@ ITEMS: dict[str, dict] = {
         "keywords": ["ROOFTOP UNIT", "RTU", "AHU", "AIR HANDLING"],
     },
     "curbs": {
+        # G.5a CP4.1 (Daniel 2026-05-08): curbs are unspecified-size
+        # equipment enclosures that need polygon-traced area, not pin
+        # counts. unit changed EA -> SF + derive_from changed
+        # callout_count -> manual. Frontend palette routing now sends
+        # curbs to polygonTypes (SF). Estimator still places one polygon
+        # per curb on the canvas.
         "display_name": "Equipment Curbs",
-        "unit": "EA",
-        "derive_from": "callout_count",
+        "unit": "SF",
+        "derive_from": "manual",
         "confidence": 0.5,
         "keywords": [
             "EQUIPMENT CURB", "MECH CURB", "MECHANICAL CURB", "CURB",
