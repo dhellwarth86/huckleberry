@@ -99,6 +99,8 @@ from core.glazing_vocabulary import (
     HARDWARE_SETS,
     MANUFACTURERS,
     GLAZING_VOCABULARY,
+    GLAZING_PIN_TYPES,            # G.5a CP4
+    GLAZING_PIN_PALETTE_COLORS,   # G.5a CP4
 )
 
 
@@ -755,3 +757,108 @@ class GlazingModule:
             if _whole_word(token, blob):
                 return token.title()
         return None
+
+    # ----------------------------------------------------------------
+    # G.5a CP4 — TradeModule Protocol vocabulary classmethods (skeletal).
+    # GlazingModule's vocabulary is richer than roofing's — components +
+    # systems + hardware_sets — and the analyze() impl is partial pre-C.3c.
+    # These methods return a coherent skeletal palette + expects list using
+    # GLAZING_PIN_TYPES + a `display_name` synthesis. Real per-item
+    # taxonomy (with derive_from + unit per item) lands when C.3c
+    # produces a glazing-equivalent of roofing_vocabulary.ITEMS.
+    # ----------------------------------------------------------------
+
+    @staticmethod
+    def _color_for(item_name: str) -> str:
+        """Deterministic display color per item.
+
+        Uses GLAZING_PIN_PALETTE_COLORS first; falls back to a hash-derived
+        HSL hex for unknown items. Same pattern as RoofingModule._color_for.
+        """
+        if item_name in GLAZING_PIN_PALETTE_COLORS:
+            return GLAZING_PIN_PALETTE_COLORS[item_name]
+        h = 0
+        for ch in item_name:
+            h = (h * 31 + ord(ch)) & 0xFFFFFFFF
+        hue = h % 360
+        import colorsys
+        r, g, b = colorsys.hls_to_rgb(hue / 360.0, 0.60, 0.60)
+        return "#{:02x}{:02x}{:02x}".format(int(r * 255), int(g * 255), int(b * 255))
+
+    @staticmethod
+    def _humanize(name: str) -> str:
+        """Convert 'curtain_wall' / 'entrance_door' to 'Curtain Wall' /
+        'Entrance Door'. Used until per-item display_name vocab lands."""
+        return " ".join(p.capitalize() for p in name.replace("-", "_").split("_"))
+
+    @classmethod
+    def get_palette_seed(cls, system_code: Optional[str]) -> dict:
+        """G.5a CP4 — return scope-system palette seed payload (skeletal).
+
+        Until C.3c lands per-item taxonomy with derive_from declarations,
+        all GLAZING_PIN_TYPES land in pinPalette (count-based items like
+        windows, doors, storefronts, skylights). edgeTypes and polygonTypes
+        return empty lists — glazing currently doesn't have linear-feet or
+        square-feet derived items in the way roofing does.
+
+        Future C.3c work: split GLAZING_PIN_TYPES by intended unit
+        (count/lf/sf) and route accordingly. Frontend doesn't change.
+        """
+        pin_palette: list[dict] = []
+        for item_name in GLAZING_PIN_TYPES:
+            pin_palette.append({
+                "id": "pt-" + item_name,
+                "name": cls._humanize(item_name),
+                "color": cls._color_for(item_name),
+                "source": "auto",
+                "seedId": item_name,
+            })
+        return {
+            "pinPalette": pin_palette,
+            "edgeTypes": [],
+            "polygonTypes": [],
+        }
+
+    @classmethod
+    def get_expected_items(cls, system_code: Optional[str]) -> list[dict]:
+        """G.5a CP4 — return EXPECTS-checklist payload (skeletal).
+
+        Returns one row per GLAZING_PIN_TYPES entry with synthesized
+        display_name + 'EA' unit + 'callout_count' derive_from. Real
+        per-item metadata (per-system unit + derive_from) waits on C.3c.
+        """
+        out: list[dict] = []
+        for item_name in GLAZING_PIN_TYPES:
+            out.append({
+                "name": item_name,
+                "display_name": cls._humanize(item_name),
+                "unit": "EA",
+                "derive_from": "callout_count",
+                "confidence": 0.5,
+            })
+        return out
+
+    @classmethod
+    def get_systems_catalog(cls) -> dict[str, dict]:
+        """G.5a CP4 — return the system-picker catalog from glazing SYSTEMS.
+
+        SYSTEMS in glazing_vocabulary is `dict[str, Any]` — each entry
+        carries arbitrary metadata. We return a sanitized subset
+        (display_name + typical_items) symmetric with RoofingModule's
+        catalog so the frontend system picker uses one shape across trades.
+        Pre-C.3c, typical_items defaults to GLAZING_PIN_TYPES when the
+        SYSTEMS entry doesn't declare one.
+        """
+        out: dict[str, dict] = {}
+        for code, sys_def in SYSTEMS.items():
+            if not isinstance(sys_def, dict):
+                continue
+            display = sys_def.get("display_name") or cls._humanize(str(code))
+            typical = sys_def.get("typical_items")
+            if not typical:
+                typical = list(GLAZING_PIN_TYPES)
+            out[code] = {
+                "display_name": display,
+                "typical_items": list(typical),
+            }
+        return out

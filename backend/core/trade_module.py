@@ -106,9 +106,66 @@ class TradeModuleOutput:
 
 
 class TradeModule(Protocol):
-    """Protocol every trade module implements."""
+    """Protocol every trade module implements.
+
+    G.5a CP4 extension: vocabulary-access classmethods. The platform layer
+    (`core/job_storage.py`, `api/routes/`) NEVER imports per-trade vocabulary
+    constants. Instead, it routes by `TRADE_NAME` to the module class and
+    calls these classmethods. This enforces the architectural rule
+    "trade-specific knowledge stays inside the trade module" (Daniel,
+    2026-05-08). New trades implement these methods; everything else works
+    without code changes.
+    """
 
     TRADE_NAME: str
     FIELDS: list[str]
 
     def analyze(self, input: TradeModuleInput) -> TradeModuleOutput: ...
+
+    # --- G.5a CP4: vocabulary-access classmethods (trade-agnostic API) ---
+
+    @classmethod
+    def get_palette_seed(cls, system_code: Optional[str]) -> dict:
+        """Return seed payload for the scope-system palette UI.
+
+        Routes the trade's known items by `derive_from` into:
+          - `pinPalette` (callout_count items)
+          - `edgeTypes` (polygon_perimeter items)
+          - `polygonTypes` (polygon_area items)
+
+        Each entry: {id, name, color, source: 'auto', seedId}. Colors are
+        deterministic per-name. Items derived from `polygon_area_div_100`
+        or `manual` are skipped (those are derived rows or estimator-only).
+
+        `system_code` filters to the typical items for that system (e.g.
+        "tpo" → just the items in SYSTEMS["tpo"].typical_items). When None
+        or unknown, fall back to all items the module knows.
+
+        Returns: {"pinPalette": [...], "edgeTypes": [...], "polygonTypes": [...]}
+        """
+        ...
+
+    @classmethod
+    def get_expected_items(cls, system_code: Optional[str]) -> list[dict]:
+        """Return the EXPECTS checklist for a system.
+
+        Returns one dict per item the module knows, with the metadata an
+        estimator needs to confirm presence on the bidset:
+          [{name, display_name, unit, derive_from, confidence}, ...]
+
+        `system_code` filters to typical items for the system; None falls
+        back to all items the module knows.
+        """
+        ...
+
+    @classmethod
+    def get_systems_catalog(cls) -> dict[str, dict]:
+        """Return the trade's system catalog for the manual-system-picker UI.
+
+        Shape mirrors the in-module SYSTEMS dict:
+          {system_code: {display_name, typical_items: [...], ...}}
+
+        Used by the frontend to populate a system dropdown when the user
+        clicks "+ ADD SYSTEM" without an auto-detection.
+        """
+        ...

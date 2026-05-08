@@ -639,6 +639,67 @@ def _pre_populate_auto_scope_systems(job_id: str, ctx) -> None:  # G.4:
     finally:
         conn.close()
 
+    # G.5a CP4: seed user_fields palette from the trade module's Protocol
+    # classmethod. Trade-agnostic — calls module.get_palette_seed(detected).
+    # Done OUTSIDE the connection block above so update_scope_system can
+    # use its own connection.
+    _seed_palette_via_protocol(sys_id, "roofing", detected)
+
+
+# ----------------------------------------------------------------
+# G.5a CP4: trade-agnostic palette seeding via TradeModule Protocol.
+# This file is NOT vault. Per Daniel 2026-05-08: "hardcoding roofing
+# verbiage and systems outside of module is forbidden." NO per-trade
+# vocabulary imports here. We dispatch by trade name to the module
+# class and call Protocol classmethods that live INSIDE the trade module.
+# Adding a new trade = add a new branch in _resolve_trade_module.
+# ----------------------------------------------------------------
+
+def _resolve_trade_module(trade: str):
+    """Return the TradeModule class for a trade name, or None.
+
+    Lazy imports to avoid circular dependencies at module load time. New
+    trades register here. The function knows trade NAMES but no per-trade
+    vocabulary — that lives inside the modules.
+    """
+    if trade == "roofing":
+        from core.roofing_module import RoofingModule
+        return RoofingModule
+    if trade == "glazing":
+        from core.glazing_module import GlazingModule
+        return GlazingModule
+    return None
+
+
+def _seed_palette_via_protocol(  # G.5a CP4:
+    sys_id: str,
+    trade: str,
+    system_code: Optional[str],
+) -> None:
+    """Seed scope_systems.user_fields by calling TradeModule.get_palette_seed
+    on the resolved module class.
+
+    Trade-agnostic: never imports per-trade vocabulary. Best-effort: if the
+    trade is unrecognized or the module raises, the row stays with empty
+    user_fields and the user can populate manually. Idempotent: callers
+    invoke AFTER the INSERT; we PATCH user_fields on top.
+    """
+    module_cls = _resolve_trade_module(trade)
+    if module_cls is None:
+        return
+    try:
+        seed = module_cls.get_palette_seed(system_code)
+    except Exception:
+        return
+    if not isinstance(seed, dict):
+        return
+    # Reuse update_scope_system so the user_fields_json column gets the
+    # canonical JSON serialization treatment + updated_at refresh.
+    try:
+        update_scope_system(sys_id, user_fields=seed)
+    except Exception:
+        return
+
 
 def _delete_auto_scope_systems(job_id: str, trade: Optional[str] = None) -> int:
     """Delete auto-source rows for a job. Returns deleted-count.
@@ -721,6 +782,12 @@ def create_scope_system(  # G.4:
         conn.commit()
     finally:
         conn.close()
+    # G.5a CP4: if the caller didn't pass an explicit user_fields blob,
+    # seed the palette from the trade module's Protocol classmethod. If
+    # the caller DID pass user_fields, respect that — they know what they
+    # want, no auto-clobber.
+    if not user_fields:
+        _seed_palette_via_protocol(sys_id, trade, system_code)
     row = get_scope_system(sys_id)
     if row is None:
         raise RuntimeError("scope_system creation failed")

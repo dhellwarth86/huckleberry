@@ -2951,15 +2951,18 @@ const TOOL_HANDLERS = {
       Viewer.tempState.points[1] = pt;
       const sys = (typeof getCurrentSystem === 'function') ? getCurrentSystem() : null;
       if (!sys) {
+        // G.5a CP4: don't null tempState on validation failure — the draft
+        // line stays visible so the user can correct + try again. Previously
+        // a click anywhere with no system selected wiped the draft.
         Viewer.showHud('No system selected. Pick a trade and upload a bidset.');
-        Viewer.tempState = null;
         return;
       }
       const lineTypeId = App.activeLineTypeId;
       const lineType = lineTypeId ? (sys.edgeTypes || []).find(function(e) { return e.id === lineTypeId; }) : null;
       if (!lineType) {
+        // G.5a CP4: same — keep draft visible; let user pick a line type
+        // and try the click again.
         Viewer.showHud('No line type selected. Pick one from the EDGE PALETTE.');
-        Viewer.tempState = null;
         return;
       }
       const p0 = Viewer.tempState.points[0], p1 = Viewer.tempState.points[1];
@@ -3692,8 +3695,88 @@ function renderSystemCard(s, idx) {
         '<input id="addEdge_' + s.id + '" type="text" placeholder="Add edge type"/>' +
         '<button class="btn btn-ghost" style="padding:6px 12px;font-size:11px;" onclick="addEdgeTypeFromInput(\'' + s.id + '\')">+ ADD</button>' +
       '</div>' +
+      _renderExpectsChecklist(s) +
       _renderAutoDetectedSection(s) +
     '</div>';
+}
+
+/* G.5a CP4: per-system EXPECTS checklist.
+   Reads App.currentResults.trade_outputs[*][trade].fields filtered to
+   `source==='assembly_expected'`, dedupes across pages, renders one
+   checkbox row per item the trade module flagged as typical for the
+   system. Local-only check toggle (persistence is future). Empty state
+   hides the section.
+   Pure function — no I/O. Single responsibility (S in SOLID). */
+function _renderExpectsChecklist(s) {
+  var results = App.currentResults || {};
+  var tradeOutputs = results.trade_outputs || {};
+  var trade = (s && s.trade) || App.project.trade || 'roofing';
+  // Collect unique assembly_expected fields across pages, with the page
+  // numbers each item appeared on for context.
+  var expected = {};  // name -> {display_name, pages: Set, evidence}
+  Object.keys(tradeOutputs).forEach(function(pageKey) {
+    var perPage = tradeOutputs[pageKey] || {};
+    var tradeOut = perPage[trade];
+    if (!tradeOut || !tradeOut.fields) return;
+    Object.keys(tradeOut.fields).forEach(function(fieldName) {
+      if (fieldName === '_scope') return;  // not a takeoff item
+      var fv = tradeOut.fields[fieldName];
+      if (!fv || fv.source !== 'assembly_expected') return;
+      if (!expected[fieldName]) {
+        expected[fieldName] = {
+          display_name: fv.display_name || fieldName,
+          unit: fv.unit || '',
+          pages: {},
+          evidence: fv.evidence || '',
+        };
+      }
+      var pi = parseInt(pageKey, 10);
+      if (!isNaN(pi)) expected[fieldName].pages[pi] = true;
+    });
+  });
+
+  var keys = Object.keys(expected).sort();
+  if (keys.length === 0) return '';
+
+  var tradeLabel = trade.charAt(0).toUpperCase() + trade.slice(1);
+  var rows = keys.map(function(name) {
+    var e = expected[name];
+    var pageList = Object.keys(e.pages).map(function(p) { return parseInt(p, 10); }).sort(function(a, b) { return a - b; });
+    var pageHtml = pageList.length === 0 ? '' :
+      '<span style="color:var(--muted);font-size:10px;margin-left:8px;">' +
+      'pages ' + pageList.slice(0, 6).map(function(p) {
+        return '<a onclick="openPageInViewer(' + p + ')" style="color:inherit;text-decoration:underline;cursor:pointer;">' + (p + 1) + '</a>';
+      }).join(', ') +
+      (pageList.length > 6 ? ' +' + (pageList.length - 6) + ' more' : '') +
+      '</span>';
+    var checkboxId = 'expects_' + s.id + '_' + name;
+    var checked = (App._expectsConfirmed && App._expectsConfirmed[s.id] && App._expectsConfirmed[s.id][name]) ? 'checked' : '';
+    return '<label for="' + checkboxId + '" style="display:flex;align-items:center;gap:8px;padding:4px 0;font-family:var(--mono);font-size:12px;cursor:pointer;">' +
+           '<input type="checkbox" id="' + checkboxId + '" ' + checked + ' ' +
+           'onchange="toggleExpectsCheckbox(\'' + s.id + "','" + name + '\', this.checked)" ' +
+           'style="cursor:pointer;"/>' +
+           '<span style="flex:1;">' + esc(e.display_name) + (e.unit ? ' <span style="color:var(--muted);font-size:10px;">(' + esc(e.unit) + ')</span>' : '') + '</span>' +
+           pageHtml +
+           '</label>';
+  }).join('');
+
+  return '<div class="ssc-section-title" style="display:flex;align-items:center;gap:6px;">' +
+         tradeLabel.toUpperCase() + ' EXPECTS' +
+         '<span class="ssc-conf medium" style="font-size:9px;padding:2px 6px;">' + keys.length + ' items</span>' +
+         '</div>' +
+         '<div style="font-size:11px;color:var(--muted);margin-bottom:6px;">Items the trade module flagged as typical for this system. Tick each one off as you confirm it on the bidset.</div>' +
+         rows;
+}
+
+/* G.5a CP4: local-only checkbox state for EXPECTS rows. Persisted to
+   memory only (App._expectsConfirmed[sys_id][item_name] = bool). Backend
+   persistence is banked for G.5a polish or G.6. Re-rendering the scope
+   tab preserves checkbox state because the renderer reads from this
+   in-memory map. */
+function toggleExpectsCheckbox(sysId, itemName, checked) {
+  if (!App._expectsConfirmed) App._expectsConfirmed = {};
+  if (!App._expectsConfirmed[sysId]) App._expectsConfirmed[sysId] = {};
+  App._expectsConfirmed[sysId][itemName] = !!checked;
 }
 
 /* G.5a CP3: per-system "AUTO-DETECTED FROM <TRADE> MODULE" section.

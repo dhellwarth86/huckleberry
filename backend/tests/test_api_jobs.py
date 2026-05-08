@@ -512,6 +512,166 @@ def test_get_pdf_404_when_file_missing(small_pdf_path):
 # test_upload_creates_job_writes_file_to_uploads_dir already covers it.
 
 
+# ── G.5a CP4 — TradeModule Protocol vocabulary + palette auto-seed tests ──
+
+
+def test_roofing_get_palette_seed_tpo():
+    """CP4: RoofingModule.get_palette_seed('tpo') returns palette payload
+    keyed to TPO's typical_items."""
+    from core.roofing_module import RoofingModule
+    seed = RoofingModule.get_palette_seed("tpo")
+    assert isinstance(seed, dict)
+    assert "pinPalette" in seed and "edgeTypes" in seed and "polygonTypes" in seed
+    pin_names = [p["name"] for p in seed["pinPalette"]]
+    edge_names = [e["name"] for e in seed["edgeTypes"]]
+    poly_names = [p["name"] for p in seed["polygonTypes"]]
+    # TPO typical_items contains drains, scuppers, RTUs, hatches, etc.
+    assert "Roof Drains" in pin_names
+    assert "Scuppers" in pin_names
+    assert "Rooftop Units / RTUs" in pin_names
+    # Edge types include coping + edge metal
+    assert "Coping" in edge_names
+    assert "Edge Metal" in edge_names
+    # Polygon types include membrane area / insulation / cover board
+    assert any("Membrane" in n for n in poly_names)
+    # Each entry has the canonical shape
+    for entry in seed["pinPalette"]:
+        assert set(entry.keys()) >= {"id", "name", "color", "source", "seedId"}
+        assert entry["source"] == "auto"
+        assert entry["color"].startswith("#")
+        assert len(entry["color"]) == 7  # #RRGGBB hex
+
+
+def test_roofing_get_expected_items_tpo():
+    """CP4: RoofingModule.get_expected_items('tpo') returns checklist payload."""
+    from core.roofing_module import RoofingModule
+    items = RoofingModule.get_expected_items("tpo")
+    assert isinstance(items, list) and len(items) > 0
+    by_name = {it["name"]: it for it in items}
+    assert "drains" in by_name
+    assert by_name["drains"]["display_name"] == "Roof Drains"
+    assert by_name["drains"]["unit"] == "EA"
+    assert by_name["drains"]["derive_from"] == "callout_count"
+    # membrane_area carried for TPO too
+    assert "membrane_area" in by_name
+    assert by_name["membrane_area"]["unit"] == "SF"
+    assert by_name["membrane_area"]["derive_from"] == "polygon_area"
+
+
+def test_roofing_get_systems_catalog():
+    """CP4: RoofingModule.get_systems_catalog returns sanitized SYSTEMS dict."""
+    from core.roofing_module import RoofingModule
+    cat = RoofingModule.get_systems_catalog()
+    assert "tpo" in cat
+    assert cat["tpo"]["display_name"] == "TPO Single Ply"
+    assert "drains" in cat["tpo"]["typical_items"]
+    # Should NOT include the keywords blob (UI doesn't need it; payload size).
+    assert "keywords" not in cat["tpo"]
+
+
+def test_glazing_get_palette_seed_returns_skeletal():
+    """CP4: GlazingModule.get_palette_seed returns at least pin entries
+    from GLAZING_PIN_TYPES (skeletal until C.3c)."""
+    from core.glazing_module import GlazingModule
+    seed = GlazingModule.get_palette_seed(None)
+    assert isinstance(seed, dict)
+    assert isinstance(seed["pinPalette"], list) and len(seed["pinPalette"]) > 0
+    # Skeletal: no edges/polygons until C.3c.
+    assert seed["edgeTypes"] == []
+    assert seed["polygonTypes"] == []
+    # Each entry has the canonical shape
+    for entry in seed["pinPalette"]:
+        assert set(entry.keys()) >= {"id", "name", "color", "source", "seedId"}
+        assert entry["source"] == "auto"
+
+
+def test_seed_palette_via_protocol_roofing_seeds_via_classmethod(small_pdf_path):
+    """CP4: _seed_palette_via_protocol wires through the Protocol classmethod
+    and writes user_fields onto a scope_systems row."""
+    from core.job_storage import (
+        create_job, create_scope_system, _seed_palette_via_protocol,
+        get_scope_system, _connect,
+    )
+    job_id = create_job(name="cp4 protocol seed test", pdf_path=str(small_pdf_path))
+    # Create a manual roofing system with explicit empty user_fields (so
+    # the auto-seed in create_scope_system doesn't fire — we want to test
+    # the helper directly).
+    sys_row = create_scope_system(
+        job_id, trade="roofing", label="manual TPO",
+        user_fields={"placeholder": True},
+    )
+    sys_id = sys_row["id"]
+    # Explicit auto-seed call
+    _seed_palette_via_protocol(sys_id, "roofing", "tpo")
+    after = get_scope_system(sys_id)
+    uf = after.get("user_fields") or {}
+    assert "pinPalette" in uf and len(uf["pinPalette"]) > 0
+    assert "edgeTypes" in uf and len(uf["edgeTypes"]) > 0
+    assert "polygonTypes" in uf and len(uf["polygonTypes"]) > 0
+    # Cleanup
+    conn = _connect()
+    try:
+        conn.execute("DELETE FROM scope_systems WHERE job_id = ?", (job_id,))
+        conn.execute("DELETE FROM jobs WHERE id = ?", (job_id,))
+        conn.commit()
+    finally:
+        conn.close()
+
+
+def test_create_scope_system_auto_seeds_when_user_fields_omitted(small_pdf_path):
+    """CP4: POST /jobs/{id}/scope/systems with no user_fields → palette
+    auto-populates via Protocol. POST WITH user_fields → respected, no clobber."""
+    job_id = _upload_test_job(small_pdf_path, name="cp4 auto seed via api")
+
+    # No user_fields supplied → auto-seed
+    r1 = client.post(
+        f"/jobs/{job_id}/scope/systems",
+        json={"trade": "roofing", "label": "auto-seed test", "system_code": "tpo"},
+    )
+    assert r1.status_code == 201
+    body1 = r1.json()
+    uf1 = body1.get("user_fields") or {}
+    assert "pinPalette" in uf1 and len(uf1["pinPalette"]) > 0, "TPO auto-seed should produce pins"
+
+    # Explicit user_fields → respected, NOT clobbered
+    r2 = client.post(
+        f"/jobs/{job_id}/scope/systems",
+        json={
+            "trade": "roofing",
+            "label": "explicit fields",
+            "system_code": "tpo",
+            "user_fields": {"pinPalette": [{"id": "x", "name": "mine"}]},
+        },
+    )
+    assert r2.status_code == 201
+    body2 = r2.json()
+    uf2 = body2.get("user_fields") or {}
+    assert len(uf2.get("pinPalette", [])) == 1, "explicit user_fields was clobbered!"
+    assert uf2["pinPalette"][0]["name"] == "mine"
+
+
+def test_no_per_trade_imports_in_job_storage():
+    """CP4: job_storage.py must NOT import roofing_*, glazing_*, debug_* —
+    enforces 'no hardcoding trade verbiage outside the module' rule.
+    Per Daniel 2026-05-08."""
+    from pathlib import Path
+    src = (Path(__file__).resolve().parent.parent / "core" / "job_storage.py").read_text(encoding="utf-8")
+    # Count only top-level (non-indented) imports — `_resolve_trade_module`
+    # uses lazy LOCAL imports inside the function body, which is the
+    # explicit pattern for trade-agnostic dispatch.
+    forbidden = ["roofing_module", "roofing_vocabulary",
+                 "glazing_module", "glazing_vocabulary",
+                 "debug_module"]
+    for line in src.splitlines():
+        # Top-level imports start at column 0
+        if line.startswith("from core.") or line.startswith("import core."):
+            for f in forbidden:
+                assert f not in line, (
+                    f"job_storage.py top-level import leaks per-trade vocabulary: "
+                    f"'{line.strip()}'. Use lazy import inside _resolve_trade_module instead."
+                )
+
+
 # ── G.5a annotations CRUD + auto-pin tests ──────────────────────────
 
 

@@ -37,6 +37,7 @@ from core.roofing_vocabulary import (
     UNIVERSAL_ITEMS,
     RULES,
     ROOFING_VOCABULARY,
+    PIN_PALETTE_COLORS,  # G.5a CP4
 )
 
 
@@ -432,3 +433,133 @@ class RoofingModule:
             except Exception:
                 continue
         return warnings
+
+    # ----------------------------------------------------------------
+    # G.5a CP4 — TradeModule Protocol vocabulary classmethods.
+    # The platform layer (core/job_storage.py, api/) calls these to seed
+    # scope-system palettes + EXPECTS checklists + system pickers WITHOUT
+    # importing roofing-specific constants. Per Daniel 2026-05-08:
+    # "hardcoding roofing verbiage and systems outside of module is forbidden."
+    # ----------------------------------------------------------------
+
+    @staticmethod
+    def _color_for(item_name: str) -> str:
+        """Deterministic display color per item.
+
+        Uses the curated PIN_PALETTE_COLORS dict from roofing_vocabulary
+        first; falls back to a hash-derived HSL hex for unknown items so
+        new items added to ITEMS still get a stable color without a
+        vocabulary edit.
+        """
+        if item_name in PIN_PALETTE_COLORS:
+            return PIN_PALETTE_COLORS[item_name]
+        # Fallback: deterministic HSL from name hash. Hue spread across
+        # 360°; saturation/lightness fixed so colors stay distinguishable
+        # on the dark canvas background.
+        h = 0
+        for ch in item_name:
+            h = (h * 31 + ord(ch)) & 0xFFFFFFFF
+        hue = h % 360
+        # Convert HSL(hue, 60%, 60%) to hex.
+        import colorsys
+        r, g, b = colorsys.hls_to_rgb(hue / 360.0, 0.60, 0.60)
+        return "#{:02x}{:02x}{:02x}".format(int(r * 255), int(g * 255), int(b * 255))
+
+    @classmethod
+    def _resolve_typical_items(cls, system_code: Optional[str]) -> list[str]:
+        """Return the item-name list for `system_code`, falling back to all
+        ITEMS when system_code is None or unknown. Helper for the three
+        Protocol methods below."""
+        if system_code:
+            sys_def = SYSTEMS.get(system_code)
+            if sys_def and "typical_items" in sys_def:
+                return list(sys_def["typical_items"])
+        # Fallback: every known item (manual ADD SYSTEM with no code picked,
+        # or unknown system_code — give the user a useful starter palette).
+        return list(ITEMS.keys())
+
+    @classmethod
+    def get_palette_seed(cls, system_code: Optional[str]) -> dict:
+        """G.5a CP4 — return scope-system palette seed payload.
+
+        Routes ITEMS by `derive_from`:
+          - callout_count       -> pinPalette
+          - polygon_perimeter   -> edgeTypes
+          - polygon_area        -> polygonTypes
+          - polygon_area_div_100 / manual / other -> skipped (derived rows
+            are auto-computed; manual-only items don't belong in palettes)
+
+        Each entry: {id, name, color, source: 'auto', seedId}. The frontend
+        consumes the same shape it would get from user-added entries.
+        """
+        typical = cls._resolve_typical_items(system_code)
+        pin_palette: list[dict] = []
+        edge_types: list[dict] = []
+        polygon_types: list[dict] = []
+        for item_name in typical:
+            item = ITEMS.get(item_name)
+            if not item:
+                continue
+            derive = item.get("derive_from")
+            entry = {
+                "id": "pt-" + item_name,
+                "name": item.get("display_name", item_name),
+                "color": cls._color_for(item_name),
+                "source": "auto",
+                "seedId": item_name,
+            }
+            if derive == "callout_count":
+                pin_palette.append(entry)
+            elif derive == "polygon_perimeter":
+                edge_types.append(entry)
+            elif derive == "polygon_area":
+                # membrane / insulation / cover_board are visually placed as
+                # area polygons; insulation/cover_board are also auto-derived
+                # rows in the takeoff (frontend handles dedup).
+                polygon_types.append(entry)
+            # polygon_area_div_100 / manual / other -> skip
+        return {
+            "pinPalette": pin_palette,
+            "edgeTypes": edge_types,
+            "polygonTypes": polygon_types,
+        }
+
+    @classmethod
+    def get_expected_items(cls, system_code: Optional[str]) -> list[dict]:
+        """G.5a CP4 — return the EXPECTS-checklist payload.
+
+        One dict per item the system typically includes, with the metadata
+        the estimator needs to confirm presence on the bidset. Frontend
+        renders one checkbox per row.
+        """
+        typical = cls._resolve_typical_items(system_code)
+        out: list[dict] = []
+        for item_name in typical:
+            item = ITEMS.get(item_name)
+            if not item:
+                continue
+            out.append({
+                "name": item_name,
+                "display_name": item.get("display_name", item_name),
+                "unit": item.get("unit", ""),
+                "derive_from": item.get("derive_from", ""),
+                "confidence": item.get("confidence", 0.0),
+            })
+        return out
+
+    @classmethod
+    def get_systems_catalog(cls) -> dict[str, dict]:
+        """G.5a CP4 — return the system-picker catalog.
+
+        Shape mirrors the SYSTEMS dict but excludes the heavy `keywords`
+        list (frontend doesn't need it; keeps the payload small). Each
+        entry preserves display_name + typical_items so the UI can show
+        a system picker AND preview which items it will seed.
+        """
+        out: dict[str, dict] = {}
+        for code, sys_def in SYSTEMS.items():
+            out[code] = {
+                "display_name": sys_def.get("display_name", code),
+                "typical_items": list(sys_def.get("typical_items", [])),
+            }
+        return out

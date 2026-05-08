@@ -564,6 +564,35 @@ RULES: list[dict] = [
 
 
 # ---------------------------------------------------------------------------
+# G.5a CP4: PIN_PALETTE_COLORS — deterministic per-item display colors used
+# by the scope-system palette UI. Keys are item names from ITEMS; values are
+# hex strings consumed by the frontend's pin/edge/polygon overlay rendering.
+# Items not listed here fall back to a hash-derived default color in
+# RoofingModule.get_palette_seed (single source of truth for color logic).
+# Colors chosen to be distinguishable on dark + light canvases.
+# ---------------------------------------------------------------------------
+
+PIN_PALETTE_COLORS: dict[str, str] = {
+    # callout_count items → pinPalette
+    "drains":         "#4FC3F7",   # blue
+    "scuppers":       "#5DADE2",   # blue-2
+    "rtus":           "#F39C12",   # amber
+    "curbs":          "#D68910",   # amber-2
+    "hatches":        "#2ECC71",   # green
+    "pipe_boots":     "#9B59B6",   # purple
+    "exhaust_fans":   "#E74C3C",   # red
+    # polygon_perimeter items → edgeTypes
+    "edge_metal":     "#FFB300",   # gold
+    "coping":         "#FFA000",   # gold-2
+    "walkway_pads":   "#7F8C8D",   # grey
+    # polygon_area items → polygonTypes / derived
+    "membrane_area":  "#1ABC9C",   # teal
+    "insulation":     "#16A085",   # teal-2
+    "cover_board":    "#138D75",   # teal-3
+}
+
+
+# ---------------------------------------------------------------------------
 # Public dict (matches the structure in the spec)
 # ---------------------------------------------------------------------------
 

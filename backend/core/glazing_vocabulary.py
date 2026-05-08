@@ -382,6 +382,31 @@ MATERIAL_PROPERTIES: dict[str, Any] = dict(_SEED_MATERIAL_PROPS)
 GLAZING_PIN_TYPES: list[str] = list(_SEED_PIN_TYPES)
 
 
+# G.5a CP4: GLAZING_PIN_PALETTE_COLORS — placeholder color map symmetric
+# to roofing_vocabulary.PIN_PALETTE_COLORS. Glazing's vocabulary is richer
+# than roofing's (COMPONENTS/SYSTEMS/HARDWARE_SETS), and the trade module's
+# `analyze` impl is partial pre-C.3c; this color map is a starter set so
+# GlazingModule.get_palette_seed() can return a coherent skeletal palette
+# today. Items not listed here fall back to GlazingModule._color_for's
+# hash-derived default. Will be tightened when C.3c lands real per-item
+# vocab.
+GLAZING_PIN_PALETTE_COLORS: dict[str, str] = {
+    # Common glazing pin types (seed)
+    "window":            "#5DADE2",
+    "door":              "#48C9B0",
+    "storefront":        "#F5B041",
+    "curtain_wall":      "#AF7AC5",
+    "skylight":          "#85C1E9",
+    "operable_window":   "#5499C7",
+    "fixed_window":      "#7FB3D5",
+    "entrance_door":     "#52BE80",
+    "interior_door":     "#76D7C4",
+    "exterior_door":     "#28B463",
+    "transom":           "#F8C471",
+    "sidelite":          "#F0B27A",
+}
+
+
 # Alias for callers that may prefer the parked seed's longer name —
 # preserves discoverability without changing semantics.
 ASSEMBLY_RELATIONSHIPS: list[Any] = RELATIONSHIPS
