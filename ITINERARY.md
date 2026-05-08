@@ -10,7 +10,16 @@
 
 Most recent ships, 7 lines each. Each entry: phase name, date, branch, what shipped, sacred floor delta, receipt path, key learning.
 
-### Last-1 — Phase G.3 (single-pass-per-page extraction) — 2026-05-03
+### Last-1 — Phase G.4 (scope tab as backend-DB-frontend cycle + backend file storage + dropzone retire) — 2026-05-07
+
+- **Branch:** `phase2-v0.3-G4-scope-fix-and-backend-storage` HEAD `a1d8ded` + canon commit pending; 7 commits when canon lands; awaiting push approval
+- **Shipped:** Scope tab as full backend-DB-frontend cycle (CP1 + CP1.1 polish + CP1.2 flatten bridge), backend file upload + storage + GET /pdf endpoint (CP2), single upload point with JSON path-string + client-only dropzone render path both retired (CP3), PROJECT_CLAUDE.md cleanup with 4 edits including new misconception entry on `ctx.project_scope` as canonical scope source (CP4). Two new SQLite tables: `job_project_scope`, `scope_systems`. Six new endpoints under `/jobs/{id}/scope/*` + multipart `POST /jobs/upload` + `GET /jobs/{id}/pdf`. Frontend rewired for render+relay with localStorage rehydrate of `currentJobId` for refresh-survival of scope state. Baseline items 1/2/3 moved from NOT MET to MET.
+- **Floor delta:** Backend 242 → 255/19/0 (+13 net: +9 G.4 scope + 7 multipart − 3 retired JSON-path); frontend 23 → 28 (+5 SCOPE_API_TESTS net after CP3 migration). Vault SHA-1s held identical to Step 0c capture across all 7 vault/integration-frozen files.
+- **Receipts:** `backend/G_4_GATE_REPORT.md` · commits `8f1de64` → `a1d8ded` · empirical hard gate 11/11 CP MET via Daniel-driven Silverleaf (manual-entry path; `system_confidence=0.0`) + Taco Bell (auto-detect path; `tpo @ 0.95`, evidence "spec 07 54 23 → TPO Membrane Roofing; Johns Manville (multi-system); Tremco (multi-system)")
+- **Learning:** The original chat-Claude G.4 march orders prescribed a frontend-only literal fix that surfaced per-page `_scope` noise. Daniel rejected mid-execution and locked the architectural rule that drives everything since: **frontend = window only, backend = source of truth, every user edit is a database mutation, refresh-the-browser rehydrates everything from the database, "migrate later" is the failure mode.** The plan was rewritten to the architecturally-correct backend-DB-driven approach before any code shipped. Future planning conversations run new orders through this rule before approval.
+- **Lesson banked:** `_resolve_scope_system` confidence is binary, not continuous — emits 0.0 or 0.7+, no values in 0.0–0.7 band. Lowering `_AUTO_PREPOPULATE_THRESHOLD` is not a useful knob; the real lever is widening the evidence sources the function votes on (vault-locked, future tuning phase). RoofingModule output is fully persisted + shipped via API but unrendered by the frontend — matches baseline items 5+6 deferral; the `scope_systems` CRUD pattern shipped in CP1 is the template the future annotation-persistence phase reuses.
+
+### Last-2 — Phase G.3 (single-pass-per-page extraction) — 2026-05-03
 
 - **Branch:** `phase2-v0.3-G3-single-pass-extraction` head `e51c785` (code+tests+report), canon commit + push pending
 - **Shipped:** PDFEngine cache + Filter 4 pdfplumber hoist + Stage 13 PyMuPDF reuse. `extract_text` and `extract_text_blocks` now keyed `(id(doc), page_num, method)`; cache purged on `engine.close(doc)`. Filter 4 opens pdfplumber once per dispatch (was: per SCHEDULE page). Stage 13 trade-module wiring replaces `pdf_page.extract_words()` with cached PyMuPDF blocks. F12 (Phase G.4 scope) absorbed into G.3 — same branch, same commit. 5 new cache unit tests.
@@ -19,7 +28,7 @@ Most recent ships, 7 lines each. Each entry: phase name, date, branch, what ship
 - **Learning:** TracePoint paper §2.1 architecture restored — Layer 1 (PyMuPDF) extracts once per page, Layers 2-4 consume cache. Was: 5 sites × extract_text + 10 sites × extract_text_blocks per page (up to 195 + 390 calls per dispatch on 39-page Chipotle); now: 39 + 39 max. Filter 4 pdfplumber lifecycle hoisted from per-SCHEDULE-page to per-dispatch. Stage 13's `pdf_page.extract_words()` retired in favor of cached PyMuPDF blocks (free reuse — Filters 1/2/4 already extracted).
 - **Lesson banked:** A test that passes for the wrong reason is worse than a test that fails. Cache separation tests passed pre-implementation because un-cached calls naturally return new objects each time — accidental property, unproven spec. Each separation test must also assert repeat-call identity on at least one side, so absence of cache fails the test. The ported pipeline accumulated an "extract again to be safe" pattern that the original TracePoint architecture explicitly forbade. Look for similar shapes elsewhere — anywhere the same source data is fetched twice in one logical pass is a candidate for cache.
 
-### Last-2 — Phase G.2 (corpus-wide classifier upgrade) — 2026-05-03
+### Last-3 — Phase G.2 (corpus-wide classifier upgrade) — 2026-05-03
 
 - **Branch:** `phase2-v0.3-G2-classifier-upgrade` head `170fcd7`, pushed
 - **Shipped:** Classifier reads `pc.title` alongside `tb_text` + `full_text`; `_PAGE_TYPE_RULES` extended with corpus-validated keywords from G.2 scout. 7 new unit tests + 4-bidset hard gate.
@@ -28,29 +37,21 @@ Most recent ships, 7 lines each. Each entry: phase name, date, branch, what ship
 - **Learning:** Filter 1's `pc.title` write was load-bearing input the classifier never read. The corpus scout's discipline-fallback approach was wrong; the keyword-and-title approach was the corpus-validated path. Two full-chain scout cycles (G.0.5-G.1 regex; G.2 fallback) finally located classification's actual lever — `_classify_page_type`'s string corpus.
 - **Lesson banked:** Corpus scout text samples are inferred, not verbatim. Always verify keyword presence via `engine.extract_text()` on actual PDFs before committing keywords to rules.
 
-### Last-3 — Recon cascade map + Phase G.1 ratification — 2026-05-03
-
-- **Branch:** `phase2-v0.3-recon-cascade-map` head `cef1ca7`, pushed (built from G.1 head `7318d8b`)
-- **Shipped:** (1) G.1 verbally ratified. (2) Recon cascade map — 445-line read-only inventory of every read/write site for major PlanSetContext fields; filter chain trace (1→2→4→3→5 actual execution order). (3) Phase G.2 march orders drafted.
-- **Floor delta:** Backend 230/19/0 unchanged; frontend 23/23 unchanged; vault SHA-1s held throughout.
-- **Receipts:** `backend/RECON_CASCADE_MAP.md` · commit `cef1ca7`
-- **Learning:** The MEP fallback at `dispatch_gate.py:463-466` is the only sheet_map → page_type cascade in code. Phase G.2 scope shrunk from "build new system" to "extend existing fallback."
-- **Lesson banked:** Build the map before the patch, every time the fix depends on data flow across files.
-
 ---
 
 ## Section 2 — Next 6 Pipeline Steps
 
 Each entry: phase name, dependency, scope summary, sacred-floor target, soft/hard gate, key risk, who-runs-it.
 
-### Next-1 — Phase G.5 (render optimization — original Phase G/F1 scope)
+### Next-1 — G.5 priority pick (Daniel's call) — annotation persistence OR render optimization
 
-- **Depends on:** G.3 ratified (this phase)
-- **Scope:** PyMuPDF replacing pdfplumber for rendering; tiling at 200-300 DPI to reduce compute and improve drawing detection. The original Phase G headline. Now next-up because page classification (G.2), cache (G.3), and Filter 4 hoist (absorbed into G.3) have shipped — render work is meaningful now that we know which pages to tile and the upstream extraction path is single-pass.
-- **Floor target:** Backend ≥242 (new tiling tests); vault SHA-1s held except `pdf_engine.py` and `dispatch_gate.py` (render path lives there)
-- **Gate:** Hard gate against re-running 3-bidset benchmark with quadrant scan vs without (compare wall-clock + accuracy)
-- **Risk:** New dependencies (PyMuPDF, Pandas if not already present) — first real dep additions since FastAPI in E.1. Daniel call: still needed as its own phase given G.3 already collapsed pdfplumber/PyMuPDF redundancy in the parser path? G.5's tiling work targets the *render* path (image generation for downstream auto-notation), which is independent of the parser-side dedup G.3 just shipped. Recommend keeping as own phase.
-- **Run:** General drafts G.5.0 design phase first; Claude Code executes G.5.1 build
+After G.4 ships, **next-eligible work is awaiting Daniel's priority call between two candidates.** Order doesn't bind; both are queued.
+
+**Candidate A — Annotation persistence (baseline items 5+6, c.2-territory).** Viewer tools (calibrate / measure / line / polygon / rectangle / pin / exclude) save to a new `annotations` table; takeoff tab reads from `annotations` + `scope_systems` instead of in-memory state; RoofingModule's per-page output (currently fully persisted but unrendered — see banked observation in §3) finally becomes visible. Reuses the `scope_systems` CRUD pattern from G.4 verbatim: new SQLite table + GET/POST/PATCH/DELETE endpoints + frontend renders from API + frontend POSTs every mutation + refresh re-fetches. Architecturally the natural follow-on to G.4 — closes baseline items 5+6 and unblocks items 7+8. Floor target: backend ≥255 + new annotation CRUD tests.
+
+**Candidate B — Render optimization (original Phase G/F1 scope).** PyMuPDF replacing pdfplumber for rendering; tiling at 200-300 DPI to reduce compute and improve drawing detection. Independent of A — targets the render path (image generation for downstream auto-notation), separate from the data-flow path A addresses. Floor target: backend ≥255 + new tiling tests; vault SHA-1s held except `pdf_engine.py` and `dispatch_gate.py` (render path lives there). New deps (PyMuPDF was already added in G.3; Pandas TBD).
+
+**Recommendation:** A first — closes the architectural loop opened by G.4 (data is in the DB but invisible to the user) and continues the pattern Daniel already validated. B is the original Phase G headline but is performance work that doesn't unblock new user-facing baseline items. Daniel's pick.
 
 ### Next-2 — Closing hard gate (3-bidset + deferred E.2.2 visual)
 
@@ -91,13 +92,23 @@ What's blocking what. What's parked. What needs Daniel decision before it can mo
 
 ### Active blockers — none
 
+### Baseline status (from PROJECT_CLAUDE.md "Architectural truth" section)
+
+- **Item 1 (single upload point — backend stores file):** **MET** — G.4 CP2/CP3. Multipart `POST /jobs/upload` writes to `~/.tracepoint/uploads/{job_id}/source.pdf`; JSON path-string variant retired.
+- **Item 2 (dispatch fires on backend-stored copy):** **MET** — side effect of item 1.
+- **Item 3 (scope tab populates + system pick + retry):** **MET** — G.4 CP1. `scope_systems` table + 5 CRUD endpoints + frontend render+relay; auto-populated when `system_confidence ≥ 0.7`, manual-entry fallback otherwise; PATCH-on-blur edits; refresh-survival via localStorage rehydrate of `currentJobId`.
+- **Item 4 (page reclassify writes to DB):** parked — G.5/c.2.
+- **Item 5 (viewer tools save to DB):** parked — G.5/c.2 (Candidate A above). RoofingModule's per-page output is fully persisted in `trade_outputs` table + shipped via API but unrendered by the frontend; unblocking item 5 also unblocks the render of that data.
+- **Item 6 (takeoff reads from DB):** parked — G.5/c.2 (Candidate A above).
+- **Item 7 (Excel export reads from DB):** parked — G.5/c.2.
+- **Item 8 (browser refresh persists everything):** **PARTIAL** — G.4 ships scope-tab survival via localStorage `currentJobId` + boot-time `loadScopeFromApi`. Pages tab, viewer state, and annotations rehydration deferred to G.5/c.2. Will be fully MET once item 5+6 land.
+
 ### Parked items (deliberately deferred)
 
 - **Login screen** — security cluster (post-user-testing)
-- **Postgres migration** — security cluster
+- **Postgres migration** — security cluster (Phase H)
 - **CORS lockdown** — security cluster
 - **OpenAPI docs hidden in production** — security cluster
-- **File upload via API** — security cluster (string path until then)
 - **Auth (USERS table + JWT)** — security cluster
 - **3-bidset hard gates** — Phase G.5 / Next-4
 - **Sweep + multi-bidset compute-heavy testing** — Phase G.5 / Next-4
@@ -131,3 +142,5 @@ What's blocking what. What's parked. What needs Daniel decision before it can mo
 - **Mandate 2026-05-03 (canon protocol):** Claude in chat produces complete updated CHECKLIST.md, ITINERARY.md, PROJECT_CLAUDE.md as deliverable files at sign-out. Daniel does not paste snippets, does not merge text, does not maintain canon.
 - **Mandate 2026-05-03 (lane discipline):** When work crosses lanes mid-session, the active role flags it and asks for explicit role switch before proceeding.
 - **Mandate 2026-05-03 (keyword verification):** Corpus scout text samples are inferred, not verbatim. Always verify keyword presence via `engine.extract_text()` on actual PDFs before committing keywords to `_PAGE_TYPE_RULES`.
+- **Mandate 2026-05-07 (architectural-rule check on every CP draft):** Daniel's rule "frontend = window only, backend = source of truth, every user edit is a database mutation, refresh-the-browser rehydrates everything from the database, no migrate-later" caught chat-Claude's original G.4 march orders' drift mid-execution. Future planning conversations run new orders through this rule before approval. If a draft puts state on the frontend that the backend could own, the draft is wrong.
+- **Mandate 2026-05-07 (`_resolve_scope_system` confidence is binary):** The function emits 0.0 or 0.7+, never values in 0.0–0.7. Lowering `_AUTO_PREPOPULATE_THRESHOLD` is not a useful knob — the real lever is widening evidence sources (vault-locked, future tuning phase). Don't waste cycles on threshold tweaking; the manual-entry fallback IS the spec'd path for bidsets without detectable Division 07 evidence.
