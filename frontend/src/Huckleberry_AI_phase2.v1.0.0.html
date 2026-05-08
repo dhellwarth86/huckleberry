@@ -3189,8 +3189,17 @@ function viewerReset() {
    _annId from in-memory rows on the active page, fires DELETE per row,
    then refetches. Optimistic overlay clear so the user sees instant
    feedback. Manual annotations only — auto-extracted pins survive
-   clear-page (they re-appear on next dispatch); use rescan for those. */
+   clear-page (they re-appear on next dispatch); use rescan for those.
+
+   G.5a CP4.2: pre-refetch so optimistic entries (just-placed pins/lines/
+   polygons whose POST hasn't completed yet) have their _annId populated
+   before we collect ids. Otherwise rapid clear-after-place misses
+   in-flight items. */
 async function viewerClearAnnotations() {
+  // CP4.2: ensure App.project.annotations reflects every in-flight POST.
+  if (App.currentJobId) {
+    try { await loadAnnotationsFromApi(App.currentJobId); } catch (_) {}
+  }
   const page = Viewer.currentPage;
   // Collect ann_ids to delete: only manual annotations on the current page.
   // (Auto rows belong to the dispatch-derived state; clearing them would be
@@ -3223,14 +3232,53 @@ async function viewerClearAnnotations() {
 
 /* G.5a: undo-most-recent now relays the deletion through the API.
    Pops the most recent overlay entry, looks up its _annId, fires DELETE,
-   refetches. */
+   refetches.
+
+   G.5a CP4.2: pre-refetch + lookup-by-local-id fallback. The bug Daniel
+   surfaced: just-placed items (pin/line/polygon) push an OPTIMISTIC
+   entry to Viewer.annotations BEFORE the createAnnotation POST completes.
+   In that ~100-300 ms window the entry has no _annId, so the backend
+   DELETE silently skips and the refetch restores the item — looks like
+   the click did nothing. Multi-click "works" because eventually the user
+   clicks after the API has caught up.
+
+   Fix order:
+     1. Pre-refetch — ensures Viewer.annotations is rebuilt from the
+        authoritative API state, so every entry has _annId.
+     2. Pop the most recent (last in array == most recent created_at).
+     3. If still no _annId (e.g., race with a refetch), look up by local
+        id in App.project.annotations and use its _annId.
+     4. Fire DELETE + refetch.
+*/
 async function viewerDeleteSelected() {
+  // CP4.2: pre-refetch so optimistic-entry race window doesn't leave us
+  // with an entry that has no _annId. Cost: one extra API roundtrip
+  // (~50-150ms locally); benefit: ONE click reliably deletes.
+  if (App.currentJobId) {
+    try { await loadAnnotationsFromApi(App.currentJobId); } catch (_) {}
+  }
   if (Viewer.annotations.length === 0) return;
   const last = Viewer.annotations.pop();
   Viewer.redrawAnnotations();
-  if (App.currentJobId && last && last._annId) {
+
+  // CP4.2: belt-and-suspenders — if _annId still missing (extreme race
+  // or hand-built overlay entry), fall back to looking up by local id
+  // in the persistent state.
+  let annId = last && last._annId;
+  if (!annId && last) {
+    const localId = last._pinId || last._areaId || last._segId;
+    if (localId) {
+      const sa = App.project.annotations || {};
+      const found = (sa.pins || []).find(function(p) { return p.id === localId; })
+                 || (sa.areas || []).find(function(a) { return a.id === localId; })
+                 || (sa.lineSegments || []).find(function(l) { return l.id === localId; });
+      annId = found && found._annId;
+    }
+  }
+
+  if (App.currentJobId && annId) {
     try {
-      await apiClient.deleteAnnotation(App.currentJobId, last._annId);
+      await apiClient.deleteAnnotation(App.currentJobId, annId);
       await loadAnnotationsFromApi(App.currentJobId);
     } catch (err) {
       if (typeof console !== 'undefined') console.warn('undo DELETE failed:', err && err.message);
