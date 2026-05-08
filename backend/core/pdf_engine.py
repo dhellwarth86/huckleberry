@@ -25,6 +25,22 @@ from core.config import PDF_MAX_DIMENSION, PDF_RENDER_DPI, PDF_THUMBNAIL_DPI
 
 
 # ---------------------------------------------------------------------------
+# Phase G.5b — Tile rendering constants
+# ---------------------------------------------------------------------------
+# G.0 scout (`backend/G_0_SCOUT_REPORT.md`) computed the tiling math:
+#   ARCH-D (24x36 in) @ 250 DPI = 154.5 MB raw RGB; single 2x2 tile = 38.6 MB.
+#   Letter (8.5x11 in) @ 250 DPI = 16.7 MB → under threshold, no tile needed.
+# 250 DPI balances detail (callout precision for Stage 6 contour detection
+# in G.6) against per-allocation memory cost. 5% overlap ensures content
+# crossing tile boundaries appears in adjacent tiles.
+
+PDF_TILE_DPI = 250
+PDF_TILE_OVERLAP_PCT = 0.05
+PDF_TILE_MEMORY_THRESHOLD_MB = 50.0
+PDF_TILE_GRID = (2, 2)
+
+
+# ---------------------------------------------------------------------------
 # Data classes
 # ---------------------------------------------------------------------------
 
@@ -201,6 +217,89 @@ class PDFEngine:
                          page_num: int) -> Image.Image:
         """Render a small thumbnail of a page."""
         return self.render_page(pdf_doc, page_num, dpi=self.thumbnail_dpi)
+
+    # ------------------------------------------------------------------
+    # Phase G.5b — Tile rendering
+    # ------------------------------------------------------------------
+
+    def _estimate_render_memory_mb(self, page, dpi: int) -> float:
+        """Estimate the raw-RGB memory footprint of rendering `page` at `dpi`.
+
+        Formula: width_in × height_in × dpi² × 3 bytes / 1024² (RGB, no alpha).
+        """
+        width_in = page.rect.width / 72.0
+        height_in = page.rect.height / 72.0
+        bytes_total = width_in * height_in * (dpi ** 2) * 3
+        return bytes_total / (1024 ** 2)
+
+    def _compute_tile_rects(self, page, grid: tuple = PDF_TILE_GRID,
+                            overlap_pct: float = PDF_TILE_OVERLAP_PCT) -> list:
+        """Compute clip rectangles in PDF points for a tile grid with overlap.
+
+        Returns row-major list of `fitz.Rect` objects. With grid=(2,2) and
+        overlap_pct=0.05, returns 4 rects: TL, TR, BL, BR. Adjacent tiles
+        share a 5%-of-page overlap band so content crossing tile boundaries
+        appears in both tiles. Edge tiles extend exactly to the page edge.
+        """
+        cols, rows = grid
+        page_w = page.rect.width
+        page_h = page.rect.height
+        overlap_w = page_w * overlap_pct
+        overlap_h = page_h * overlap_pct
+        # Base tile dimensions (without overlap)
+        base_w = page_w / cols
+        base_h = page_h / rows
+        rects = []
+        for ry in range(rows):
+            for cx in range(cols):
+                x0 = cx * base_w
+                y0 = ry * base_h
+                x1 = x0 + base_w
+                y1 = y0 + base_h
+                # Extend interior edges into the next tile by overlap band
+                if cx < cols - 1:
+                    x1 += overlap_w
+                if ry < rows - 1:
+                    y1 += overlap_h
+                # Clamp to page
+                x1 = min(x1, page_w)
+                y1 = min(y1, page_h)
+                rects.append(fitz.Rect(x0, y0, x1, y1))
+        return rects
+
+    def render_page_tiled(self, pdf_doc: PDFDocument, page_num: int,
+                          dpi: int = PDF_TILE_DPI,
+                          force_tiles: bool = False) -> list:
+        """Render a page as one-or-more tiles, returning [(tile_rect, PIL.Image)].
+
+        If the estimated full-page memory at `dpi` is at or below
+        `PDF_TILE_MEMORY_THRESHOLD_MB` (default 50 MB) and `force_tiles` is
+        False, returns a single-element list with the full page render —
+        API uniformity for callers that want to iterate regardless of size.
+
+        Otherwise returns a 2x2 grid of tiles with 5% overlap. Each tile's
+        pixmap is freed before the next is allocated so peak memory is
+        bounded by the per-tile size, not the full-page size.
+        """
+        self._validate_page(pdf_doc, page_num)
+        page = pdf_doc._doc[page_num]
+        full_mb = self._estimate_render_memory_mb(page, dpi)
+        zoom = dpi / 72.0
+        mat = fitz.Matrix(zoom, zoom)
+
+        if full_mb <= PDF_TILE_MEMORY_THRESHOLD_MB and not force_tiles:
+            pix = page.get_pixmap(matrix=mat, alpha=False)
+            img = Image.open(io.BytesIO(pix.tobytes("png"))).convert("RGB")
+            pix = None
+            return [(page.rect, img)]
+
+        tiles = []
+        for tile_rect in self._compute_tile_rects(page):
+            pix = page.get_pixmap(matrix=mat, clip=tile_rect, alpha=False)
+            img = Image.open(io.BytesIO(pix.tobytes("png"))).convert("RGB")
+            pix = None  # release pixmap before next allocation
+            tiles.append((tile_rect, img))
+        return tiles
 
     # ------------------------------------------------------------------
     # Text extraction

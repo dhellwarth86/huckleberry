@@ -410,3 +410,155 @@ class TestPDFEngineCache:
         finally:
             engine.close(doc_a)
             engine.close(doc_b)
+
+
+# ---------------------------------------------------------------------------
+# Phase G.5b — Tile rendering API for high-DPI rasters
+# ---------------------------------------------------------------------------
+
+@pytest.fixture
+def arch_d_pdf(tmp_path) -> Path:
+    """Create a single-page ARCH-D-sized PDF (36 x 24 inches = 2592 x 1728 pts).
+
+    Used for testing the tile-rendering threshold: at 250 DPI an ARCH-D page
+    is ~154.5 MB raw RGB, well over the 50 MB memory threshold, so the tile
+    API must return a 2x2 grid of tiles, each ~38.6 MB.
+    """
+    doc = fitz.open()
+    p = doc.new_page(width=2592, height=1728)
+    p.insert_text(fitz.Point(72, 72), "ARCH D TEST", fontsize=24)
+    pdf_path = tmp_path / "arch_d.pdf"
+    doc.save(str(pdf_path))
+    doc.close()
+    return pdf_path
+
+
+class TestPDFEngineTileAPI:
+    """Phase G.5b: PDFEngine tile rendering API.
+
+    The render_page() method (existing) renders the full page at any DPI;
+    for high-DPI rasters on large pages (e.g. ARCH-D at 250 DPI = 154.5 MB
+    raw RGB), full rendering allocates a single huge pixmap. The tile API
+    splits large pages into a 2x2 grid with 5% overlap, freeing each tile's
+    pixmap before allocating the next. Small pages (under the memory
+    threshold) short-circuit to a single full render for API uniformity.
+
+    render_page() stays unchanged — the tile API is additive.
+    """
+
+    def test_estimate_render_memory_letter_under_threshold(self, test_pdf):
+        """Letter (11 x 8.5 in) at 250 DPI is ~16.7 MB raw RGB, under 50 MB."""
+        engine = PDFEngine()
+        doc = engine.open(test_pdf)
+        try:
+            page = doc._doc[0]
+            mb = engine._estimate_render_memory_mb(page, dpi=250)
+            assert mb < 50.0, (
+                f"Letter @ 250 DPI should be < 50 MB threshold, got {mb:.1f}"
+            )
+            assert mb > 10.0, (
+                f"Letter @ 250 DPI should be > 10 MB (sanity), got {mb:.1f}"
+            )
+        finally:
+            engine.close(doc)
+
+    def test_estimate_render_memory_arch_d_over_threshold(self, arch_d_pdf):
+        """ARCH-D (36 x 24 in) at 250 DPI is ~154.5 MB raw RGB, over 50 MB."""
+        engine = PDFEngine()
+        doc = engine.open(arch_d_pdf)
+        try:
+            page = doc._doc[0]
+            mb = engine._estimate_render_memory_mb(page, dpi=250)
+            assert mb > 50.0, (
+                f"ARCH-D @ 250 DPI should exceed 50 MB threshold, got {mb:.1f}"
+            )
+            assert 140.0 < mb < 170.0, (
+                f"ARCH-D @ 250 DPI ≈ 154.5 MB expected (G.0 scout math), got {mb:.1f}"
+            )
+        finally:
+            engine.close(doc)
+
+    def test_compute_tile_rects_2x2_with_overlap(self, arch_d_pdf):
+        """2x2 grid with 5% overlap: 4 tiles, adjacent tiles share an overlap band."""
+        engine = PDFEngine()
+        doc = engine.open(arch_d_pdf)
+        try:
+            page = doc._doc[0]
+            rects = engine._compute_tile_rects(page, grid=(2, 2), overlap_pct=0.05)
+            assert len(rects) == 4, f"2x2 grid → 4 tiles, got {len(rects)}"
+
+            # Index convention: row-major. rects[0]=TL, rects[1]=TR,
+            # rects[2]=BL, rects[3]=BR.
+            tl, tr, bl, br = rects[0], rects[1], rects[2], rects[3]
+            page_w = page.rect.width    # 2592 pts
+            page_h = page.rect.height   # 1728 pts
+
+            # Horizontal overlap: TL.x1 should extend past TR.x0
+            assert tr.x0 < tl.x1, (
+                f"horizontally adjacent tiles must overlap "
+                f"(TL.x1={tl.x1:.1f}, TR.x0={tr.x0:.1f})"
+            )
+            h_overlap = tl.x1 - tr.x0
+            expected_h = page_w * 0.05
+            assert abs(h_overlap - expected_h) < page_w * 0.02, (
+                f"horizontal overlap ~{expected_h:.1f} pts expected, got {h_overlap:.1f}"
+            )
+
+            # Vertical overlap: TL.y1 should extend past BL.y0
+            assert bl.y0 < tl.y1, (
+                f"vertically adjacent tiles must overlap "
+                f"(TL.y1={tl.y1:.1f}, BL.y0={bl.y0:.1f})"
+            )
+            v_overlap = tl.y1 - bl.y0
+            expected_v = page_h * 0.05
+            assert abs(v_overlap - expected_v) < page_h * 0.02, (
+                f"vertical overlap ~{expected_v:.1f} pts expected, got {v_overlap:.1f}"
+            )
+
+            # Union of tiles must cover the full page (corners check)
+            assert tl.x0 <= 0.5 and tl.y0 <= 0.5, (
+                f"TL tile must cover top-left corner, got ({tl.x0:.1f}, {tl.y0:.1f})"
+            )
+            assert br.x1 >= page_w - 0.5 and br.y1 >= page_h - 0.5, (
+                f"BR tile must cover bottom-right corner, "
+                f"got ({br.x1:.1f}, {br.y1:.1f}) vs page ({page_w}, {page_h})"
+            )
+        finally:
+            engine.close(doc)
+
+    def test_render_page_tiled_letter_returns_single_full_render(self, test_pdf):
+        """Letter @ 250 DPI is under threshold → tile API short-circuits to full render."""
+        engine = PDFEngine()
+        doc = engine.open(test_pdf)
+        try:
+            tiles = engine.render_page_tiled(doc, 0, dpi=250)
+            assert len(tiles) == 1, (
+                f"Letter @ 250 DPI is under memory threshold; expected single "
+                f"full render, got {len(tiles)} tiles"
+            )
+            tile_rect, img = tiles[0]
+            assert isinstance(img, Image.Image)
+            assert img.mode == "RGB"
+        finally:
+            engine.close(doc)
+
+    def test_render_page_tiled_arch_d_returns_4_tiles(self, arch_d_pdf):
+        """ARCH-D @ 250 DPI exceeds threshold → 2x2 = 4 tiles, each under threshold."""
+        engine = PDFEngine()
+        doc = engine.open(arch_d_pdf)
+        try:
+            tiles = engine.render_page_tiled(doc, 0, dpi=250)
+            assert len(tiles) == 4, (
+                f"ARCH-D @ 250 DPI exceeds memory threshold; expected 2x2 = 4 "
+                f"tiles, got {len(tiles)}"
+            )
+            for tile_rect, img in tiles:
+                assert isinstance(img, Image.Image)
+                assert img.mode == "RGB"
+                # Each tile raw RGB should be under the threshold
+                tile_mb = (img.width * img.height * 3) / (1024 ** 2)
+                assert tile_mb < 50.0, (
+                    f"each tile raster must be < 50 MB threshold, got {tile_mb:.1f}"
+                )
+        finally:
+            engine.close(doc)
