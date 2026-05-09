@@ -1708,14 +1708,13 @@ def run_dispatch(pdf_path: str | Path, storage=None, job_id: str | None = None) 
         except Exception as e:
             ctx.dispatch_warnings.append(f"scope scanner failed: {e}")
 
-        # Architect profile detection (optional — needs storage)
-        if storage is not None:
-            try:
-                from core.architect_profile import detect_firm
-                tb_text = _collect_title_block_text(engine, doc, ctx)
-                ctx.architect_profile = detect_firm(tb_text, storage)
-            except Exception as e:
-                ctx.dispatch_warnings.append(f"architect_profile detection failed: {e}")
+        # Architect profile detection — RETIRED in G.5b (2026-05-09).
+        # `ctx.architect_profile` had no downstream consumer: not in API
+        # response, not rendered by frontend, only present in ctx.to_json()
+        # debug serialization. The architect_profile module itself stays in
+        # core/ + unit-tested in test_architect_profile.py; only the dispatch
+        # invocation is removed. ~20-50ms saved per dispatch when storage is
+        # active. See backend/G_5b_GATE_REPORT.md §3 for theater-cut rationale.
 
         # Project Metadata
         _extract_project_metadata(engine, doc, ctx)
