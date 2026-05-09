@@ -1473,60 +1473,107 @@ def run_scope_scanner(engine, doc, ctx: PlanSetContext) -> None:
     )
 
 
-# D.1: Stage 13 — trade module wiring helpers.
+# Phase G.6 (2026-05-09): Stages 6-9 wired into dispatch.
 #
-# Approach: when storage is activated, run_dispatch invokes Roofing + Glazing
-# modules per page after Filter 5 / scope_scanner / project_metadata complete.
-# Inputs are built via core.trade_input_builder.build_trade_input(), which now
-# (post-calibration Bug 3 fix) reads page_ctx.raw_tables and populates
-# TradeModuleInput.tables. Geometry-derived polygon fields are zeroed because
-# Stages 6–9 are not yet wired into run_dispatch (deferred to D.2/E); this
-# matches the C.2-established equivalent path used by sweep / calibration
-# harnesses. Module outputs land on ctx.trade_module_outputs.
+# Stages 6-9 (geometry / scale / building outline / callout extraction)
+# were deferred D.1 → "D.2/E" but never picked back up; G.5a CP1 wired
+# the auto-pin annotation extractor and it's been idle waiting for
+# RoofingModule.equipment_pins to populate. G.6 lights it up:
+#
+#   Stage 6: vector polygon clustering
+#       (`GeometryMatrix.cluster_and_union_polygons` — vector-direct path,
+#        no rendering required for vector PDFs; the OpenCV `detect_contours`
+#        rasterized fallback path stays in geometry_matrix.py for future
+#        scanned-PDF handling. G.5b's `render_page_tiled` plumbing is the
+#        consumer-in-waiting for that fallback.)
+#   Stage 7: scale resolution (cluster scoring already picks the best
+#        ARCH_SCALES candidate; ft_per_inch comes back on the top result)
+#   Stage 8: building outline area/perimeter/bbox (top-scored cluster)
+#   Stage 9: callout extraction (already lives in build_trade_input —
+#        text blocks inside polygon bbox + 30% margin filtered against
+#        EQUIPMENT_KEYWORDS_BROAD).
+#
+# `_build_dispatch_only_input` (D.1's geometry-zeroed helper) is RETIRED;
+# dispatch now calls `_run_stages_6_9` + `build_trade_input` per page.
+# Calibration / sweep harnesses construct TradeModuleInput manually and
+# never imported `_build_dispatch_only_input` — they're unaffected.
 
-def _build_dispatch_only_input(ctx: PlanSetContext, page_idx: int,
-                               text_blocks: list, raw_tables):
-    """D.1: build a TradeModuleInput without geometry results.
+def _run_stages_6_9(engine: PDFEngine, doc, page_idx: int) -> dict:
+    """Phase G.6: run geometry / scale / building outline detection per page.
 
-    Geometry isn't wired into dispatch yet (Phase D.2/E), so polygon-derived
-    fields are zeroed, mirroring the C.2-established direct-construction
-    pattern used by the calibration / sweep harnesses. The dispatch-side
-    state (page_type, page_legends, page_zones, raw_tables, project_scope)
-    is wired through correctly.
+    Returns a `geometry_result` dict consumable by
+    `core.trade_input_builder.build_trade_input`:
+      {
+          "building_outline": {area_sqin, area_sqft, perimeter_ft,
+                               ft_per_inch, source},
+          "contours": [{is_building_outline: True, bbox_pct: [x,y,w,h],
+                        vertex_count: int}, ...],
+          "scale_info": {source, confidence},
+      }
+
+    Returns `{}` (safe-empty) when no closed vector polygon clusters above
+    the 400-sqft scoring floor at any building scale — most non-roof-plan
+    pages (specs, details, cover sheets, MEP plans). build_trade_input
+    handles the empty case by zeroing polygon fields, matching the prior
+    C.2-equivalent zeroed-input behavior on those pages.
     """
-    from core.trade_module import TradeModuleInput
+    from core.geometry_matrix import GeometryMatrix
 
-    page_ctx = ctx.pages.get(page_idx)
-    page_type = "UNKNOWN"
-    page_legends: list = []
-    page_zones: list = []
-    if page_ctx is not None:
-        pt = getattr(page_ctx, "page_type", None)
-        page_type = getattr(pt, "value", str(pt)) if pt is not None else "UNKNOWN"
-        page_legends = list(page_ctx.legends or [])
-        page_zones = list(page_ctx.zones or [])
+    try:
+        vector_paths = engine.extract_vectors(doc, page_idx)
+    except Exception:
+        return {}
+    if not vector_paths:
+        return {}
 
-    return TradeModuleInput(
-        polygon_area_sqin=0.0,
-        polygon_area_sf=0.0,
-        polygon_perimeter_in=0.0,
-        polygon_perimeter_lf=0.0,
-        polygon_bbox=(0.0, 0.0, 0.0, 0.0),
-        polygon_vertices=0,
-        scale_fpi=0.0,
-        scale_source="unwired",
-        scale_confidence=0.0,
-        detection_source="none",
-        interior_text_blocks=text_blocks,
-        equipment_callouts=[],
-        dimension_strings=[],
-        page_type=page_type,
-        page_legends=page_legends,
-        page_zones=page_zones,
-        tables=raw_tables if raw_tables else None,
-        project_scope=getattr(ctx, "project_scope", None),
-        page_number=page_idx,
+    try:
+        page_meta = doc.pages[page_idx]
+    except (IndexError, AttributeError):
+        return {}
+
+    gm = GeometryMatrix()
+    candidates = gm.cluster_and_union_polygons(vector_paths, page_meta)
+    if not candidates:
+        return {}
+
+    top = candidates[0]
+    polygon = top["polygon"]
+    bounds = polygon.bounds  # (minx, miny, maxx, maxy) in PDF points
+    page_w_pts = page_meta.width_pts
+    page_h_pts = page_meta.height_pts
+    bbox_pct = [
+        bounds[0] / page_w_pts * 100.0,
+        bounds[1] / page_h_pts * 100.0,
+        (bounds[2] - bounds[0]) / page_w_pts * 100.0,
+        (bounds[3] - bounds[1]) / page_h_pts * 100.0,
+    ]
+
+    confidence_label = GeometryMatrix.compute_confidence(candidates)
+    confidence_value = {"high": 0.9, "medium": 0.6, "low": 0.3}.get(
+        confidence_label, 0.0
     )
+
+    return {
+        "building_outline": {
+            "area_sqin": float(top.get("area_sqin", 0.0)),
+            "area_sqft": float(top.get("area_sqft", 0.0)),
+            "perimeter_ft": float(top.get("perimeter_ft", 0.0)),
+            "ft_per_inch": float(top.get("ft_per_inch", 0.0)),
+            "source": "vector_cluster",
+            "scale_method": "cluster_scoring",
+        },
+        "contours": [
+            {
+                "is_building_outline": True,
+                "bbox_pct": bbox_pct,
+                "vertex_count": int(top.get("n_polygons", 0) or 0),
+            }
+        ],
+        "scale_info": {
+            "source": "vector_cluster_scoring",
+            "confidence": confidence_value,
+        },
+    }
 
 
 def _run_trade_modules(engine: PDFEngine, doc, ctx: PlanSetContext) -> None:
@@ -1540,6 +1587,7 @@ def _run_trade_modules(engine: PDFEngine, doc, ctx: PlanSetContext) -> None:
     """
     from core.roofing_module import RoofingModule
     from core.glazing_module import GlazingModule
+    from core.trade_input_builder import build_trade_input
 
     roofing_mod = RoofingModule()
     glazing_mod = GlazingModule()
@@ -1587,7 +1635,30 @@ def _run_trade_modules(engine: PDFEngine, doc, ctx: PlanSetContext) -> None:
                 except Exception:
                     pass
 
-            tinput = _build_dispatch_only_input(ctx, page_idx, text_blocks, raw_tables)
+            # Phase G.6: run Stages 6-9 (geometry/scale/building outline) per page;
+            # build_trade_input then produces a fully-wired TradeModuleInput
+            # (Stage 9 callout extraction lives inside build_trade_input).
+            geometry_result = _run_stages_6_9(engine, doc, page_idx)
+            try:
+                page_meta = doc.pages[page_idx]
+                page_w_pts = page_meta.width_pts
+                page_h_pts = page_meta.height_pts
+            except (IndexError, AttributeError):
+                page_w_pts = 0.0
+                page_h_pts = 0.0
+            tinput = build_trade_input(
+                geometry_result=geometry_result,
+                dispatch_ctx=ctx,
+                page_num=page_idx,
+                text_blocks=text_blocks,
+                page_width_pts=page_w_pts,
+                page_height_pts=page_h_pts,
+            )
+            # build_trade_input doesn't read raw_tables itself — it reads
+            # page_ctx.raw_tables via dispatch_ctx. The raw_tables fallback
+            # populated above ensures non-SCHEDULE pages still have tables.
+            if raw_tables and not getattr(tinput, "tables", None):
+                tinput.tables = raw_tables
             pages_attempted += 1
             per_page: dict = {}
 
